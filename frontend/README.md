@@ -12,27 +12,9 @@ Any of these works:
 - **Double-click `Launch Demo.lnk`** (Windows shortcut, opens in your default browser).
 - **Double-click `index.html`** (runs from `file://`).
 - `npx serve frontend` (or any static server) for in-room demos.
-- **GitHub Pages:** the folder is Pages-ready (relative paths only, `.nojekyll`
-  included). Either:
-  1. Push the repo, then Settings → Pages → *Deploy from a branch*, folder
-     `/frontend` is not offered by Pages directly — so either move/copy this
-     folder to `/docs` and select `/docs`, **or**
-  2. use an Actions workflow that uploads `frontend/` as the Pages artifact:
-
-  ```yaml
-  # .github/workflows/pages.yml
-  on: { push: { branches: [main] } }
-  permissions: { pages: write, id-token: write }
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
-      environment: { name: github-pages }
-      steps:
-        - uses: actions/checkout@v4
-        - uses: actions/upload-pages-artifact@v3
-          with: { path: frontend }
-        - uses: actions/deploy-pages@v4
-  ```
+- **GitHub Pages:** pushes to `main` that change `frontend/` are deployed by
+  [`.github/workflows/pages.yml`](../.github/workflows/pages.yml). The repository
+  Pages source must be set to **GitHub Actions** once in Settings → Pages.
 
 No build step exists, so there is nothing else to configure.
 
