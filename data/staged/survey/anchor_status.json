@@ -1,0 +1,19 @@
+{
+  "status": "blocked_missing_approved_wave_anchor",
+  "canonical_anchor_created": false,
+  "descriptive_rows": 42,
+  "reason": "Available outcomes are conditioned on sponsorship awareness and response scales change after 2024.",
+  "required_input": [
+    "wave_id",
+    "fieldwork_start",
+    "fieldwork_end",
+    "awareness",
+    "engagement",
+    "appeal",
+    "consideration",
+    "purchase_intent",
+    "questionnaire_version",
+    "comparability_status",
+    "weighting_scheme"
+  ]
+}

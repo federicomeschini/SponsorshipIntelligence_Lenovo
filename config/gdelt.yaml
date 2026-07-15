@@ -1,0 +1,5 @@
+version: 1
+query: Lenovo
+horizon: {start: 2022-01-01, end: null}
+staged_output_dir: data/staged/gdelt
+backend_order: [doc_api, bigquery]

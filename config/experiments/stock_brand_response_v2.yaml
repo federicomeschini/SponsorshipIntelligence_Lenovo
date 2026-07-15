@@ -1,0 +1,37 @@
+experiment_id: stock_brand_response_v2
+status: exploratory_market_association_not_profit_or_causal
+
+inputs:
+  market_prices: data/staged/market/market_prices_daily.parquet
+  brand_index: data/curated/index/brand_index_weekly.parquet
+  joint_donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
+  product_campaign_events: data/reference/lenovo_product_campaign_events.csv
+  financial_results_events: data/reference/lenovo_financial_results_events.csv
+
+factor_model:
+  estimation_window_trading_days: 120
+  factors: [hsi_return, ndx_hkd_lagged]
+
+brand_index_innovation:
+  estimation_window_weeks: 104
+  minimum_history_weeks: 52
+  category_demand_queries:
+    [donor_dell, donor_asus, donor_acer, donor_hp, donor_microsoft_surface, donor_macbook]
+  regressors:
+    [lag_delta_brand_index, category_demand_change, product_campaign_control,
+     promotion_calendar_control, mixed_event_control, season_sin, season_cos]
+
+stock_response:
+  horizons_weeks: [0, 1, 4, 13]
+  regressors:
+    [brand_index_innovation, lag_abnormal_return, lag_realized_volatility,
+     category_demand_change, product_campaign_control,
+     promotion_calendar_control, mixed_event_control, earnings_control]
+  earnings_carryover_weeks: 2
+  minimum_hac_lags: 4
+  familywise_adjustment: holm
+  reverse_placebo_lead_weeks: 4
+  endpoint_stability_dates: [2024-12-31, 2025-12-31]
+
+outputs:
+  directory: data/curated/experimental/stock_brand_response_v2

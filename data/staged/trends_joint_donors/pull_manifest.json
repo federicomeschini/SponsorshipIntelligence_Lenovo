@@ -1,0 +1,33 @@
+{
+  "source": "Google Trends common-anchor comparison panels",
+  "status": "complete_joint_scale_panel",
+  "generated_at_utc": "2026-07-15T10:47:08.123560+00:00",
+  "config_path": "config\\joint_trends_donors.yaml",
+  "composition_id": "worldwide_common_anchor_v1",
+  "common_anchor": {
+    "query_id": "anchor_lenovo",
+    "brand_id": "lenovo",
+    "term": "Lenovo"
+  },
+  "panels": 6,
+  "donor_queries": 21,
+  "draws_per_panel": 10,
+  "successful_draws_by_panel": {
+    "core_legacy": 10,
+    "core_expansion_a": 10,
+    "core_expansion_b": 10,
+    "sensitivity": 10,
+    "core_expansion_c": 10,
+    "core_expansion_d": 10
+  },
+  "failed_draws": [],
+  "weeks_min": 237,
+  "weeks_max": 237,
+  "curated_path": "data\\curated\\trends\\jointly_scaled_donor_trends.parquet",
+  "curated_sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf",
+  "scaling_rule": "Each panel/draw is multiplicatively mapped to the median Lenovo anchor path in the first panel using positive overlapping weeks.",
+  "limitations": [
+    "Google Trends is sampled and rounded; repeated draws quantify request instability, not sampling independence.",
+    "A common Lenovo anchor establishes cross-panel scale but does not make search constructs identical across brands."
+  ]
+}

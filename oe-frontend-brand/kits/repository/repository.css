@@ -1,0 +1,27 @@
+/* Repository — stili libreria. Dipende dai token in ../../ds-kit/colors_and_type.css */
+body{margin:0;font-family:var(--oe-font-sans);font-weight:300;color:var(--oe-fg);background:var(--oe-gray-100);font-size:16px;line-height:1.5}
+.repo{max-width:1280px;margin:0 auto;padding:var(--oe-space-9) var(--oe-page-pad)}
+.repo-head h1{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(32px,4.4vw,52px);margin:0}
+.repo-head .sub{font-family:var(--oe-font-mono);text-transform:uppercase;font-size:12px;color:var(--oe-gray-600);margin-top:var(--oe-space-2)}
+/* toolbar */
+.toolbar{display:flex;gap:var(--oe-space-4);flex-wrap:wrap;align-items:flex-end;margin:var(--oe-space-8) 0 var(--oe-space-4)}
+.search{flex:1 1 240px;font-family:var(--oe-font-sans);font-size:15px;padding:10px 14px;border:1px solid var(--oe-gray-300);background:#fff}
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld span{font-family:var(--oe-font-mono);text-transform:uppercase;font-size:11px;color:var(--oe-gray-600)}
+.fld select{font-family:var(--oe-font-sans);font-size:14px;padding:9px 12px;border:1px solid var(--oe-gray-300);background:#fff;min-width:150px}
+.count{font-family:var(--oe-font-mono);text-transform:uppercase;font-size:12px;color:var(--oe-gray-600);margin-bottom:var(--oe-space-5)}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--oe-space-6)}
+.acard{background:var(--oe-white);box-shadow:var(--oe-shadow-1);padding:var(--oe-space-6);display:flex;flex-direction:column;gap:var(--oe-space-3);transition:box-shadow var(--oe-dur-base,220ms),transform var(--oe-dur-base,220ms)}
+.acard:hover{box-shadow:var(--oe-shadow-2);transform:translateY(-2px)}
+.acard .fmt{align-self:flex-start;font-family:var(--oe-font-mono);text-transform:uppercase;font-size:11px;color:var(--oe-bluette-700);background:var(--oe-bluette-050);padding:4px 8px}
+.acard h3{font-family:var(--oe-font-sans);font-weight:500;font-size:19px;margin:0}
+.acard .ameta{font-family:var(--oe-font-mono);font-size:12px;color:var(--oe-gray-600)}
+/* download (CTA: mai nero → Bluette) */
+.dl{display:inline-flex;align-items:center;gap:4px;text-decoration:none;font-family:var(--oe-font-mono);text-transform:uppercase;font-size:13px;margin-top:auto}
+.dl .tile{background:var(--oe-bluette-700);color:#fff;width:38px;height:38px;display:grid;place-items:center}
+.dl .label{background:var(--oe-bluette-700);color:#fff;height:38px;display:flex;align-items:center;padding:0 16px}
+.empty{font-family:var(--oe-font-mono);color:var(--oe-gray-600);padding:var(--oe-space-8) 0}
+/* footer slim */
+.repo-footer{max-width:1280px;margin:var(--oe-space-9) auto 0;padding:var(--oe-space-5) var(--oe-page-pad);border-top:1px solid var(--oe-gray-300);display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--oe-space-3);font-size:13px;color:var(--oe-gray-600)}
+.repo-footer a{color:inherit;text-decoration:none}

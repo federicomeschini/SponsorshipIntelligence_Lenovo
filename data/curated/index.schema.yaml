@@ -1,0 +1,13 @@
+contract: C-INDEX
+description: Weekly proxy-led Lenovo brand-salience index calibrated to the provisional GWI composite.
+columns:
+  - {name: week, type: date, constraints: [W-MON]}
+  - {name: index_level, type: float}
+  - {name: index_se, type: float, constraints: [non_negative]}
+  - {name: source_version, type: string}
+  - {name: anchored, type: boolean}
+invariants:
+  - Weekly movement comes only from the configured parent-brand Trends proxy.
+  - Survey observations calibrate orientation and scale but do not pin individual weeks.
+  - Survey convergence and leave-one-quarter stability are reported; neither is
+    interpreted as a forecast-performance gate.

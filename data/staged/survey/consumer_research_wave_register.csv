@@ -1,0 +1,8 @@
+filter_text,reported_wave,exact_fieldwork_start,exact_fieldwork_end,comparability_status,note
+Filter: Wave 11 FWC Survey June 2024 AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 11 FWC Survey June 2024,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."
+Filter: Wave 16 - July 2025 FWC  AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 16 - July 2025,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."
+Filter: Wave 20 - February 2026 Pre FWC AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 20 - February 2026,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."
+Filter: Wave 12 FWWC Survey June 2024 AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 12 FWWC Survey June 2024,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."
+Filter: Wave 17 - July 2025 FWWC  AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 17 - July 2025,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."
+Filter: Wave 21 - April 2026 FWWC AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 21 - April 2026,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."
+Filter: Wave 18 - August 2025 Post CWC AND Nat Rep; Weight: Nat Rep Weight_Final,Wave 18 - August 2025,,,unknown_requires_source_metadata,"The export provides a labelled month/wave, not exact fieldwork dates."

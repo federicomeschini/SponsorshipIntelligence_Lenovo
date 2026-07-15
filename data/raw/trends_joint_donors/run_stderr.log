@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\FedericoMeschini\OneDrive - OpenEconomics S.r.l\Desktop\FIFA LENOVO\srmp\ingest\trends_joint.py", line 217, in <module>
+    print(json.dumps(pull_joint_trends(args.config), indent=2))
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\FedericoMeschini\OneDrive - OpenEconomics S.r.l\Desktop\FIFA LENOVO\srmp\ingest\trends_joint.py", line 162, in pull_joint_trends
+    raise RuntimeError(f"Incomplete common-anchor draw set: {failed}")
+RuntimeError: Incomplete common-anchor draw set: [{'panel_id': 'core_legacy', 'draw': 0, 'status': 'failed', 'rows': 0, 'explore_status': 200, 'multiline_status': None}, {'panel_id': 'core_legacy', 'draw': 1, 'status': 'failed', 'rows': 0, 'explore_status': 200, 'multiline_status': None}, {'panel_id': 'core_legacy', 'draw': 2, 'status': 'failed', 'rows': 0, 'explore_status': 200, 'multiline_status': None}, {'panel_id': 'core_legacy', 'draw': 3, 'status': 'failed', 'rows': 0, 'explore_status': 200, 'multiline_status': None}, {'panel_id': 'core_expansion_b', 'draw': 0, 'status': 'failed', 'rows': 0, 'explore_status': 200, 'multiline_status': None}]

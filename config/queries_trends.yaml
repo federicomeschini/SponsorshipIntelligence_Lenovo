@@ -1,0 +1,70 @@
+version: 2
+composition_id: worldwide_v1
+horizon: {start: 2022-01-01, end: null}
+acquisition:
+  backend_order: [official_alpha, anonymous_web, manual_csv]
+  draws_per_query: 10
+  manual_export_dir: data/raw/trends/manual
+  staged_output_dir: data/staged/trends
+  curated_output_dir: data/curated/trends
+  request_delay_seconds: 8
+  max_retries: 6
+  # W-01 overlap-ratio rescaling: each draw is a differently-normalised weekly
+  # window rescaled onto the full-horizon reference. window_fraction sets each
+  # sub-window's length as a fraction of the horizon span; draws_per_query is the
+  # draw count (draw 0 = full-horizon reference, the rest tile the span).
+  window_fraction: 0.34
+  min_overlap_weeks: 12
+geos:
+  - {geo_id: worldwide, google_geo: "", weight: 1.0, language: en}
+# Families are never pooled (ARCHITECTURE §3.3, guardrail line 374): each is a
+# separate observable and validation-gate candidate. target_stage is a prior;
+# §5.2 records the empirically best-matching funnel stage. role separates Lenovo
+# brand outcomes from the synthetic-control donor pool so proxy validation can skip
+# donors. Funnel stages: awareness, engagement, appeal, consideration, purchase_intent.
+families:
+  brand:
+    role: brand_outcome
+    target_stage: awareness      # §3.3: brand salience proxies the awareness funnel stage
+    queries:
+      - {query_id: brand_lenovo, term: Lenovo}
+      # "联想" (CN) omitted: composition is worldwide-only (ADR-0007); CN salience
+      # is carried by Wikipedia zh pageviews per W-09.
+  category_purchase:
+    role: brand_outcome
+    target_stage: consideration  # construct is consideration/intent
+    queries:
+      # Retained product-name queries (salience-leaning; kept as candidates).
+      - {query_id: category_lenovo_laptop, term: Lenovo laptop}
+      - {query_id: category_thinkpad, term: ThinkPad}
+      - {query_id: category_lenovo_legion, term: Lenovo Legion}
+      # Commercial-intent modifiers so the family actually proxies purchase intent
+      # (§3.3 example "ThinkPad price"), not just category awareness.
+      - {query_id: category_lenovo_laptop_price, term: Lenovo laptop price}
+      - {query_id: category_thinkpad_price, term: ThinkPad price}
+  co_branded_property:
+    role: brand_outcome
+    target_stage: property_outcome # L4b property outcome, not a funnel stage; conjunction intentional
+    queries:
+      # "Lenovo X" conjunctions measure property-ATTRIBUTED salience, so they are
+      # correct by design even though most weeks are suppressed (<1). The sparsity
+      # is a measurement limit on L4b, flagged in ADR-0010 — not a query defect.
+      - {query_id: cobrand_fifa, term: Lenovo FIFA, property_id: fifa}
+      - {query_id: cobrand_f1, term: Lenovo F1, property_id: f1}
+      - {query_id: cobrand_motogp, term: Lenovo MotoGP, property_id: motogp}
+      - {query_id: cobrand_ducati, term: Lenovo Ducati, property_id: ducati}
+      - {query_id: cobrand_fcwc, term: Lenovo Club World Cup, property_id: fcwc}
+      # esports property (named in D2) has no confirmed co-branded term → not invented
+      # here (ADR-0002); add once the client confirms the property string.
+  competitor_donor:
+    role: scm_donor               # O-05 / L6 synthetic-control donor pool; NOT a funnel stage
+    target_stage: scm_donor
+    queries:
+      # Disambiguated per O-05 ("Dell is clean, Apple is not"). Clean computing
+      # brands use the bare term; phone/multi-category brands use the PC line.
+      - {query_id: donor_dell, term: Dell}
+      - {query_id: donor_asus, term: Asus}
+      - {query_id: donor_acer, term: Acer}
+      - {query_id: donor_hp, term: HP laptop}            # "HP" alone ambiguous (horsepower, printers)
+      - {query_id: donor_samsung, term: Samsung laptop}  # raw "Samsung" phone-dominated (O-05: PC line)
+      - {query_id: donor_huawei, term: Huawei, quality_flag: low}  # phone/telecom & CN brand (W-09) → screen at L6

@@ -1,0 +1,46 @@
+{
+  "status": "descriptive_association_not_causal",
+  "sample_start": "2024-09-30",
+  "sample_end": "2026-06-08",
+  "observations": 89,
+  "hac_lags": 4,
+  "r_squared": 0.38871478131464754,
+  "coefficients": {
+    "intercept": {
+      "estimate_index_points": 0.8349896399065801,
+      "hac_se": 0.14482216162552236
+    },
+    "fifa_log_adstock_z": {
+      "estimate_index_points": -0.1441748457207128,
+      "hac_se": 0.15995005525023473
+    },
+    "nonfifa_log_adstock_z": {
+      "estimate_index_points": 0.09269046359812462,
+      "hac_se": 0.09974217865606268
+    },
+    "linear_time_z": {
+      "estimate_index_points": 0.6886159029910558,
+      "hac_se": 0.27340575024528646
+    },
+    "product_campaign_control": {
+      "estimate_index_points": 0.24671908858194375,
+      "hac_se": 0.1939007542058049
+    },
+    "promotion_calendar_control": {
+      "estimate_index_points": 0.44466979231720866,
+      "hac_se": 0.17879812754468805
+    },
+    "mixed_event_control": {
+      "estimate_index_points": -0.7927752251717368,
+      "hac_se": 0.58706183627645
+    }
+  },
+  "regressor_definition": {
+    "fifa_log_adstock_z": "standardized log1p aggregate FIFA-property adstock",
+    "nonfifa_log_adstock_z": "standardized log1p aggregate all other Lenovo sponsorship adstock",
+    "product_campaign_control": "confirmed Lenovo product or corporate campaign event week plus configured carryover",
+    "promotion_calendar_control": "Black Friday calendar proxy; not confirmed Lenovo media spend",
+    "mixed_event_control": "event week containing both FIFA activation and major non-sponsorship Lenovo news"
+  },
+  "interpretation": "Timing diagnostic only; exposure is endogenous and coverage starts shortly before treatment."
+}

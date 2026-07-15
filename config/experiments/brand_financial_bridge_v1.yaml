@@ -1,0 +1,44 @@
+experiment_id: brand_financial_bridge_v1
+status: exploratory_association_not_causal
+
+inputs:
+  quarterly_financials: data/reference/lenovo_quarterly_financials.csv
+  brand_index: data/curated/index/brand_index_weekly.parquet
+  joint_donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
+  market_prices: data/staged/market/market_prices_daily.parquet
+  product_campaign_events: data/reference/lenovo_product_campaign_events.csv
+  announcement_counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
+  world_cup_simulation_manifest: data/curated/experimental/world_cup_simulation_v1/simulation_manifest.json
+
+category_demand_queries:
+  [donor_dell, donor_asus, donor_acer, donor_hp, donor_microsoft_surface, donor_macbook]
+
+profit_models:
+  primary: margin_macro
+  specifications:
+    margin_uncontrolled:
+      outcome: delta_adjusted_net_margin_pp
+      regressors: [delta_brand_index]
+    margin_category:
+      outcome: delta_adjusted_net_margin_pp
+      regressors: [delta_brand_index, delta_category_demand_z]
+    margin_macro:
+      outcome: delta_adjusted_net_margin_pp
+      regressors: [delta_brand_index, delta_category_demand_z, hsi_log_return, ndx_hkd_log_return]
+    margin_seasonality:
+      outcome: delta_adjusted_net_margin_pp
+      regressors: [delta_brand_index, delta_category_demand_z, fiscal_q2, fiscal_q3, fiscal_q4]
+    margin_all_controls:
+      outcome: delta_adjusted_net_margin_pp
+      regressors: [delta_brand_index, delta_category_demand_z, hsi_log_return, ndx_hkd_log_return, fiscal_q2, fiscal_q3, fiscal_q4]
+    profit_growth_revenue_macro:
+      outcome: delta_log_adjusted_net_income
+      regressors: [delta_brand_index, delta_log_revenue, delta_category_demand_z, hsi_log_return, ndx_hkd_log_return]
+
+stock_model:
+  factors: [HSI, NDX_HKD_lagged]
+  regressors: [delta_brand_index, lag_abnormal_return, product_campaign_control, promotion_calendar_control, mixed_event_control]
+  hac_lags: 4
+
+outputs:
+  directory: data/curated/experimental/brand_financial_bridge_v1

@@ -1,0 +1,133 @@
+{
+  "experiment_id": "world_cup_simulation_v1",
+  "status": "simulation_only_incomplete_outcome_not_for_valuation",
+  "generated_at_utc": "2026-07-15T11:34:08.499311+00:00",
+  "canonical_contracts_replaced": [],
+  "accepted_for_valuation": false,
+  "calendar": {
+    "source": "https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=285023&from=2026-06-01T00%3A00%3A00Z&to=2026-07-31T23%3A59%3A59Z&language=en&count=200",
+    "source_page": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums",
+    "raw_snapshot": "data/raw/fifa_calendar/fwc26_official_api_snapshot.json",
+    "raw_sha256": "0e7ea552aa97de4059e6960c94562aed5339ec5dddd8dfa3b1bc94603806b6c4",
+    "matches": 104,
+    "start": "2026-06-11 19:00:00+00:00",
+    "end": "2026-07-19 19:00:00+00:00"
+  },
+  "exposure_calibration": {
+    "historical_start": "2024-10-14",
+    "historical_end": "2026-06-08",
+    "positive_history_weeks": 64,
+    "historical_impressions_p90": 70778318.60000001,
+    "historical_impressions_max": 171628998.0,
+    "historical_median_view_rate": 0.7982284888786346,
+    "stage_weights": {
+      "First Stage": 1.0,
+      "Round of 32": 1.35,
+      "Round of 16": 1.65,
+      "Quarter-final": 2.1,
+      "Semi-final": 2.9,
+      "Bronze final": 1.9,
+      "Final": 4.25
+    },
+    "adstock_delta": 0.8,
+    "warning": "All World Cup exposure rows are simulated scenarios, not Blinkfire observations."
+  },
+  "counterfactual": {
+    "method": "simplex_SCM_simulation_only",
+    "treatment_week": "2026-06-08",
+    "observed_outcome_start": "2026-06-08",
+    "observed_outcome_end_label": "2026-07-06",
+    "underlying_outcome_data_through": "2026-07-05",
+    "observed_outcome_weeks": 5,
+    "calendar_matches_covered": 91,
+    "calendar_matches_total": 104,
+    "calendar_match_coverage": 0.875,
+    "training_weeks": 205,
+    "validation_holdout_weeks": 26,
+    "validation_holdout_rmspe_index_points": 1.157088397959665,
+    "full_pre_rmspe_index_points": 0.38028859575672075,
+    "observed_post_rmspe_index_points": 0.5033118233950763,
+    "post_pre_rmspe_ratio": 1.3234996500317255,
+    "donor_placebo_p_value": 0.3333333333333333,
+    "known_lenovo_control_event_weeks_in_observed_window": 0,
+    "weights": {
+      "donor_dell": 0.17098960283089815,
+      "donor_asus": 0.4932424054366434,
+      "donor_acer": 0.0,
+      "donor_hp": 0.020332976267546054,
+      "donor_microsoft_surface": 0.0,
+      "donor_razer": 0.0,
+      "donor_logitech": 0.05401450055130511,
+      "donor_macbook": 0.18016782532281733,
+      "donor_corsair": 0.0,
+      "donor_steelseries": 7.69292348979004e-15,
+      "donor_benq": 0.08125268959078229
+    },
+    "interpretation": {
+      "incremental_world_cup": "Lenovo excess over a synthetic path refitted through the week before the tournament; it estimates tournament lift above the existing sponsorship baseline.",
+      "total_sponsorship_path": "Lenovo excess during World Cup weeks relative to the frozen pre-announcement no-FIFA-partnership path; it also contains all other Lenovo-specific post-announcement shocks.",
+      "acceptance": "Exposure is simulated and the outcome window is incomplete, so neither quantity is an accepted FIFA effect."
+    }
+  },
+  "scenario_results": [
+    {
+      "scenario": "base",
+      "observed_outcome_weeks": 5,
+      "simulated_impressions_observed_window": 646231893.1244541,
+      "exposure_weighted_gap_index_points": -0.1604003870832563,
+      "frozen_preannouncement_exposure_weighted_gap_index_points": 0.3665207724090401,
+      "all_observed_world_cup_mean_gap": -0.17540515183844,
+      "frozen_preannouncement_all_observed_mean_gap": 0.4903062338609686,
+      "known_event_week_excluded_mean_gap": -0.17540515183844
+    },
+    {
+      "scenario": "high",
+      "observed_outcome_weeks": 5,
+      "simulated_impressions_observed_window": 1011730459.0617903,
+      "exposure_weighted_gap_index_points": -0.1568623676318976,
+      "frozen_preannouncement_exposure_weighted_gap_index_points": 0.3725914523643416,
+      "all_observed_world_cup_mean_gap": -0.17540515183844,
+      "frozen_preannouncement_all_observed_mean_gap": 0.4903062338609686,
+      "known_event_week_excluded_mean_gap": -0.17540515183844
+    },
+    {
+      "scenario": "low",
+      "observed_outcome_weeks": 5,
+      "simulated_impressions_observed_window": 254848308.3040612,
+      "exposure_weighted_gap_index_points": -0.16426447720181656,
+      "frozen_preannouncement_exposure_weighted_gap_index_points": 0.35989060693066366,
+      "all_observed_world_cup_mean_gap": -0.17540515183844,
+      "frozen_preannouncement_all_observed_mean_gap": 0.4903062338609686,
+      "known_event_week_excluded_mean_gap": -0.17540515183844
+    }
+  ],
+  "inputs": {
+    "brand_index": {
+      "path": "data/curated/index/brand_index_weekly.parquet",
+      "sha256": "5f98aa492773941292a32bdf4017637de493750263573f6750aa18f16d20c45c"
+    },
+    "joint_donor_trends": {
+      "path": "data/curated/trends/jointly_scaled_donor_trends.parquet",
+      "sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf"
+    },
+    "historical_blinkfire": {
+      "path": "data/staged/blinkfire/blinkfire_exposure_weekly.parquet",
+      "sha256": "187b110d84e672f02c38f2b4d9c9702b7f7f98261af259a7b691ebd3a6b6818f"
+    },
+    "product_campaign_events": {
+      "path": "data/reference/lenovo_product_campaign_events.csv",
+      "sha256": "7489cc473753800a2c42c16ef9b37be0310a84918621628abc6305cdf918d241"
+    },
+    "frozen_preannouncement_counterfactual": {
+      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet",
+      "sha256": "979d8bee8408e049dc20d6ce00430870816cbd2a26f035a09ce5438758dc6bb4"
+    }
+  },
+  "simulation_guardrails": [
+    "Every exposure row is marked is_simulated=true and uses a SIMULATED measurement scope.",
+    "No simulated exposure enters canonical Blinkfire, Brand Index, or monetization artifacts.",
+    "The current outcome covers 87.5 percent of scheduled matches and no 13-week persistence window.",
+    "Current non-FIFA exposure after 2026-06-08 is unavailable and is not fabricated.",
+    "A passing placebo would still not make this an accepted causal or monetary estimate."
+  ]
+}

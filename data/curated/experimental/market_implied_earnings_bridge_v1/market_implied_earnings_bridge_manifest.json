@@ -1,0 +1,69 @@
+{
+  "experiment_id": "market_implied_earnings_bridge_v1",
+  "status": "operational_positive_planning_calibration",
+  "generated_at_utc": "2026-07-15T14:16:02.435465+00:00",
+  "accepted_for_planning": true,
+  "accepted_for_total_sponsorship_valuation": false,
+  "superseded_for_total_return_by": "sponsorship_total_return_v2",
+  "accepted_for_accounting_or_causal_claim": false,
+  "selected_stock_response": {
+    "horizon_weeks": 0,
+    "empirical_return_percent_per_BI_point": 0.30517081832346454,
+    "planning_return_percent_per_BI_point": 0.30517081832346454,
+    "empirical_lower_95_percent": -0.8168693841757155,
+    "empirical_upper_95_percent": 1.4272110208226447,
+    "planning_lower_percent": 0.0,
+    "planning_upper_percent": 1.4272110208226447,
+    "p_value_normal_approx": 0.59397967574058,
+    "p_value_holm": 1.0,
+    "monotonicity_rule": "Coefficient is floored at zero for commercial planning; the empirical estimate and interval remain reported."
+  },
+  "operational_unit_mapping": {
+    "statement": "One BI point maps to a 0.305% increase in market-implied annual adjusted earnings under a constant earnings multiple.",
+    "annual_adjusted_earnings_base_usd_m": 2049.0,
+    "fiscal_year": "FY25/26",
+    "annual_adjusted_earnings_usd_m_per_BI_point": 6.252950067447789,
+    "planning_lower_usd_m_per_BI_point": 0.0,
+    "planning_upper_usd_m_per_BI_point": 29.24355381665599
+  },
+  "market_value_cross_check": {
+    "reference_date": "2026-03-31",
+    "ordinary_shares_outstanding": 12404659302,
+    "official_market_cap_usd_m": 14500.0,
+    "official_market_cap_hkd_m": 113500.0,
+    "adjusted_earnings_multiple": 7.076622742801367,
+    "equity_value_usd_m_per_BI_point": 44.24976865690236,
+    "equity_value_divided_by_multiple_usd_m": 6.252950067447789
+  },
+  "scenarios_artifact": "market_implied_earnings_scenarios.parquet",
+  "inputs": {
+    "stock_response_manifest": {
+      "path": "data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json",
+      "sha256": "a0ad8376beb16405066ca8d48065171a5f9daf2d4d97e7b7afd4ad30b35b669e"
+    },
+    "quarterly_financials": {
+      "path": "data/reference/lenovo_quarterly_financials.csv",
+      "sha256": "3be92141966a3ff253772a23b205b1fd0d23a8773cb115a6165c7608284d6bcc"
+    },
+    "market_valuation_reference": {
+      "path": "data/reference/lenovo_market_valuation_reference.csv",
+      "sha256": "c117f44cb4bf68fadfe1809a7d86fb14e96d012d4f7828bdaf6ee1e8b088a6f5"
+    },
+    "announcement_counterfactual_manifest": {
+      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json",
+      "sha256": "9b864c802beb5013743032ce8092e2c00ec7e403e03dd514a8525fa5f8158a72"
+    },
+    "world_cup_simulation_manifest": {
+      "path": "data/curated/experimental/world_cup_simulation_v1/simulation_manifest.json",
+      "sha256": "07e8fdcd96406c802cdfc73093d8bee7df6939aca26beeb84650158f558012c9"
+    }
+  },
+  "guardrails": [
+    "This is an operational positive planning calibration.",
+    "The zero floor is an explicit monotonicity assumption, not a statistical finding.",
+    "The constant earnings multiple makes the percent equity response equal the percent earnings-equivalent response.",
+    "The immediate stock response is used because market news should be capitalized when observed.",
+    "No inaccessible client operating data or external WACC is required.",
+    "Sponsorship attribution remains separate and must not be accepted merely because the monetization coefficient is positive."
+  ]
+}

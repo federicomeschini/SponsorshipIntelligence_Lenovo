@@ -1,0 +1,10 @@
+contract: C-ROI
+description: Royalty-relief ROI synthesis output.
+columns:
+  - {name: scenario_id, type: string}
+  - {name: delta_index_attrib, type: float}
+  - {name: delta_royalty_bps, type: float}
+  - {name: incremental_value, type: float}
+  - {name: fee, type: float}
+  - {name: roi_multiple, type: float}
+  - {name: assumptions_hash, type: string}

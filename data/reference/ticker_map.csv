@@ -1,0 +1,5 @@
+factor_id,ticker,market,currency,notes
+LENOVO,0992.HK,HKEX,HKD,Financial outcome
+HSI,^HSI,HKEX,HKD,Local market factor
+NDX,^NDX,NASDAQ,USD,Global technology factor; convert to HKD with USDHKD before return construction
+USDHKD,HKD=X,FX,HKD per USD,FX series used to express NDX in HKD

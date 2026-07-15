@@ -1,0 +1,11 @@
+contract: C-PANEL
+description: Property-week fixed-effects panel input.
+columns:
+  - {name: property_id, type: string}
+  - {name: week, type: date, constraints: [W-MON]}
+  - {name: y_trends_cobrand, type: float}
+  - {name: y_engagement_rate, type: float}
+  - {name: adstock_impressions, type: float}
+  - {name: covariates, type: object}
+invariants:
+  - Balancedness is reported; unbalanced panels are documented.

@@ -1,0 +1,52 @@
+{
+  "source": "Yahoo Finance chart API",
+  "generated_at_utc": "2026-07-14T09:55:40.630251+00:00",
+  "config_path": "config/market.yaml",
+  "horizon": {
+    "start": "2022-01-01",
+    "end": "2026-07-14"
+  },
+  "row_count": 4529,
+  "pulls": [
+    {
+      "factor_id": "LENOVO",
+      "ticker": "0992.HK",
+      "file": "LENOVO__20220101_20260714.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/0992.HK?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "f1068f8383ef05f9481a7749154d6d5f3510b41ad17454e9942f57fac5d54d13",
+      "row_count": 1109,
+      "cache_hit": false
+    },
+    {
+      "factor_id": "HSI",
+      "ticker": "^HSI",
+      "file": "HSI__20220101_20260714.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "0168a77200aaf2a74b0e7ad0a9508be39b18aae0f508e9db55bf07a35e95faf3",
+      "row_count": 1109,
+      "cache_hit": false
+    },
+    {
+      "factor_id": "NDX",
+      "ticker": "^NDX",
+      "file": "NDX__20220101_20260714.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "093822b082bf0766ae42b6185db634bdf2b393ca9fdbe14719f5953dd95b3098",
+      "row_count": 1134,
+      "cache_hit": false
+    },
+    {
+      "factor_id": "USDHKD",
+      "ticker": "HKD=X",
+      "file": "USDHKD__20220101_20260714.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/HKD%3DX?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "af1f0b912f3c302274f78b0dc832720c19a385541406684f4db3d95c7e136d2a",
+      "row_count": 1177,
+      "cache_hit": false
+    }
+  ],
+  "limitations": [
+    "Public endpoint; adjusted-close methodology is provider-defined.",
+    "HKEX-session event mapping remains a separate L5 step."
+  ]
+}

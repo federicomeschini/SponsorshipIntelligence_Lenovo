@@ -1,0 +1,109 @@
+{
+  "experiment_id": "world_cup_impact_v1",
+  "status": "waiting_for_world_cup_data",
+  "generated_at_utc": "2026-07-15T10:59:59.924483+00:00",
+  "role": "primary sponsorship impact evaluation; earlier announcement/FCWC SCM remains interim",
+  "canonical_contracts_replaced": [],
+  "config": {
+    "path": "config\\experiments\\world_cup_impact_v1.yaml",
+    "sha256": "e45826caa44679e269fcfb26e9777fbfff842343b2b00b676b68ae166bc8680e"
+  },
+  "data_contract": {
+    "path": "data\\reference\\world_cup_impact_data_contract.yaml",
+    "sha256": "f3224c04724dd9636358bcfe092af8fe5c5d32fb470a2c34d04394c73414e3f4",
+    "id": "EXP-WC-IMPACT-V1"
+  },
+  "protocol_hash": "261ba608d64121089c14e153a2c28cf3f374241e5c1a1897aa312026f209f7aa",
+  "missing_milestone_dates": [
+    "activation_start",
+    "tournament_start",
+    "tournament_end",
+    "primary_post_window_end"
+  ],
+  "required_sources_waiting": [
+    "world_cup_exposure",
+    "world_cup_event_calendar"
+  ],
+  "source_readiness": [
+    {
+      "source": "brand_index",
+      "status": "available_pending_coverage_check",
+      "path": "data\\curated\\index\\brand_index_weekly.parquet",
+      "sha256": "5f98aa492773941292a32bdf4017637de493750263573f6750aa18f16d20c45c",
+      "required_for_estimation": true,
+      "note": null,
+      "rows": 236,
+      "columns": [
+        "week",
+        "index_level",
+        "index_se",
+        "proxy_z",
+        "calendar_quarter",
+        "source_version",
+        "anchored"
+      ]
+    },
+    {
+      "source": "jointly_scaled_donor_trends",
+      "status": "available_pending_coverage_check",
+      "path": "data\\curated\\trends\\jointly_scaled_donor_trends.parquet",
+      "sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf",
+      "required_for_estimation": true,
+      "note": "repeated common anchor across Google Trends panels; current separately normalized donor pulls are interim only",
+      "rows": 6399,
+      "columns": [
+        "panel_id",
+        "common_anchor_query",
+        "query_id",
+        "brand_id",
+        "term",
+        "week",
+        "interest_common_scale",
+        "interest_common_scale_sd",
+        "draws_used",
+        "suppressed_draws"
+      ]
+    },
+    {
+      "source": "world_cup_exposure",
+      "status": "waiting_for_path",
+      "required_for_estimation": true,
+      "note": "updated Blinkfire property-week exposure through the persistence window"
+    },
+    {
+      "source": "world_cup_event_calendar",
+      "status": "waiting_for_path",
+      "required_for_estimation": true,
+      "note": "exact UTC activation, match, campaign, and tournament dates"
+    },
+    {
+      "source": "product_launch_controls",
+      "status": "available_pending_coverage_check",
+      "path": "data\\reference\\lenovo_product_campaign_events.csv",
+      "sha256": "7489cc473753800a2c42c16ef9b37be0310a84918621628abc6305cdf918d241",
+      "required_for_estimation": true,
+      "note": "Lenovo launches, promotions, CES and major non-sponsorship campaigns"
+    },
+    {
+      "source": "broadcast_grp",
+      "status": "waiting_for_path",
+      "required_for_estimation": false,
+      "note": null
+    },
+    {
+      "source": "post_world_cup_survey",
+      "status": "waiting_for_path",
+      "required_for_estimation": false,
+      "note": "population survey plus sponsorship-aware/unaware lift with exact fieldwork dates"
+    }
+  ],
+  "accepted_attribution_rows": 0,
+  "estimation_policy": {
+    "post_outcome_tuning_prohibited": true,
+    "minimum_credible_donors": 9,
+    "validation_holdout_weeks": 26,
+    "minimum_post_weeks_after_tournament": 13,
+    "maximum_placebo_p_value": 0.1
+  },
+  "major_caveat": "The largest sponsorship impact may occur during the World Cup. Current 2024-announcement/FCWC estimates are interim and cannot close the sponsorship valuation."
+}

@@ -1,0 +1,534 @@
+/* =========================================================================
+   OpenEconomics — Design Tokens
+   Source: OpenEconomics Brand Manual Colour (2025) + Figma "OpenEconomics — Website"
+   ========================================================================= */
+
+/* -----------------------------------------------------------------------
+   Fonts
+   ----------------------------------------------------------------------- */
+/* Atkinson Hyperlegible Next — variable font covers full weight range 200–800 */
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("./fonts/AtkinsonHyperlegibleNext-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("./fonts/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 200 800; font-style: italic; font-display: swap;
+}
+
+/* Atkinson Hyperlegible Mono — variable font */
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  src: url("./fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 200 800; font-style: italic; font-display: swap;
+}
+
+@font-face {
+  font-family: "Hedvig Letters Serif";
+  src: url("./fonts/HedvigLettersSerif-18pt-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* -----------------------------------------------------------------------
+   Color tokens — straight from the Brand Manual
+   ----------------------------------------------------------------------- */
+:root {
+  /* === Primary neutrals === */
+  --oe-white: #FFFFFF;
+  --oe-black: #000000;
+
+  /* === Bluette — the brand's core identity color === */
+  --oe-bluette-050: #EFE5FF;
+  --oe-bluette-100: #D9C1FF;
+  --oe-bluette-200: #B991FF;
+  --oe-bluette-300: #A16AFF;
+  --oe-bluette-400: #8742FF;
+  --oe-bluette-500: #6E1AFF;
+  --oe-bluette-600: #5902EE;
+  --oe-bluette-700: #4400B3;   /* primary brand */
+  --oe-bluette-800: #340088;
+  --oe-bluette-900: #270065;   /* deep purple — footer & dark sections */
+  --oe-bluette: var(--oe-bluette-700);
+
+  /* === Lime — the accent === */
+  --oe-lime-050: #EFFFDC;
+  --oe-lime-100: #DFFFBB;
+  --oe-lime-200: #D5FFA4;
+  --oe-lime-300: #C9FF8C;
+  --oe-lime-400: #B9FF69;       /* signature lime */
+  --oe-lime-500: #91FF15;
+  --oe-lime-600: #7FF100;
+  --oe-lime-700: #67C300;
+  --oe-lime-800: #458300;
+  --oe-lime-900: #315C01;
+  --oe-lime: var(--oe-lime-400);
+
+  /* === Gray scale === */
+  --oe-gray-000: #FFFFFF;
+  --oe-gray-100: #F1F1F1;
+  --oe-gray-200: #E7E7E7;
+  --oe-gray-300: #D2D2D2;
+  --oe-gray-400: #AFAFAF;
+  --oe-gray-500: #999999;
+  --oe-gray-600: #6E6E6E;
+  --oe-gray-700: #545454;
+  --oe-gray-800: #2C2C2C;
+  --oe-gray-900: #000000;
+
+  /* === Secondary palettes (use sparingly — for data viz, illustrations) === */
+  --oe-magenta-400: #FF8DFF;  --oe-magenta-500: #FF4EFF;  --oe-magenta-600: #FF00FF;
+  --oe-magenta-700: #C300C3;  --oe-magenta-800: #920092;  --oe-magenta-900: #600060;
+  --oe-blu-400: #6161FF;      --oe-blu-500: #3A3AFF;      --oe-blu-600: #0000FF;
+  --oe-blu-700: #0000A1;      --oe-blu-800: #000068;      --oe-blu-900: #000035;
+  --oe-yellow-400: #FFF751;   --oe-yellow-500: #FFF300;   --oe-yellow-600: #F4E900;
+  --oe-yellow-700: #595700;   --oe-yellow-800: #403E00;   --oe-yellow-900: #262500;
+  --oe-green-400: #3FFFA5;    --oe-green-500: #00FF88;    --oe-green-600: #00E279;
+  --oe-green-700: #00542D;    --oe-green-800: #003F22;    --oe-green-900: #002D18;
+  --oe-cyan-400: #83FFFF;     --oe-cyan-500: #61FFFF;     --oe-cyan-600: #00FFFF;
+  --oe-cyan-700: #005B5B;     --oe-cyan-800: #004646;     --oe-cyan-900: #003535;
+
+  /* =======================================================================
+     CIVIQA — brand di prodotto (namespace --cv-*).
+     Accento primario: scala Blu elettrico (--cv-blu-600 #0000FF).
+     Convive con il brand OpenEconomics; non sovrascrive i --oe-*.
+     ======================================================================= */
+  --cv-blu-900: #000035;  --cv-blu-800: #000068;  --cv-blu-700: #0000A1;
+  --cv-blu-600: #0000FF;  --cv-blu-500: #3A3AFF;  --cv-blu-400: #6161FF;
+  --cv-blu-300: #9696FF;  --cv-blu-200: #B6B6FF;  --cv-blu-100: #D5D5FF;
+  --cv-blu-050: #F1F1FF;
+  --cv-accent: var(--cv-blu-600);   /* primario Civiqa */
+
+  /* === Semantic tokens === */
+  --oe-bg:          var(--oe-white);
+  --oe-bg-elev:     var(--oe-gray-100);
+  --oe-bg-tint:     var(--oe-bluette-050);     /* soft purple panels */
+  --oe-bg-dark:     var(--oe-bluette-900);     /* footer + dark sections */
+  --oe-bg-accent:   var(--oe-bluette-700);     /* full-bleed CTA blocks */
+  --oe-bg-mid:      #4711BB;                   /* mid purple (homepage) */
+
+  --oe-fg:          var(--oe-black);
+  --oe-fg-soft:     var(--oe-gray-700);        /* body on white */
+  --oe-fg-muted:    var(--oe-gray-500);
+  --oe-fg-inverse:  var(--oe-white);
+
+  --oe-accent:        var(--oe-bluette-700);   /* primary brand accent */
+  --oe-accent-strong: var(--oe-bluette-900);   /* hover / dark sections */
+  --oe-accent-soft:   var(--oe-bluette-050);   /* tinte / sfondi soft */
+  --oe-accent-border: var(--oe-bluette-200);   /* bordi accento (chip, ecc.) */
+  --oe-accent-on:     var(--oe-white);         /* testo/icone SU riempimento accento */
+  --oe-pop:           var(--oe-lime-400);      /* "pop" come RIEMPIMENTO (lime) */
+  --oe-pop-strong:    var(--oe-lime-500);      /* hover del pop */
+  --oe-pop-on:        var(--oe-black);         /* testo SU riempimento pop */
+  --oe-on-dark-accent:var(--oe-lime-400);      /* accento come TESTO su fondo scuro */
+  --oe-on-dark-muted: var(--oe-bluette-200);   /* testo attenuato su fondo scuro accento */
+
+  --oe-stroke:        var(--oe-black);
+  --oe-stroke-soft:   var(--oe-gray-300);
+  --oe-stroke-on-dark:var(--oe-white);
+
+  --oe-link:        var(--oe-bluette-700);
+  --oe-link-hover:  var(--oe-bluette-900);
+
+  /* === Typography === */
+  --oe-font-sans:    "Atkinson Hyperlegible Next", "Atkinson Hyperlegible",
+                     -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --oe-font-mono:    "Atkinson Hyperlegible Mono", ui-monospace,
+                     "SF Mono", Menlo, Consolas, monospace;
+  --oe-font-serif:   "Hedvig Letters Serif", "Source Serif Pro", Georgia, serif;
+
+  /* === Spacing scale (from Figma) === */
+  --oe-space-xxs:  4px;   /* spacing.xxs */
+  --oe-space-xs:   8px;   /* spacing.xs  */
+  --oe-space-s:   16px;   /* spacing.s   */
+  --oe-space-m:   24px;   /* spacing.m   */
+  --oe-space-l:   32px;   /* spacing.l   */
+  --oe-space-xl:  40px;   /* spacing.xl  */
+  --oe-space-2xl: 48px;   /* spacing.2xl */
+  --oe-space-3xl: 64px;   /* spacing.3xl */
+  /* legacy numeric aliases */
+  --oe-space-1:  4px;
+  --oe-space-2:  8px;
+  --oe-space-3:  12px;
+  --oe-space-4:  16px;
+  --oe-space-5:  20px;
+  --oe-space-6:  24px;
+  --oe-space-7:  32px;
+  --oe-space-8:  40px;
+  --oe-space-9:  52px;
+  --oe-space-10: 64px;
+  --oe-space-11: 80px;
+  --oe-space-12: 120px;
+
+  /* === Grid system (from Figma) === */
+  --oe-grid-max:     1440px;  /* max container width */
+  --oe-grid-gutter:   24px;  /* fixed column gap    */
+  --oe-grid-margin:   12px;  /* outer margin each side */
+  --oe-grid-cols-xl:    12; /* @kind other */
+  --oe-grid-cols-l:     12; /* @kind other */
+  --oe-grid-cols-m:      8; /* @kind other */
+  --oe-grid-cols-s:      4; /* @kind other */
+  /* breakpoints */
+  --oe-bp-xxl: 1440px;
+  --oe-bp-xl:  1200px;
+  --oe-bp-l:    992px;
+  --oe-bp-m:    768px;
+
+  /* === Layout === */
+  --oe-max-width:     1760px;     /* canvas inner width (1920 - 80 ×2) */
+  --oe-page-pad:      80px;
+  --oe-page-pad-mob:  24px;
+  --oe-col-gap:       40px;
+
+  /* === Radii === sharp-corner system, all 0 */
+  --oe-radius-xs: 0px;
+  --oe-radius-sm: 0px;            /* the dominant card radius */
+  --oe-radius-md: 0px;
+  --oe-radius-lg: 0px;
+  --oe-radius-pill: 0px;
+
+  /* === Borders === */
+  --oe-border:        1px solid var(--oe-gray-200);  /* was black — removed per brand rule */
+  --oe-border-soft:   1px solid var(--oe-gray-200);
+  --oe-border-on-dark:1px solid rgba(255,255,255,0.18); /* @kind other */
+
+  /* === Shadows (used sparingly — brand is mostly flat) === */
+  --oe-shadow-1: 0 1px 0 rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --oe-shadow-2: 0 4px 12px rgba(39,0,101,0.08);
+  --oe-shadow-3: 0 16px 40px rgba(39,0,101,0.18);
+
+  /* === Motion === */
+  --oe-ease:        cubic-bezier(0.2, 0.7, 0.2, 1); /* @kind other */
+  --oe-ease-out:    cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+  --oe-dur-fast:    140ms; /* @kind other */
+  --oe-dur-base:    220ms; /* @kind other */
+  --oe-dur-slow:    420ms; /* @kind other */
+}
+
+/* =========================================================================
+   TEMA CIVIQA — stesso design system, accento in blu elettrico Civiqa.
+   Civiqa = OpenEconomics con l'accento rimappato: font, spaziatura, griglia
+   e TUTTI i componenti restano identici, ma l'accento (Bluette + Lime)
+   diventa blu Civiqa. Si applica mettendo class="theme-civiqa" su qualsiasi
+   contenitore (di norma <body> o la root del progetto); ogni componente che
+   usa i token accento eredita il blu in automatico, senza modifiche.
+   ----------------------------------------------------------------------- */
+.theme-civiqa {
+  /* Rampa Bluette → Blu Civiqa (l'accento primario diventa blu elettrico).
+     I token semantici (--oe-accent, --oe-link, --oe-bg-dark…) derivano da
+     questi via var(), quindi si rimappano da soli. */
+  --oe-bluette-900: var(--cv-blu-900);
+  --oe-bluette-800: var(--cv-blu-800);
+  --oe-bluette-700: var(--cv-blu-600);   /* accento primario */
+  --oe-bluette-600: var(--cv-blu-600);
+  --oe-bluette-500: var(--cv-blu-500);
+  --oe-bluette-400: var(--cv-blu-400);
+  --oe-bluette-300: var(--cv-blu-300);
+  --oe-bluette-200: var(--cv-blu-200);
+  --oe-bluette-100: var(--cv-blu-100);
+  --oe-bluette-050: var(--cv-blu-050);
+
+  /* Token semantici "pop"/accento — Civiqa non usa il Lime.
+     I componenti usano questi token, quindi NON servono override per-componente:
+     - pop = riempimento (blu); pop-on = testo sul pop (bianco, per contrasto);
+     - on-dark-accent = accento come testo su fondo scuro → blu CHIARO, perché
+       il blu pieno sparirebbe sul blu scuro. */
+  --oe-pop:           var(--cv-blu-600);
+  --oe-pop-strong:    var(--cv-blu-700);
+  --oe-pop-on:        var(--oe-white);
+  --oe-on-dark-accent: var(--cv-blu-200);
+  /* lime diretto (usi esterni) → blu, per sicurezza */
+  --oe-lime-400: var(--cv-blu-600);
+  --oe-lime-500: var(--cv-blu-700);
+  --oe-lime-600: var(--cv-blu-700);
+
+  /* unico hex non derivato dalla rampa */
+  --oe-bg-mid: var(--cv-blu-500);
+}
+
+/* -----------------------------------------------------------------------
+   Layout utilities
+   ----------------------------------------------------------------------- */
+
+/* .oe-container — boxed 1760px centred content wrapper.
+   Use on the inner div of every section; let the section itself be full-bleed.
+
+   Example:
+     <section style="background: #F1F1F1; padding: 80px 0;">
+       <div class="oe-container"> … </div>
+     </section>
+*/
+.oe-container {
+  max-width: var(--oe-max-width);   /* 1760px */
+  margin-inline: auto;
+  padding-inline: var(--oe-page-pad); /* 80px each side */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Narrower reading column (long-form text, articles) */
+.oe-container--text {
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: var(--oe-page-pad);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------
+   Grid system — utility concreta (da Figma)
+   12 colonne ≥1200px · 8 colonne 768–1199px · 4 colonne <768px.
+   Gutter, margine e larghezza max presi dai token --oe-grid-*.
+   Uso:
+     <div class="oe-grid">
+       <div class="oe-col-8"> … </div>
+       <div class="oe-col-4"> … </div>
+     </div>
+   ----------------------------------------------------------------------- */
+.oe-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));   /* desktop: 12 col */
+  gap: var(--oe-grid-gutter);                          /* 24px */
+  max-width: var(--oe-grid-max);                       /* 1440px */
+  margin-inline: auto;
+  padding-inline: var(--oe-grid-margin);               /* 12px */
+  width: 100%;
+  box-sizing: border-box;
+}
+/* span colonne — default desktop (12) */
+.oe-col-1  { grid-column: span 1; }
+.oe-col-2  { grid-column: span 2; }
+.oe-col-3  { grid-column: span 3; }
+.oe-col-4  { grid-column: span 4; }
+.oe-col-5  { grid-column: span 5; }
+.oe-col-6  { grid-column: span 6; }
+.oe-col-7  { grid-column: span 7; }
+.oe-col-8  { grid-column: span 8; }
+.oe-col-9  { grid-column: span 9; }
+.oe-col-10 { grid-column: span 10; }
+.oe-col-11 { grid-column: span 11; }
+.oe-col-12 { grid-column: span 12; }
+
+/* Tablet: 8 colonne (768–1199px). Gli span > 8 diventano a piena riga.
+   Span specifici per questa fascia: .oe-col-m-1 … .oe-col-m-8 */
+@media (max-width: 1199.98px) {
+  .oe-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .oe-col-9, .oe-col-10, .oe-col-11, .oe-col-12 { grid-column: span 8; }
+  .oe-col-m-1 { grid-column: span 1; } .oe-col-m-2 { grid-column: span 2; }
+  .oe-col-m-3 { grid-column: span 3; } .oe-col-m-4 { grid-column: span 4; }
+  .oe-col-m-5 { grid-column: span 5; } .oe-col-m-6 { grid-column: span 6; }
+  .oe-col-m-7 { grid-column: span 7; } .oe-col-m-8 { grid-column: span 8; }
+}
+
+/* Mobile: 4 colonne (<768px). Default a piena riga; override con .oe-col-s-1…4 */
+@media (max-width: 767.98px) {
+  .oe-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [class*="oe-col-"] { grid-column: span 4; }
+  .oe-col-s-1 { grid-column: span 1; } .oe-col-s-2 { grid-column: span 2; }
+  .oe-col-s-3 { grid-column: span 3; } .oe-col-s-4 { grid-column: span 4; }
+}
+
+/* Adattamento al CONTENITORE (non solo al viewport).
+   Se un antenato del .oe-grid è dichiarato come query container
+   (`container-type: inline-size`) — es. l'area contenuti di una dashboard
+   accanto a una sidebar — la griglia segue la larghezza REALE disponibile
+   invece di quella della finestra. Stesse soglie del fallback @media qui
+   sopra; poiché il contenitore è sempre ≤ del viewport e queste regole
+   vengono dopo, prevalgono quando un contenitore esiste. Senza un antenato
+   contenitore non si attivano: comportamento invariato per gli altri usi. */
+@container (max-width: 1199.98px) {
+  .oe-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .oe-col-9, .oe-col-10, .oe-col-11, .oe-col-12 { grid-column: span 8; }
+  .oe-col-m-1 { grid-column: span 1; } .oe-col-m-2 { grid-column: span 2; }
+  .oe-col-m-3 { grid-column: span 3; } .oe-col-m-4 { grid-column: span 4; }
+  .oe-col-m-5 { grid-column: span 5; } .oe-col-m-6 { grid-column: span 6; }
+  .oe-col-m-7 { grid-column: span 7; } .oe-col-m-8 { grid-column: span 8; }
+}
+@container (max-width: 767.98px) {
+  .oe-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  [class*="oe-col-"] { grid-column: span 4; }
+  .oe-col-s-1 { grid-column: span 1; } .oe-col-s-2 { grid-column: span 2; }
+  .oe-col-s-3 { grid-column: span 3; } .oe-col-s-4 { grid-column: span 4; }
+}
+
+/* -----------------------------------------------------------------------
+   RULE: Minimum font size is 12px — no text in the system goes below this.
+   All font-size declarations must be >= 12px. Enforced by convention.
+   ----------------------------------------------------------------------- */
+
+/* -----------------------------------------------------------------------
+   Base elements & semantic type roles
+   ----------------------------------------------------------------------- */
+html, body {
+  background: var(--oe-bg);
+  color: var(--oe-fg);
+  font-family: var(--oe-font-sans);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display — Hedvig Letters Serif. Used for hero, large quotes, slogans. */
+.oe-display, .oe-h0 {
+  font-family: var(--oe-font-serif);
+  font-weight: 400;
+  font-size: clamp(48px, 6vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  color: var(--oe-fg);
+  text-wrap: balance;
+}
+.oe-display-sm {
+  font-family: var(--oe-font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 48px);
+  line-height: 1.1;
+}
+
+/* Headings — H1 / H2 are Hedvig Letters Serif Regular */
+h1, .oe-h1 {
+  font-family: var(--oe-font-serif);
+  font-weight: 400;
+  font-size: clamp(48px, 5vw, 70px);
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #2C2C2C;
+}
+h2, .oe-h2 {
+  font-family: var(--oe-font-serif);
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #2C2C2C;
+}
+h3, .oe-h3 {
+  font-family: var(--oe-font-sans);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: normal;
+  color: #2C2C2C;
+}
+h4, .oe-h4 {
+  font-family: var(--oe-font-sans);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: normal;
+  color: #2C2C2C;
+}
+h5, .oe-h5 {
+  font-family: var(--oe-font-sans);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #2C2C2C;
+}
+
+/* Body */
+p, .oe-body {
+  font-family: var(--oe-font-sans);
+  font-weight: 300;        /* Light is the dominant body weight in the figma */
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: var(--oe-fg-soft);
+}
+.oe-body-sm {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+}
+.oe-body-base {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+.oe-body-xs {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Eyebrow / section pre-title — all-caps SANS, medium 500.
+   (Generic eyebrows are NOT monospace — mono is reserved for chips
+   and figure numbering only; see --oe-font-mono usage rules below.) */
+.oe-eyebrow {
+  font-family: var(--oe-font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--oe-accent);
+}
+
+/* === Monospace usage (Atkinson Hyperlegible Mono) is restricted to TWO uses === */
+
+/* 1. Chip / category tag text */
+.oe-tag, .oe-chip {
+  font-family: var(--oe-font-mono);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--oe-accent);
+}
+
+/* 2. Figure pre-title / numbering for charts, maps and tables
+      e.g. GRAFICO 1 · TABELLA 1 · MAPPA 1 — mono Medium 500, 12px, uppercase, black */
+.oe-figure-label {
+  font-family: var(--oe-font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--oe-black);
+}
+
+/* === Numbers === always Atkinson Hyperlegible Next (sans), tabular.
+   Formatting by locale:
+     IT (default) → thousands separator "." · decimal separator ","  e.g. 1.234.567,89
+     EN           → thousands separator "," · decimal separator "."  e.g. 1,234,567.89
+   Use formatNumber(value, locale, decimals) from utils/format-number.js.
+   Color follows the background:
+     on white / gray  → --oe-black
+     on lime          → --oe-black
+     on dark (bluette)→ --oe-white
+   Apply the matching color in context; the helper sets font + tabular figures. */
+.oe-num {
+  font-family: var(--oe-font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.oe-num.on-light, .oe-num.on-lime { color: var(--oe-black); }
+.oe-num.on-dark { color: var(--oe-white); }
+
+/* Links */
+a, .oe-link {
+  color: var(--oe-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--oe-dur-fast) var(--oe-ease);
+}
+a:hover, .oe-link:hover {
+  color: var(--oe-link-hover);
+}
+
+/* Selection */
+::selection {
+  background: var(--oe-pop);
+  color: var(--oe-accent-strong);
+}

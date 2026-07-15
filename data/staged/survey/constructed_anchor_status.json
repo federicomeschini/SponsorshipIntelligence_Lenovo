@@ -1,0 +1,43 @@
+{
+  "status": "constructed_noncanonical_anchor_available",
+  "generated_at_utc": "2026-07-14T14:24:05.323527+00:00",
+  "source": "data\\staged\\survey\\gwi_lenovo_proxy_candidates.csv",
+  "source_sha256": "c7f82c239d64e861bc9c39c3761c3b19e569f04ed649bcc43554bcd4e3688574",
+  "canonical_anchor_created": false,
+  "funnel_stages": [
+    "awareness",
+    "engagement",
+    "appeal",
+    "consideration",
+    "purchase_intent"
+  ],
+  "populated_stages": [
+    "engagement",
+    "consideration"
+  ],
+  "wave_count": 37,
+  "wave_span": [
+    "gwi_2017Q1",
+    "gwi_2026Q1"
+  ],
+  "deviations_from_contract": [
+    "Not the client-approved analytical extract: canonical_anchor_eligible=false for every row.",
+    "composite absent: the funnel is an ordered sequence, not a PCA factor structure (ADR-0011).",
+    "Only engagement, consideration are populated; awareness/appeal/purchase_intent are null because their only source (consumer-research crosstabs) is sponsorship-segmented and scale-broken (2024->2025), not a population wave score.",
+    "fieldwork dates approximated as calendar-quarter boundaries with the midpoint as the anchor point; GWI fields continuously and does not publish exact wave dates.",
+    "GWI is syndicated global; its geo/weighting composition need not match a Lenovo-commissioned national extract."
+  ],
+  "still_required_for_canonical": [
+    "wave_id",
+    "fieldwork_start",
+    "fieldwork_end",
+    "awareness",
+    "engagement",
+    "appeal",
+    "consideration",
+    "purchase_intent",
+    "questionnaire_version",
+    "comparability_status",
+    "weighting_scheme"
+  ]
+}

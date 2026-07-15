@@ -1,0 +1,78 @@
+{
+  "experiment_id": "sponsorship_monetization_v1",
+  "status": "attribution_bridge_built_valuation_blocked",
+  "generated_at_utc": "2026-07-15T10:59:58.453187+00:00",
+  "canonical_contracts_replaced": [],
+  "purpose": "Connect property exposure and observational funnel lift to an allocation scenario, then conditionally apply royalty relief.",
+  "inputs": {
+    "exposure": {
+      "path": "data/staged/blinkfire/blinkfire_exposure_weekly.parquet",
+      "sha256": "187b110d84e672f02c38f2b4d9c9702b7f7f98261af259a7b691ebd3a6b6818f"
+    },
+    "survey_lift": {
+      "path": "data/staged/survey/sponsorship_funnel_lift.parquet",
+      "sha256": "cd172ae3d5fe57577e05638e1c091ca3d591bea3facd086e92168ea309f25aad"
+    },
+    "brand_index": {
+      "path": "data/curated/index/brand_index_weekly.parquet",
+      "sha256": "5f98aa492773941292a32bdf4017637de493750263573f6750aa18f16d20c45c"
+    }
+  },
+  "outputs": {
+    "exposure_adstock_weekly_rows": 1157,
+    "funnel_lift_exposure_panel_rows": 7,
+    "model_eligible_panel_rows": 5,
+    "property_allocation_rows": 3,
+    "monetization_rows": 0
+  },
+  "method": {
+    "adstock_delta": 0.8,
+    "delta_status": "fixed_experimental_scenario_not_estimated",
+    "survey_stages": [
+      "appeal",
+      "purchase_intent"
+    ],
+    "excluded_survey_stage": "awareness (mechanical by segment definition)",
+    "fieldwork_alignment": "reported month end proxy; exact dates unavailable",
+    "allocation_formula": "property mean across survey waves of trailing_adstock_mean * positive_appeal_purchase_intent_lift",
+    "allocation_interpretation": "scenario share, not causal effect and not a Brand Index weight"
+  },
+  "association_model": {
+    "status": "not_estimable_with_current_sample",
+    "eligible_observations": 5,
+    "reason": "Only five comparable exposure-linked property-wave observations; no credible fixed-effects exposure-lift regression."
+  },
+  "valuation_gate": {
+    "status": "blocked_missing_explicit_inputs",
+    "missing_inputs": [
+      "delta_index_attrib",
+      "royalty_bps_per_index_point",
+      "brand_attributable_revenue",
+      "sponsorship_fee",
+      "discount_rate",
+      "persistence_years"
+    ],
+    "rule": "No monetary values are emitted until all required inputs are explicit."
+  },
+  "counterfactual_gate": {
+    "status": "candidate_passes_experimental_screen",
+    "path": "data\\curated\\experimental\\sponsorship_counterfactual_v1\\counterfactual_manifest.json",
+    "candidate_delta_index_attrib": 1.03334129893261,
+    "donor_placebo_p_value": 0.08333333333333333,
+    "used_for_valuation": false
+  },
+  "royalty_schedule_gate": {
+    "status": "blocked_schedule_not_approved",
+    "path": "config\\royalty_schedule.yaml",
+    "schedule_status": "pending_client_calibration",
+    "available_points": 0,
+    "royalty_bps_per_index_point": null
+  },
+  "assumptions_hash": "e589bc108785eb3ff8b857e408181189787533ef16d368dd35160f96452c3d94",
+  "caveats": [
+    "Aware-minus-unaware lift is observational and affected by self-selection.",
+    "Blinkfire covers confirmed impressions/views only; broadcast exposure is absent.",
+    "The 2024 survey scale is retained descriptively but excluded from the comparable panel.",
+    "The property allocation distributes an independently estimated total effect; it cannot create that effect."
+  ]
+}

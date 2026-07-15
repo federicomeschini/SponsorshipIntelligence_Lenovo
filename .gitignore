@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Generated data and reports; raw source files are intentionally tracked separately.
+data/staged/**/*.parquet
+data/curated/**/*.parquet
+reports/**/*.html
+reports/**/*.png
+reports/**/*.json
+.cache/
+
+.gstack/

@@ -1,0 +1,25 @@
+{
+  "source": "data\\raw\\blinkfire\\lenovo_sponsorship_exposure_daily_export.csv",
+  "source_sha256": "59b378a06b6cf55e32caca1b63906e88b3d49b2252f3dc693862e5b411e88e77",
+  "generated_at_utc": "2026-07-14T10:16:15.150583+00:00",
+  "status": "complete_client_scope",
+  "raw_rows": 620,
+  "dated_rows": 619,
+  "normalized_rows": 8047,
+  "date_min": "2024-10-01",
+  "date_max": "2026-06-11",
+  "properties": 13,
+  "total_row_excluded": true,
+  "total_row_validation": "passed",
+  "available_measures": [
+    "impressions",
+    "views"
+  ],
+  "unavailable_measures": [
+    "engagements",
+    "posts",
+    "platform",
+    "post_metadata"
+  ],
+  "method_note": "Client confirmed this is the complete available D2 scope; views are not relabelled as engagements."
+}

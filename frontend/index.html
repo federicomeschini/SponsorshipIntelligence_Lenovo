@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- ============================================================================
+     SRMP — Sponsorship Intelligence (demo product, VISUALIZATION.md v2.1)
+     Static, no build step: runs from file://, `npx serve`, or GitHub Pages.
+     Brand: OpenEconomics ds-kit (pinned copy in ./ds-kit). Charts: Chart.js 4
+     (vendored in ./vendor). All data embedded: ./data/*.js (demo track).
+     ============================================================================ -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sponsorship Intelligence — Lenovo × FIFA · OpenEconomics</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="ds-kit/fonts.css">
+<link rel="stylesheet" href="ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="ds-kit/components.css">
+<link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+<div class="oe-shell">
+
+  <aside class="oe-dashnav">
+    <a class="dashnav-logo" href="#/overview" aria-label="OpenEconomics">
+      <img src="ds-kit/components/logo-black.svg" alt="OpenEconomics">
+    </a>
+    <div class="dashnav-product">Sponsorship Intelligence</div>
+    <nav id="nav" aria-label="Sections"></nav>
+  </aside>
+
+  <div class="dash-main">
+    <header class="oe-topbar">
+      <div class="topbar-titles">
+        <h1 id="topbar-title">Overview</h1>
+        <div class="topbar-sub" id="topbar-sub"></div>
+      </div>
+      <div class="topbar-case">
+        <span class="oe-tag-chip oe-tag-chip--default">Lenovo × FIFA</span>
+      </div>
+    </header>
+
+    <main class="dash-body" id="screen" aria-live="polite"></main>
+
+    <footer class="dash-footer">
+      <span class="demo-notice">Demonstration environment · illustrative data</span>
+      <span>www.openeconomics.eu · © OpenEconomics Srl <span id="year"></span></span>
+    </footer>
+  </div>
+</div>
+
+<script src="vendor/chart.umd.js"></script>
+<script src="ds-kit/tokens.js"></script>
+<script src="data/real-data.js"></script>
+<script src="data/demo-data.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/format.js"></script>
+<script src="js/copy.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/components.js"></script>
+<script src="js/screens/v0-overview.js"></script>
+<script src="js/screens/v1-reach.js"></script>
+<script src="js/screens/v2-attention.js"></script>
+<script src="js/screens/v3-perception.js"></script>
+<script src="js/screens/v4-portfolio.js"></script>
+<script src="js/screens/v5-proof.js"></script>
+<script src="js/screens/v6-return.js"></script>
+<script src="js/screens/v7-about.js"></script>
+<script src="js/app.js"></script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

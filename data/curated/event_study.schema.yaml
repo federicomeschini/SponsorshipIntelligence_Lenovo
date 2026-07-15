@@ -1,0 +1,11 @@
+contract: C-EVENTSTUDY
+description: Event-study abnormal-return output.
+columns:
+  - {name: event_id, type: string}
+  - {name: window, type: string}
+  - {name: CAR, type: float}
+  - {name: CAR_se, type: float, constraints: [non_negative]}
+  - {name: test_stat, type: float}
+  - {name: test, type: enum, values: [BMP, rank]}
+  - {name: pre_window, type: string}
+  - {name: factors_used, type: list[string]}

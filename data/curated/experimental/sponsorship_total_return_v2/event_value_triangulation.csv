@@ -1,0 +1,4 @@
+event,window,start,end,log_car,simple_car,pre_event_market_cap_usd_m,gross_event_value_usd_m,interpretation,market_cap_reference_date
+fifa_tech_world_announcement,0_to_1_trading_days,2024-10-16,2024-10-17,0.017406652475852442,0.017559031101013867,17438.513229666776,306.2033961551607,gross Lenovo event; FIFA is confounded with Tech World,2024-10-15
+fifa_tech_world_announcement,0_to_2_trading_days,2024-10-16,2024-10-18,0.042464060413034715,0.043378557105437254,17438.513229666776,756.4575419670233,gross Lenovo event; FIFA is confounded with Tech World,2024-10-15
+world_cup_observed_to_latest_market_date,tournament_start_to_latest,2026-06-11,2026-07-14,0.1045795915606548,0.11024375638299255,36411.88813617354,4014.1833251290927,"gross period value; FIFA is confounded with financing, buyback and other corporate news",2026-06-10

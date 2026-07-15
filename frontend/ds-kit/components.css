@@ -1,0 +1,622 @@
+/* =========================================================================
+   OpenEconomics — Stili dei componenti canonici
+   Dipende dai token in styles/colors_and_type.css
+   Spacing: SEMPRE via var(--oe-space-*) (scala 4px). Niente px hardcoded
+   per padding/gap/margin. Font-size e bordi seguono le rispettive scale.
+   ========================================================================= */
+
+/* ---- Button ------------------------------------------------------------ */
+.oe-btn {
+  font-family: var(--oe-font-sans);
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: var(--oe-radius-sm);   /* 0 = spigolo vivo */
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--oe-space-xs);               /* 8 */
+  transition: background var(--oe-dur-fast) var(--oe-ease),
+              color var(--oe-dur-fast) var(--oe-ease),
+              border-color var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-btn--sm { font-size: 14px; padding: var(--oe-space-xs) var(--oe-space-s); }   /* 8 · 16 */
+.oe-btn--md { font-size: 16px; padding: var(--oe-space-3) var(--oe-space-5); }    /* 12 · 20 */
+.oe-btn--lg { font-size: 18px; padding: var(--oe-space-s) var(--oe-space-l); }    /* 16 · 32 */
+
+.oe-btn--primary { background: var(--oe-accent); color: var(--oe-accent-on); }
+.oe-btn--primary:hover { background: var(--oe-accent-strong); }
+
+.oe-btn--accent { background: var(--oe-pop); color: var(--oe-pop-on); }
+.oe-btn--accent:hover { background: var(--oe-pop-strong); }
+
+.oe-btn--secondary { background: transparent; color: var(--oe-accent); border-color: var(--oe-accent); }
+.oe-btn--secondary:hover { background: var(--oe-accent-soft); }
+
+.oe-btn--ghost { background: transparent; color: var(--oe-accent); }
+.oe-btn--ghost:hover { color: var(--oe-accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- Tag / Chip -------------------------------------------------------- */
+.oe-tag-chip {
+  font-family: var(--oe-font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  padding: var(--oe-space-xs) var(--oe-space-3);   /* 8 · 12 */
+  display: inline-block;
+  line-height: 1;
+}
+.oe-tag-chip--default { color: var(--oe-accent); border: 1px solid var(--oe-accent-border); }
+.oe-tag-chip--on-dark { color: var(--oe-on-dark-accent); border: 1px solid rgba(255,255,255,0.25); }
+.oe-tag-chip--lime    { color: var(--oe-pop-on); background: var(--oe-pop); }
+
+/* ---- KPI Card ---------------------------------------------------------- */
+.oe-kpi { background: var(--oe-white); padding: var(--oe-space-m); border: 1px solid var(--oe-gray-200); }   /* 24 */
+.oe-kpi--dark { background: var(--oe-bg-dark); border-color: rgba(255,255,255,0.14); }
+.oe-kpi__value {
+  font-family: var(--oe-font-sans);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--oe-accent);
+}
+.oe-kpi--dark .oe-kpi__value { color: var(--oe-on-dark-accent); }
+.oe-kpi__affix { font-size: 0.5em; font-weight: 500; margin: 0 2px; }
+.oe-kpi__label {
+  font-family: var(--oe-font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-top: var(--oe-space-3);          /* 12 */
+  color: var(--oe-gray-700);
+}
+.oe-kpi--dark .oe-kpi__label { color: rgba(255,255,255,0.7); }
+.oe-kpi__icon { width: 36px; height: 36px; margin-bottom: var(--oe-space-s); color: var(--oe-accent); }
+.oe-kpi__icon img, .oe-kpi__icon svg { width: 100%; height: 100%; display: block; }
+.oe-kpi--dark .oe-kpi__icon { color: var(--oe-on-dark-accent); }
+.oe-kpi__note { font-family: var(--oe-font-sans); font-weight: 300; font-size: 13px; line-height: 1.45; color: var(--oe-fg-soft); margin: var(--oe-space-s) 0 0; }
+.oe-kpi--dark .oe-kpi__note { color: rgba(255,255,255,0.72); }
+
+/* ---- Accordion --------------------------------------------------------- */
+.oe-accordion { border-top: 1px solid var(--oe-gray-200); }
+.oe-accordion__item { border-bottom: 1px solid var(--oe-gray-200); }
+.oe-accordion__head {
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--oe-space-s);                 /* 16 */
+  padding: var(--oe-space-5) var(--oe-space-xxs);   /* 20 · 4 */
+  text-align: left;
+  font-family: var(--oe-font-sans);
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--oe-gray-800);
+}
+.oe-accordion__sign {
+  font-family: var(--oe-font-mono);
+  font-size: 24px;
+  color: var(--oe-accent);
+  line-height: 1;
+}
+.oe-accordion__body {
+  padding: 0 var(--oe-space-xxs) var(--oe-space-5);   /* 0 · 4 · 20 */
+  font-family: var(--oe-font-sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--oe-fg-soft);
+}
+
+/* ---- Figure label ------------------------------------------------------ */
+.oe-figure-label__title { color: var(--oe-gray-700); font-weight: 400; }
+
+/* ---- Footer ------------------------------------------------------------
+   Footer di brand su fondo Bluette scuro. Varianti: --standard, --analisi.
+   ----------------------------------------------------------------------- */
+.oe-footer {
+  background: var(--oe-bg-dark);
+  color: var(--oe-white);
+  font-family: var(--oe-font-sans);
+  padding: var(--oe-space-2xl) var(--oe-space-xl) var(--oe-space-l);   /* 48 · 40 · 32 */
+}
+.oe-footer__inner {
+  max-width: var(--oe-grid-max);                /* 1440 */
+  margin-inline: auto;
+}
+
+/* Parte alta: brand a sinistra, (analisi) disclaimer a destra */
+.oe-footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--oe-space-xl);
+  padding-bottom: var(--oe-space-xl);
+}
+.oe-footer--analisi .oe-footer__top {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--oe-space-3xl);
+  align-items: start;
+}
+
+.oe-footer__logo {
+  display: block;
+  width: auto;
+  height: 44px;                                 /* logo piccolo, mai dominante */
+  color: var(--oe-white);
+}
+.oe-footer--standard .oe-footer__logo { height: 52px; }
+
+.oe-footer__tagline {
+  font-family: var(--oe-font-serif);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  /* Esplicito: il global `p { color: fg-soft }` vince sull'eredità del bianco. */
+  color: var(--oe-white);
+  margin: var(--oe-space-m) 0 0;
+  max-width: 40ch;
+  text-wrap: balance;
+}
+.oe-footer--analisi .oe-footer__tagline {
+  font-size: 22px;
+  max-width: 22ch;
+}
+
+.oe-footer__disclaimer {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 68ch;
+}
+.oe-footer__disclaimer-label {
+  font-family: var(--oe-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--oe-on-dark-accent);              /* accento su fondo scuro */
+  margin-right: var(--oe-space-xs);
+  white-space: nowrap;
+}
+
+.oe-footer__rule {
+  border: 0;
+  border-top: var(--oe-border-on-dark);         /* rgba(255,255,255,.18) */
+  margin: 0;
+}
+
+/* Parte bassa: meta legali + link */
+.oe-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--oe-space-s);
+  padding-top: var(--oe-space-m);
+}
+.oe-footer__meta {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+}
+.oe-footer__links {
+  display: flex;
+  gap: var(--oe-space-l);
+}
+.oe-footer__link {
+  color: var(--oe-white);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-footer__link:hover,
+.oe-footer__link:focus-visible { color: var(--oe-on-dark-accent); }
+
+@media (max-width: 767.98px) {
+  .oe-footer { padding: var(--oe-space-xl) var(--oe-space-m) var(--oe-space-m); }
+  .oe-footer--analisi .oe-footer__top { grid-template-columns: 1fr; gap: var(--oe-space-l); }
+  .oe-footer__tagline,
+  .oe-footer--analisi .oe-footer__tagline { font-size: 22px; max-width: 32ch; }
+  .oe-footer__bottom { flex-direction: column; align-items: flex-start; }
+}
+
+/* =========================================================================
+   CIVIQA — componenti del brand di prodotto (namespace .cv-*)
+   Accento blu elettrico --cv-blu-600. Spigolo vivo come tutto il sistema.
+   ========================================================================= */
+
+/* ---- Civiqa · Chip ----------------------------------------------------- */
+.cv-chip {
+  display: inline-flex; align-items: center; gap: var(--oe-space-xs);
+  font-family: var(--oe-font-mono); text-transform: uppercase;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.04em; line-height: 1;
+  padding: var(--oe-space-xs) var(--oe-space-3);             /* 8 · 12 */
+  background: var(--cv-blu-100); color: var(--cv-blu-700); border: 0;
+}
+.cv-chip::before { content: ""; width: 7px; height: 7px; background: currentColor; flex: none; }
+.cv-chip--active { background: var(--cv-blu-600); color: var(--oe-white); }
+
+/* ---- Civiqa · Button --------------------------------------------------- */
+.cv-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--oe-space-xs);
+  font-family: var(--oe-font-mono); text-transform: uppercase; letter-spacing: 0.04em;
+  font-size: 14px; font-weight: 500; line-height: 1;
+  padding: var(--oe-space-3) var(--oe-space-5);              /* 12 · 20 */
+  border: 1px solid transparent; cursor: pointer;
+  transition: background var(--oe-dur-fast) var(--oe-ease),
+              color var(--oe-dur-fast) var(--oe-ease),
+              border-color var(--oe-dur-fast) var(--oe-ease);
+}
+.cv-btn--primary { background: var(--cv-blu-600); color: var(--oe-white); }
+.cv-btn--primary:hover { background: var(--cv-blu-700); }
+.cv-btn--dark { background: var(--cv-blu-900); color: var(--oe-white); }
+.cv-btn--dark:hover { background: var(--cv-blu-800); }
+.cv-btn--outline { background: transparent; color: var(--cv-blu-600); border-color: var(--cv-blu-600); }
+.cv-btn--outline:hover { background: var(--cv-blu-050); }
+.cv-btn--tint { background: var(--cv-blu-100); color: var(--cv-blu-700); }
+.cv-btn--tint:hover { background: var(--cv-blu-200); }
+.cv-btn--link {
+  background: transparent; border: 0; padding: var(--oe-space-xs) 0;
+  font-family: var(--oe-font-sans); text-transform: none; letter-spacing: normal;
+  font-size: 15px; color: var(--cv-blu-600);
+}
+.cv-btn--link:hover { text-decoration: underline; }
+/* outline chiaro su fondi blu scuri (footer) */
+.cv-btn--ghost-light { background: transparent; color: var(--oe-white); border-color: rgba(255, 255, 255, 0.5); }
+.cv-btn--ghost-light:hover { border-color: var(--oe-white); }
+
+/* ---- Civiqa · Top nav (menu) ------------------------------------------ */
+.cv-nav {
+  display: flex; align-items: center; gap: var(--oe-space-l);
+  background: var(--oe-white); border: 1px solid var(--oe-gray-200);
+  padding: var(--oe-space-s) var(--oe-space-l);
+}
+.cv-nav__logo { height: 26px; width: auto; color: var(--oe-black); display: block; }
+.cv-nav__links { display: flex; gap: var(--oe-space-l); margin-left: var(--oe-space-xl); }
+.cv-nav__link {
+  font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-900);
+  text-decoration: none; padding: var(--oe-space-xxs) 0;
+  border-bottom: 2px solid transparent; transition: border-color var(--oe-dur-fast) var(--oe-ease);
+}
+.cv-nav__link:hover, .cv-nav__link.is-active { border-bottom-color: var(--cv-blu-600); }
+.cv-nav__oe { margin-left: auto; font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-900); text-decoration: none; }
+.cv-nav__oe:hover { color: var(--cv-blu-600); }
+
+/* ---- Civiqa · Icon tile ----------------------------------------------- */
+.cv-icon {
+  width: 56px; height: 56px; display: grid; place-items: center;
+  background: var(--cv-blu-800);   /* #000068 */
+  color: var(--cv-blu-100);        /* #D5D5FF */
+}
+.cv-icon svg { width: 28px; height: 28px; display: block; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---- Civiqa · Footer --------------------------------------------------- */
+.cv-footer {
+  background: var(--cv-blu-900); color: var(--oe-white); font-family: var(--oe-font-sans);
+  padding: var(--oe-space-2xl) var(--oe-space-xl) var(--oe-space-l);
+}
+.cv-footer__inner { max-width: var(--oe-grid-max); margin-inline: auto; }
+.cv-footer__logo { height: 56px; width: auto; color: var(--oe-white); display: block; margin-bottom: var(--oe-space-xl); }
+.cv-footer__top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--oe-space-xl); padding-bottom: var(--oe-space-xl); }
+.cv-footer__cols { display: flex; gap: var(--oe-space-3xl); }
+.cv-footer__col { display: flex; flex-direction: column; gap: var(--oe-space-s); }
+.cv-footer__link { color: var(--oe-white); text-decoration: none; font-size: 15px; }
+.cv-footer__link:hover { color: var(--cv-blu-200); }
+.cv-footer__cta { display: flex; flex-direction: column; gap: var(--oe-space-s); align-items: flex-start; }
+.cv-footer__rule { border: 0; border-top: 1px solid rgba(255, 255, 255, 0.22); margin: 0; }
+.cv-footer__mid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--oe-space-xl); padding: var(--oe-space-l) 0; align-items: start; }
+.cv-footer__tagline { font-family: var(--oe-font-serif); font-size: 26px; line-height: 1.15; color: var(--oe-white); margin: 0; max-width: 22ch; }
+.cv-footer__addr { font-size: 13px; line-height: 1.5; color: rgba(255, 255, 255, 0.82); }
+.cv-footer__social { display: flex; gap: var(--oe-space-s); margin-top: var(--oe-space-m); }
+.cv-footer__social a { width: 32px; height: 32px; display: grid; place-items: center; background: var(--oe-white); color: var(--cv-blu-900); }
+.cv-footer__bottom { display: flex; flex-wrap: wrap; align-items: center; gap: var(--oe-space-m); padding-top: var(--oe-space-m); font-size: 13px; color: rgba(255, 255, 255, 0.82); }
+.cv-footer__legal { display: flex; gap: var(--oe-space-l); }
+.cv-footer__legal a { color: rgba(255, 255, 255, 0.82); text-decoration: none; }
+.cv-footer__legal a:hover { color: var(--oe-white); }
+.cv-footer__lang { margin-left: auto; display: flex; gap: var(--oe-space-xs); }
+.cv-footer__lang a { color: rgba(255, 255, 255, 0.6); text-decoration: none; }
+.cv-footer__lang a.is-active { color: var(--oe-white); text-decoration: underline; }
+
+@media (max-width: 767.98px) {
+  .cv-footer__top, .cv-footer__mid { grid-template-columns: 1fr; gap: var(--oe-space-l); }
+  .cv-footer__cols { flex-direction: column; gap: var(--oe-space-l); }
+  .cv-nav { flex-wrap: wrap; }
+  .cv-nav__links { margin-left: 0; }
+  .cv-footer__bottom { flex-direction: column; align-items: flex-start; }
+  .cv-footer__lang { margin-left: 0; }
+}
+
+/* =========================================================================
+   COMPONENTI UI AGGIUNTIVI — coerenti coi token, spigolo vivo.
+   Usano l'accento via --oe-accent / --oe-accent-*, quindi si tematizzano
+   da soli sotto .theme-civiqa (accento blu).
+   ========================================================================= */
+
+/* ---- Card ------------------------------------------------------------- */
+.oe-card {
+  background: var(--oe-white); border: 1px solid var(--oe-gray-200);
+  padding: var(--oe-space-m); display: flex; flex-direction: column; gap: var(--oe-space-s);
+}
+.oe-card__media { aspect-ratio: 16 / 9; background: var(--oe-gray-100); display: block; }
+.oe-card__eyebrow { font-family: var(--oe-font-mono); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; color: var(--oe-accent); }
+.oe-card__meta { font-family: var(--oe-font-mono); font-size: 12px; color: var(--oe-gray-500); }
+.oe-card__title { font-family: var(--oe-font-sans); font-size: 20px; font-weight: 500; line-height: 1.25; color: var(--oe-gray-900); margin: 0; }
+.oe-card__body { font-family: var(--oe-font-sans); font-size: 15px; font-weight: 300; line-height: 1.5; color: var(--oe-fg-soft); margin: 0; }
+.oe-card__foot { margin-top: auto; padding-top: var(--oe-space-xs); }
+/* Feature card: striscia di accento piena in alto (non un side-stripe) */
+.oe-card--feature { border-top: 4px solid var(--oe-accent); }
+
+/* ---- Form & input ----------------------------------------------------- */
+.oe-field { display: flex; flex-direction: column; gap: var(--oe-space-xs); }
+.oe-label { font-family: var(--oe-font-mono); text-transform: uppercase; font-size: 11px; letter-spacing: 0.04em; color: var(--oe-gray-700); }
+.oe-input, .oe-select, .oe-textarea {
+  font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-900);
+  background: var(--oe-white); border: 1px solid var(--oe-gray-300);
+  padding: var(--oe-space-3) var(--oe-space-s); width: 100%;
+  transition: border-color var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-input::placeholder, .oe-textarea::placeholder { color: var(--oe-gray-500); }
+.oe-input:focus, .oe-select:focus, .oe-textarea:focus { outline: none; border-color: var(--oe-accent); }
+.oe-input:disabled, .oe-select:disabled, .oe-textarea:disabled { background: var(--oe-gray-100); color: var(--oe-gray-500); cursor: not-allowed; }
+.oe-textarea { resize: vertical; min-height: 96px; }
+.oe-field__hint { font-family: var(--oe-font-sans); font-size: 13px; color: var(--oe-gray-500); }
+.oe-field--error .oe-input { border-color: var(--oe-magenta-700); }
+.oe-field--error .oe-field__hint { color: var(--oe-magenta-700); }
+/* search input: icona a sinistra */
+.oe-search { position: relative; display: flex; align-items: center; }
+.oe-search svg { position: absolute; left: var(--oe-space-s); width: 18px; height: 18px; color: var(--oe-gray-500); pointer-events: none; }
+.oe-search .oe-input { padding-left: 44px; }
+
+/* checkbox & radio — coerenti col sistema a spigolo vivo */
+.oe-check { display: inline-flex; align-items: center; gap: var(--oe-space-xs); font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-800); cursor: pointer; }
+.oe-check input { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; flex: none; border: 1px solid var(--oe-gray-400); background: var(--oe-white); display: grid; place-content: center; cursor: pointer; transition: background var(--oe-dur-fast) var(--oe-ease), border-color var(--oe-dur-fast) var(--oe-ease); }
+.oe-check input:focus-visible { outline: 2px solid var(--oe-accent); outline-offset: 2px; }
+.oe-check input:checked { background: var(--oe-accent); border-color: var(--oe-accent); }
+/* spunta della checkbox */
+.oe-check input[type="checkbox"]:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+/* quadratino interno del radio (niente angoli tondi nel sistema) */
+.oe-check input[type="radio"]:checked::after { content: ""; width: 8px; height: 8px; background: #fff; }
+.oe-check input:disabled { background: var(--oe-gray-100); border-color: var(--oe-gray-300); cursor: not-allowed; }
+
+/* toggle switch (spigolo vivo) */
+.oe-switch { position: relative; display: inline-flex; align-items: center; gap: var(--oe-space-xs); cursor: pointer; font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-800); }
+.oe-switch input { appearance: none; -webkit-appearance: none; width: 40px; height: 22px; background: var(--oe-gray-300); cursor: pointer; position: relative; transition: background var(--oe-dur-fast) var(--oe-ease); flex: none; }
+.oe-switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; background: #fff; transition: transform var(--oe-dur-fast) var(--oe-ease); }
+.oe-switch input:checked { background: var(--oe-accent); }
+.oe-switch input:checked::after { transform: translateX(18px); }
+
+/* ---- Table ------------------------------------------------------------ */
+.oe-table { width: 100%; border-collapse: collapse; }
+.oe-table thead th {
+  font-family: var(--oe-font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--oe-gray-700); background: var(--oe-gray-100); text-align: left;
+  padding: var(--oe-space-3) var(--oe-space-s); white-space: nowrap;
+}
+.oe-table tbody td {
+  font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-800);
+  padding: var(--oe-space-3) var(--oe-space-s); border-top: 1px solid var(--oe-gray-200);
+}
+.oe-table tbody tr:hover td { background: var(--oe-accent-soft); }
+/* allineamento numerico tabulare per le colonne dati */
+.oe-table--numeric th + th, .oe-table--numeric td + td { text-align: right; font-variant-numeric: tabular-nums; }
+.oe-table__wrap { border: 1px solid var(--oe-gray-200); overflow-x: auto; }
+
+/* ---- Tabs ------------------------------------------------------------- */
+.oe-tabs { display: flex; gap: var(--oe-space-l); border-bottom: 1px solid var(--oe-gray-200); }
+.oe-tab {
+  font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-fg-soft);
+  background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer;
+  padding: var(--oe-space-s) 0; transition: color var(--oe-dur-fast) var(--oe-ease), border-color var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-tab:hover { color: var(--oe-accent); }
+.oe-tab.is-active { color: var(--oe-accent); border-bottom-color: var(--oe-accent); font-weight: 500; }
+
+/* ---- Badge (stato) ---------------------------------------------------- */
+.oe-badge {
+  display: inline-flex; align-items: center; gap: var(--oe-space-xs);
+  font-family: var(--oe-font-sans); font-size: 13px; font-weight: 500; line-height: 1;
+  padding: var(--oe-space-xxs) var(--oe-space-xs); background: var(--oe-gray-100); color: var(--oe-gray-800);
+}
+.oe-badge::before { content: ""; width: 7px; height: 7px; background: currentColor; flex: none; }
+.oe-badge--success { color: var(--oe-green-700); }
+.oe-badge--warning { color: #7A6A00; }
+.oe-badge--danger  { color: var(--oe-magenta-700); }
+.oe-badge--info    { color: var(--oe-accent); }
+.oe-badge--neutral { color: var(--oe-gray-600); }
+
+/* ---- Pagination ------------------------------------------------------- */
+.oe-pagination { display: inline-flex; gap: var(--oe-space-xxs); }
+.oe-page {
+  min-width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--oe-font-sans); font-size: 14px; color: var(--oe-gray-800);
+  background: var(--oe-white); border: 1px solid var(--oe-gray-200); cursor: pointer;
+  transition: border-color var(--oe-dur-fast) var(--oe-ease), color var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-page:hover:not(:disabled) { border-color: var(--oe-accent); color: var(--oe-accent); }
+.oe-page.is-active { background: var(--oe-accent); border-color: var(--oe-accent); color: var(--oe-white); }
+.oe-page:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---- Filtri (segmented control) -------------------------------------- */
+.oe-segment { display: inline-flex; }
+.oe-segment__btn {
+  font-family: var(--oe-font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: -0.01em;
+  padding: 7px var(--oe-space-3); background: var(--oe-white); color: var(--oe-fg-soft);
+  border: 1px solid var(--oe-gray-200); cursor: pointer; transition: all var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-segment__btn + .oe-segment__btn { border-left: 0; }
+.oe-segment__btn:hover { color: var(--oe-accent); }
+.oe-segment__btn.is-active { background: var(--oe-accent); border-color: var(--oe-accent); color: var(--oe-white); }
+
+/* ---- Site header (nav marketing) ------------------------------------- */
+.oe-header {
+  display: flex; align-items: center; gap: var(--oe-space-l);
+  background: var(--oe-white); border-bottom: 1px solid var(--oe-gray-200);
+  padding: var(--oe-space-s) var(--oe-space-l);
+}
+.oe-header__logo { height: 28px; width: auto; color: var(--oe-black); display: block; }
+.oe-header__links { display: flex; gap: var(--oe-space-l); margin-left: var(--oe-space-xl); }
+.oe-header__link { font-family: var(--oe-font-sans); font-size: 15px; color: var(--oe-gray-900); text-decoration: none; }
+.oe-header__link:hover, .oe-header__link.is-active { color: var(--oe-accent); }
+.oe-header__cta { margin-left: auto; }
+
+/* ---- Dashboard nav (sidebar) ----------------------------------------- */
+.oe-dashnav {
+  background: var(--oe-gray-100); border-right: 1px solid var(--oe-gray-200);
+  padding: var(--oe-space-m) 0; display: flex; flex-direction: column; min-width: 220px;
+}
+.oe-dashnav__title { font-family: var(--oe-font-mono); text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; color: var(--oe-gray-600); padding: var(--oe-space-s) var(--oe-space-m) var(--oe-space-xxs); }
+.oe-dashnav__item {
+  display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-left: 3px solid transparent;
+  font-family: var(--oe-font-sans); font-size: 14px; color: var(--oe-gray-800);
+  padding: 11px var(--oe-space-m);
+  transition: color var(--oe-dur-fast) var(--oe-ease), border-color var(--oe-dur-fast) var(--oe-ease);
+}
+.oe-dashnav__item:hover { color: var(--oe-accent); }
+.oe-dashnav__item.is-active { color: var(--oe-accent); border-left-color: var(--oe-accent); font-weight: 500; }
+
+/* ---- Slogan (lockup su fondo scuro) ---------------------------------- */
+.oe-slogan {
+  background: var(--oe-bg-dark); color: var(--oe-white);
+  padding: var(--oe-space-xl) var(--oe-space-2xl);
+  display: flex; flex-direction: column; gap: var(--oe-space-m);
+}
+.oe-slogan__src { font-family: var(--oe-font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--oe-on-dark-muted); }
+.oe-slogan__text { font-family: var(--oe-font-serif); font-size: 36px; line-height: 1.1; letter-spacing: -0.005em; text-wrap: balance; max-width: 580px; color: var(--oe-white); margin: 0; }
+
+/* ---- Client strip (loghi clienti, monocromatici) --------------------- */
+.oe-client-strip {
+  display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap;
+  gap: var(--oe-space-l); background: var(--oe-white);
+  padding: var(--oe-space-l) var(--oe-space-m);
+  border-top: 1px solid var(--oe-gray-200); border-bottom: 1px solid var(--oe-gray-200);
+}
+.oe-client-strip span { font-family: var(--oe-font-serif); font-size: 22px; color: var(--oe-black); letter-spacing: 0.01em; }
+
+/* =========================================================================
+   UI BLOCKS — sezioni intere composte dai componenti (stile "Tailwind UI").
+   Helper di layout; il contenuto riusa .oe-* / componenti. Tematizzabili
+   sotto .theme-civiqa.
+   ========================================================================= */
+
+/* Bottone inverso: bianco su fondi accento/scuri (testo accento) */
+.oe-btn--inverse { background: var(--oe-white); color: var(--oe-accent); }
+.oe-btn--inverse:hover { background: var(--oe-accent-soft); }
+
+/* ---- Hero -------------------------------------------------------------- */
+.oe-hero { display: flex; flex-direction: column; gap: var(--oe-space-m); padding: var(--oe-space-3xl) 0; max-width: 64ch; }
+.oe-hero__title { font-family: var(--oe-font-serif); font-size: clamp(40px, 6vw, 72px); line-height: 1.05; letter-spacing: -0.01em; color: var(--oe-gray-900); margin: 0; text-wrap: balance; }
+.oe-hero__lead { font-size: 20px; font-weight: 300; line-height: 1.5; color: var(--oe-fg-soft); margin: 0; max-width: 56ch; }
+.oe-hero__actions { display: flex; gap: var(--oe-space-s); flex-wrap: wrap; margin-top: var(--oe-space-xs); }
+
+/* ---- Stats band (numeri su fondo scuro) ------------------------------- */
+.oe-stats { background: var(--oe-bg-dark); color: var(--oe-white); padding: var(--oe-space-2xl) var(--oe-space-xl); }
+.oe-stats__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--oe-space-xl); max-width: var(--oe-grid-max); margin-inline: auto; }
+.oe-stat__num { font-family: var(--oe-font-sans); font-size: 48px; font-weight: 500; line-height: 1; font-variant-numeric: tabular-nums; color: var(--oe-white); }
+.oe-stat__label { font-family: var(--oe-font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--oe-on-dark-muted); margin-top: var(--oe-space-xs); }
+
+/* ---- CTA band (fondo accento) ----------------------------------------- */
+.oe-cta { background: var(--oe-bg-accent); color: var(--oe-white); padding: var(--oe-space-2xl) var(--oe-space-xl); display: flex; align-items: center; justify-content: space-between; gap: var(--oe-space-l); flex-wrap: wrap; }
+.oe-cta__title { font-family: var(--oe-font-serif); font-size: clamp(28px, 3.5vw, 40px); line-height: 1.1; color: var(--oe-white); margin: 0; max-width: 26ch; }
+.oe-cta__text { color: rgba(255, 255, 255, 0.85); max-width: 48ch; margin: var(--oe-space-xs) 0 0; }
+
+/* ---- Report header ---------------------------------------------------- */
+.oe-report-head { display: flex; flex-direction: column; gap: var(--oe-space-s); padding-bottom: var(--oe-space-l); border-bottom: 1px solid var(--oe-gray-200); }
+.oe-report-head__title { font-family: var(--oe-font-serif); font-size: clamp(32px, 4vw, 48px); line-height: 1.1; color: var(--oe-gray-900); margin: 0; text-wrap: balance; }
+.oe-report-head__meta { display: flex; flex-wrap: wrap; gap: var(--oe-space-m); font-family: var(--oe-font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--oe-gray-500); }
+
+/* ---- Panel (contenitore per grafici/contenuti dashboard) -------------- */
+.oe-panel { background: var(--oe-white); border: 1px solid var(--oe-gray-200); padding: var(--oe-space-m); display: flex; flex-direction: column; gap: var(--oe-space-s); }
+.oe-panel__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--oe-space-s); }
+.oe-panel__label { font-family: var(--oe-font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--oe-accent); }
+.oe-panel__title { font-family: var(--oe-font-sans); font-size: 17px; font-weight: 500; color: var(--oe-gray-800); margin: 2px 0 0; }
+.oe-panel__chart { aspect-ratio: 16 / 9; background: var(--oe-gray-100); display: grid; place-items: center; color: var(--oe-gray-500); font-family: var(--oe-font-mono); font-size: 12px; }
+
+/* ---- App shell (dashboard) -------------------------------------------- */
+.oe-shell { display: grid; grid-template-columns: 240px 1fr; min-height: 460px; border: 1px solid var(--oe-gray-200); overflow: hidden; }
+.oe-shell__main { display: flex; flex-direction: column; min-width: 0; }
+.oe-shell__content { flex: 1; padding: var(--oe-space-l); background: var(--oe-gray-100); container-type: inline-size; overflow: auto; }
+@media (max-width: 767.98px) {
+  .oe-shell { grid-template-columns: 1fr; }
+  .oe-cta { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---- Dashboard topbar ------------------------------------------------- */
+.oe-topbar {
+  display: flex; align-items: center; gap: var(--oe-space-m);
+  background: var(--oe-white); border-bottom: 4px solid var(--oe-pop);
+  padding: var(--oe-space-s) var(--oe-space-l);
+}
+.oe-topbar__eyebrow { font-family: var(--oe-font-sans); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--oe-accent); }
+.oe-topbar__title { margin: 2px 0 0; font-family: var(--oe-font-serif); font-size: 24px; line-height: 1.1; color: var(--oe-gray-900); }
+.oe-topbar__actions { margin-left: auto; }
+
+/* =========================================================================
+   TABELLE DASHBOARD — composizioni specifiche per i dati finanziari.
+   ========================================================================= */
+
+/* ---- Tabella CapEx/OPEX (header accento, prima colonna etichetta, totale) */
+.oe-table--capex thead th {
+  background: var(--oe-accent); color: var(--oe-white);
+  text-align: right; text-transform: uppercase; letter-spacing: 0.04em;
+  border-right: 1px solid rgba(255, 255, 255, 0.2); border-bottom: 0;
+}
+.oe-table--capex thead th:first-child { background: var(--oe-accent-strong); text-align: left; }
+.oe-table--capex td { text-align: right; font-variant-numeric: tabular-nums; border-right: 1px solid var(--oe-gray-200); }
+.oe-table--capex td:first-child { text-align: left; background: var(--oe-gray-100); border-right: 2px solid var(--oe-gray-200); }
+.oe-table--capex tbody tr:last-child td { font-weight: 700; background: var(--oe-accent-soft); }
+.oe-table--capex tbody tr:hover td { background: var(--oe-accent-soft); }
+
+/* ---- Tabella KPI editabile (righe categoria + celle input + barra azioni) */
+.oe-table__cat td {
+  background: var(--oe-accent-soft); color: var(--oe-accent);
+  text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; font-size: 12px;
+  padding: var(--oe-space-xs) var(--oe-space-s);
+}
+.oe-input--cell {
+  width: 80px; padding: var(--oe-space-xxs) var(--oe-space-xs); font-size: 13px;
+  text-align: right; font-variant-numeric: tabular-nums; background: var(--oe-accent-soft);
+  border: 1px solid var(--oe-gray-300);
+}
+.oe-input--cell:focus { outline: none; border-color: var(--oe-accent); }
+.oe-table__actions {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--oe-space-s);
+  padding: var(--oe-space-3) var(--oe-space-s); background: var(--oe-gray-100); border-top: 1px solid var(--oe-gray-200);
+}
+
+/* ---- Recap (lista label + valore in grassetto + nota) ----------------- */
+.oe-recap { background: var(--oe-white); border: 1px solid var(--oe-gray-200); }
+.oe-recap__row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--oe-space-s);
+  padding: 9px var(--oe-space-s); border-bottom: 1px solid var(--oe-gray-100);
+}
+.oe-recap__row:last-of-type { border-bottom: 0; }
+.oe-recap__label { font-family: var(--oe-font-sans); font-size: 13px; color: var(--oe-fg-soft); flex: 1; }
+.oe-recap__value { font-family: var(--oe-font-sans); font-size: 14px; font-weight: 700; color: var(--oe-black); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.oe-recap__note { font-size: 12px; color: var(--oe-gray-600); padding: var(--oe-space-xs) var(--oe-space-s); border-top: 1px solid var(--oe-gray-200); font-style: italic; }
+
+/* ---- Pannello metriche (es. moltiplicatori): header accento + righe ---- */
+.oe-metrics { background: var(--oe-white); border: 1px solid var(--oe-gray-200); }
+.oe-metrics__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--oe-space-3) var(--oe-space-s); background: var(--oe-accent); color: var(--oe-white);
+}
+.oe-metrics__title { font-family: var(--oe-font-sans); font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.oe-metrics__title svg { width: 14px; height: 14px; fill: none; stroke: var(--oe-on-dark-accent); stroke-width: 1.8; stroke-linecap: round; }
+.oe-metrics__range { color: var(--oe-on-dark-accent); font-size: 12px; font-weight: 600; }
+.oe-metrics__row {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--oe-space-xs);
+  padding: var(--oe-space-3) var(--oe-space-s); border-bottom: 1px solid var(--oe-gray-100);
+}
+.oe-metrics__row:last-of-type { font-weight: 700; background: var(--oe-accent-soft); border-bottom: 0; }
+.oe-metrics__label { font-family: var(--oe-font-sans); font-size: 13px; color: var(--oe-gray-800); flex: 1; }
+.oe-metrics__sub { font-size: 12px; color: var(--oe-gray-600); margin-top: 1px; }
+.oe-metrics__value { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; }
+.oe-metrics__link { padding: var(--oe-space-3) var(--oe-space-s); border-top: 1px solid var(--oe-gray-200); font-size: 13px; color: var(--oe-accent); font-weight: 500; }

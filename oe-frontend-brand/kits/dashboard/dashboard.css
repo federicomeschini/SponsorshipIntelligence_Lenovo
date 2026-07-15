@@ -1,0 +1,59 @@
+/* Dashboard — SOLO collante di layout. Stili dei componenti = ds-kit/components.css.
+   Regole d'archetipo applicate qui: numeri KPI neri · mai nero come sfondo · font ≥ 12px.
+   La dashboard può usare 13-15px per densità (deroga prevista), mai sotto 12px. */
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--oe-gray-100);color:var(--oe-fg)}
+
+/* shell: occupa l'altezza, sfondo chiaro (mai nero) */
+.oe-shell{min-height:100vh;border:0;background:var(--oe-gray-100)}
+
+/* sidebar logo + icone DS */
+.dashnav-logo{display:block;padding:var(--oe-space-3) var(--oe-space-m) var(--oe-space-m)}
+.dashnav-logo img{height:22px;width:auto;display:block}
+.oe-dashnav__item svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* main */
+.dash-main{display:flex;flex-direction:column;min-width:0;background:var(--oe-gray-100)}
+.oe-topbar h1{font-family:var(--oe-font-sans);font-weight:600;font-size:20px;line-height:1.2;margin:0;color:var(--oe-gray-900)}
+.topbar-sub{font-family:var(--oe-font-mono);text-transform:uppercase;font-size:12px;letter-spacing:.02em;color:var(--oe-gray-600);margin-top:2px}
+.dash-body{padding:var(--oe-space-l);display:flex;flex-direction:column;gap:var(--oe-space-l);max-width:1440px;width:100%}
+
+/* blocco discorsivo */
+.dash-intro{max-width:760px}
+.intro-text{font-family:var(--oe-font-sans);font-weight:300;font-size:16px;line-height:1.6;color:var(--oe-fg-soft);margin:var(--oe-space-3) 0 0}
+
+/* KPI grid + numeri NERI (override: nel DS .oe-kpi__value è Bluette) */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--oe-space-s)}
+.oe-kpi{transition:box-shadow var(--oe-dur-base) var(--oe-ease)}
+.oe-kpi:hover{box-shadow:var(--oe-shadow-2)}
+.oe-kpi__value{color:var(--oe-black)}            /* regola dashboard: KPI neri */
+.kpi-delta{display:inline-flex;align-items:center;gap:5px;margin-top:var(--oe-space-3);font-family:var(--oe-font-mono);font-size:12px;font-weight:500}
+.kpi-delta svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.kpi-delta.up{color:var(--oe-green-700)}
+.kpi-delta.dn{color:var(--oe-magenta-700)}
+
+/* griglia pannelli */
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--oe-space-s);align-items:start}
+.chart-box{position:relative;height:280px}
+.tbl-scroll{overflow-x:auto}
+.oe-table th.num,.oe-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* footer slim (no tagline marketing) */
+.dash-footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--oe-space-3);padding:var(--oe-space-5) var(--oe-space-l);margin-top:auto;border-top:1px solid var(--oe-gray-200);font-size:13px;color:var(--oe-gray-600)}
+.dash-footer__links{display:flex;gap:var(--oe-space-6)}
+.dash-footer a{color:inherit;text-decoration:none}
+.dash-footer a:hover{color:var(--oe-accent)}
+
+/* responsive: la sidebar diventa barra orizzontale scrollabile */
+@media(max-width:900px){
+  .oe-shell{grid-template-columns:1fr}
+  .oe-dashnav{flex-direction:row;min-width:0;overflow-x:auto;border-right:0;border-bottom:1px solid var(--oe-gray-200);padding:var(--oe-space-2);align-items:center}
+  .dashnav-logo{padding:var(--oe-space-2) var(--oe-space-3)}
+  .oe-dashnav__title{display:none}
+  .oe-dashnav__item{border-left:0;border-bottom:3px solid transparent;white-space:nowrap;padding:10px 12px}
+  .oe-dashnav__item.is-active{border-left:0;border-bottom-color:var(--oe-accent)}
+  .panel-grid{grid-template-columns:1fr}
+  .dash-body{padding:var(--oe-space-m)}
+}

@@ -1,0 +1,11 @@
+version: 1
+provider: yahoo_chart_api
+horizon:
+  start: 2022-01-01
+  end: null
+staged_output_dir: data/staged/market
+series:
+  - {factor_id: LENOVO, ticker: "0992.HK", market: HKEX, currency: HKD}
+  - {factor_id: HSI, ticker: "^HSI", market: HKEX, currency: HKD}
+  - {factor_id: NDX, ticker: "^NDX", market: NASDAQ, currency: USD}
+  - {factor_id: USDHKD, ticker: "HKD=X", market: FX, currency: HKD}

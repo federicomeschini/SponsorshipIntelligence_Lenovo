@@ -1,0 +1,34 @@
+{
+  "status": "provisional_gate_run_against_noncanonical_anchor",
+  "generated_at_utc": "2026-07-14T14:52:15.336019+00:00",
+  "anchor_path": "data/staged/survey/brand_index_wave_anchor_constructed.parquet",
+  "anchored_stages": [
+    "engagement",
+    "consideration"
+  ],
+  "thresholds": {
+    "level": 0.5,
+    "diff": 0.4
+  },
+  "n_proxies": 12,
+  "admitted": [
+    "trends_brand_lenovo",
+    "trends_category_lenovo_laptop",
+    "trends_category_lenovo_laptop_price",
+    "trends_category_lenovo_legion",
+    "trends_category_thinkpad",
+    "trends_category_thinkpad_price"
+  ],
+  "watchlist": [],
+  "rejected": [
+    "gdelt_volume",
+    "wiki_lenovo_zh",
+    "wiki_thinkpad_en"
+  ],
+  "rejected_wrong_sign": [
+    "gdelt_tone",
+    "wiki_legion_en",
+    "wiki_lenovo_en"
+  ],
+  "caveat": "Gate ran against the non-canonical GWI funnel anchor (ADR-0011); admission is provisional until an approved analytical extract is supplied."
+}

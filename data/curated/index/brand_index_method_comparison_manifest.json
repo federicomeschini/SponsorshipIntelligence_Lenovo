@@ -1,0 +1,173 @@
+{
+  "status": "experimental_comparison_built",
+  "generated_at_utc": "2026-07-15T08:12:52.164221+00:00",
+  "construct": "Lenovo-only multi-signal brand-performance composite",
+  "status_of_current_canonical_index": "unchanged; this comparison does not replace v4_proxy_led_brand_calibrated",
+  "components": {
+    "brand_salience_proxy_z": "worldwide Lenovo parent-brand Google Trends",
+    "product_portfolio_proxy_z": "Lenovo laptop, ThinkPad and Lenovo Legion Google Trends",
+    "commercial_intent_proxy_z": "Lenovo laptop price and ThinkPad price Google Trends",
+    "earned_news_tone_z": "weekly mean GDELT tone"
+  },
+  "excluded_from_components": {
+    "relative_peer_position": "excluded by design: peer comparison is benchmarking, not Lenovo brand performance",
+    "wikipedia": "attention is not reliably directional against the available GWI construct",
+    "gdelt_volume": "news volume measures attention; it is retained as context rather than a directional performance component",
+    "co_branded_trends": "property outcomes, not broad Lenovo brand performance",
+    "blinkfire": "sponsorship exposure, retained as a potential explanatory variable rather than index input"
+  },
+  "survey_role": {
+    "gwi_engagement_consideration": "PC1 composite used to calibrate each method's arbitrary score onto a 100/15 display scale; it does not anchor individual weeks",
+    "consumer_research_awareness_appeal_purchase_intent": "segmented sponsorship-lift evidence; unsuitable for population calibration because of selection, changing scales and missing population totals"
+  },
+  "methods": {
+    "evidence_weighted": {
+      "weights": {
+        "brand_salience_proxy_z": 0.261191,
+        "product_portfolio_proxy_z": 0.330858,
+        "commercial_intent_proxy_z": 0.175512,
+        "earned_news_tone_z": 0.232439
+      },
+      "weight_metadata": {
+        "ridge": 5.0,
+        "optimizer": "SLSQP_nonnegative_sum_to_one"
+      },
+      "calibration": {
+        "intercept": -0.75333,
+        "slope": 0.111218,
+        "correlation": 0.681401,
+        "first_difference_correlation": 0.249857,
+        "residual_sd": 0.104271
+      },
+      "leave_one_quarter_stability": {
+        "review": "leave_one_quarter_out",
+        "n_refits": 17,
+        "weight_ranges": {
+          "brand_salience_proxy_z": {
+            "min": 0.2021540669327308,
+            "max": 0.3192039925422541,
+            "sd": 0.028718578257823372,
+            "max_abs_shift_from_full": 0.05903723963583535
+          },
+          "product_portfolio_proxy_z": {
+            "min": 0.2685033966727916,
+            "max": 0.3626833764122011,
+            "sd": 0.019641954212368987,
+            "max_abs_shift_from_full": 0.062354114801462024
+          },
+          "commercial_intent_proxy_z": {
+            "min": 0.13472036807023255,
+            "max": 0.22284113944014727,
+            "sd": 0.022372408129265907,
+            "max_abs_shift_from_full": 0.04732912225573452
+          },
+          "earned_news_tone_z": {
+            "min": 0.154888754655589,
+            "max": 0.2798620410612434,
+            "sd": 0.029770310936162846,
+            "max_abs_shift_from_full": 0.07755041011717842
+          }
+        }
+      }
+    },
+    "pca": {
+      "weights": {
+        "brand_salience_proxy_z": 0.572026,
+        "product_portfolio_proxy_z": 0.575044,
+        "commercial_intent_proxy_z": 0.543453,
+        "earned_news_tone_z": 0.216261
+      },
+      "weight_metadata": {
+        "method": "first_principal_component",
+        "weight_interpretation": "signed loading"
+      },
+      "calibration": {
+        "intercept": -0.75333,
+        "slope": 0.054367,
+        "correlation": 0.675926,
+        "first_difference_correlation": 0.283614,
+        "residual_sd": 0.104992
+      },
+      "leave_one_quarter_stability": {
+        "review": "leave_one_quarter_out",
+        "n_refits": 17,
+        "weight_ranges": {
+          "brand_salience_proxy_z": {
+            "min": 0.5651229863856677,
+            "max": 0.5788445243710332,
+            "sd": 0.003394496973502898,
+            "max_abs_shift_from_full": 0.006903473795715875
+          },
+          "product_portfolio_proxy_z": {
+            "min": 0.5702794016801078,
+            "max": 0.5824488674465368,
+            "sd": 0.0027886535823401053,
+            "max_abs_shift_from_full": 0.007404934663414409
+          },
+          "commercial_intent_proxy_z": {
+            "min": 0.5331867835903275,
+            "max": 0.5519160537328436,
+            "sd": 0.004494641759189604,
+            "max_abs_shift_from_full": 0.010266284025492789
+          },
+          "earned_news_tone_z": {
+            "min": 0.1702355642273144,
+            "max": 0.2574480658206479,
+            "sd": 0.023526038172131798,
+            "max_abs_shift_from_full": 0.04602577656347573
+          }
+        }
+      }
+    },
+    "entropy": {
+      "weights": {
+        "brand_salience_proxy_z": 0.154594,
+        "product_portfolio_proxy_z": 0.198529,
+        "commercial_intent_proxy_z": 0.524613,
+        "earned_news_tone_z": 0.122264
+      },
+      "weight_metadata": {
+        "method": "Shannon_entropy",
+        "weight_interpretation": "higher temporal dispersion receives higher weight"
+      },
+      "calibration": {
+        "intercept": -0.842718,
+        "slope": 0.323225,
+        "correlation": 0.649008,
+        "first_difference_correlation": 0.266652,
+        "residual_sd": 0.108385
+      },
+      "leave_one_quarter_stability": {
+        "review": "leave_one_quarter_out",
+        "n_refits": 17,
+        "weight_ranges": {
+          "brand_salience_proxy_z": {
+            "min": 0.14208596650484717,
+            "max": 0.20228895170759076,
+            "sd": 0.013090196374030956,
+            "max_abs_shift_from_full": 0.047695178022734847
+          },
+          "product_portfolio_proxy_z": {
+            "min": 0.1784989580573645,
+            "max": 0.2233433894104264,
+            "sd": 0.010303341288127366,
+            "max_abs_shift_from_full": 0.02481430518556188
+          },
+          "commercial_intent_proxy_z": {
+            "min": 0.46195960832037686,
+            "max": 0.5553126070053097,
+            "sd": 0.02186839969957833,
+            "max_abs_shift_from_full": 0.06265350508815637
+          },
+          "earned_news_tone_z": {
+            "min": 0.09771320184888167,
+            "max": 0.1347902274291465,
+            "sd": 0.009616841486178328,
+            "max_abs_shift_from_full": 0.02455082683286472
+          }
+        }
+      }
+    }
+  },
+  "caveat": "PCA and entropy create a single score without optimizing survey fit. Evidence weighting is supervised but has only 17 overlapping quarters. The comparison is descriptive: survey convergence and method/weight stability matter; it is not a forecast competition."
+}

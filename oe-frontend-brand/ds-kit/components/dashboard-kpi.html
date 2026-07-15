@@ -1,0 +1,55 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #F1F1F1; font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif; padding: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 660px; }
+  .card { background: #fff; padding: 18px 20px; border-bottom: 3px solid #4400B3; display: flex; flex-direction: column; gap: 6px; }
+  .card.lime { border-bottom-color: #B9FF69; }
+  .card.gray { border-bottom-color: #E7E7E7; }
+  .lbl { font-size: 12px; font-weight: 400; color: #6E6E6E; text-transform: uppercase; letter-spacing: 0.06em; }
+  .val { font-size: 28px; font-weight: 700; color: #000; font-variant-numeric: tabular-nums; line-height: 1; }
+  .unit { font-size: 14px; color: #6E6E6E; margin-left: 3px; font-weight: 400; }
+  .delta { font-size: 12px; display: flex; align-items: center; gap: 4px; }
+  .delta.up { color: #007733; }
+  .delta.dn { color: #CC0000; }
+  .delta svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="card">
+    <div class="lbl">PIL stimato</div>
+    <div class="val">2.847<span class="unit">M€</span></div>
+    <div class="delta up">
+      <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>+18,4% vs periodo prec.
+    </div>
+  </div>
+  <div class="card">
+    <div class="lbl">Occupati generati</div>
+    <div class="val">12.340</div>
+    <div class="delta up">
+      <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>+9,2% vs periodo prec.
+    </div>
+  </div>
+  <div class="card lime">
+    <div class="lbl">Gettito fiscale</div>
+    <div class="val">412,6<span class="unit">M€</span></div>
+    <div class="delta dn">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>−3,2% vs periodo prec.
+    </div>
+  </div>
+  <div class="card gray">
+    <div class="lbl">Progetti attivi</div>
+    <div class="val">34</div>
+    <div class="delta up">
+      <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>+6 nuovi
+    </div>
+  </div>
+</div>
+</body>
+</html>

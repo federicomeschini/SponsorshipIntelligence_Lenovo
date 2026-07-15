@@ -1,0 +1,74 @@
+{
+  "contract": "C-INDEX (proxy-led current version)",
+  "status": "provisional_proxy_led_index_built",
+  "generated_at_utc": "2026-07-15T08:12:48.163065+00:00",
+  "source_version": "v4_proxy_led_brand_calibrated",
+  "construct": "Lenovo brand salience, proxy-led",
+  "weekly_movement": "100% from the validated Lenovo parent-brand Google Trends proxy; survey values do not pin individual weeks",
+  "survey_role": "quarterly orientation and display-scale calibration using the non-canonical GWI engagement/consideration composite",
+  "calibration": {
+    "intercept": -0.729769,
+    "slope": 0.149941,
+    "n_quarters": 17,
+    "correlation": 0.665724,
+    "first_difference_correlation": 0.291147,
+    "residual_sd": 0.106307,
+    "survey_quarters": [
+      "2022Q1",
+      "2022Q2",
+      "2022Q3",
+      "2022Q4",
+      "2023Q1",
+      "2023Q2",
+      "2023Q3",
+      "2023Q4",
+      "2024Q1",
+      "2024Q2",
+      "2024Q3",
+      "2024Q4",
+      "2025Q1",
+      "2025Q2",
+      "2025Q3",
+      "2025Q4",
+      "2026Q1"
+    ]
+  },
+  "retained_inputs": {
+    "headline_query": "brand_lenovo",
+    "companion_query_groups": {
+      "product_portfolio_proxy_z": [
+        "category_lenovo_laptop",
+        "category_thinkpad",
+        "category_lenovo_legion"
+      ],
+      "commercial_intent_proxy_z": [
+        "category_lenovo_laptop_price",
+        "category_thinkpad_price"
+      ]
+    },
+    "window_accounting": {
+      "min_window_estimates": 2,
+      "max_window_estimates": 6,
+      "mean_window_estimates": 4.093,
+      "interpretation": "overlap-rescaled window estimates; not independent repeated draws"
+    },
+    "n_weeks": 236,
+    "week_span": [
+      "2022-01-03",
+      "2026-07-06"
+    ]
+  },
+  "excluded_from_core_index": {
+    "product_queries": "product demand is a companion pulse; it belongs to the experimental multi-signal construction rather than the headline salience index",
+    "price_queries": "transaction/promotion intent, not broad brand salience",
+    "co_branded_queries": "property-attributed outcomes; retain for sponsorship analysis",
+    "competitor_queries": "benchmark/donor series, not Lenovo-index constituents",
+    "wikipedia_and_gdelt": "did not show a stable positive relationship to the available GWI composite"
+  },
+  "replaces": [
+    "v1_chowlin_provisional",
+    "v2_statespace_provisional",
+    "v3_proxy_led_calibrated"
+  ],
+  "caveat": "This is a proxy-led salience index, not direct weekly survey measurement, a complete brand-equity measure, or a causal sponsorship estimate."
+}

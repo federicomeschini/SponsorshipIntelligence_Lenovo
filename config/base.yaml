@@ -1,0 +1,52 @@
+brand:
+  name: Lenovo
+  ticker: "0992.HK"
+  adr: "LNVGY"
+  # Client survey measures a marketing funnel, not brand pillars. Ordered top→bottom.
+  # awareness/appeal/purchase_intent from consumer-research crosstabs; engagement/
+  # consideration from the GWI waves.
+  survey_funnel: [awareness, engagement, appeal, consideration, purchase_intent]
+
+horizon:
+  start: 2022-01-01
+  end: null
+
+index:
+  version: v4_proxy_led_brand_calibrated
+  frequency: W-MON
+  stability_review: leave_one_quarter_out
+  # The parent-brand Trends query determines weekly movement. The GWI
+  # engagement/consideration composite only orients and display-scales it.
+  headline_query: brand_lenovo
+  companion_query_groups:
+    product_portfolio_search: [category_lenovo_laptop, category_thinkpad, category_lenovo_legion]
+    commercial_intent_search: [category_lenovo_laptop_price, category_thinkpad_price]
+
+validation_gate:
+  corr_diff_threshold: 0.4
+  corr_level_threshold: 0.5
+  bootstrap_reps: 2000
+
+adstock:
+  functional_form: geometric
+  delta_grid:
+    min: 0.5
+    max: 0.98
+    step: 0.02
+
+event_study:
+  estimation_window_days: 120
+  gap_days: 10
+  windows: [[-1, 1], [-2, 5], [0, 10]]
+  factors: [HSI, GLOBAL_TECH]
+
+trends:
+  draws_per_query: 10
+  stitch_overlap_weeks: 26
+
+roi:
+  royalty_schedule: config/royalty_schedule.yaml
+  persistence_multiplier: 2.0
+
+banned_features:
+  - blinkfire.media_value

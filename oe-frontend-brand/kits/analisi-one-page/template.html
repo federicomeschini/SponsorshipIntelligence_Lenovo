@@ -1,0 +1,190 @@
+<!doctype html>
+<!-- ============================================================================
+     KIT ANALISI ONE-PAGE — data-driven, on-brand (OE + Civiqa), sui componenti DS.
+     • Brand: OE di default. CIVIQA → class="theme-civiqa" su <body>.
+     • Carattere: "il dato prima di tutto", testo essenziale.
+     • Grafici: Chart.js nativo (default, on-brand via chart-preset.js). In alternativa
+       embed Flourish o immagini — chiedi la modalità in intake; per replicare una pagina
+       esistente, replica la soluzione dell'originale.
+     • Regole: KPI numeri NERI · chip lime mono (NON clobberare .oe-eyebrow) · card/celle
+       senza bordo o con sola riga DS · CTA "tile + label" con gap 4px · mai nero come sfondo.
+     ============================================================================ -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analisi — OpenEconomics</title>
+<link rel="stylesheet" href="../../ds-kit/fonts.css">
+<link rel="stylesheet" href="../../ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="../../ds-kit/components.css">
+<style>
+  :root{ --maxw:1160px; --pad:64px; }
+  body{ --accent:var(--oe-bluette-700); --accent-deep:var(--oe-bluette-900); --tint:var(--oe-bluette-050); --pop:var(--oe-lime-400); --pop-on-dark:var(--oe-lime-400); }
+  .theme-civiqa{ --pop-on-dark:#ffffff; }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--oe-font-sans);font-weight:300;color:var(--oe-fg);background:#fff;font-size:18px;line-height:1.6}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  section.s{padding:84px 0;border-top:1px solid var(--oe-gray-200)}
+  section.s:first-of-type{border-top:0}
+  .s-grey{background:var(--oe-gray-100)}
+
+  /* chip (lime mono) — NON è .oe-eyebrow: il DS riserva il mono a chip/figure-label */
+  .chip{display:inline-block;font-family:var(--oe-font-mono);text-transform:uppercase;letter-spacing:.03em;font-size:13px;font-weight:500;background:var(--pop);color:#000;padding:6px 12px}
+  .theme-civiqa .chip{color:#fff}
+  .chip + h1,.chip + h2{margin-top:16px}
+
+  h1{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(40px,6vw,64px);line-height:1.05;margin:0;color:var(--oe-gray-800)}
+  h2{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.12;margin:0;color:var(--oe-gray-800)}
+  .lead{font-size:19px;font-weight:300;color:var(--oe-gray-700);max-width:760px;line-height:1.66;margin:16px 0 0}
+  .body-c{font-size:16px;font-weight:300;color:var(--oe-gray-700);line-height:1.68;max-width:780px;margin:16px 0 0}
+  .body-c strong{font-weight:600;color:var(--oe-fg)}
+
+  /* HERO 2 colonne (analisi one-page STANDALONE): testo sx (pannello accento) + immagine dx.
+     NB: se l'analisi è dentro un minisito, usa invece la hero immersiva del minisito. */
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(520px,72vh,760px)}
+  .hero-split__text{background:var(--accent-deep);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:72px var(--pad)}
+  .hero-split__text .chip{align-self:flex-start;margin-bottom:22px}
+  .hero-split__text h1{color:#fff}
+  .hero-split__sub{font-size:clamp(17px,1.8vw,21px);font-weight:300;color:rgba(255,255,255,.85);margin:18px 0 0;max-width:34ch}
+  .hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.18);max-width:520px}
+  .hero-meta__k{font-family:var(--oe-font-mono);text-transform:uppercase;font-size:12px;letter-spacing:.03em;color:var(--pop-on-dark)}
+  .hero-meta__v{font-size:16px;color:#fff;margin-top:4px}
+  .hero-split__img{background-size:cover;background-position:center;
+    background-image:radial-gradient(rgba(255,255,255,.12) 1.4px,transparent 1.6px);background-size:20px 20px;background-color:var(--accent)} /* sostituisci con background-image:url('assets/hero.jpg') */
+  @media(max-width:860px){.hero-split{grid-template-columns:1fr}.hero-split__img{min-height:260px}}
+
+  /* KPI band — celle senza bordo (bordi sottili DS), numeri NERI tabulari */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:36px}
+  .kpi{background:#fff;border:1px solid var(--oe-gray-200);padding:24px;transition:background .2s,box-shadow .2s}
+  .kpi:hover{background:var(--tint);box-shadow:var(--oe-shadow-1)}
+  .kpi__value{font-family:var(--oe-font-sans);font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(30px,3.4vw,40px);line-height:1;color:var(--oe-black)}
+  .kpi__label{font-family:var(--oe-font-mono);text-transform:uppercase;font-size:12px;letter-spacing:.02em;color:var(--oe-gray-600);margin-top:12px;line-height:1.4}
+
+  /* figura / grafico */
+  .fig-label{font-family:var(--oe-font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin:0 0 12px}
+  .figure{margin-top:28px;background:#fff;border:1px solid var(--oe-gray-200);padding:18px}
+  .chart-box{position:relative;height:340px}
+  .source-note{font-family:var(--oe-font-mono);font-size:12px;color:var(--oe-gray-500);margin-top:10px}
+
+  /* CTA "tile + label" con gap 4px */
+  .cta{display:inline-flex;align-items:stretch;gap:4px;text-decoration:none;font-family:var(--oe-font-mono);text-transform:uppercase;font-size:14px;letter-spacing:.04em;margin-top:32px}
+  .cta__tile{width:46px;background:var(--pop);display:grid;place-items:center}
+  .cta__tile svg{width:18px;height:18px;stroke:#000;stroke-width:2;fill:none}
+  .cta__lbl{background:var(--pop);color:#000;height:46px;display:flex;align-items:center;padding:0 24px;font-weight:500}
+
+  /* footer analisi inline */
+  .footer{background:var(--oe-bluette-900);color:#fff;padding:64px var(--pad) 32px;margin-top:8px}
+  .footer-in{max-width:var(--maxw);margin:0 auto}
+  .footer img{height:30px}
+  .footer-tagline{font-family:var(--oe-font-serif);font-size:20px;color:#fff;margin:14px 0 0;max-width:560px}
+  .footer-disc{font-size:13px;font-weight:300;color:rgba(255,255,255,.78);line-height:1.6;max-width:900px;margin:24px 0 0}
+  .footer-bar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(255,255,255,.55);padding-top:20px;margin-top:24px;border-top:1px solid rgba(255,255,255,.16)}
+  .footer-bar a{color:rgba(255,255,255,.75);text-decoration:none}
+  @media(max-width:760px){:root{--pad:24px}section.s{padding:60px 0}}
+</style>
+</head>
+<!-- per CIVIQA: class="theme-civiqa" -->
+<body>
+
+  <!-- HERO a 2 colonne (standalone). Testo sx + immagine dx + meta-grid. -->
+  <header class="hero-split">
+    <div class="hero-split__text">
+      <span class="chip" data-bind="pretitolo">Analisi di impatto</span>
+      <h1 data-bind="titolo">Titolo dell'analisi</h1>
+      <p class="hero-split__sub">Oggetto dell'analisi in una riga essenziale.</p>
+      <div class="hero-meta">
+        <div><div class="hero-meta__k">Fonti</div><div class="hero-meta__v">—</div></div>
+        <div><div class="hero-meta__k">Modello</div><div class="hero-meta__v">—</div></div>
+        <div><div class="hero-meta__k">Aggiornamento dati</div><div class="hero-meta__v">—</div></div>
+        <div><div class="hero-meta__k">Aggiornamento analisi</div><div class="hero-meta__v">—</div></div>
+      </div>
+    </div>
+    <div class="hero-split__img" style="/* background-image:url('assets/hero.jpg') */"></div>
+  </header>
+
+  <!-- KPI -->
+  <section class="s s-grey">
+    <div class="wrap">
+      <span class="chip">Indicatori chiave</span>
+      <h2>I numeri principali</h2>
+      <div class="kpi-grid" id="kpi"></div>
+    </div>
+  </section>
+
+  <!-- ANALISI + GRAFICO -->
+  <section class="s">
+    <div class="wrap">
+      <span class="chip">Analisi</span>
+      <h2>Titolo della sezione di analisi</h2>
+      <p class="body-c">Commento essenziale al dato. <strong>Evidenzia</strong> il numero che conta e cosa significa, senza muri di testo.</p>
+      <div class="figure">
+        <p class="fig-label" id="fig1-label">Grafico 1 · Titolo del grafico</p>
+        <div class="chart-box"><canvas id="grafico1"></canvas></div>
+        <p class="source-note">Elaborazione OpenEconomics — fonte, anno, aggiornamento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABELLA (dati strutturati: tieni le tabelle come tabelle) -->
+  <section class="s s-grey">
+    <div class="wrap">
+      <span class="chip">Dettaglio</span>
+      <h2>Tabella di dettaglio</h2>
+      <div style="overflow-x:auto;margin-top:28px">
+        <table class="oe-table">
+          <thead><tr><th>Voce</th><th class="num">Valore</th><th class="num">Quota</th></tr></thead>
+          <tbody>
+            <tr><td>Riga uno</td><td class="num">1.234</td><td class="num">52%</td></tr>
+            <tr><td>Riga due</td><td class="num">820</td><td class="num">34%</td></tr>
+            <tr><td>Riga tre</td><td class="num">330</td><td class="num">14%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="cta" href="https://www.openeconomics.eu/" target="_blank" rel="noopener">
+        <span class="cta__tile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        <span class="cta__lbl">Scopri di più</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER (analisi) -->
+  <footer class="footer">
+    <div class="footer-in">
+      <img src="../../ds-kit/components/logo-white.svg" alt="OpenEconomics">
+      <p class="footer-tagline">Enabling adaptation. Empowering impact.</p>
+      <p class="footer-disc">Le informazioni sono fornite a scopo informativo. Le analisi sono elaborate su fonti pubbliche autorevoli con valutazione professionale, oggettiva e prudenziale, in linea con le prassi metodologiche di comparto.</p>
+      <div class="footer-bar">
+        <span>www.openeconomics.eu · Copyright © OpenEconomics Srl <span data-oe-year></span></span>
+        <span style="display:flex;gap:24px"><a href="#">Privacy policy</a><a href="#">Cookie policy</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <style>.oe-table th.num,.oe-table td.num{text-align:right;font-variant-numeric:tabular-nums}</style>
+  <script src="data.example.js"></script>
+  <script src="../../ds-kit/tokens.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="../../ds-kit/chart-preset.js"></script>
+  <script>
+    document.querySelectorAll('[data-oe-year]').forEach(e=>e.textContent=new Date().getFullYear());
+    const A = window.ANALISI;
+    if (A){
+      document.querySelectorAll('[data-bind]').forEach(el=>{const v=A[el.getAttribute('data-bind')];if(v)el.textContent=v;});
+      const fmt = v => (typeof v==='number' && window.OE) ? OE.formatNumber(v) : v;
+      document.getElementById('kpi').innerHTML = (A.kpi||[]).map(k=>
+        `<div class="kpi"><div class="kpi__value">${fmt(k.valore)}${k.suffix||''}</div><div class="kpi__label">${k.label}</div></div>`).join('');
+      if (typeof Chart!=='undefined' && A.grafici && A.grafici[0]){
+        if (typeof applyOEChartDefaults==='function') applyOEChartDefaults();
+        const g=A.grafici[0];
+        if(g.titolo) document.getElementById('fig1-label').textContent = 'Grafico 1 · '+g.titolo;
+        new Chart(document.getElementById('grafico1'),{
+          type:g.tipo||'bar',
+          data:{labels:g.labels,datasets:(g.serie||[]).map((s,i)=>({label:s.nome,data:s.dati,backgroundColor:oeSeriesColor(i),borderColor:oeSeriesColor(i)}))},
+          options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:(g.serie||[]).length>1}},scales:{y:{beginAtZero:true}}}
+        });
+      }
+    }
+  </script>
+</body>
+</html>

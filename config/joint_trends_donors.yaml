@@ -1,0 +1,46 @@
+version: 1
+composition_id: worldwide_common_anchor_v1
+horizon: {start: 2022-01-01, end: null}
+common_anchor: {query_id: anchor_lenovo, brand_id: lenovo, term: Lenovo}
+acquisition:
+  draws_per_panel: 10
+  request_delay_seconds: 2
+  max_retries: 5
+  min_anchor_overlap_weeks: 100
+  raw_output_dir: data/raw/trends_joint_donors
+  staged_output_dir: data/staged/trends_joint_donors
+  curated_output: data/curated/trends/jointly_scaled_donor_trends.parquet
+panels:
+  - panel_id: core_legacy
+    queries:
+      - {query_id: donor_dell, brand_id: dell, term: Dell}
+      - {query_id: donor_asus, brand_id: asus, term: Asus}
+      - {query_id: donor_acer, brand_id: acer, term: Acer}
+      - {query_id: donor_hp, brand_id: hp, term: HP laptop}
+  - panel_id: core_expansion_a
+    queries:
+      - {query_id: donor_microsoft_surface, brand_id: microsoft_surface, term: Microsoft Surface}
+      - {query_id: donor_razer, brand_id: razer, term: Razer}
+      - {query_id: donor_logitech, brand_id: logitech, term: Logitech}
+      - {query_id: donor_gigabyte, brand_id: gigabyte, term: Gigabyte laptop}
+  - panel_id: core_expansion_b
+    queries:
+      - {query_id: donor_toshiba, brand_id: toshiba, term: Toshiba laptop}
+      - {query_id: donor_fujitsu, brand_id: fujitsu, term: Fujitsu laptop}
+      - {query_id: donor_samsung, brand_id: samsung, term: Samsung laptop}
+      - {query_id: donor_msi, brand_id: msi, term: MSI}
+  - panel_id: sensitivity
+    queries:
+      - {query_id: donor_huawei, brand_id: huawei, term: Huawei}
+  - panel_id: core_expansion_c
+    queries:
+      - {query_id: donor_macbook, brand_id: macbook, term: MacBook}
+      - {query_id: donor_vaio, brand_id: vaio, term: VAIO laptop}
+      - {query_id: donor_framework, brand_id: framework, term: Framework laptop}
+      - {query_id: donor_lg_gram, brand_id: lg_gram, term: LG gram}
+  - panel_id: core_expansion_d
+    queries:
+      - {query_id: donor_corsair, brand_id: corsair, term: Corsair}
+      - {query_id: donor_steelseries, brand_id: steelseries, term: SteelSeries}
+      - {query_id: donor_benq, brand_id: benq, term: BenQ}
+      - {query_id: donor_aoc_monitor, brand_id: aoc_monitor, term: AOC monitor}

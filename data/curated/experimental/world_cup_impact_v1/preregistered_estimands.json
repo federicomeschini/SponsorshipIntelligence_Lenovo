@@ -1,0 +1,42 @@
+{
+  "experiment_id": "world_cup_impact_v1",
+  "role": "primary_sponsorship_impact_evaluation",
+  "protocol_hash": "261ba608d64121089c14e153a2c28cf3f374241e5c1a1897aa312026f209f7aa",
+  "frozen_estimands": {
+    "primary": {
+      "name": "sustained_world_cup_brand_index_uplift",
+      "formula": "exposure_weighted_mean_actual_minus_counterfactual_index",
+      "interpretation": "average incremental Brand Index points during the registered World Cup exposure window"
+    },
+    "secondary": [
+      "all_post_mean_actual_minus_counterfactual_index",
+      "peak_four_week_mean_index_gap",
+      "post_event_persistence_13w_mean_gap",
+      "cobrand_search_gap",
+      "appeal_purchase_intent_sponsorship_lift"
+    ]
+  },
+  "counterfactual_protocol": {
+    "primary_method": "augmented_synthetic_control",
+    "robustness_methods": [
+      "simplex_synthetic_control",
+      "synthetic_difference_in_differences"
+    ],
+    "donor_measurement": "jointly_scaled_google_trends_panels_with_common_anchor",
+    "minimum_pre_weeks": 104,
+    "validation_holdout_weeks": 26,
+    "minimum_credible_donors": 9,
+    "minimum_post_weeks_after_tournament": 13,
+    "maximum_placebo_p_value": 0.1,
+    "prohibit_post_outcome_tuning": true,
+    "sensitivity_only_donors": [
+      "huawei"
+    ]
+  },
+  "monetization_handoff": {
+    "output_manifest": "data/curated/experimental/world_cup_impact_v1/accepted_attribution.parquet",
+    "target_config": "config/experiments/sponsorship_monetization_v1.yaml",
+    "rule": "only an estimate passing the preregistered fit and placebo gates may populate delta_index_attrib"
+  },
+  "rule": "No accepted attribution row is emitted until incoming data satisfy the contract and the preregistered estimator passes all gates."
+}

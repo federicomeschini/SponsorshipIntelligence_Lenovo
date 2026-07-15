@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- KIT MINISITO VERTICALE — pagina LANDING (home). Nessuna sezione data-label → sub-nav nascosta.
+     Brand: OE default. Civiqa → aggiungi class="theme-civiqa" al <body>. Nav/footer iniettati da nav.js. -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minisito verticale — OpenEconomics</title>
+<link rel="stylesheet" href="../../ds-kit/fonts.css">
+<link rel="stylesheet" href="../../ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="../../ds-kit/components.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="sitenav"></div>
+
+<!-- HERO immersiva -->
+<section class="hero">
+  <div class="hero__bg" style="/* background-image:url('assets/hero.jpg') */"></div>
+  <div class="hero__overlay"></div>
+  <div class="container">
+    <span class="chip">Verticale · Tema</span>
+    <h1>Titolo del minisito, in Hedvig serif</h1>
+    <p class="hero__sub">Sottotitolo/claim su una o due righe.</p>
+    <div class="hero__btns">
+      <a class="cta-btn" href="pagina-contenuto.html"><span class="cta-btn__label">Vai alla sezione</span><span class="cta-btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+      <a class="cta-btn cta-btn--ghost" href="pagina-contenuto.html"><span class="cta-btn__label">Approfondisci</span><span class="cta-btn__arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- update strip (opzionale) -->
+<div class="update-strip"><div class="update-strip__inner"><span class="update-strip__dot"></span><span>Aggiornamento: mese 2026</span></div></div>
+
+<!-- sezioni landing (SENZA data-label: non entrano nella sub-nav) -->
+<section class="section section--white">
+  <div class="container">
+    <div class="section__header reveal"><span class="chip">Il contesto</span><h2>Una sola idea per la landing</h2><p class="lead">Riga di lead.</p></div>
+    <div class="kpi-grid reveal">
+      <div class="kpi-card"><div class="kpi-card__num">8&times;</div><div class="kpi-card__label">Etichetta del KPI</div></div>
+      <div class="kpi-card"><div class="kpi-card__num">&euro;1,2 mld</div><div class="kpi-card__label">Etichetta del KPI</div></div>
+      <div class="kpi-card"><div class="kpi-card__num">45%</div><div class="kpi-card__label">Etichetta del KPI</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="container">
+    <div class="section__header reveal"><span class="chip">Le pagine</span><h2>Cosa trovi nel minisito</h2></div>
+    <div class="cards reveal">
+      <div class="card"><span class="subchip">01</span><h3>Sezione esempio</h3><p>Descrizione breve.</p></div>
+      <div class="card"><span class="subchip">02</span><h3>Altra pagina</h3><p>Descrizione breve.</p></div>
+      <div class="card"><span class="subchip">03</span><h3>Altra pagina</h3><p>Descrizione breve.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="sitefooter"></div>
+<script src="nav.js"></script>
+</body>
+</html>

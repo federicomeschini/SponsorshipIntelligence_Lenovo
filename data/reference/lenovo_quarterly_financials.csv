@@ -1,0 +1,17 @@
+calendar_quarter,fiscal_year,fiscal_quarter,period_start,period_end,revenue_usd_m,adjusted_net_income_usd_m,reported_net_income_usd_m,profit_metric,source_url,extraction_status
+2022Q2,FY22/23,Q1,2022-04-01,2022-06-30,16956,556,516,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2223_q1.pdf,official_financial_highlights_table
+2022Q3,FY22/23,Q2,2022-07-01,2022-09-30,17090,591,541,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2223_q2.pdf,official_financial_highlights_table
+2022Q4,FY22/23,Q3,2022-10-01,2022-12-31,15267,447,437,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2223_q3.pdf,official_financial_highlights_table
+2023Q1,FY22/23,Q4,2023-01-01,2023-03-31,12635,284,114,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2223_q4.pdf,official_Q4_financial_highlights_table
+2023Q2,FY23/24,Q1,2023-04-01,2023-06-30,12900,191,177,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2324_q1.pdf,official_financial_highlights_table
+2023Q3,FY23/24,Q2,2023-07-01,2023-09-30,14410,273,249,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2324_q2.pdf,official_financial_highlights_table
+2023Q4,FY23/24,Q3,2023-10-01,2023-12-31,15721,357,337,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2324_q3.pdf,official_financial_highlights_table
+2024Q1,FY23/24,Q4,2024-01-01,2024-03-31,13833,223,248,restated_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2425_q4.pdf,official_following_year_comparative_table
+2024Q2,FY24/25,Q1,2024-04-01,2024-06-30,15447,320,243,restated_adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q1.pdf,official_following_year_comparative_table
+2024Q3,FY24/25,Q2,2024-07-01,2024-09-30,17850,409,359,restated_adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q2.pdf,official_following_year_comparative_table
+2024Q4,FY24/25,Q3,2024-10-01,2024-12-31,18796,435,693,restated_adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q3.pdf,official_following_year_comparative_table
+2025Q1,FY24/25,Q4,2025-01-01,2025-03-31,16984,278,90,non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2425_q4.pdf,official_Q4_financial_highlights_table
+2025Q2,FY25/26,Q1,2025-04-01,2025-06-30,18830,389,505,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q1.pdf,official_financial_highlights_table
+2025Q3,FY25/26,Q2,2025-07-01,2025-09-30,20452,512,340,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q2.pdf,official_financial_highlights_table
+2025Q4,FY25/26,Q3,2025-10-01,2025-12-31,22204,589,546,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q3.pdf,official_financial_highlights_table
+2026Q1,FY25/26,Q4,2026-01-01,2026-03-31,21588,559,521,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q4.pdf,official_Q4_financial_highlights_table

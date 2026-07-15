@@ -1,0 +1,71 @@
+experiment_id: world_cup_impact_v1
+status: preregistered_waiting_for_world_cup_data
+role: primary_sponsorship_impact_evaluation
+
+# Dates stay null until the client event/activation calendar is supplied and
+# approved. They must not be inferred from search peaks after the event.
+milestones:
+  activation_start: null
+  tournament_start: null
+  tournament_end: null
+  primary_post_window_end: null
+
+estimands:
+  primary:
+    name: sustained_world_cup_brand_index_uplift
+    formula: exposure_weighted_mean_actual_minus_counterfactual_index
+    interpretation: average incremental Brand Index points during the registered World Cup exposure window
+  secondary:
+    - all_post_mean_actual_minus_counterfactual_index
+    - peak_four_week_mean_index_gap
+    - post_event_persistence_13w_mean_gap
+    - cobrand_search_gap
+    - appeal_purchase_intent_sponsorship_lift
+
+counterfactual:
+  primary_method: augmented_synthetic_control
+  robustness_methods: [simplex_synthetic_control, synthetic_difference_in_differences]
+  donor_measurement: jointly_scaled_google_trends_panels_with_common_anchor
+  minimum_pre_weeks: 104
+  validation_holdout_weeks: 26
+  minimum_credible_donors: 9
+  minimum_post_weeks_after_tournament: 13
+  maximum_placebo_p_value: 0.10
+  prohibit_post_outcome_tuning: true
+  sensitivity_only_donors: [huawei]
+
+data_sources:
+  brand_index:
+    path: data/curated/index/brand_index_weekly.parquet
+    required_for_estimation: true
+    required_coverage_through: primary_post_window_end
+  jointly_scaled_donor_trends:
+    path: data/curated/trends/jointly_scaled_donor_trends.parquet
+    required_for_estimation: true
+    note: repeated common anchor across Google Trends panels; current separately normalized donor pulls are interim only
+  world_cup_exposure:
+    path: null
+    required_for_estimation: true
+    note: updated Blinkfire property-week exposure through the persistence window
+  world_cup_event_calendar:
+    path: null
+    required_for_estimation: true
+    note: exact UTC activation, match, campaign, and tournament dates
+  product_launch_controls:
+    path: data/reference/lenovo_product_campaign_events.csv
+    required_for_estimation: true
+    note: Lenovo launches, promotions, CES and major non-sponsorship campaigns
+  broadcast_grp:
+    path: null
+    required_for_estimation: false
+    required_for_decision_grade_total_exposure: true
+  post_world_cup_survey:
+    path: null
+    required_for_estimation: false
+    required_for_mechanism_validation: true
+    note: population survey plus sponsorship-aware/unaware lift with exact fieldwork dates
+
+monetization_handoff:
+  output_manifest: data/curated/experimental/world_cup_impact_v1/accepted_attribution.parquet
+  target_config: config/experiments/sponsorship_monetization_v1.yaml
+  rule: only an estimate passing the preregistered fit and placebo gates may populate delta_index_attrib

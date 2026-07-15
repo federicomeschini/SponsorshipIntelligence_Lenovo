@@ -1,0 +1,80 @@
+{
+  "source": "client-provided survey workbook exports",
+  "generated_at_utc": "2026-07-14T13:48:23.635296+00:00",
+  "sources": [
+    {
+      "source_file": "lenovo_fifa_consumer_research_export_2026-05-21.xlsx",
+      "source_sha256": "3c7a066bc263806231cd89e8a04669035bb12bd7903cdd9d0c463cf03104e333",
+      "bytes": 35528,
+      "sheets": [
+        {
+          "sheet": "TOC",
+          "max_row": 28,
+          "max_column": 3,
+          "nonempty_cells": 78
+        },
+        {
+          "sheet": "Tables",
+          "max_row": 372,
+          "max_column": 8,
+          "nonempty_cells": 903
+        }
+      ],
+      "nonempty_cells": 981,
+      "status": "usable_crosstab_export"
+    },
+    {
+      "source_file": "lenovo_gwi_core_tech_brands_crosstab_export_2026-06-09.xlsx",
+      "source_sha256": "f1eac9e09e90c47fe98e22784303079d9c689d4890ea090235fae6fc9587c1ad",
+      "bytes": 52864,
+      "sheets": [
+        {
+          "sheet": "Blank",
+          "max_row": 29,
+          "max_column": 42,
+          "nonempty_cells": 678
+        },
+        {
+          "sheet": "Foglio1",
+          "max_row": 17,
+          "max_column": 41,
+          "nonempty_cells": 672
+        }
+      ],
+      "nonempty_cells": 1350,
+      "status": "usable_gwi_crosstab_export"
+    }
+  ],
+  "output_row_counts": {
+    "survey_source_cells": 2331,
+    "consumer_research_tables": 21,
+    "consumer_research_crosstabs": 340,
+    "consumer_research_country_composition": 217,
+    "consumer_research_wave_register": 7,
+    "gwi_core_tech_brands_crosstab": 570,
+    "gwi_lenovo_proxy_candidates": 74
+  },
+  "validation": {
+    "rule": "every declared crosstab Column % NET equals 1",
+    "status": "passed",
+    "net_rows_checked": 28,
+    "gwi_foglio1_duplicate_check": [
+      {
+        "authoritative_sheet": "Foglio1",
+        "duplicate_check_sheet": "Blank",
+        "duplicate_check_range": "Blank!B13:AP29",
+        "cells_compared": 697,
+        "status": "passed_exact_match",
+        "quarterly_periods_excluding_totals": 37,
+        "candidate_proxy_series": 2
+      }
+    ]
+  },
+  "limitations": [
+    "Outcome crosstabs are conditional on sponsorship-awareness segment.",
+    "Column n is explicitly unweighted and must not reweight reported percentages.",
+    "Appeal and purchase response scales differ between 2024 and 2025-26.",
+    "Exact fieldwork dates and comparability metadata are absent.",
+    "GWI proxy candidates require the locked L1 validation gate before index use."
+  ]
+}

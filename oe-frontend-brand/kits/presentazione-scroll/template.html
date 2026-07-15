@@ -1,0 +1,214 @@
+<!doctype html>
+<!-- ============================================================================
+     KIT PRESENTAZIONE A SCROLL — scaffold on-brand (OE + Civiqa)
+     • Brand: OE di default. Per CIVIQA aggiungi class="theme-civiqa" sul <body>.
+     • Carattere: sintetico, UNA idea per sezione; sfrutta l'interattività web
+       (snap, dot-nav scroll-spy, reveal-on-scroll, hover), non muri di testo.
+     • Slide ~immersive (min-height alta) con scroll-snap; la sezione dopo "sbircia".
+     • Figure/foto: <image-slot> o <img>; hero fotografico via .hero__bg.
+     • Rif. benchmark: "Progetti marketing AI" (OE) e Accade investor (Civiqa).
+     ============================================================================ -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Presentazione — OpenEconomics</title>
+<link rel="stylesheet" href="../../ds-kit/fonts.css">
+<link rel="stylesheet" href="../../ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="../../ds-kit/components.css">
+<style>
+/* token locali di brand su BODY (non :root): .theme-civiqa sta sul body e deve rimapparli */
+:root{ --chip-cap:#B9FF69; --maxw:1100px; --pad:64px; }
+body{
+  --accent:var(--oe-bluette-700); --accent-deep:var(--oe-bluette-900);
+  --tint:var(--oe-bluette-050); --pop:var(--oe-lime-400); --pop-on-dark:var(--oe-lime-400);
+}
+.theme-civiqa{ --pop-on-dark:#ffffff; }   /* Civiqa non usa lime sul fondo scuro */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--oe-font-sans);font-weight:300;color:var(--oe-fg);background:#fff;font-size:20px;line-height:1.5}
+img{max-width:100%;display:block;height:auto}
+p{margin:0}
+
+/* ── deck / slide ── */
+.deck{scroll-snap-type:y proximity}
+.slide{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:88px var(--pad);scroll-snap-align:start;box-sizing:border-box;position:relative;border-top:1px solid var(--oe-gray-200)}
+.slide:first-child{border-top:0}
+.slide__inner{max-width:var(--maxw);margin:0 auto;width:100%;position:relative;z-index:2}
+.s-tint{background:var(--tint)} .s-light{background:#fff}
+.s-dark{background:var(--accent-deep);color:#fff} .s-dark h1,.s-dark h2{color:#fff}
+.s-accent{background:var(--accent);color:#fff} .s-accent h1,.s-accent h2{color:#fff}
+
+/* ── hero fotografico immersivo ── */
+.s-hero{background:var(--accent-deep);color:#fff;overflow:hidden}
+.s-hero .hero__bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;
+  /* default: pattern a punti; sostituisci con background-image:url('assets/hero.jpg') */
+  background-image:radial-gradient(rgba(255,255,255,.14) 1.4px,transparent 1.6px);background-size:22px 22px}
+.s-hero .hero__overlay{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(100deg, var(--accent-deep) 0%, color-mix(in srgb,var(--accent-deep) 55%,transparent) 70%, transparent 100%)}
+.s-hero h1{color:#fff;max-width:16ch}
+.s-hero .intro{color:rgba(255,255,255,.9);max-width:640px}
+
+/* ── tipografia ── */
+.eyebrow-wrap{margin-bottom:20px}
+h1{font-family:var(--oe-font-serif);font-size:clamp(44px,6.5vw,84px);font-weight:400;line-height:1.04;margin:0}
+h2{font-family:var(--oe-font-serif);font-size:clamp(30px,4.4vw,52px);font-weight:400;line-height:1.1;margin:0}
+h3{font-family:var(--oe-font-sans);font-weight:600;font-size:21px;margin:0}
+.intro{font-size:clamp(18px,2vw,24px);max-width:760px;margin-top:20px;color:var(--oe-gray-700)}
+.s-dark .intro,.s-accent .intro{color:rgba(255,255,255,.85)}
+
+/* ── chip a due livelli ── */
+.chip-cap{display:inline-block;font-family:var(--oe-font-mono);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;background:var(--chip-cap);color:#000;padding:6px 12px}      /* capitolo: lime */
+.chip{display:inline-block;font-family:var(--oe-font-mono);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;background:var(--pop);color:#000;padding:6px 12px}                 /* brand: lime OE → blu Civiqa */
+.theme-civiqa .chip{color:#fff}
+.subchip{display:inline-block;font-family:var(--oe-font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;background:var(--accent);color:#fff;padding:5px 11px}                /* paragrafo/step */
+
+/* ── card / bullets / compare / table ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:44px}
+.card{background:#fff;box-shadow:var(--oe-shadow-1);padding:28px;display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--accent);transition:box-shadow 220ms,transform 220ms}
+.card:hover{box-shadow:var(--oe-shadow-2);transform:translateY(-3px)}
+.card .subchip{align-self:flex-start}
+.card p{font-size:16px;color:var(--oe-gray-700);line-height:1.6}
+.bullets{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:16px;font-size:22px}
+.bullets li{padding-left:28px;position:relative}
+.bullets li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:14px;background:var(--pop)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:44px}
+.compare__col{background:#fff;box-shadow:var(--oe-shadow-1);padding:32px}
+.compare__col h3{font-family:var(--oe-font-serif);font-weight:400;font-size:28px;margin:10px 0 12px}
+.tbl-wrap{margin-top:44px;overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+.tbl th{background:var(--accent);color:#fff;text-align:left;padding:12px 14px;font-family:var(--oe-font-sans);text-transform:uppercase;font-size:13px;font-weight:500;letter-spacing:.02em}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--oe-gray-200);color:var(--oe-fg)}
+.tbl tbody tr:nth-child(even) td{background:var(--tint)}
+
+/* ── CTA arrow-tile (icona DS, no unicode) — tile bianca su fondo scuro/accento ── */
+.cta-btn{display:inline-flex;align-items:stretch;gap:4px;text-decoration:none;font-family:var(--oe-font-mono);text-transform:uppercase;font-size:15px;letter-spacing:.02em;margin-top:40px}
+.cta-btn .tile{width:52px;background:#fff;display:grid;place-items:center;flex:none;transition:transform 220ms}
+.cta-btn .tile svg{width:20px;height:20px;stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.cta-btn .label{background:#fff;color:var(--accent);height:52px;display:flex;align-items:center;padding:0 22px;font-weight:500}
+.cta-btn:hover .tile{transform:translateX(4px)}
+
+/* ── dot-nav (scroll-spy) ── */
+.navdots{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:50}
+.navdots a{width:11px;height:11px;border:1px solid var(--oe-gray-400);background:transparent;display:block;transition:background 160ms,border-color 160ms}
+.navdots a.active{background:var(--accent);border-color:var(--accent)}
+@media(max-width:768px){.navdots{display:none}}
+
+/* ── reveal-on-scroll ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ── responsive ── */
+@media(max-width:768px){:root{--pad:24px}.compare{grid-template-columns:1fr}.slide{min-height:auto;padding:64px var(--pad)}}
+</style>
+</head>
+<!-- per CIVIQA: class="theme-civiqa" sul body. Per OE: rimuovi la classe. -->
+<body>
+<nav class="navdots" id="navdots" aria-label="Sezioni"></nav>
+<main class="deck" id="deck">
+
+  <!-- HERO fotografico -->
+  <section id="s-hero" class="slide s-hero">
+    <div class="hero__bg" style="/* background-image:url('assets/hero.jpg') */"></div>
+    <div class="hero__overlay"></div>
+    <div class="slide__inner">
+      <div class="eyebrow-wrap"><span class="chip-cap">Pretitolo · contesto</span></div>
+      <h1>Titolo della presentazione, in Hedvig serif</h1>
+      <p class="intro">Sottotitolo/claim in una riga essenziale.</p>
+    </div>
+  </section>
+
+  <!-- STATEMENT (accento pieno) -->
+  <section id="s-statement" class="slide s-accent reveal">
+    <div class="slide__inner">
+      <div class="eyebrow-wrap"><span class="chip-cap">La tesi</span></div>
+      <h2>Una sola idea forte per questa sezione.</h2>
+      <ul class="bullets">
+        <li>Punto essenziale uno</li>
+        <li>Punto essenziale due</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CARDS con sub-chip (es. STEP N) -->
+  <section id="s-cards" class="slide s-light reveal">
+    <div class="slide__inner">
+      <div class="eyebrow-wrap"><span class="chip-cap">Metodologia</span></div>
+      <h2>Titolo di sezione</h2>
+      <p class="intro">Riga di lead breve.</p>
+      <div class="cards">
+        <div class="card"><span class="subchip">Step 1</span><h3>Titolo</h3><p>Testo essenziale.</p></div>
+        <div class="card"><span class="subchip">Step 2</span><h3>Titolo</h3><p>Testo essenziale.</p></div>
+        <div class="card"><span class="subchip">Step 3</span><h3>Titolo</h3><p>Testo essenziale.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section id="s-compare" class="slide s-tint reveal">
+    <div class="slide__inner">
+      <div class="eyebrow-wrap"><span class="chip-cap">Confronto</span></div>
+      <h2>A vs B</h2>
+      <div class="compare">
+        <div class="compare__col"><span class="subchip">Prima</span><h3>Scenario A</h3><p>Descrizione sintetica.</p></div>
+        <div class="compare__col"><span class="subchip">Dopo</span><h3>Scenario B</h3><p>Descrizione sintetica.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLE (dato come tabella, mai frammentato in card) -->
+  <section id="s-table" class="slide s-light reveal">
+    <div class="slide__inner">
+      <div class="eyebrow-wrap"><span class="chip-cap">I numeri</span></div>
+      <h2>Titolo tabella</h2>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Voce</th><th>Valore</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td>Riga 1</td><td>—</td><td>—</td></tr>
+          <tr><td>Riga 2</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="s-cta" class="slide s-dark reveal">
+    <div class="slide__inner">
+      <div class="eyebrow-wrap"><span class="chip-cap">Call to action</span></div>
+      <h2>Chiusura e invito all'azione.</h2>
+      <p class="intro">Riga descrittiva.</p>
+      <a class="cta-btn" href="#"><span class="tile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span><span class="label">Contattaci</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="slide s-dark" style="min-height:auto;padding:64px var(--pad) 40px">
+    <div class="slide__inner">
+      <div style="border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:24px;margin-bottom:20px;display:flex;flex-direction:column;gap:14px">
+        <img class="logo-oe" src="../../ds-kit/components/logo-white.svg" alt="OpenEconomics" style="height:34px;width:auto">
+        <img class="logo-cv" src="../../ds-kit/components/logo-civiqa-white.svg" alt="Civiqa" style="height:34px;width:auto;display:none">
+        <p style="font-family:var(--oe-font-serif);font-size:20px;max-width:640px;margin:0;color:#fff">Enabling adaptation. Empowering impact.</p>
+      </div>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:rgba(255,255,255,.75)"><span>www.openeconomics.eu · © OpenEconomics Srl <span data-oe-year></span></span></div>
+    </div>
+  </footer>
+</main>
+
+<script src="../../ds-kit/image-slot.js"></script>
+<script>
+document.querySelectorAll('[data-oe-year]').forEach(el=>el.textContent=new Date().getFullYear());
+// logo per brand
+if(document.body.classList.contains('theme-civiqa')){document.querySelectorAll('.logo-oe').forEach(e=>e.style.display='none');document.querySelectorAll('.logo-cv').forEach(e=>e.style.display='block');}
+// dot-nav + scroll-spy
+const sezioni=[...document.querySelectorAll('main > section')];
+const dots=document.getElementById('navdots');
+dots.innerHTML=sezioni.map(s=>`<a href="#${s.id}" data-for="${s.id}" aria-label="Vai a ${s.id}"></a>`).join('');
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.navdots a').forEach(a=>a.classList.toggle('active',a.dataset.for===e.target.id));}});},{threshold:.5});
+sezioni.forEach(s=>spy.observe(s));
+// reveal-on-scroll
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -10% 0px',threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

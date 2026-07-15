@@ -1,0 +1,479 @@
+<!doctype html>
+<!-- ============================================================================
+     KIT WEB REPORT — scaffold on-brand (OE + Civiqa)
+     • Brand: OE di default. Per CIVIQA aggiungi class="theme-civiqa" sul <body>
+       (rimappa accento → Blu #0000FF da DS) e usa i loghi Civiqa (già predisposti).
+     • Testi: VERBATIM dalla fonte (.md/.docx). PDF = solo riferimento di layout.
+     • Nav: TOC laterale (≥1240px) + top-nav fallback, entrambe con scroll-spy.
+     • Figure: <image-slot> (caricabili) — oppure sostituisci con <img>, Chart.js o
+       embed Flourish secondo la modalità scelta in intake (vedi README).
+     • L'esempio sotto è un report "chaptered" (capitoli) → usa le chip di capitolo
+       LIME (.chip-cap) + sub-chip di paragrafo BLU (.subchip). Per artefatti semplici
+       usa solo .chip (accento di brand).
+     ============================================================================ -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Titolo del report — Civiqa</title>
+<meta name="description" content="Sottotitolo / claim del report.">
+<link rel="stylesheet" href="../../ds-kit/fonts.css">
+<link rel="stylesheet" href="../../ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="../../ds-kit/components.css">
+<style>
+/* ── token locali ── IMPORTANTE: i token che derivano dall'accento vanno
+   dichiarati su `body` (NON :root), perché .theme-civiqa sta su <body>: se
+   l'indirezione è su :root (html, sopra lo scope tema) cattura il valore OE
+   prima del remap e Civiqa resterebbe viola. */
+:root{ --chip-cap:#B9FF69;  --maxw:1200px; --pad:64px; }   /* non dipendono dal brand */
+body{
+  --accent:var(--oe-bluette-700); --accent-deep:var(--oe-bluette-900);
+  --tint:var(--oe-bluette-050); --tint-2:var(--oe-bluette-100);
+  --pop:var(--oe-lime-400);            /* lime OE → blu sotto .theme-civiqa */
+  --pop-on-dark:var(--oe-lime-400);    /* su fondo accento */
+}
+.theme-civiqa{ --pop-on-dark:#ffffff; }   /* Civiqa non usa lime sul fondo scuro → bianco */
+
+/* ── base ── */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--oe-font-sans);color:var(--oe-fg);background:#fff;font-size:18px;line-height:1.6;font-weight:300}
+img{max-width:100%;display:block;height:auto}
+p{margin:0}
+
+/* ── reading progress ── */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--pop);z-index:120;transition:width 90ms linear}
+
+/* ── layout ── */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.s{padding:104px 0;scroll-margin-top:72px;border-top:1px solid var(--oe-gray-200)}
+.s:first-of-type{border-top:0}
+.s-tint{background:var(--tint)}
+.s-dark{background:var(--accent-deep);color:#fff}
+.s-accent{background:var(--accent);color:#fff}
+.text-col{max-width:760px}
+
+/* ── nav bianca + scroll-spy ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--oe-gray-200)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo img{height:24px;width:auto;display:block}
+.logo-cv{display:none}.theme-civiqa .logo-oe{display:none}.theme-civiqa .logo-cv{display:block}
+.nav-links{display:flex;gap:2px;flex-wrap:wrap}
+.nav-links a{font-family:var(--oe-font-sans);font-size:14px;color:var(--oe-gray-600);text-decoration:none;padding:8px 12px;transition:color 160ms,background 160ms}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a.active{color:var(--accent);background:var(--tint)}
+@media(max-width:980px){.nav-links{display:none}}
+
+/* ── TOC laterale (≥1240px) ── */
+.toc-rail{display:none;transition:opacity .3s}
+.toc-rail .toc-h{font-family:var(--oe-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--oe-gray-500);margin-bottom:12px}
+.toc-rail a{display:block;font-family:var(--oe-font-sans);font-size:14px;color:var(--oe-gray-600);text-decoration:none;padding:7px 0 7px 14px;border-left:2px solid var(--oe-gray-200);line-height:1.25;transition:color 160ms,border-color 160ms}
+.toc-rail a:hover{color:var(--accent)}
+.toc-rail a.active{color:var(--accent);border-left-color:var(--pop);font-weight:600}
+@media(min-width:1240px){
+  .nav-links{display:none}
+  .toc-rail{display:block;position:fixed;top:104px;left:32px;width:206px;z-index:90;background:#fff;border:1px solid var(--oe-gray-200);box-shadow:var(--oe-shadow-2);padding:20px 18px}
+  .s .wrap{margin-left:264px;margin-right:auto;max-width:912px;padding-left:0}
+  .footer-in{margin-left:200px;margin-right:auto;max-width:912px}
+}
+
+/* ── chip a due livelli ── */
+.chip{display:inline-block;font-family:var(--oe-font-mono);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;background:var(--pop);color:#000;padding:6px 12px}
+.theme-civiqa .chip{color:#fff}                 /* chip di brand: blu+bianco sotto Civiqa */
+.chip-cap{display:inline-block;font-family:var(--oe-font-mono);font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;background:var(--chip-cap);color:#000;padding:6px 12px}  /* chip di CAPITOLO: lime fisso */
+.subchip{display:inline-block;font-family:var(--oe-font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;background:var(--accent);color:#fff;padding:5px 11px}  /* chip di PARAGRAFO */
+
+/* ── hero ── */
+/* HERO — report: IMMERSIVA (spec archetipo: min-height ~1100px / full-viewport, effetto immersivo,
+   contenuti centrati verticalmente). Default full-bleed a fondo accento con visual a destra.
+   Variante "copertina" su fondo bianco: vedi README. NON ridurre la hero all'above-the-fold. */
+.hero{position:relative;overflow:hidden;background:var(--accent);color:#fff;min-height:clamp(880px,100vh,1100px);display:flex;align-items:center;padding:96px 0}
+.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 1.4px,transparent 1.6px);background-size:22px 22px;-webkit-mask-image:linear-gradient(115deg,transparent 42%,#000);mask-image:linear-gradient(115deg,transparent 42%,#000);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero .chip-cap{margin-bottom:24px}
+.hero h1{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(40px,4.8vw,68px);line-height:1.05;color:#fff;margin:0}
+.hero-q{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(20px,2.4vw,32px);line-height:1.15;color:rgba(255,255,255,.9);margin:20px 0 0}
+.hero-lead{font-size:clamp(16px,1.6vw,20px);color:rgba(255,255,255,.72);margin:16px 0 0;font-weight:300}
+.hero-img{margin:0}
+.hero-img img{display:block;width:100%;height:auto}
+.hero-img image-slot{display:block;width:100%;height:420px;background:rgba(255,255,255,.06)}
+@media(max-width:900px){.hero{min-height:auto;padding:56px 0 64px}.hero-grid{grid-template-columns:1fr;gap:28px}}
+
+/* ── tipografia ── */
+.s-h2{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(28px,3.6vw,46px);line-height:1.12;margin:18px 0 24px;color:inherit;max-width:20ch}
+.s-dark .s-h2,.s-accent .s-h2{color:#fff}
+.s-h3{font-family:var(--oe-font-sans);font-weight:600;font-size:21px;line-height:1.3;margin:0 0 14px;color:inherit}
+.lead{font-size:19px;font-weight:300;color:var(--oe-gray-700);max-width:760px;line-height:1.66}
+.lead+.lead{margin-top:18px}
+.s-dark .lead,.s-accent .lead{color:rgba(255,255,255,.82)}
+.section-sub{font-family:var(--oe-font-mono);font-size:13px;text-transform:uppercase;letter-spacing:.03em;color:var(--oe-gray-500);margin:0 0 34px}
+.firma{font-size:16px;font-weight:500;color:var(--oe-fg);margin-top:36px;padding-top:18px;border-top:1px solid var(--oe-gray-200)}
+.fig-label{font-family:var(--oe-font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:10px}
+.source-note{font-family:var(--oe-font-mono);font-size:12px;color:var(--oe-gray-500);margin-top:10px}
+.caption{font-size:13px;font-style:italic;color:var(--oe-gray-500);margin-top:6px}
+
+/* ── callout ── */
+.callout{background:var(--tint);border-left:3px solid var(--pop);padding:22px 26px;margin:40px 0 0;font-size:19px;font-weight:400;line-height:1.55;max-width:860px;color:var(--oe-fg);transition:box-shadow 220ms}
+.callout:hover{box-shadow:var(--oe-shadow-2)}
+
+/* ── read-more ── */
+.more-hidden{display:none}
+.more-btn{margin-top:22px;display:inline-flex;align-items:center;gap:8px;font-family:var(--oe-font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);background:none;border:1px solid var(--accent);padding:10px 16px;cursor:pointer;transition:background 160ms,color 160ms}
+.more-btn:hover{background:var(--accent);color:#fff}
+.more-btn .pl{transition:transform 220ms}.more-btn[aria-expanded="true"] .pl{transform:rotate(45deg)}
+
+/* ── accordion ── */
+details.acc{border:1px solid var(--oe-gray-200);margin-top:24px;max-width:860px;background:#fff}
+details.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 24px;font-family:var(--oe-font-sans);font-weight:600;font-size:17px;transition:background 200ms}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font-family:var(--oe-font-mono);color:var(--accent);font-size:22px;line-height:1}
+details.acc[open] summary::after{content:"\2013"}
+details.acc summary:hover{background:var(--oe-gray-100)}
+details.acc .acc-body{padding:0 24px 22px;font-size:16px;color:var(--oe-gray-700);line-height:1.65}
+
+/* ── griglie / card (LAYOUT: griglia di card) ── */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:44px}
+.card{background:#fff;box-shadow:var(--oe-shadow-1);padding:28px;display:flex;flex-direction:column;gap:10px;transition:background 220ms,box-shadow 220ms,transform 220ms;border-top:3px solid var(--accent)}
+.card:hover{box-shadow:var(--oe-shadow-2);transform:translateY(-3px)}
+.card-num{font-family:var(--oe-font-mono);font-size:26px;font-weight:500;color:var(--accent);line-height:1;transition:color 220ms}
+.card-title{font-family:var(--oe-font-sans);font-size:17px;font-weight:600;color:var(--oe-fg);line-height:1.35;margin:0;transition:color 220ms}
+.card-body{font-size:15px;font-weight:300;color:var(--oe-gray-700);line-height:1.6;margin:0;transition:color 220ms}
+.card.neg:hover{background:var(--accent);border-top-color:var(--pop-on-dark)}
+.card.neg:hover .card-num{color:var(--pop-on-dark)}
+.card.neg:hover .card-title,.card.neg:hover .card-body{color:#fff}
+
+/* ── intro 3 colonne (LAYOUT: intro a colonne con sub-chip) ── */
+.intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border:1px solid var(--oe-gray-200)}
+.intro-block{padding:30px;display:flex;flex-direction:column}
+.intro-block+.intro-block{border-left:1px solid var(--oe-gray-200)}
+.intro-block .subchip{align-self:flex-start;margin-bottom:14px}
+.intro-title{font-family:var(--oe-font-sans);font-size:19px;font-weight:600;color:var(--oe-fg);margin:0 0 12px;line-height:1.3}
+.intro-body{font-size:16px;font-weight:300;color:var(--oe-gray-700);line-height:1.65;margin:0}
+.steps{margin:8px 0 0;list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.step{background:var(--accent);color:#fff;padding:14px 16px;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;transition:background 200ms}
+.step:hover{background:var(--accent-deep)}
+.step-n{font-family:var(--oe-font-mono);font-size:13px;opacity:.7;padding-top:2px}
+.step-t{font-size:15px;font-weight:300;line-height:1.5}
+.intro-note{margin-top:18px;font-size:15px;font-weight:300;font-style:italic;color:var(--oe-gray-700);line-height:1.6}
+
+/* ── tabelle (LAYOUT: dato come tabella, MAI frammentato in card) ── */
+.tbl-wrap{overflow-x:auto;margin-top:6px}
+table.data{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+table.data thead th{background:var(--accent);color:#fff;font-family:var(--oe-font-sans);font-weight:500;font-size:13px;text-align:left;letter-spacing:.02em;padding:12px 14px;text-transform:uppercase;white-space:nowrap}
+table.data thead th.r{text-align:right}
+table.data tbody td{font-size:14px;font-weight:400;color:var(--oe-fg);padding:11px 14px;border-bottom:1px solid var(--oe-gray-200);line-height:1.4}
+table.data tbody td.r{text-align:right;font-weight:600;font-family:var(--oe-font-mono)}
+table.data tbody tr{transition:background 140ms}
+table.data tbody tr:nth-child(even) td{background:var(--tint)}
+table.data tbody tr:hover td{background:var(--tint-2)}
+.eei-var{font-family:var(--oe-font-mono);font-weight:700;font-size:18px;color:var(--accent)}
+
+/* ── split: testo+figura affiancati (LAYOUT) ── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;align-items:start}
+.split-commentary{font-size:16px;font-weight:300;color:var(--oe-gray-700);line-height:1.66;display:flex;flex-direction:column;gap:16px}
+.figure{transition:box-shadow 220ms;margin:0}
+.figure:hover{box-shadow:var(--oe-shadow-2)}
+.figure image-slot{display:block;width:100%;height:340px}
+
+/* ── celle bordate 2 col, hover negativo (LAYOUT: geo-card) ── */
+.bord-2{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:32px;border:1px solid var(--oe-gray-200)}
+.bord-cell{padding:30px;transition:background 220ms}
+.bord-cell+.bord-cell{border-left:1px solid var(--oe-gray-200)}
+.bord-kicker{font-family:var(--oe-font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:10px;transition:color 220ms}
+.bord-body{font-size:16px;font-weight:300;color:var(--oe-gray-700);line-height:1.65;transition:color 220ms}
+.bord-cell:hover{background:var(--accent)}
+.bord-cell:hover .bord-kicker{color:var(--pop-on-dark)}
+.bord-cell:hover .bord-body{color:#fff}
+
+/* ── due figure affiancate (LAYOUT: maps-2) ── */
+.maps-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:44px;align-items:start}
+/* ── mappa + card (LAYOUT: prov) ── */
+.prov{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:44px;align-items:start}
+.area-stack{display:flex;flex-direction:column;gap:18px}
+
+/* ── matrice 2×2 (LAYOUT) ── */
+.matrix{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:36px;background:var(--oe-gray-300)}
+.mcell{padding:28px;background:#fff;transition:background 220ms,transform 220ms}
+.mcell:hover{transform:translateY(-2px)}
+.mcell--hi{background:var(--accent);color:#fff}
+.mcell-label{font-family:var(--oe-font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--oe-gray-500);margin-bottom:8px}
+.mcell--hi .mcell-label{color:rgba(255,255,255,.75)}
+.mcell-title{font-family:var(--oe-font-sans);font-size:17px;font-weight:600;margin:0 0 10px;line-height:1.3;color:var(--oe-fg)}
+.mcell--hi .mcell-title{color:#fff}
+.mcell-body{font-size:15px;font-weight:300;line-height:1.6;margin:0 0 10px;color:var(--oe-gray-700)}
+.mcell--hi .mcell-body{color:rgba(255,255,255,.88)}
+.mcell-action{font-size:14px;font-weight:500;margin:0 0 8px;line-height:1.5;color:var(--accent)}
+.mcell--hi .mcell-action{color:var(--pop-on-dark)}
+.mcell-ex{font-family:var(--oe-font-mono);font-size:12px;color:var(--oe-gray-500);margin:0;line-height:1.6}
+.mcell--hi .mcell-ex{color:rgba(255,255,255,.7)}
+
+/* ── CTA (tile bianca, alto contrasto su fondo accento, per entrambi i brand) ── */
+.cta-btn{display:inline-flex;align-items:stretch;text-decoration:none;font-family:var(--oe-font-mono);font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-top:36px}
+.cta-tile{width:46px;background:#fff;display:grid;place-items:center;flex-shrink:0;transition:transform 220ms}
+.cta-tile svg{width:18px;height:18px;stroke:var(--accent);stroke-width:2;fill:none}
+.cta-lbl{background:#fff;color:var(--accent);padding:0 24px;display:flex;align-items:center;height:46px;font-weight:500}
+.cta-btn:hover .cta-tile{transform:translateX(4px)}
+
+/* ── footer ── */
+.footer{background:var(--accent-deep);color:#fff;padding:72px var(--pad) 40px}
+.footer-in{max-width:var(--maxw);margin:0 auto}
+.footer-top{border-bottom:1px solid rgba(255,255,255,.16);padding-bottom:30px;margin-bottom:30px}
+.footer-logo img{height:30px}
+.footer-tagline{font-family:var(--oe-font-serif);font-size:20px;color:#fff;margin:14px 0 0;max-width:560px}
+.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:30px}
+.footer-kicker{font-family:var(--oe-font-mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--pop-on-dark);margin-bottom:10px}
+.footer-body{font-size:15px;font-weight:300;color:rgba(255,255,255,.78);line-height:1.65;margin:0}
+.footer-body a{color:var(--pop-on-dark);text-decoration:none}
+.footer-bar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(255,255,255,.45);padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+
+/* ── reveal on scroll ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ── responsive ── */
+@media(max-width:980px){
+  :root{--pad:32px}
+  .grid-3,.grid-2,.split,.maps-2,.prov,.matrix,.footer-cols{grid-template-columns:1fr}
+  .intro-grid{grid-template-columns:1fr}.intro-block+.intro-block{border-left:0;border-top:1px solid var(--oe-gray-200)}
+  .bord-2{grid-template-columns:1fr}.bord-cell+.bord-cell{border-left:0;border-top:1px solid var(--oe-gray-200)}
+  .s{padding:72px 0}
+}
+@media(max-width:560px){:root{--pad:20px}.grid-3{gap:16px}}
+</style>
+</head>
+<!-- per CIVIQA: class="theme-civiqa" (sotto). Per OE: rimuovi la classe. -->
+<body class="theme-civiqa">
+
+<div class="progress" id="progress"></div>
+
+<!-- ═══ NAV (bianca, scroll-spy) ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top" aria-label="Home">
+      <img class="logo-oe" src="../../ds-kit/components/logo-black.svg" alt="OpenEconomics">
+      <img class="logo-cv" src="../../ds-kit/components/logo-civiqa-black.svg" alt="Civiqa">
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="#sintesi">In sintesi</a>
+      <a href="#introduzione">Introduzione</a>
+      <a href="#esposizione">Esposizione</a>
+      <a href="#province">Province</a>
+      <a href="#profili">Profili</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ TOC laterale (≥1240px) — voci in sentence case ═══ -->
+<aside class="toc-rail" id="tocrail" aria-label="Indice del report">
+  <div class="toc-h">Indice</div>
+  <a href="#sintesi">In sintesi</a>
+  <a href="#introduzione">Introduzione</a>
+  <a href="#esposizione">Esposizione</a>
+  <a href="#mappe">Le due mappe</a>
+  <a href="#province">Province</a>
+  <a href="#profili">Profili</a>
+</aside>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="chip-cap">Scenari Civiqa · Maggio 2026</span>
+        <h1>Titolo principale del report, in Hedvig serif</h1>
+        <p class="hero-q">Sotto-domanda o claim del report</p>
+        <p class="hero-lead">Riga di lead descrittiva</p>
+      </div>
+      <!-- immagine di copertina: sostituisci l'image-slot con <img src="…"> -->
+      <figure class="hero-img"><image-slot shape="rect" placeholder="Immagine di copertina (mappa / visual)"></image-slot></figure>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ PREFAZIONE — LAYOUT: colonna singola + read-more ═══ -->
+<section class="s" id="prefazione">
+  <div class="wrap text-col reveal">
+    <span class="chip-cap">Prefazione</span>
+    <h2 class="s-h2">Titolo della prefazione</h2>
+    <p class="section-sub">Contesto · data</p>
+    <p class="lead">Primo paragrafo verbatim della prefazione…</p>
+    <p class="lead">Secondo paragrafo verbatim…</p>
+    <div class="more-hidden" id="pref-more">
+      <p class="lead">Paragrafi successivi (nascosti dietro "Leggi di più")…</p>
+    </div>
+    <button class="more-btn" id="pref-toggle" aria-expanded="false" aria-controls="pref-more"><span class="pl">+</span> Leggi tutto</button>
+    <p class="firma">Firma — Ruolo</p>
+  </div>
+</section>
+
+<!-- ═══ IN SINTESI — LAYOUT: griglia di card (hover negativo) ═══ -->
+<section class="s s-tint" id="sintesi">
+  <div class="wrap">
+    <div class="reveal"><span class="chip-cap">In sintesi</span><h2 class="s-h2">N punti chiave</h2></div>
+    <div class="grid-3">
+      <div class="card neg reveal"><div class="card-num">01</div><p class="card-title">Titolo del punto.</p><p class="card-body">Corpo del punto, verbatim.</p></div>
+      <div class="card neg reveal"><div class="card-num">02</div><p class="card-title">Titolo del punto.</p><p class="card-body">Corpo del punto, verbatim.</p></div>
+      <div class="card neg reveal"><div class="card-num">03</div><p class="card-title">Titolo del punto.</p><p class="card-body">Corpo del punto, verbatim.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INTRODUZIONE — LAYOUT: 3 colonne con SUB-CHIP (chip di paragrafo blu) ═══ -->
+<section class="s" id="introduzione">
+  <div class="wrap">
+    <div class="reveal"><span class="chip-cap">Introduzione</span><h2 class="s-h2">Titolo introduttivo</h2></div>
+    <div class="intro-grid reveal">
+      <div class="intro-block"><span class="subchip">Il problema</span><p class="intro-title">Sotto-titolo</p><p class="intro-body">Corpo verbatim.</p></div>
+      <div class="intro-block"><span class="subchip">Lo strumento</span><p class="intro-title">Sotto-titolo</p><p class="intro-body">Corpo verbatim.</p></div>
+      <div class="intro-block"><span class="subchip">Le risposte</span><p class="intro-title">Sotto-titolo</p>
+        <ul class="steps">
+          <li class="step"><span class="step-n">01</span><span class="step-t">Punto elenco</span></li>
+          <li class="step"><span class="step-n">02</span><span class="step-t">Punto elenco</span></li>
+        </ul>
+        <p class="intro-note">Nota di chiusura in corsivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAP — LAYOUT: split (tabella a sinistra + figura/commento a destra) + accordion ═══ -->
+<section class="s s-tint" id="esposizione">
+  <div class="wrap">
+    <div class="reveal"><span class="chip-cap">Capitolo 1</span><h2 class="s-h2">Titolo del capitolo</h2></div>
+    <p class="lead reveal">Lead del capitolo, verbatim.</p>
+
+    <details class="acc reveal" style="margin-top:32px">
+      <summary>Nota metodologica (leggi di più)</summary>
+      <div class="acc-body">Testo metodologico lungo, compresso in accordion.</div>
+    </details>
+
+    <div class="split reveal">
+      <div>
+        <div class="fig-label">Tabella 1 | Titolo tabella</div>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead><tr><th>Rank</th><th>Voce</th><th class="r">Valore</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Riga uno</td><td class="r">0,615</td></tr>
+              <tr><td>2</td><td>Riga due</td><td class="r">0,561</td></tr>
+              <tr><td>3</td><td>Riga tre</td><td class="r">0,526</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="source-note">Elaborazione Civiqa/OpenEconomics — fonti, anno, aggiornamento.</p>
+      </div>
+      <div class="split-commentary">
+        <figure class="figure"><image-slot shape="rect" placeholder="Carica il grafico (o sostituisci con <img>/Chart.js/Flourish)"></image-slot></figure>
+        <p>Commento alla figura, verbatim.</p>
+        <p>Secondo blocco di commento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAP — LAYOUT: due figure affiancate (maps-2) + geo-card 2 colonne ═══ -->
+<section class="s" id="mappe">
+  <div class="wrap">
+    <div class="reveal"><span class="chip-cap">Capitolo 2</span><h2 class="s-h2">Due viste a confronto</h2></div>
+    <div class="maps-2 reveal">
+      <div><div class="fig-label">Mappa 1 | Titolo</div><figure class="figure"><image-slot shape="rect" placeholder="Mappa 1"></image-slot></figure><p class="caption">Didascalia.</p></div>
+      <div><div class="fig-label">Mappa 2 | Titolo</div><figure class="figure"><image-slot shape="rect" placeholder="Mappa 2"></image-slot></figure><p class="caption">Didascalia.</p></div>
+    </div>
+    <h3 class="s-h3 reveal" style="margin-top:32px">Due profili, ragioni opposte</h3>
+    <div class="bord-2 reveal">
+      <div class="bord-cell"><div class="bord-kicker">Profilo A</div><p class="bord-body">Descrizione, verbatim.</p></div>
+      <div class="bord-cell"><div class="bord-kicker">Profilo B</div><p class="bord-body">Descrizione, verbatim.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAP — LAYOUT: prov (mappa + 3 card affiancate) + callout ═══ -->
+<section class="s s-tint" id="province">
+  <div class="wrap">
+    <div class="reveal"><span class="chip-cap">Capitolo 3</span><h2 class="s-h2">Titolo del capitolo</h2></div>
+    <div class="prov reveal">
+      <div><div class="fig-label">Mappa 3 | Titolo</div><figure class="figure"><image-slot shape="rect" placeholder="Mappa 3"></image-slot></figure><p class="source-note">Fonte.</p></div>
+      <div class="area-stack">
+        <div class="card"><div class="bord-kicker">Area 1</div><p class="card-body">Descrizione.</p></div>
+        <div class="card"><div class="bord-kicker">Area 2</div><p class="card-body">Descrizione.</p></div>
+        <div class="card"><div class="bord-kicker">Area 3</div><p class="card-body">Descrizione.</p></div>
+      </div>
+    </div>
+    <div class="callout reveal">Frase-chiave evidenziata (callout).</div>
+  </div>
+</section>
+
+<!-- ═══ MATRICE 2×2 — LAYOUT: figura full-bleed + matrice (cella evidenziata) ═══ -->
+<section class="s" id="profili">
+  <div class="wrap">
+    <div class="reveal"><span class="chip-cap">Quattro profili</span><h2 class="s-h2">Come si posiziona il tuo territorio?</h2></div>
+    <figure class="figure reveal" style="margin-top:32px"><div class="fig-label">Mappa 4 | Matrice</div><image-slot shape="rect" placeholder="Matrice E1×E2" style="height:420px"></image-slot></figure>
+    <div class="matrix reveal">
+      <div class="mcell mcell--hi"><p class="mcell-label">Alta / Alta</p><p class="mcell-title">Doppia esposizione</p><p class="mcell-body">Descrizione.</p><p class="mcell-action">Azione consigliata</p><p class="mcell-ex">Esempi</p></div>
+      <div class="mcell"><p class="mcell-label">Bassa / Alta</p><p class="mcell-title">Vulnerabilità indiretta</p><p class="mcell-body">Descrizione.</p><p class="mcell-action">Azione consigliata</p><p class="mcell-ex">Esempi</p></div>
+      <div class="mcell"><p class="mcell-label">Alta / Bassa</p><p class="mcell-title">Profilo C</p><p class="mcell-body">Descrizione.</p><p class="mcell-action">Azione consigliata</p><p class="mcell-ex">Esempi</p></div>
+      <div class="mcell"><p class="mcell-label">Bassa / Bassa</p><p class="mcell-title">Profilo D</p><p class="mcell-body">Descrizione.</p><p class="mcell-action">Azione consigliata</p><p class="mcell-ex">Esempi</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA — LAYOUT: sezione full-bleed accento ═══ -->
+<section class="s s-accent" id="cta">
+  <div class="wrap reveal">
+    <span class="chip-cap">Esplora i dati</span>
+    <h2 class="s-h2">Call to action del report</h2>
+    <p class="lead">Riga descrittiva della CTA.</p>
+    <a href="https://civiqa.it" class="cta-btn" target="_blank" rel="noopener">
+      <span class="cta-tile"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      <span class="cta-lbl">civiqa.it</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-in">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <img class="logo-oe" src="../../ds-kit/components/logo-white.svg" alt="OpenEconomics" style="height:30px">
+        <img class="logo-cv" src="../../ds-kit/components/logo-civiqa-white.svg" alt="Civiqa" style="height:30px">
+      </div>
+      <p class="footer-tagline">Tagline del brand.</p>
+    </div>
+    <div class="footer-cols">
+      <div><p class="footer-kicker">Civiqa</p><p class="footer-body">Descrizione prodotto.<br><br><a href="https://civiqa.it">civiqa.it</a></p></div>
+      <div><p class="footer-kicker">OpenEconomics</p><p class="footer-body">Descrizione azienda.<br><br><a href="https://www.openeconomics.eu">www.openeconomics.eu</a></p></div>
+    </div>
+    <div class="footer-bar">
+      <span>www.openeconomics.eu · Copyright © OpenEconomics Srl 2026</span>
+      <span style="display:flex;gap:24px"><a href="#" style="color:inherit;text-decoration:none">Privacy policy</a><a href="#" style="color:inherit;text-decoration:none">Cookie policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../../ds-kit/image-slot.js"></script>
+<script>
+// progress bar
+const prog=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+// read-more
+const pt=document.getElementById('pref-toggle'),pm=document.getElementById('pref-more');
+if(pt){pt.addEventListener('click',()=>{const open=pm.classList.toggle('more-hidden')===false;pm.style.display=open?'block':'none';pt.setAttribute('aria-expanded',open);pt.querySelector('span.pl').nextSibling.textContent=open?' Mostra meno':' Leggi tutto';});}
+// reveal
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// scroll-spy (top-nav + TOC)
+const links=[...document.querySelectorAll('#navlinks a, #tocrail a')];
+const map=new Map();links.forEach(a=>{const id=a.getAttribute('href').slice(1);if(!map.has(id))map.set(id,[]);map.get(id).push(a);});
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));(map.get(e.target.id)||[]).forEach(l=>l.classList.add('active'));}});},{rootMargin:'-45% 0px -50% 0px'});
+['sintesi','introduzione','esposizione','mappe','province','profili'].forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el);});
+// TOC: nascondi su hero e footer
+const rail=document.getElementById('tocrail'),heroEl=document.getElementById('top'),footEl=document.querySelector('.footer');
+function railVis(){const hide=heroEl.getBoundingClientRect().bottom>90||footEl.getBoundingClientRect().top<innerHeight;rail.style.opacity=hide?'0':'1';rail.style.pointerEvents=hide?'none':'auto';}
+addEventListener('scroll',railVis,{passive:true});addEventListener('resize',railVis);railVis();
+</script>
+</body>
+</html>

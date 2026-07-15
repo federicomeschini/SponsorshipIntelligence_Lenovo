@@ -1,0 +1,10 @@
+{
+  "source": "data/staged/blinkfire/blinkfire_exposure_daily.parquet",
+  "generated_at_utc": "2026-07-14T10:27:36.361319+00:00",
+  "status": "weekly_observed_exposure_available",
+  "row_count": 1157,
+  "week_min": "2024-09-30",
+  "week_max": "2026-06-08",
+  "properties": 13,
+  "contract_status": "not_C_EXPOSURE_until_adstock_is_added"
+}

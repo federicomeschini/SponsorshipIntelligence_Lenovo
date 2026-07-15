@@ -1,0 +1,5 @@
+case,role,delta_brand_index_points,annual_adjusted_earnings_percent_equivalent,annual_adjusted_earnings_usd_m_central,annual_adjusted_earnings_usd_m_planning_lower,annual_adjusted_earnings_usd_m_planning_upper,calibration_accepted_for_planning,attribution_accepted,accepted_for_accounting_or_causal_claim
+one_brand_index_point,unit_mapping,1.0,0.30517081832346454,6.252950067447789,0.0,29.24355381665599,True,True,False
+announcement_period_candidate,attribution_not_accepted,1.03334129893261,0.31534560980269644,6.46143154485725,0.0,30.21857188630899,True,False,False
+world_cup_total_path_simulation,simulation_not_accepted,0.3665207724090401,0.11185144404861506,2.291836088556123,0.0,10.718369932866086,True,False,False
+world_cup_incremental_simulation,simulation_not_accepted,-0.1604003870832563,-0.048949517385597795,-1.0029756112308987,-4.690677351881658,-0.0,True,False,False

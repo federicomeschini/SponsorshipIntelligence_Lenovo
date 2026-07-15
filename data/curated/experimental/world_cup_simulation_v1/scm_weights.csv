@@ -1,0 +1,12 @@
+query_id,weight
+donor_dell,0.17098960283089815
+donor_asus,0.4932424054366434
+donor_acer,0.0
+donor_hp,0.020332976267546054
+donor_microsoft_surface,0.0
+donor_razer,0.0
+donor_logitech,0.05401450055130511
+donor_macbook,0.18016782532281733
+donor_corsair,0.0
+donor_steelseries,7.69292348979004e-15
+donor_benq,0.08125268959078229

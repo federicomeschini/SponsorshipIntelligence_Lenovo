@@ -1,0 +1,20 @@
+experiment_id: market_implied_earnings_bridge_v1
+status: operational_positive_planning_calibration
+
+inputs:
+  stock_response_manifest: data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json
+  quarterly_financials: data/reference/lenovo_quarterly_financials.csv
+  market_valuation_reference: data/reference/lenovo_market_valuation_reference.csv
+  announcement_counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
+  world_cup_simulation_manifest: data/curated/experimental/world_cup_simulation_v1/simulation_manifest.json
+
+calibration:
+  selected_horizon_weeks: 0
+  profit_base: latest_four_quarters_adjusted_net_income
+  constant_earnings_multiple: true
+  nonnegative_coefficient_floor: true
+  planning_use_accepted: true
+  causal_or_accounting_use_accepted: false
+
+outputs:
+  directory: data/curated/experimental/market_implied_earnings_bridge_v1

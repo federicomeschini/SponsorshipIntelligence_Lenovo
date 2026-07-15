@@ -1,0 +1,13 @@
+contract: C-EXPOSURE
+description: Weekly exposure and adstock output by sponsorship property.
+columns:
+  - {name: property_id, type: string}
+  - {name: week, type: date, constraints: [W-MON]}
+  - {name: impressions, type: float, constraints: [non_negative]}
+  - {name: engagements, type: float, constraints: [non_negative]}
+  - {name: engagement_rate, type: float}
+  - {name: posts, type: integer, constraints: [non_negative]}
+  - {name: adstock_impressions, type: float, constraints: [non_negative]}
+  - {name: delta_used, type: float, constraints: [greater_than_0, less_than_1]}
+invariants:
+  - Adstock is recomputable from impressions and delta_used.

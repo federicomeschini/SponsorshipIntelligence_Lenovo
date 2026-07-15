@@ -1,0 +1,48 @@
+contract: EXP-WC-IMPACT-V1
+status: prospective_input_contract
+
+incoming_tables:
+  jointly_scaled_donor_trends:
+    grain: week_x_query
+    required_columns: [panel_id, common_anchor_query, query_id, brand_id, week, interest_common_scale]
+    invariants:
+      - Every panel contains the same common anchor query.
+      - Cross-panel rescaling is estimated before the World Cup outcome window.
+      - Query definitions and geographies are frozen before estimation.
+  world_cup_exposure:
+    grain: property_x_week
+    required_columns: [property_id, week, impressions, views, days_observed, measurement_scope]
+    invariants:
+      - Zero means observed zero; missing coverage remains missing.
+      - media_value is prohibited from all models.
+  world_cup_event_calendar:
+    grain: event
+    required_columns: [event_id, event_type, event_timestamp_utc, property_id, source, status]
+    invariants:
+      - Primary activation and tournament window dates require approved status.
+      - Search or Index peaks cannot be used to choose event dates.
+  product_launch_controls:
+    grain: event
+    required_columns: [event_id, event_timestamp_utc, product_family, event_type, source]
+  broadcast_grp:
+    grain: geography_x_week
+    required_columns: [geo_id, week, audience, grp, source]
+  post_world_cup_survey:
+    grain: wave_x_property_x_segment_x_stage
+    required_columns: [wave_id, fieldwork_start, fieldwork_end, property_id, segment, funnel_stage, score, scale_version, weighting_scheme]
+
+minimum_analysis_horizon:
+  pre_weeks: 104
+  post_weeks_after_tournament: 13
+  donor_units: 9
+
+valuation_handoff_columns:
+  - estimate_id
+  - treatment_window
+  - delta_index_attrib
+  - lower_bound
+  - upper_bound
+  - pre_rmspe
+  - placebo_p_value
+  - accepted_for_valuation
+  - assumptions_hash

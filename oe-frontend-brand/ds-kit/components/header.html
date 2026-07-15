@@ -1,0 +1,107 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #fff; padding: 0; box-sizing: border-box; }
+  .label {
+    font-family: var(--oe-font-mono); font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--oe-gray-500);
+    padding: 10px 28px 6px;
+  }
+
+  /* ── Shared nav styles ── */
+  .nav {
+    width: 700px; background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--oe-gray-200);
+    padding: 16px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-sizing: border-box;
+  }
+  .nav.no-border { border-bottom: none; }
+  .logo img { height: 20px; }
+  .links { display: flex; gap: 24px; }
+  .links a {
+    font-family: var(--oe-font-sans); font-size: 13px;
+    color: var(--oe-black); text-decoration: none; font-weight: 400;
+  }
+  .right { display: flex; align-items: center; gap: 14px; }
+  .cta {
+    height: 34px; display: inline-flex; align-items: stretch; gap: 3px;
+    font-family: var(--oe-font-sans); font-size: 12px;
+    text-transform: uppercase; font-weight: 500; letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .cta .arrow { width: 34px; height: 34px; background: var(--oe-bluette-700); display:inline-flex; align-items:center; justify-content:center; }
+  .cta .arrow svg { width: 15px; height: 15px; stroke: var(--oe-lime-400); }
+  .cta .lbl { background: var(--oe-bluette-700); color: var(--oe-lime-400); padding: 0 14px; display:inline-flex; align-items:center; }
+  .lang { font-family: var(--oe-font-sans); font-size: 12px; color: var(--oe-gray-500); letter-spacing: 0.02em; font-weight: 500; }
+
+  /* ── Secondary nav strip ── */
+  .subnav {
+    width: 700px; background: #F1F1F1;
+    border-bottom: 1px solid var(--oe-gray-200);
+    display: flex; align-items: center;
+    padding: 0 28px; box-sizing: border-box;
+  }
+  .subnav a {
+    font-family: var(--oe-font-sans); font-size: 13px;
+    color: #2C2C2C; text-decoration: none; font-weight: 400;
+    padding: 10px 16px;
+    border-bottom: 2px solid transparent;
+    letter-spacing: 0.005em;
+  }
+  .subnav a.active {
+    color: var(--oe-bluette-700); font-weight: 500;
+    border-bottom-color: var(--oe-bluette-700);
+  }
+  .subnav a:hover:not(.active) { color: var(--oe-bluette-700); }
+
+  .divider { height: 28px; }
+</style>
+</head>
+<body>
+
+  <!-- Variant 1: Homepage / standard -->
+  <div class="label">Variant 1 — Homepage / standard</div>
+  <nav class="nav">
+    <div class="logo"><img src="../assets/logo-black.svg" alt="OpenEconomics"></div>
+    <div class="links">
+      <a>What we offer</a>
+      <a>Who we are</a>
+      <a>Insight wall</a>
+    </div>
+    <div class="right">
+      <div class="cta"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span><span class="lbl">Talk to an expert</span></div>
+      <div class="lang">ENG ▾</div>
+    </div>
+  </nav>
+
+  <div class="divider"></div>
+
+  <!-- Variant 2: Inner page with secondary nav -->
+  <div class="label">Variant 2 — Inner page with secondary nav</div>
+  <nav class="nav no-border">
+    <div class="logo"><img src="../assets/logo-black.svg" alt="OpenEconomics"></div>
+    <div class="links">
+      <a>What we offer</a>
+      <a>Who we are</a>
+      <a>Insight wall</a>
+    </div>
+    <div class="right">
+      <div class="cta"><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="square"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span><span class="lbl">Talk to an expert</span></div>
+      <div class="lang">ENG ▾</div>
+    </div>
+  </nav>
+  <div class="subnav">
+    <a class="active">Overview</a>
+    <a>Methodology</a>
+    <a>Results</a>
+    <a>Data & Sources</a>
+    <a>Downloads</a>
+  </div>
+
+</body>
+</html>

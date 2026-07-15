@@ -1,0 +1,36 @@
+experiment_id: sponsorship_counterfactual_v1
+status: experimental_not_canonical
+
+inputs:
+  joint_donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
+  brand_index: data/curated/index/brand_index_weekly.parquet
+  adstock_exposure: data/curated/experimental/sponsorship_monetization_v1/exposure_adstock_weekly.parquet
+  property_taxonomy: data/reference/property_taxonomy.csv
+  donor_registry: data/reference/counterfactual_donor_registry.csv
+  product_campaign_events: data/reference/lenovo_product_campaign_events.csv
+
+treatment:
+  event_id: fifa_partner_announcement_2024
+  announcement_date: 2024-10-15
+  first_full_post_week: 2024-10-21
+
+donors:
+  base: [donor_dell, donor_asus, donor_acer, donor_hp, donor_microsoft_surface, donor_razer, donor_logitech, donor_macbook, donor_corsair, donor_steelseries, donor_benq]
+  sensitivity_only: [donor_huawei, donor_msi]
+  excluded_contaminated: [donor_samsung, donor_lg_gram]
+
+exposure:
+  treatment_property_group: fifa
+  control_definition: all_non_fifa_properties
+  hac_lags: 4
+
+event_controls:
+  carryover_weeks: 1
+
+placebos:
+  fake_treatment_weeks: [2023-10-16, 2024-04-15]
+  evaluation_weeks: 26
+
+screen:
+  max_pre_rmspe_index_points: 0.50
+  max_placebo_p_value: 0.10

@@ -1,0 +1,74 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #fff; padding: 24px; box-sizing: border-box; font-family: var(--oe-font-sans); }
+  .wrap { width: 652px; }
+  .pretitle {
+    font-family: var(--oe-font-mono);
+    font-weight: 500; font-size: 12px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--oe-black); margin-bottom: 10px;
+  }
+  table { width: 100%; border-collapse: collapse; font-family: var(--oe-font-sans); }
+  /* Header — distinct background from body rows */
+  thead th {
+    background: var(--oe-bluette-700);
+    color: var(--oe-white);
+    font-weight: 500; font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding: 12px 16px;
+  }
+  thead th.num, tbody td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  /* Numbers in the header sit on dark → white */
+  tbody td {
+    font-size: 14px; font-weight: 400;
+    color: var(--oe-black);
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--oe-gray-200);
+  }
+  /* Body rows on light → numbers black */
+  tbody tr:nth-child(even) td { background: var(--oe-gray-100); }
+  tbody td.num { font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="pretitle">TABELLA 1</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Regione</th>
+        <th class="num">Progetti</th>
+        <th class="num">Investimento (M€)</th>
+        <th class="num">Var. %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Lombardia</td><td class="num">128</td><td class="num">412600</td><td class="num">18.4</td></tr>
+      <tr><td>Lazio</td><td class="num">96</td><td class="num">287100</td><td class="num">12.9</td></tr>
+      <tr><td>Campania</td><td class="num">74</td><td class="num">203800</td><td class="num">9.2</td></tr>
+      <tr><td>Veneto</td><td class="num">61</td><td class="num">178400</td><td class="num">7.6</td></tr>
+    </tbody>
+  </table>
+</div>
+<script src="../utils/format-number.js"></script>
+<script>
+document.querySelectorAll('td.num').forEach(el => {
+  const raw = parseFloat(el.textContent);
+  if (!isNaN(raw)) {
+    // currency columns (col 2): format as currency; var% col: keep sign
+    const idx = el.cellIndex;
+    if (idx === 2) { el.textContent = formatNumber(raw / 1000, 'it', 1) + ' M€'; }
+    else if (idx === 3) { el.textContent = (raw >= 0 ? '+' : '') + formatPercent(raw, 'it'); }
+    else { el.textContent = formatNumber(raw, 'it'); }
+  }
+});
+</script>
+</body>
+</html>

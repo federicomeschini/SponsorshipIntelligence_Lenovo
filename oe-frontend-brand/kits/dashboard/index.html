@@ -1,0 +1,123 @@
+<!doctype html>
+<!-- ============================================================================
+     KIT DASHBOARD — app-shell on-brand (OE + Civiqa), costruito sui componenti DS.
+     • Brand: OE di default. CIVIQA → class="theme-civiqa" su <body> (accento → Blu #0000FF).
+     • Usa i componenti di components.css: .oe-shell / .oe-dashnav / .oe-topbar /
+       .oe-kpi / .oe-panel / .oe-table / .oe-metrics / .oe-segment / .oe-badge.
+     • Dati e grafici: data.example.js (→ data.js) + Chart.js con chart-preset.js (colori DS).
+     • Regole d'archetipo: numeri KPI NERI · mai nero come sfondo (scuro = Bluette 900) ·
+       icone SVG del DS (mai glifi/emoji) · nav in sentence case · font ≥ 12px.
+     • Contenuto ibrido: mix di blocchi discorsivi (intro/insight) e visivi (KPI/grafici/tabelle).
+     ============================================================================ -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — OpenEconomics</title>
+<link rel="stylesheet" href="../../ds-kit/fonts.css">
+<link rel="stylesheet" href="../../ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="../../ds-kit/components.css">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<!-- per CIVIQA: class="theme-civiqa" -->
+<body>
+<div class="oe-shell">
+
+  <!-- ═══ SIDEBAR NAV (voci in sentence case, icone DS) ═══ -->
+  <aside class="oe-dashnav">
+    <a class="dashnav-logo" href="#" aria-label="OpenEconomics">
+      <img src="../../ds-kit/components/logo-black.svg" alt="OpenEconomics">
+    </a>
+    <div class="oe-dashnav__title">Panoramica</div>
+    <button class="oe-dashnav__item is-active" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Sintesi
+    </button>
+    <button class="oe-dashnav__item" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+      Impatti
+    </button>
+    <div class="oe-dashnav__title">Dettaglio</div>
+    <button class="oe-dashnav__item" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 12l9 4 9-4"/></svg>
+      Territori
+    </button>
+    <button class="oe-dashnav__item" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M9 4v16"/></svg>
+      Dati
+    </button>
+    <button class="oe-dashnav__item" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+      Impostazioni
+    </button>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="dash-main">
+
+    <!-- topbar: titolo + stato + filtro -->
+    <header class="oe-topbar">
+      <div class="topbar-titles">
+        <h1 id="dash-title">Titolo della dashboard</h1>
+        <div class="topbar-sub" id="dash-sub">Sottotitolo · periodo</div>
+      </div>
+      <span class="oe-badge oe-badge--success" style="margin-left:auto">Dati aggiornati</span>
+      <div class="oe-segment" id="filters" role="group" aria-label="Filtro"></div>
+    </header>
+
+    <main class="dash-body">
+
+      <!-- BLOCCO DISCORSIVO (la parte "ibrida": testo di lettura) -->
+      <section class="dash-intro">
+        <span class="oe-eyebrow">Sintesi</span>
+        <p class="intro-text" id="dash-intro">Riga di lettura discorsiva che inquadra i numeri: cosa mostra la dashboard e qual è il messaggio principale. Tieni il testo essenziale — il dato viene prima.</p>
+      </section>
+
+      <!-- KPI (numeri NERI) -->
+      <div class="kpi-grid" id="kpis"></div>
+
+      <!-- GRAFICI -->
+      <div class="panel-grid">
+        <div class="oe-panel">
+          <div class="oe-panel__head">
+            <div><div class="oe-panel__label">Grafico 1</div><p class="oe-panel__title" id="title-g1">Titolo grafico</p></div>
+          </div>
+          <div class="chart-box"><canvas id="g1"></canvas></div>
+        </div>
+        <div class="oe-panel">
+          <div class="oe-panel__head">
+            <div><div class="oe-panel__label">Grafico 2</div><p class="oe-panel__title" id="title-g2">Titolo grafico</p></div>
+          </div>
+          <div class="chart-box"><canvas id="g2"></canvas></div>
+        </div>
+      </div>
+
+      <!-- METRICHE + TABELLA -->
+      <div class="panel-grid">
+        <div class="oe-metrics" id="metrics"></div>
+        <div class="oe-panel">
+          <div class="oe-panel__head">
+            <div><div class="oe-panel__label">Tabella</div><p class="oe-panel__title" id="title-tbl">Dettaglio dati</p></div>
+          </div>
+          <div class="tbl-scroll"><table class="oe-table" id="tbl"></table></div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- footer slim -->
+    <footer class="dash-footer">
+      <span>www.openeconomics.eu · Copyright © OpenEconomics Srl <span data-oe-year></span></span>
+      <span class="dash-footer__links"><a href="#">Privacy policy</a><a href="#">Cookie policy</a></span>
+    </footer>
+
+  </div>
+</div>
+
+<script src="data.example.js"></script>
+<script src="../../ds-kit/tokens.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="../../ds-kit/chart-preset.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

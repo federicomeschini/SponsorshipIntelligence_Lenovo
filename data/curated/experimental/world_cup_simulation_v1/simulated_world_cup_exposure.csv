@@ -1,0 +1,19 @@
+week,match_count,stage_score,stages,impressions,views,adstock_impressions,scenario,property_id,days_observed,measurement_scope,is_simulated
+2026-06-08,11,11.0,First Stage,84128187.88427947,67153516.28696626,84128187.88427947,base,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-15,28,28.0,First Stage,147833274.47816592,118004731.2926868,215135824.78558952,base,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-22,34,34.35,First Stage|Round of 32,171628998.0,136999155.7212942,343737657.82847166,base,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-29,18,25.200000000000003,Round of 16|Round of 32,137340671.98034936,109629237.0564505,412330798.2431267,base,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-07-06,9,16.65,Quarter-final|Round of 16,105300760.78165938,84054067.15651456,435165399.37616074,base,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-07-13,4,11.95,Bronze final|Final|Semi-final,87688178.01746725,69995201.83140358,435820497.5183959,base,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-08,11,11.0,First Stage,143692443.8495633,114699402.31731497,143692443.8495633,high,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-15,28,28.0,First Stage,226509056.4216157,180805981.82475168,341463011.50126636,high,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-22,34,34.35,First Stage|Round of 32,257443497.0,205498733.5819413,530613906.2010131,high,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-29,18,25.200000000000003,Round of 16|Round of 32,212868673.17445415,169917839.31764448,637359798.1352646,high,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-07-06,9,16.65,Quarter-final|Round of 16,171216788.6161572,136670118.44772777,681104627.1243689,high,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-07-13,4,11.95,Bronze final|Final|Semi-final,148320431.0227074,118393593.5250835,693204132.7222025,high,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-08,11,11.0,First Stage,29882461.877627373,23853032.388551906,29882461.877627373,low,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-15,28,28.0,First Stage,59656747.28577876,47619715.23734177,83562716.78788066,low,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-22,34,34.35,First Stage|Round of 32,70778318.60000001,56497270.30144857,137628492.03030455,low,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-06-29,18,25.200000000000003,Round of 16|Round of 32,54752747.336200885,43705202.76812932,164855540.96044454,low,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-07-06,9,16.65,Quarter-final|Round of 16,39778033.20445415,31751959.335355584,171662465.9728098,low,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True
+2026-07-13,4,11.95,Bronze final|Final|Semi-final,31546319.003376998,25181170.547748975,168876291.78162482,low,fwc,7,SIMULATED_match_calendar_profile_calibrated_to_historical_Blinkfire,True

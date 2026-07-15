@@ -1,0 +1,404 @@
+{
+  "experiment_id": "stock_brand_response_v2",
+  "status": "exploratory_no_familywise_signal",
+  "generated_at_utc": "2026-07-15T14:11:49.867448+00:00",
+  "accepted_for_profit_conversion": false,
+  "accepted_for_causal_valuation": false,
+  "factor_model": {
+    "method": "rolling_prior_120_trading_day_market_model",
+    "training_window_trading_days": 120,
+    "factors": [
+      "contemporaneous_HSI_return",
+      "latest_Nasdaq100_in_HKD_return_available_before_HK_session"
+    ],
+    "look_ahead": false,
+    "daily_observations": 823
+  },
+  "brand_index_shock": {
+    "definition": "actual weekly Brand Index change minus its prediction from the preceding rolling history",
+    "training_window_weeks": 104,
+    "minimum_history_weeks": 52,
+    "innovation_observations": 152,
+    "look_ahead": false
+  },
+  "horizon_results": [
+    {
+      "horizon_weeks": 0,
+      "abnormal_return_percentage_points_per_BI_innovation_point": 0.30517081832346454,
+      "robust_se_percentage_points": 0.5724694910710103,
+      "lower_95_percentage_points": -0.8168693841757155,
+      "upper_95_percentage_points": 1.4272110208226447,
+      "p_value_normal_approx": 0.59397967574058,
+      "p_value_holm": 1.0
+    },
+    {
+      "horizon_weeks": 1,
+      "abnormal_return_percentage_points_per_BI_innovation_point": -1.380058738556243,
+      "robust_se_percentage_points": 1.2591564958756118,
+      "lower_95_percentage_points": -3.8480054704724425,
+      "upper_95_percentage_points": 1.0878879933599561,
+      "p_value_normal_approx": 0.2730707047225681,
+      "p_value_holm": 0.8192121141677043
+    },
+    {
+      "horizon_weeks": 4,
+      "abnormal_return_percentage_points_per_BI_innovation_point": 0.5304852957228909,
+      "robust_se_percentage_points": 2.8724928857939167,
+      "lower_95_percentage_points": -5.099600760433185,
+      "upper_95_percentage_points": 6.160571351878969,
+      "p_value_normal_approx": 0.8534818609726347,
+      "p_value_holm": 1.0
+    },
+    {
+      "horizon_weeks": 13,
+      "abnormal_return_percentage_points_per_BI_innovation_point": 9.402624835638541,
+      "robust_se_percentage_points": 4.641938224576501,
+      "lower_95_percentage_points": 0.3044259154685994,
+      "upper_95_percentage_points": 18.500823755808483,
+      "p_value_normal_approx": 0.04280767469472286,
+      "p_value_holm": 0.17123069877889144
+    }
+  ],
+  "multiple_testing": {
+    "method": "Holm family-wise correction",
+    "family": "four frozen response horizons: 0, 1, 4 and 13 weeks",
+    "any_adjusted_p_at_or_below_0_10": false
+  },
+  "reverse_timing_placebo": {
+    "lead_weeks": 4,
+    "estimate_percentage_points": -0.3137214652749567,
+    "p_value_normal_approx": 0.6726002832115489
+  },
+  "leave_one_quarter_out_stability": [
+    {
+      "horizon_weeks": 0,
+      "minimum_percentage_points": -0.012147651146391476,
+      "maximum_percentage_points": 0.8255703419443233,
+      "positive_share": 0.9230769230769231
+    },
+    {
+      "horizon_weeks": 1,
+      "minimum_percentage_points": -2.220947488076909,
+      "maximum_percentage_points": 0.09418673923910657,
+      "positive_share": 0.07692307692307693
+    },
+    {
+      "horizon_weeks": 4,
+      "minimum_percentage_points": -0.4072005814614808,
+      "maximum_percentage_points": 1.5420283944005673,
+      "positive_share": 0.9230769230769231
+    },
+    {
+      "horizon_weeks": 13,
+      "minimum_percentage_points": 1.9915466815860556,
+      "maximum_percentage_points": 12.874584225628213,
+      "positive_share": 1.0
+    }
+  ],
+  "endpoint_stability": [
+    {
+      "sample_endpoint": "2024-12-31",
+      "horizon_weeks": 0,
+      "estimate_percentage_points": -0.24363996938772514,
+      "robust_se_percentage_points": 1.581933775176124,
+      "p_value_normal_approx": 0.8775986864533615,
+      "observations": 73
+    },
+    {
+      "sample_endpoint": "2024-12-31",
+      "horizon_weeks": 1,
+      "estimate_percentage_points": -1.3935104109662164,
+      "robust_se_percentage_points": 1.7932553398162288,
+      "p_value_normal_approx": 0.4371090885801583,
+      "observations": 72
+    },
+    {
+      "sample_endpoint": "2024-12-31",
+      "horizon_weeks": 4,
+      "estimate_percentage_points": 1.573044640346262,
+      "robust_se_percentage_points": 2.691109856081463,
+      "p_value_normal_approx": 0.5588612392729394,
+      "observations": 69
+    },
+    {
+      "sample_endpoint": "2024-12-31",
+      "horizon_weeks": 13,
+      "estimate_percentage_points": -2.821966976450692,
+      "robust_se_percentage_points": 4.501189181097687,
+      "p_value_normal_approx": 0.5306998138422225,
+      "observations": 60
+    },
+    {
+      "sample_endpoint": "2025-12-31",
+      "horizon_weeks": 0,
+      "estimate_percentage_points": 0.8597950766808814,
+      "robust_se_percentage_points": 0.900209402997205,
+      "p_value_normal_approx": 0.3395242778215517,
+      "observations": 125
+    },
+    {
+      "sample_endpoint": "2025-12-31",
+      "horizon_weeks": 1,
+      "estimate_percentage_points": -0.48931934191531123,
+      "robust_se_percentage_points": 1.0430308765916625,
+      "p_value_normal_approx": 0.6389751633278673,
+      "observations": 124
+    },
+    {
+      "sample_endpoint": "2025-12-31",
+      "horizon_weeks": 4,
+      "estimate_percentage_points": 1.8416018983313593,
+      "robust_se_percentage_points": 1.5454587294646305,
+      "p_value_normal_approx": 0.23340967840760285,
+      "observations": 121
+    },
+    {
+      "sample_endpoint": "2025-12-31",
+      "horizon_weeks": 13,
+      "estimate_percentage_points": 2.773430019233881,
+      "robust_se_percentage_points": 2.6402073844648597,
+      "p_value_normal_approx": 0.2935070603744916,
+      "observations": 112
+    },
+    {
+      "sample_endpoint": "2026-07-06",
+      "horizon_weeks": 0,
+      "estimate_percentage_points": 0.30517081832346454,
+      "robust_se_percentage_points": 0.5724694910710103,
+      "p_value_normal_approx": 0.59397967574058,
+      "observations": 152
+    },
+    {
+      "sample_endpoint": "2026-07-06",
+      "horizon_weeks": 1,
+      "estimate_percentage_points": -1.380058738556243,
+      "robust_se_percentage_points": 1.2591564958756118,
+      "p_value_normal_approx": 0.2730707047225681,
+      "observations": 151
+    },
+    {
+      "sample_endpoint": "2026-07-06",
+      "horizon_weeks": 4,
+      "estimate_percentage_points": 0.5304852957228909,
+      "robust_se_percentage_points": 2.8724928857939167,
+      "p_value_normal_approx": 0.8534818609726347,
+      "observations": 148
+    },
+    {
+      "sample_endpoint": "2026-07-06",
+      "horizon_weeks": 13,
+      "estimate_percentage_points": 9.402624835638541,
+      "robust_se_percentage_points": 4.641938224576501,
+      "p_value_normal_approx": 0.04280767469472286,
+      "observations": 139
+    }
+  ],
+  "diagnostics": {
+    "primary": [
+      {
+        "model": "innovation_response_h0",
+        "outcome": "forward_abnormal_return_h0",
+        "regressors": [
+          "brand_index_innovation",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 152,
+        "parameters": 9,
+        "r_squared": 0.030564240617575456,
+        "covariance": "HAC",
+        "hac_lags": 4
+      },
+      {
+        "model": "innovation_response_h1",
+        "outcome": "forward_abnormal_return_h1",
+        "regressors": [
+          "brand_index_innovation",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 151,
+        "parameters": 9,
+        "r_squared": 0.03526060762388894,
+        "covariance": "HAC",
+        "hac_lags": 4
+      },
+      {
+        "model": "innovation_response_h4",
+        "outcome": "forward_abnormal_return_h4",
+        "regressors": [
+          "brand_index_innovation",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 148,
+        "parameters": 9,
+        "r_squared": 0.02526985728565312,
+        "covariance": "HAC",
+        "hac_lags": 5
+      },
+      {
+        "model": "innovation_response_h13",
+        "outcome": "forward_abnormal_return_h13",
+        "regressors": [
+          "brand_index_innovation",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 139,
+        "parameters": 9,
+        "r_squared": 0.18646609838929196,
+        "covariance": "HAC",
+        "hac_lags": 14
+      }
+    ],
+    "raw_change_sensitivity": [
+      {
+        "model": "raw_change_sensitivity_h0",
+        "outcome": "forward_abnormal_return_h0",
+        "regressors": [
+          "delta_brand_index",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 204,
+        "parameters": 9,
+        "r_squared": 0.022290530869688463,
+        "covariance": "HAC",
+        "hac_lags": 4
+      },
+      {
+        "model": "raw_change_sensitivity_h1",
+        "outcome": "forward_abnormal_return_h1",
+        "regressors": [
+          "delta_brand_index",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 203,
+        "parameters": 9,
+        "r_squared": 0.028414969008460966,
+        "covariance": "HAC",
+        "hac_lags": 4
+      },
+      {
+        "model": "raw_change_sensitivity_h4",
+        "outcome": "forward_abnormal_return_h4",
+        "regressors": [
+          "delta_brand_index",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 200,
+        "parameters": 9,
+        "r_squared": 0.014664140230654876,
+        "covariance": "HAC",
+        "hac_lags": 5
+      },
+      {
+        "model": "raw_change_sensitivity_h13",
+        "outcome": "forward_abnormal_return_h13",
+        "regressors": [
+          "delta_brand_index",
+          "lag_abnormal_return",
+          "lag_realized_volatility",
+          "category_demand_change",
+          "product_campaign_control",
+          "promotion_calendar_control",
+          "mixed_event_control",
+          "earnings_control"
+        ],
+        "observations": 191,
+        "parameters": 9,
+        "r_squared": 0.1386083719932144,
+        "covariance": "HAC",
+        "hac_lags": 14
+      }
+    ],
+    "reverse_timing_placebo": {
+      "model": "future_innovation_placebo_lead_4",
+      "outcome": "forward_abnormal_return_h0",
+      "regressors": [
+        "future_brand_index_innovation",
+        "lag_abnormal_return",
+        "lag_realized_volatility",
+        "category_demand_change",
+        "product_campaign_control",
+        "promotion_calendar_control",
+        "mixed_event_control",
+        "earnings_control"
+      ],
+      "observations": 152,
+      "parameters": 9,
+      "r_squared": 0.02868291996662875,
+      "covariance": "HAC",
+      "hac_lags": 4
+    }
+  },
+  "inputs": {
+    "market_prices": {
+      "path": "data/staged/market/market_prices_daily.parquet",
+      "sha256": "fa45168aa5bbf44c6680b6d963ee5358cf89b3a828880fccad124b637cdd58d3"
+    },
+    "brand_index": {
+      "path": "data/curated/index/brand_index_weekly.parquet",
+      "sha256": "5f98aa492773941292a32bdf4017637de493750263573f6750aa18f16d20c45c"
+    },
+    "joint_donor_trends": {
+      "path": "data/curated/trends/jointly_scaled_donor_trends.parquet",
+      "sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf"
+    },
+    "product_campaign_events": {
+      "path": "data/reference/lenovo_product_campaign_events.csv",
+      "sha256": "7489cc473753800a2c42c16ef9b37be0310a84918621628abc6305cdf918d241"
+    },
+    "financial_results_events": {
+      "path": "data/reference/lenovo_financial_results_events.csv",
+      "sha256": "665df4a1eaa7aab0795298d75a15674c82052f049639bb7fe8110e459876928b"
+    }
+  },
+  "interpretation": "The coefficient maps an unexpected Brand Index point to cumulative factor-adjusted equity return. It is not a profit coefficient. A market-value translation additionally requires dated market capitalisation; any cash-flow equivalent requires WACC, growth and persistence assumptions.",
+  "guardrails": [
+    "Stock prices are never regressed in levels.",
+    "Every factor forecast and Brand Index prediction uses prior data only.",
+    "The four horizons are frozen and evaluated as one Holm-adjusted family.",
+    "Earnings announcement weeks and two following weeks are controlled.",
+    "The Brand Index is a calibrated Lenovo search-salience index, so the shock is unexpected salience, not complete brand equity.",
+    "No stock coefficient is accepted as a profit or causal sponsorship conversion."
+  ]
+}

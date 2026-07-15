@@ -1,0 +1,327 @@
+{
+  "source": "Wikimedia REST API",
+  "generated_at_utc": "2026-07-14T10:00:12.745886+00:00",
+  "config_path": "config/wikipedia.yaml",
+  "horizon": {
+    "start": "2022-01-01",
+    "end": "2026-07-13"
+  },
+  "row_count": 14895,
+  "pulls": [
+    {
+      "file": "lenovo_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo/daily/20220101/20221231",
+      "sha256": "0370ab660fd27a4b93a06dc99a11a5681cd3d343b051d0129343abf605577e7a",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo/daily/20230101/20231231",
+      "sha256": "9c76ddedc6a127efeb9c902e5f84dca2be0502944e2efd0f557143b47f311799",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo/daily/20240101/20241231",
+      "sha256": "a9fba11e37c99a418383846da614c5eeaec20a886f7d62af55e77f13528eb0ac",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo/daily/20250101/20251231",
+      "sha256": "e0395985e96be5c1953f753a0ed855e7c0fcee5fe1c8aef095e4c26e1f58518a",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo/daily/20260101/20260713",
+      "sha256": "c81e5678d91f5f72bb7caeb4257da1ba31061df0c3beafc4d6e1a4c70ba1e6f1",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_zh__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/zh.wikipedia/all-access/user/%E8%81%94%E6%83%B3%E9%9B%86%E5%9B%A2/daily/20220101/20221231",
+      "sha256": "319c0b16676156c843abccca0c71ebe6f00635dc16d0ddac3db73eca7ac40a17",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_zh__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/zh.wikipedia/all-access/user/%E8%81%94%E6%83%B3%E9%9B%86%E5%9B%A2/daily/20230101/20231231",
+      "sha256": "7e9246d9c392e2e08fe11e49e4315ae4aef0eaa49f771dbf28165570a59bd737",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_zh__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/zh.wikipedia/all-access/user/%E8%81%94%E6%83%B3%E9%9B%86%E5%9B%A2/daily/20240101/20241231",
+      "sha256": "31410f87fdeab4b80bf66f58f1a02dbc37f280fcbbfe38402b2f0a0a6ed5b7df",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_zh__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/zh.wikipedia/all-access/user/%E8%81%94%E6%83%B3%E9%9B%86%E5%9B%A2/daily/20250101/20251231",
+      "sha256": "f950cffd1441161feb8f3541e7637aa02dc7a136e808e2426552dd993228a289",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "lenovo_zh__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/zh.wikipedia/all-access/user/%E8%81%94%E6%83%B3%E9%9B%86%E5%9B%A2/daily/20260101/20260713",
+      "sha256": "94058a5c6cc04fdb090ec088cd74a1eea42493ee70a996b7fd5cae3a8e616a12",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "thinkpad_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/ThinkPad/daily/20220101/20221231",
+      "sha256": "c15658878cc93f0a2789a1548009c92259ab12929eec3a19a4b2774fabef4bb0",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "thinkpad_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/ThinkPad/daily/20230101/20231231",
+      "sha256": "bf5ed0a19e11ea67adb210f618c2beae98b7a7fd7b6aaaaa086ecbf6cf0fe98a",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "thinkpad_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/ThinkPad/daily/20240101/20241231",
+      "sha256": "9d43f3a68d51d4a5dd540cb584921036d03d64cdd738e5b51378a190fd084391",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "thinkpad_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/ThinkPad/daily/20250101/20251231",
+      "sha256": "ac90d9de57b45fead8276474df77b97b748d81c18a1b67a1b469647f6c1da684",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "thinkpad_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/ThinkPad/daily/20260101/20260713",
+      "sha256": "832df6deb613394ab4fdccfd902ea78bfb776b47a3adbb8df5942f25c7ca1ae1",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "legion_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo_Legion/daily/20220101/20221231",
+      "sha256": "56d4a40bd5035d618879b8bc73a70fef5d9c5e3bbf59a97f58e7e26c828e033e",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "legion_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo_Legion/daily/20230101/20231231",
+      "sha256": "32e2354b167faa73ad89a7db5274268332bcf6a3a48543d3f696f97c01506697",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "legion_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo_Legion/daily/20240101/20241231",
+      "sha256": "dea6c96074d5ade558cec16119e538dbd56fd5867b47fac73ac8dc96d99787bc",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "legion_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo_Legion/daily/20250101/20251231",
+      "sha256": "4377cd89f4df5b1611812c77df4025761250da127c34402157b385ae50d6a707",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "legion_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Lenovo_Legion/daily/20260101/20260713",
+      "sha256": "a81cd171dc1b894d4c60c408a229487b01d72d9e30a360343f49e196c0cc4f21",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "hp_inc_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/HP_Inc./daily/20220101/20221231",
+      "sha256": "4c05665345f1f0a73d58119a4660d67d046687a7e34cd03544553875788f62f3",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "hp_inc_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/HP_Inc./daily/20230101/20231231",
+      "sha256": "f5d29cf7c90eb91d079cf5cc2fff6b08c0db95fd3b1062ef6d4589d3a8d0b05f",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "hp_inc_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/HP_Inc./daily/20240101/20241231",
+      "sha256": "c768e9d896c1f18b9f6037d28a7ed9872fd83cd12f5859044a70d9d9fc37a1d8",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "hp_inc_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/HP_Inc./daily/20250101/20251231",
+      "sha256": "b064bf4b01742a35fefd067a9f065840434210e1bbc25eb78a3e9bd3be8fc56e",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "hp_inc_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/HP_Inc./daily/20260101/20260713",
+      "sha256": "d321c214c4a50b2f97b41bae45008d12d8b5cd7e1427331bf41e0e2605f22829",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "dell_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dell/daily/20220101/20221231",
+      "sha256": "6e9f406c7c95cc0829ae423d5be188d8cdf1ea4ed1474a43983f4578c4ee77b1",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "dell_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dell/daily/20230101/20231231",
+      "sha256": "74255d5572a08e81f08cd7bb57f4f9c82239d7fcc4668f55f7356893f7f8aebb",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "dell_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dell/daily/20240101/20241231",
+      "sha256": "9a43e2cf6dda3100ed5985910cbedb3ffbbc20873e3a757b3c4595d35e45d950",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "dell_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dell/daily/20250101/20251231",
+      "sha256": "d1bf3ad421c1d8c304f85b2f456ecfac8915d820d95add60edf8ea3afcfdd494",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "dell_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Dell/daily/20260101/20260713",
+      "sha256": "138da497d35822518b79820cf9fdf1af8f78616bea67a85456b92ba189280a0a",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "asus_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Asus/daily/20220101/20221231",
+      "sha256": "d278c13179e447be9083b072baadabf706245b0b67d8b5ec94ee832ab4b8d75a",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "asus_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Asus/daily/20230101/20231231",
+      "sha256": "c6d9f409cc37deb69134c3e1d6f73bef66b02f2dcccd57578f9c693056e433fe",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "asus_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Asus/daily/20240101/20241231",
+      "sha256": "916322b89d00093c9329864484ad002b16f8e8fcd7ddc5913238916ea3105619",
+      "row_count": 366,
+      "cache_hit": true
+    },
+    {
+      "file": "asus_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Asus/daily/20250101/20251231",
+      "sha256": "da36edcc4cc164f329e90b902a6e3cf9edb84f78b04a2f55e37f9f72ff5d8c1e",
+      "row_count": 365,
+      "cache_hit": true
+    },
+    {
+      "file": "asus_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Asus/daily/20260101/20260713",
+      "sha256": "5aad8dddb7f845b6983c14e01bacfaa466edc3afc10ce671949c776e06c97ac3",
+      "row_count": 194,
+      "cache_hit": true
+    },
+    {
+      "file": "samsung_electronics_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Samsung_Electronics/daily/20220101/20221231",
+      "sha256": "e8b3947a67cf5510ddd32c523d3ad974fa583ce0afe4b826e59539af1ab6a0b8",
+      "row_count": 365,
+      "cache_hit": false
+    },
+    {
+      "file": "samsung_electronics_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Samsung_Electronics/daily/20230101/20231231",
+      "sha256": "90d6795396f9abd59a4bcc8c69d39a3cab2d5e80c0d78352a2a98c1c93b92ca8",
+      "row_count": 365,
+      "cache_hit": false
+    },
+    {
+      "file": "samsung_electronics_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Samsung_Electronics/daily/20240101/20241231",
+      "sha256": "19a34999db029030af361305f9c64805064dd932d358e798421ea493ef350689",
+      "row_count": 366,
+      "cache_hit": false
+    },
+    {
+      "file": "samsung_electronics_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Samsung_Electronics/daily/20250101/20251231",
+      "sha256": "05a92bace7d1254d576cc0df56e82c9cfae937a0d0e5f07f5731bb3719dd6a7c",
+      "row_count": 365,
+      "cache_hit": false
+    },
+    {
+      "file": "samsung_electronics_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Samsung_Electronics/daily/20260101/20260713",
+      "sha256": "f0c31558cd5313a8ac1c50c2a2d508531128555ba02120c817f91a15620b31b0",
+      "row_count": 194,
+      "cache_hit": false
+    },
+    {
+      "file": "huawei_en__20220101_20221231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Huawei/daily/20220101/20221231",
+      "sha256": "a272cc73e01d15c9ce5cc334c22cbfd8808201bc7c5e6c064bbe2bd60a09a53b",
+      "row_count": 365,
+      "cache_hit": false
+    },
+    {
+      "file": "huawei_en__20230101_20231231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Huawei/daily/20230101/20231231",
+      "sha256": "eee817279c7b18cee69f4854704e54d4719bae7832fa4acf8ec46b88598f3668",
+      "row_count": 365,
+      "cache_hit": false
+    },
+    {
+      "file": "huawei_en__20240101_20241231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Huawei/daily/20240101/20241231",
+      "sha256": "9e98970c77200e1c461b07021ae06c6a34662929377f8fc255acdc4f9439210e",
+      "row_count": 366,
+      "cache_hit": false
+    },
+    {
+      "file": "huawei_en__20250101_20251231.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Huawei/daily/20250101/20251231",
+      "sha256": "c792b180fe6dc87d643b565ad78c494bdbc14bee6dac33c6de641ea3e0390c48",
+      "row_count": 365,
+      "cache_hit": false
+    },
+    {
+      "file": "huawei_en__20260101_20260713.json",
+      "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/Huawei/daily/20260101/20260713",
+      "sha256": "7237f9c5cfa5eb6b285360f734733ca097aa0d6ffaab1df8e372b35151260cba",
+      "row_count": 194,
+      "cache_hit": false
+    }
+  ]
+}

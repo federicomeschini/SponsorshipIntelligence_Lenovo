@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- KIT MINISITO VERTICALE — pagina CONTENUTO. Le sezioni hanno id + data-label →
+     la sub-nav (2° livello) si popola in automatico con scroll-spy. -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sezione esempio — OpenEconomics</title>
+<link rel="stylesheet" href="../../ds-kit/fonts.css">
+<link rel="stylesheet" href="../../ds-kit/colors_and_type.css">
+<link rel="stylesheet" href="../../ds-kit/components.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div id="sitenav"></div>
+
+<!-- HERO immersiva della pagina -->
+<section class="hero">
+  <div class="hero__bg" style="/* background-image:url('assets/hero-2.jpg') */"></div>
+  <div class="hero__overlay"></div>
+  <div class="container">
+    <span class="chip">Analisi · Tema</span>
+    <h1>Titolo della pagina di contenuto</h1>
+    <p class="hero__sub">Riga descrittiva della pagina.</p>
+  </div>
+</section>
+
+<!-- SEZIONI con id + data-label → alimentano la sub-nav di 2° livello -->
+<section id="contesto" data-label="Il contesto" class="section section--white">
+  <div class="container">
+    <div class="section__header reveal"><span class="chip">Il contesto</span><h2>Titolo sezione</h2><p class="lead">Testo della sezione.</p></div>
+  </div>
+</section>
+
+<section id="sintesi" data-label="Sintesi" class="section section--tint">
+  <div class="container">
+    <div class="section__header reveal"><span class="chip">Sintesi</span><h2>Titolo sezione</h2></div>
+    <div class="kpi-grid reveal">
+      <div class="kpi-card"><div class="kpi-card__num">12</div><div class="kpi-card__label">Etichetta</div></div>
+      <div class="kpi-card"><div class="kpi-card__num">73%</div><div class="kpi-card__label">Etichetta</div></div>
+      <div class="kpi-card"><div class="kpi-card__num">€340 mln</div><div class="kpi-card__label">Etichetta</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="interpretazione" data-label="Interpretazione" class="section section--white">
+  <div class="container">
+    <div class="section__header reveal"><span class="chip">Interpretazione</span><h2>Titolo sezione</h2></div>
+    <div class="cards reveal">
+      <div class="card"><span class="subchip">A</span><h3>Punto A</h3><p>Testo.</p></div>
+      <div class="card"><span class="subchip">B</span><h3>Punto B</h3><p>Testo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="metodologia" data-label="Metodologia" class="section section--tint">
+  <div class="container">
+    <div class="section__header reveal"><span class="chip">Metodologia</span><h2>Nota metodologica</h2><p class="lead">Fonti e metodo.</p></div>
+  </div>
+</section>
+
+<div id="sitefooter"></div>
+<script src="nav.js"></script>
+</body>
+</html>

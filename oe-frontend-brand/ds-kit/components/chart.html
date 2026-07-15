@@ -1,0 +1,87 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; background: #fff; padding: 24px; box-sizing: border-box; }
+  .chart {
+    width: 652px;
+    background: var(--oe-gray-100);
+    padding: 24px 28px 20px;
+    box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  /* Pre-title / numbering — mono Light 300, 12px, uppercase, black */
+  .pretitle {
+    font-family: var(--oe-font-mono);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--oe-black);
+  }
+  /* Title — sans Regular, 16px, black */
+  .title {
+    font-family: var(--oe-font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--oe-black);
+    margin: 2px 0 0;
+  }
+  /* Subtitle — sans, 14px */
+  .subtitle {
+    font-family: var(--oe-font-sans);
+    font-weight: 400;
+    font-size: 14px;
+    color: #2C2C2C;
+    margin: 0 0 14px;
+  }
+  /* Plot */
+  .plot { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; align-items: end; height: 150px; margin-bottom: 10px; }
+  .col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; height: 100%; }
+  .bar { width: 100%; background: var(--oe-bluette-700); }
+  .bar.pop { background: var(--oe-lime-500); }
+  .num { font-family: var(--oe-font-sans); font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 600; color: var(--oe-black); }
+  .xlabel { font-family: var(--oe-font-sans); font-size: 12px; color: var(--oe-gray-600); }
+  /* Note a piè del grafico — trasparente, icona ⓘ */
+  .note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--oe-font-sans);
+    font-size: 12px;
+    line-height: 1.45;
+    color: #2C2C2C;
+    background: transparent;
+    padding: 12px 0 0;
+    margin-top: 4px;
+  }
+  .note svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="chart">
+  <div class="pretitle">GRAFICO 1</div>
+  <div class="title">Investimenti in adattamento climatico per settore</div>
+  <div class="subtitle">Valori in milioni di euro, 2019–2024</div>
+  <div class="plot">
+    <div class="col"><span class="num">312</span><div class="bar" style="height:42%"></div><span class="xlabel">2019</span></div>
+    <div class="col"><span class="num">388</span><div class="bar" style="height:54%"></div><span class="xlabel">2020</span></div>
+    <div class="col"><span class="num">441</span><div class="bar" style="height:63%"></div><span class="xlabel">2021</span></div>
+    <div class="col"><span class="num">529</span><div class="bar" style="height:76%"></div><span class="xlabel">2022</span></div>
+    <div class="col"><span class="num">604</span><div class="bar" style="height:88%"></div><span class="xlabel">2023</span></div>
+    <div class="col"><span class="num">712</span><div class="bar pop" style="height:100%"></div><span class="xlabel">2024</span></div>
+  </div>
+  <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="var(--oe-bluette-700)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="8" stroke-width="2.5"/><path d="M12 11v5"/></svg><span>Elaborazione OpenEconomics&nbsp;&nbsp;|&nbsp;&nbsp;Fonti: ISTAT, Eurostat, Banca d'Italia&nbsp;&nbsp;|&nbsp;&nbsp;Aggiornamento: giugno 2026</span></div>
+</div>
+<script src="../utils/format-number.js"></script>
+<script>
+document.querySelectorAll('.num').forEach(el => {
+  const raw = parseFloat(el.textContent);
+  if (!isNaN(raw)) el.textContent = formatNumber(raw, 'it');
+});
+</script>
+</body>
+</html>

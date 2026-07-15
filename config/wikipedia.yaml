@@ -1,0 +1,15 @@
+version: 1
+horizon:
+  start: 2022-01-01
+  end: null
+staged_output_dir: data/staged/wikipedia
+articles:
+  - {proxy_id: lenovo_en, entity_type: treated_brand, project: en.wikipedia, article: Lenovo}
+  - {proxy_id: lenovo_zh, entity_type: treated_brand, project: zh.wikipedia, article: 联想集团}
+  - {proxy_id: thinkpad_en, entity_type: product_brand, project: en.wikipedia, article: ThinkPad}
+  - {proxy_id: legion_en, entity_type: product_brand, project: en.wikipedia, article: Lenovo Legion}
+  - {proxy_id: hp_inc_en, entity_type: donor_candidate, project: en.wikipedia, article: HP Inc.}
+  - {proxy_id: dell_en, entity_type: donor_candidate, project: en.wikipedia, article: Dell}
+  - {proxy_id: asus_en, entity_type: donor_candidate, project: en.wikipedia, article: Asus}
+  - {proxy_id: samsung_electronics_en, entity_type: donor_candidate, project: en.wikipedia, article: Samsung Electronics}
+  - {proxy_id: huawei_en, entity_type: donor_candidate, project: en.wikipedia, article: Huawei}
