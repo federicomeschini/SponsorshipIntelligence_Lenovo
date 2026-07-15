@@ -1,6 +1,4 @@
-/* V5 — Proof: counterfactual break-away reveal + versus-the-market panel.
-   Signature moment: the without-sponsorship line draws first, then actual
-   pulls away and the created-value gap fills lime. */
+/* V5 — Proof: executive verdict, counterfactual breakaway and market check. */
 window.SCREENS = window.SCREENS || {};
 window.SCREENS.proof = function (root) {
   const D = window.SRMP_DEMO, C = COPY.proof, T = THEME, { el } = UI;
@@ -8,14 +6,35 @@ window.SCREENS.proof = function (root) {
 
   UI.screenHead(root, { kicker: C.kicker, title: C.title, insight: C.insight });
 
-  /* hero: actual vs synthetic with shaded gap */
-  const heroGrid = el("div", "panel-grid panel-grid--hero");
-  const hp = UI.panel(heroGrid, { label: "Chart 1", title: C.hero, height: 400 });
-  root.append(heroGrid);
+  const proofHero = el("div", "proof-hero reveal");
+  const chartPanel = el("div", "oe-panel proof-chart");
+  chartPanel.append(el("div", "oe-panel__head",
+    `<div><div class="oe-panel__label">Primary test</div><p class="oe-panel__title">${C.hero}</p></div>`));
+  const chartBox = el("div", "chart-box");
+  chartBox.style.height = "410px";
+  const canvas = document.createElement("canvas");
+  chartBox.append(canvas);
+  chartPanel.append(chartBox);
+
+  const verdict = el("aside", "proof-verdict");
+  verdict.append(el("span", "oe-tag-chip oe-tag-chip--lime", "Counterfactual verdict"));
+  verdict.append(el("strong", "proof-verdict__number oe-num", FMT.pts(D.kpi.indexLift)));
+  verdict.append(el("span", "proof-verdict__label", C.calloutSub));
+  verdict.append(el("p", "", C.verdict));
+  const verdictMeta = el("dl", "proof-verdict__meta");
+  [
+    ["Comparison", D.kpi.donorCount + " non-sponsor brands"],
+    ["Intervention", "FIFA partnership announcement"],
+    ["Extension", "Dashed where illustrative"],
+  ].forEach(([term, value]) => {
+    verdictMeta.append(el("div", "", `<dt>${term}</dt><dd>${value}</dd>`));
+  });
+  verdict.append(verdictMeta);
+  proofHero.append(chartPanel, verdict);
+  root.append(proofHero);
+
   const simFrom = CF.week.indexOf(CF.simulatedFrom);
-  const annIdx = CF.week.indexOf(CF.announcementWeek);
-  const reduced = FMT.reduced;
-  const hChart = CH.line(hp.canvas, {
+  const hChart = CH.line(canvas, {
     weeks: CF.week,
     series: [
       { label: C.synthetic, data: CF.synthetic, color: T.seriesCounterfactual, dash: [6, 4], width: 1.8, simFrom },
@@ -23,8 +42,7 @@ window.SCREENS.proof = function (root) {
     ],
     milestones: UI.milestonesFor(CF.week, ["fifa_partner_announcement_2024", "fcwc_opening_2025", "wc_opening_2026", "wc_final_2026"]),
   });
-  /* break-away reveal: synthetic first, actual + gap after */
-  if (!reduced) {
+  if (!FMT.reduced) {
     hChart.options.animation = { duration: 900, easing: "easeOutQuart" };
     hChart.options.animations = {
       ...hChart.options.animations,
@@ -32,18 +50,13 @@ window.SCREENS.proof = function (root) {
     };
     hChart.update();
   }
-  const callout = el("div", "gap-callout");
-  callout.append(el("span", "n oe-num", C.callout));
-  callout.append(el("span", "s", C.calloutSub));
-  hp.panel.querySelector(".chart-box").append(callout);
-  hp.panel.append(el("p", "panel-note", `<span style="background:${T.gapFill};padding:1px 8px">&nbsp;</span> ${C.gapLabel}`));
-  hp.bindExport(hChart, "proof-counterfactual");
+  chartPanel.append(el("p", "panel-note proof-gap-key",
+    `<span aria-hidden="true"></span>${C.gapLabel}`));
 
-  /* versus the market: Lenovo vs donor benchmark, indexed to announcement */
-  const grid = el("div", "panel-grid panel-grid--hero");
-  const mp = UI.panel(grid, { label: "Chart 2", title: C.market, height: 300 });
-  root.append(grid);
-  /* donor weeks are W-SUN (Trends); the index grid is W-MON — shift +1 day */
+  const marketGrid = el("div", "panel-grid panel-grid--hero");
+  const mp = UI.panel(marketGrid, { label: "Robustness check", title: C.market, height: 310 });
+  root.append(marketGrid);
+
   const donorNames = Object.keys(D.donorPanel);
   const wSun = D.donorPanel[donorNames[0]].week;
   const wSet = wSun.map((w) => new Date(new Date(w + "T00:00:00Z").getTime() + 864e5).toISOString().slice(0, 10));
@@ -57,8 +70,6 @@ window.SCREENS.proof = function (root) {
     const s = arr.slice(Math.max(0, i - n + 1), i + 1).filter((v) => v != null);
     return s.length ? s.reduce((a, v) => a + v, 0) / s.length : null;
   });
-  /* standardize every brand on its own pre-announcement mean/sd, smooth 4w —
-     puts quantized low-volume donors and Lenovo on one fair scale */
   const zSeries = (values, pos) => {
     const pre = values.slice(0, pos).filter((v) => v != null);
     const mean = pre.reduce((a, v) => a + v, 0) / pre.length;
@@ -78,14 +89,26 @@ window.SCREENS.proof = function (root) {
     weeks: wSet,
     ribbon: { upper: donorHi, lower: donorLo },
     series: [
-      { label: "Competitor market (median of " + D.kpi.donorCount + ")", data: donorMed, color: T.seriesBenchmark, width: 1.8 },
+      { label: "Non-sponsor market median", data: donorMed, color: T.seriesBenchmark, width: 1.8 },
       { label: "Lenovo", data: lenovoZ, color: T.seriesHeadline, width: 2.2 },
     ],
     milestones: UI.milestonesFor(wSet, ["fifa_partner_announcement_2024", "wc_opening_2026"]),
-    yTitle: "σ vs pre-announcement baseline",
+    yTitle: "Standard deviations vs pre-announcement baseline",
   });
   mp.panel.append(el("p", "panel-note", C.marketNote));
-  mp.bindExport(mChart, "proof-versus-market");
+  mp.bindExport(mChart, "fifa-proof-versus-market");
 
+  const evidenceHead = el("div", "section-intro section-intro--compact reveal");
+  evidenceHead.append(el("span", "oe-eyebrow", "How to read the evidence"));
+  root.append(evidenceHead);
+  const ledger = el("div", "evidence-ledger");
+  C.evidence.forEach(([status, description], i) => {
+    const item = el("div", "evidence-ledger__item reveal");
+    item.append(el("span", "evidence-ledger__index oe-num", "0" + (i + 1)));
+    item.append(el("strong", "", status));
+    item.append(el("p", "", description));
+    ledger.append(item);
+  });
+  root.append(ledger);
   root.append(el("p", "credential reveal", C.credential));
 };

@@ -1,6 +1,6 @@
 # SRMP Front End — Sponsorship Intelligence (demo product)
 
-Static, no-build demo dashboard for the Lenovo × FIFA case study, per
+Static, no-build executive decision product for the Lenovo × FIFA partnership, per
 [`VISUALIZATION.md`](../VISUALIZATION.md) (demo track). OpenEconomics brand via
 the pinned `ds-kit/`; charts via vendored Chart.js 4. **Zero backend, zero
 network calls at runtime** — everything needed is in this folder.
@@ -48,7 +48,7 @@ frontend/data/real-data.js        (window.SRMP_REAL — real series, checked in)
 frontend/data/demo-data.js        (window.SRMP_DEMO — simulated fills + every
         │                          derived KPI, checked in)
         ▼
-the app (js/screens/*) reads SRMP_DEMO only
+the FIFA-first app (js/screens/*) reads SRMP_DEMO only
 ```
 
 - Regenerating data is an explicit, logged step: run the two scripts above from

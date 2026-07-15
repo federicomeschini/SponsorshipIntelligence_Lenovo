@@ -71,3 +71,8 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Decision:** All UI copy and number formatting en-US; `Chart.defaults.locale`
   pinned to `en-US` so axis/tooltip numbers do not follow the host browser
   locale.
+## FE-007 — FIFA-first executive narrative
+
+- **Context:** The initial demo treated FIFA as one property inside a broader Lenovo sponsorship portfolio. The presentation goal is instead a FIFA product for Lenovo, with financial value and causal proof as the primary decision content.
+- **Decision:** Remove the portfolio route from the loaded application, show only FIFA-family activation detail, and reorder the product as Overview → Financial case → Proof → supporting FIFA evidence. The overview, financial and proof screens use a stronger executive hierarchy while retaining the existing data contracts.
+- **Consequences:** Non-FIFA data remains available to the analytical pipeline and consistency tests but is not shown in the product. The base checkpoint is preserved at tag pre-fifa-frontend-redesign.
