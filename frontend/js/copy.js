@@ -21,6 +21,7 @@ window.COPY = (function () {
       search: "Source: Google Trends · " + OE,
       counterfactual: "Sources: Google Trends donor panel · GWI · Synthetic-control model: OpenEconomics",
       valuation: "Valuation model: OpenEconomics · Calibration: market earnings data",
+      market: "Source: market data (Lenovo Group, 0992.HK) · Elaboration: OpenEconomics",
     },
 
     nav: [
@@ -138,6 +139,7 @@ window.COPY = (function () {
       tornadoLegend: ["Assumption at low end", "Assumption at high end"],
       tornadoAxis: "Change in net value vs the base case",
       tornadoNote: `Bars show the change in net value — base case ${F.usd(K.netValueUsd)} — when one assumption moves to the low or high end of its range, everything else held fixed. Persistence and the size of the Index lift dominate; investment cost barely moves the result.`,
+      stock: "Lenovo share price — indexed to 100 at January 2022",
       formulaNote: (d) => `${d.toFixed(1)} Index points × ${F.usd(K.usdPerPointYear)} per point per year`,
       decisionLabel: "Decision signal",
       decisionText: "The partnership clears its modelled investment cost in all three scenarios.",

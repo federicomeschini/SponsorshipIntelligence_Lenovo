@@ -104,6 +104,11 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
      lands at ≈ 5.1B contacts instead of 8B (which read as world-population
      scale). The reach hero states that contacts are cumulative, not unique
      viewers.
+  5. The financial screen closes with a "market context" panel: Lenovo
+     (0992.HK) share price indexed to 100, rebuilt from the real weekly log
+     returns in `brand_financial_bridge_v1` and extended with a mild simulated
+     walk. Explicitly framed as context — the valuation is earnings-based and
+     never uses share-price movement.
 - **Consequences:** The perception screen no longer claims any real survey
   rows (`REAL.funnelLift` is unused by the UI); consistency tests assert the
   wave-matrix completeness and the ×15 scale instead of real-row embedding.

@@ -366,6 +366,24 @@ const commercialIntent = {
 };
 
 // =============================================================================
+// 6b. Lenovo share price (indexed, 0992.HK): the real weekly series extended
+//     with a mild simulated walk to the demo timeline end. Context only — the
+//     valuation never uses share-price movement.
+// =============================================================================
+const stReal = REAL.stockWeekly;
+let px = stReal.priceIndex[stReal.priceIndex.length - 1];
+const stExt = extWeeks.map(() => {
+  px = px * (1 + 0.0015 + noise(0.014));
+  return round(px, 2);
+});
+const stock = {
+  week: timeline,
+  priceIndex: stReal.priceIndex.concat(stExt),
+  ticker: stReal.ticker,
+  simulatedFrom,
+};
+
+// =============================================================================
 // 7. Derived KPIs — single source of truth for every number on screen (§7.2).
 // =============================================================================
 const digitalTotalClean = fifaDigitalWeekly.reduce((a, v) => a + v, 0);
@@ -423,6 +441,7 @@ const DEMO = {
   portfolioMedianVpm: portMedian,
   earnedMedia,
   commercialIntent,
+  stock,
   worldCupCalendarWeekly: REAL.worldCupCalendarWeekly,
   events,
   roi: { inputs: roiInputs, scenarios, royaltyView, tornado },

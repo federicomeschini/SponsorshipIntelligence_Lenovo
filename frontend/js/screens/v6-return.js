@@ -141,4 +141,19 @@ window.SCREENS.return = function (root) {
   UI.source(tp.panel, COPY.src.valuation);
   tp.bindExport(tChart, "fifa-financial-sensitivity");
   root.append(grid);
+
+  /* market context: Lenovo share price, indexed — deliberately last and
+     low-key; the valuation is earnings-based, not share-price-based */
+  const stockGrid = el("div", "panel-grid panel-grid--hero");
+  const sp = UI.panel(stockGrid, { label: "Market context", title: C.stock, height: 220 });
+  const ST = D.stock;
+  const stSim = ST.week.indexOf(ST.simulatedFrom);
+  const sChart = CH.line(sp.canvas, {
+    weeks: ST.week,
+    series: [{ label: "Lenovo price index", data: ST.priceIndex, color: T.seriesTertiary, width: 1.8, fill: true, fillColor: "rgba(0,0,255,.06)", simFrom: stSim }],
+    milestones: UI.milestonesFor(ST.week, ["fifa_partner_announcement_2024", "wc_opening_2026"]),
+  });
+  UI.source(sp.panel, COPY.src.market);
+  sp.bindExport(sChart, "fifa-financial-lenovo-share-price");
+  root.append(stockGrid);
 };

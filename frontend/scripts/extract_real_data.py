@@ -11,6 +11,7 @@ Run from the repo root:  python frontend/scripts/extract_real_data.py
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -193,6 +194,22 @@ def main() -> None:
         "week": week_str(wce["week"]),
         "impressions": [int(v) for v in wce["impressions"]],
         "matches": [int(v) for v in wce["match_count"]],
+    }
+
+    # --- Lenovo share price, weekly (brand_financial_bridge_v1) -------------
+    # The bridge artifact carries weekly log returns; the front end shows an
+    # indexed price level (100 = first week), so cumulate here once.
+    st = pd.read_csv(
+        ROOT
+        / "data/curated/experimental/brand_financial_bridge_v1/stock_brand_index_weekly.csv"
+    )
+    st["week"] = pd.to_datetime(st["week"]).dt.strftime("%Y-%m-%d")
+    st = st.sort_values("week")
+    price = [100 * math.exp(v) for v in st["lenovo_log_return"].fillna(0).cumsum()]
+    out["stockWeekly"] = {
+        "week": st["week"].tolist(),
+        "priceIndex": [r(v, 2) for v in price],
+        "ticker": "0992.HK",
     }
 
     # --- Earnings calibration (ADR-0025) ------------------------------------

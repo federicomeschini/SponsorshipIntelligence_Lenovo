@@ -98,6 +98,13 @@ check("funnel hero lift = aware − unaware", D.funnelHero.every((s) => Math.abs
 check("kpi lift ranges match the FWC wave series",
   D.kpi.appealLiftRange[1] === Math.round(fwcAppeal[fwcAppeal.length - 1] * 100));
 
+// --- Lenovo share price (context series) ------------------------------------------
+check("stock aligned to timeline", D.stock.week.length === D.timeline.length && D.stock.priceIndex.length === D.timeline.length);
+check("real stock series embedded unchanged",
+  D.stock.priceIndex.slice(0, REAL.stockWeekly.priceIndex.length).every((v, i) => v === REAL.stockWeekly.priceIndex[i]));
+check("stock extension is continuous (first step < 8%)",
+  Math.abs(D.stock.priceIndex[REAL.stockWeekly.priceIndex.length] / REAL.stockWeekly.priceIndex[REAL.stockWeekly.priceIndex.length - 1] - 1) < 0.08);
+
 // --- portfolio -------------------------------------------------------------------
 const fifa = D.portfolio.find((p) => p.fifa);
 check("FIFA portfolio value = base gross value", fifa.valueUsd === D.roi.scenarios.base.grossUsd);
