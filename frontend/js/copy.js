@@ -39,7 +39,6 @@ window.COPY = (function () {
         perception: ["Perception", "Audience impact"],
       },
       timelineTitle: "FIFA partnership timeline",
-      status: ["Decision case", "Base scenario", "Counterfactual + financial bridge"],
     },
 
     reach: {
@@ -114,7 +113,6 @@ window.COPY = (function () {
       steps: {
         annual: "Annual brand earnings",
         persistence: "Persistence",
-        gross: "Gross brand value",
         investment: "Fee + activation",
         net: "Net value created",
       },

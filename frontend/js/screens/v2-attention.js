@@ -42,16 +42,38 @@ window.SCREENS.attention = function (root) {
   const grid = el("div", "panel-grid");
   const mp = UI.panel(grid, { label: "Chart 2", title: C.media, height: 240 });
   const EM = D.earnedMedia;
+  /* GDELT's mean-tone score for Lenovo runs almost entirely positive here
+     (observed range roughly -0.06 to +2.7, median ~1.4) — it is not a
+     symmetric -1..+1 sentiment scale, and coverage is basically never
+     net-negative. A "dips below zero" bar treatment would almost never
+     fire and would misrepresent the data, so volume stays a plain bar and
+     the tone line (auto-scaled to its own real range) carries the signal
+     of how positive coverage was, week to week. */
   const mChart = new Chart(mp.canvas.getContext("2d"), {
-    type: "bar",
     data: {
       labels: EM.week,
-      datasets: [{
-        label: "News volume",
-        data: EM.volume,
-        backgroundColor: EM.tone.map((t) => (t == null ? T.seriesBenchmark : t >= 0.5 ? T.tonePositive : t <= -0.5 ? T.toneNegative : T.seriesBenchmark)),
-        barPercentage: 1, categoryPercentage: 0.9,
-      }],
+      datasets: [
+        {
+          type: "bar",
+          label: "News volume",
+          data: EM.volume,
+          backgroundColor: T.seriesHeadlineDeep,
+          barPercentage: 1, categoryPercentage: 0.9,
+          order: 2,
+        },
+        {
+          type: "line",
+          label: "Mean tone",
+          data: EM.tone,
+          yAxisID: "y2",
+          borderColor: T.textPrimary,
+          borderWidth: 1.5,
+          pointRadius: 0,
+          tension: 0.15,
+          spanGaps: true,
+          order: 1,
+        },
+      ],
     },
     options: {
       maintainAspectRatio: false,
@@ -59,14 +81,22 @@ window.SCREENS.attention = function (root) {
       scales: {
         x: { grid: { display: false }, ticks: { autoSkip: false, maxRotation: 0, callback: (v) => { const w = EM.week[v]; return w && w.slice(5, 10) <= "01-07" ? w.slice(0, 4) : ""; } } },
         y: { grid: { color: T.grid }, border: { display: false }, ticks: { callback: (v) => FMT.big(v) } },
+        y2: { position: "right", grid: { display: false }, border: { display: false }, ticks: { callback: (v) => v.toFixed(1) } },
       },
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: (i) => ` ${FMT.big(i.parsed.y)} articles · tone ${EM.tone[i.dataIndex] >= 0 ? "positive" : "negative"}` } },
+        tooltip: {
+          callbacks: {
+            label: (i) => (i.dataset.type === "line"
+              ? ` Mean tone: ${i.parsed.y.toFixed(2)}`
+              : ` ${FMT.big(i.parsed.y)} articles`),
+          },
+        },
       },
     },
   });
-  mp.panel.append(el("p", "panel-note", C.mediaNote + ' <span class="oe-num" style="color:var(--oe-accent)">■</span> positive · <span class="oe-num" style="color:#C300C3">■</span> negative'));
+  mp.panel.append(el("p", "panel-note", C.mediaNote +
+    ' <span class="oe-num" style="color:var(--oe-accent)">■</span> weekly volume · <span class="oe-num" style="color:var(--app-ink)">—</span> mean tone (GDELT score, higher = more positive coverage)'));
   mp.bindExport(mChart, "attention-earned-media");
 
   const ip = UI.panel(grid, { label: "Chart 3", title: C.intent, height: 240 });

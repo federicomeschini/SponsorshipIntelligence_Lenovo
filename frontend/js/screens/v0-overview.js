@@ -9,18 +9,6 @@ window.SCREENS.overview = function (root) {
   hero.append(el("span", "oe-tag-chip oe-tag-chip--lime", C.kicker));
   hero.append(el("h1", "", C.title));
   hero.append(el("p", "insight-line", C.insight));
-
-  const status = el("div", "hero-status");
-  C.status.forEach((item, i) => status.append(el("span", i === 0 ? "is-strong" : "", item)));
-  hero.append(status);
-
-  const thesis = el("div", "hero-thesis");
-  const lead = el("div", "hero-thesis__lead");
-  lead.append(el("span", "hero-thesis__label", "Base-case return"));
-  lead.append(el("strong", "hero-thesis__number oe-num", FMT.mult(K.roiMultiple)));
-  lead.append(el("p", "", `${FMT.usd(base.grossUsd)} gross brand value against ${FMT.usd(base.investmentUsd)} in modelled fee and activation investment.`));
-  thesis.append(lead);
-  hero.append(thesis);
   root.append(hero);
 
   const decisionHead = el("div", "section-intro reveal");

@@ -74,14 +74,22 @@ window.UI = (function () {
     return card;
   }
 
-  /* partnership timeline ribbon: announcement dot + glowing tournament spans */
+  /* partnership timeline ribbon: zoomed to the partnership window itself
+     (announcement → shortly after the 2026 final), so the milestones that
+     matter are spread out instead of lost in a 5-year axis. */
   function milestoneRibbon(root) {
     const wrap = el("div", "ribbon reveal");
-    const t0 = new Date(D.timeline[0]).getTime();
-    const t1 = new Date(D.timeline[D.timeline.length - 1]).getTime();
+    const ev = (id) => D.events.find((e) => e.id === id);
+    const DAY = 864e5;
+
+    const ann = ev("fifa_partner_announcement_2024");
+    const fcwcDeal = ev("fcwc_partner_announcement_2025");
+    const wcFinal = ev("wc_final_2026");
+
+    const t0 = new Date(ann.date).getTime() - 30 * DAY;
+    const t1 = new Date(wcFinal.date).getTime() + 45 * DAY;
     const pct = (d) => ((new Date(d).getTime() - t0) / (t1 - t0)) * 100;
     const track = el("div", "ribbon__track");
-    const ev = (id) => D.events.find((e) => e.id === id);
     const now = Date.now();
     const todayPct = Math.min(100, Math.max(0, pct(now)));
 
@@ -89,14 +97,18 @@ window.UI = (function () {
     elapsed.style.width = todayPct + "%";
     track.append(elapsed);
 
-    const ann = ev("fifa_partner_announcement_2024");
     const dot = el("div", "ribbon__dot ribbon__dot--glow");
     dot.style.left = pct(ann.date) + "%";
-    dot.append(el("span", "ribbon__label ribbon__label--above", `Partnership announced<em>${FMT.monthYear(ann.date)}</em>`));
+    dot.append(el("span", "ribbon__label ribbon__label--above ribbon__label--start", `Partnership announced<em>${FMT.monthYear(ann.date)}</em>`));
     track.append(dot);
 
+    const deal = el("div", "ribbon__dot");
+    deal.style.left = pct(fcwcDeal.date) + "%";
+    deal.append(el("span", "ribbon__label ribbon__label--below", `FCWC partnership deal<em>${FMT.monthYear(fcwcDeal.date)}</em>`));
+    track.append(deal);
+
     [
-      { from: ev("fcwc_opening_2025").date, to: ev("fcwc_final_2025").date, label: "Club World Cup 2025", pos: "below" },
+      { from: ev("fcwc_opening_2025").date, to: ev("fcwc_final_2025").date, label: "Club World Cup 2025", pos: "above" },
       { from: ev("wc_opening_2026").date, to: ev("wc_final_2026").date, label: "World Cup 2026", pos: "above" },
     ].forEach((w) => {
       const span = el("div", "ribbon__win");
@@ -113,10 +125,18 @@ window.UI = (function () {
       track.append(today);
     }
 
-    for (let y = 2022; y <= 2026; y++) {
-      const tick = el("div", "ribbon__year");
-      tick.style.left = pct(y + "-01-01") + "%";
-      tick.textContent = y;
+    /* semester ticks (Jan/Jul) instead of year ticks — a 2-year window
+       reads better at 6-month resolution than at yearly resolution. */
+    const tickDate = new Date(t0);
+    tickDate.setDate(1);
+    tickDate.setMonth(tickDate.getMonth() < 6 ? 6 : 12);
+    if (tickDate.getTime() < t0) tickDate.setMonth(tickDate.getMonth() + 6);
+    for (; tickDate.getTime() <= t1; tickDate.setMonth(tickDate.getMonth() + 6)) {
+      const tickPct = pct(tickDate);
+      if (now >= t0 && now <= t1 && Math.abs(tickPct - todayPct) < 4) continue;
+      const tick = el("div", "ribbon__tick");
+      tick.style.left = tickPct + "%";
+      tick.textContent = tickDate.toLocaleDateString("en-US", { month: "short", year: "numeric" });
       track.append(tick);
     }
     wrap.append(track);

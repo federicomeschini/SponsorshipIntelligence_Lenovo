@@ -65,7 +65,6 @@ window.SCREENS.return = function (root) {
     const steps = [
       { label: C.steps.annual, range: [0, s.annualUsd], color: T.seriesHeadlineDeep, printed: FMT.usd(s.annualUsd) + "/yr" },
       { label: C.steps.persistence + " \u00d7" + s.persistenceYears, range: [s.annualUsd, s.grossUsd], color: T.seriesHeadline, printed: "+" + FMT.usd(s.grossUsd - s.annualUsd) },
-      { label: C.steps.gross, range: [0, s.grossUsd], color: T.seriesHeadlineDeep, printed: FMT.usd(s.grossUsd) },
       { label: C.steps.investment, range: [s.grossUsd - s.investmentUsd, s.grossUsd], color: T.seriesSecondary, printed: "\u2212" + FMT.usd(s.investmentUsd) },
       { label: C.steps.net, range: [0, s.netUsd], color: T.seriesHeadlineDeep, printed: FMT.usd(s.netUsd) },
     ];
@@ -106,17 +105,24 @@ window.SCREENS.return = function (root) {
   grid.append(rc);
 
   const tp = UI.panel(grid, { label: "Sensitivity", title: C.tornado, height: 230 });
+  /* widest-impact assumption on top (classic tornado shape); bars are keyed
+     to which END of the stated range moved (low estimate vs high estimate),
+     not to the dollar sign \u2014 the old "Downside/Upside" split grouped bars by
+     sign instead, which silently flipped which color meant what for
+     Investment (where a *higher* input is worse, not better). */
+  const sorted = [...R.tornado].sort((a, b) => Math.abs(b.hi - b.lo) - Math.abs(a.hi - a.lo));
   const tChart = CH.barsH(tp.canvas, {
-    labels: R.tornado.map((t) => t.label),
+    labels: sorted.map((t) => t.label),
     datasets: [
-      { label: "Downside", data: R.tornado.map((t) => Math.min(t.lo, t.hi)), backgroundColor: T.seriesBenchmark, barPercentage: 0.6 },
-      { label: "Upside", data: R.tornado.map((t) => Math.max(t.lo, t.hi)), backgroundColor: T.seriesHeadline, barPercentage: 0.6 },
+      { label: "Low estimate", data: sorted.map((t) => t.lo), backgroundColor: T.seriesBenchmark, barPercentage: 0.6 },
+      { label: "High estimate", data: sorted.map((t) => t.hi), backgroundColor: T.seriesHeadline, barPercentage: 0.6 },
     ],
     xFmt: (v) => (v > 0 ? "+" : v < 0 ? "\u2212" : "") + FMT.usd(Math.abs(v)),
   });
   tChart.options.scales.x.grid.color = T.grid;
   tChart.update();
-  tp.panel.append(el("p", "panel-note", "Change in net value versus the base case."));
+  tp.panel.append(el("p", "panel-note",
+    "Each bar re-runs the base case with one assumption moved to the low or high end of its stated range (shown in parentheses), holding everything else fixed. Sorted by size of swing in net value."));
   tp.bindExport(tChart, "fifa-financial-sensitivity");
   root.append(grid);
 };

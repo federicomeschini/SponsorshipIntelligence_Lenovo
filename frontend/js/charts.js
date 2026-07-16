@@ -205,6 +205,15 @@ window.CH = (function () {
 
   /* vertical waterfall with floating bars + connectors */
   function waterfall(canvas, { steps, yFmt }) {
+    /* the connector between step i and i+1 belongs at whichever value the
+       two bars actually share — the top of a rising bar meets the bottom
+       of a following floating/decrease bar, not always "the higher number
+       in the range" (that assumption put the line above a decrease step
+       instead of at the boundary it actually shares with the next bar). */
+    const boundary = (a, b) => {
+      for (const va of a.range) for (const vb of b.range) if (Math.abs(va - vb) < 0.01) return va;
+      return a.range[1];
+    };
     const connector = {
       id: "wfConnect",
       afterDatasetsDraw(chart) {
@@ -215,7 +224,7 @@ window.CH = (function () {
         ctx.setLineDash([2, 3]);
         for (let i = 0; i < meta.data.length - 1; i++) {
           const cur = meta.data[i], next = meta.data[i + 1];
-          const yEnd = chart.scales.y.getPixelForValue(steps[i].range[1]);
+          const yEnd = chart.scales.y.getPixelForValue(boundary(steps[i], steps[i + 1]));
           ctx.beginPath();
           ctx.moveTo(cur.x + cur.width / 2, yEnd);
           ctx.lineTo(next.x - next.width / 2, yEnd);
