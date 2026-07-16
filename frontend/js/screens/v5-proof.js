@@ -53,6 +53,7 @@ window.SCREENS.proof = function (root) {
   }
   chartPanel.append(el("p", "panel-note proof-gap-key",
     `<span aria-hidden="true"></span>${C.gapLabel}`));
+  chartPanel.append(el("p", "panel-note", C.howTo));
   UI.source(chartPanel, COPY.src.counterfactual);
 
   const marketGrid = el("div", "panel-grid panel-grid--hero");

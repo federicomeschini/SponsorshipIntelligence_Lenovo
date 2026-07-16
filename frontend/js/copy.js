@@ -123,6 +123,7 @@ window.COPY = (function () {
       insight: "The metric under test is the Brand Index — a weekly 0–100 score of how present Lenovo is in worldwide searches, media and surveys. The question is not whether it improved, but whether it moved beyond where it would have been without the partnership; a synthetic control built from non-sponsor competitors provides that baseline.",
       pointMeaning: `≈ ${F.usd(K.usdPerPointYear)}/yr of brand earnings`,
       hero: "Actual Lenovo vs. the without-FIFA trajectory",
+      howTo: "How to read it: the solid line is Lenovo as measured; the dashed line is the Lenovo estimated without FIFA. The green area between them is what the partnership added.",
       actual: "Lenovo — actual",
       synthetic: "Lenovo without FIFA",
       gapLabel: "Increment attributed to the FIFA partnership",
