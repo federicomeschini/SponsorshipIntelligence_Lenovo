@@ -46,41 +46,11 @@ window.SCREENS.perception = function (root) {
 
   const midGrid = el("div", "panel-grid panel-grid--hero");
 
-  /* lift trajectory by wave (flagship World Cup audience) */
-  const tpPanel = UI.panel(midGrid, { label: "Chart 2", title: C.trend, height: 280 });
-  const liftSeries = (stage) => waves.map((w) =>
-    Math.round(D.funnel.find((r) => r.wave === w && r.property === "fwc" && r.stage === stage).lift * 100));
-  const trendChart = new Chart(tpPanel.canvas.getContext("2d"), {
-    type: "line",
-    data: {
-      labels: waves.map(waveLabel),
-      datasets: [
-        { label: "Appeal lift", data: liftSeries("appeal"), borderColor: T.seriesHeadline, backgroundColor: T.seriesHeadline, pointRadius: 4, borderWidth: 2, tension: 0.25 },
-        { label: "Purchase-intent lift", data: liftSeries("purchase_intent"), borderColor: T.seriesSecondary, backgroundColor: T.seriesSecondary, pointRadius: 4, borderWidth: 2, tension: 0.25 },
-      ],
-    },
-    options: {
-      maintainAspectRatio: false,
-      interaction: { mode: "index", intersect: false },
-      scales: {
-        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: false } },
-        y: { beginAtZero: true, grid: { color: T.grid }, border: { display: false }, ticks: { callback: (v) => "+" + v + " pp" } },
-      },
-      plugins: {
-        legend: { display: true },
-        tooltip: { callbacks: { label: (i) => ` ${i.dataset.label}: +${i.parsed.y} pp` } },
-      },
-    },
-  });
-  tpPanel.panel.append(el("p", "panel-note", C.trendNote));
-  UI.source(tpPanel.panel, COPY.src.waves);
-  tpPanel.bindExport(trendChart, "perception-lift-by-wave");
-
   /* heat matrix: lift by competition × wave */
   const rows = [];
   ["fwc", "fwwc", "fcwc"].forEach((p) =>
     ["appeal", "purchase_intent"].forEach((s) => rows.push([p, s])));
-  const hpPanel = UI.panel(midGrid, { label: "Chart 3", title: C.heat, height: 0 });
+  const hpPanel = UI.panel(midGrid, { label: "Chart 2", title: C.heat, height: 0 });
   hpPanel.panel.querySelector(".chart-box").remove();
   hpPanel.hideExport();
   const heat = el("div", "heat");

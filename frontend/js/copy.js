@@ -108,8 +108,6 @@ window.COPY = (function () {
       stageHead: "Funnel stage",
       shareHead: "Share of audience at each stage",
       liftHead: "Lift",
-      trend: "Lift by measurement wave — FIFA World Cup audience",
-      trendNote: "Appeal and purchase-intent lift widen wave over wave as the partnership matures, peaking during the tournament itself.",
       heat: "Lift by FIFA competition and wave",
       heatNote: "Appeal and purchase-intent lift, in percentage points, across the six brand-tracking waves fielded between November 2024 and June 2026.",
       cards: [
