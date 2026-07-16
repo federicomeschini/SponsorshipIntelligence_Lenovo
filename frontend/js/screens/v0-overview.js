@@ -19,17 +19,7 @@ window.SCREENS.overview = function (root) {
   lead.append(el("span", "hero-thesis__label", "Base-case return"));
   lead.append(el("strong", "hero-thesis__number oe-num", FMT.mult(K.roiMultiple)));
   lead.append(el("p", "", `${FMT.usd(base.grossUsd)} gross brand value against ${FMT.usd(base.investmentUsd)} in modelled fee and activation investment.`));
-  const evidence = el("div", "hero-thesis__evidence");
-  [
-    [FMT.usd(K.annualValueUsd), "Annual brand-driven earnings"],
-    [FMT.pts(K.indexLift), "Lift above the without-FIFA trajectory"],
-    [FMT.big(K.totalExposure), "FIFA digital + broadcast exposure"],
-  ].forEach(([value, label]) => {
-    const item = el("div", "hero-evidence");
-    item.append(el("strong", "oe-num", value), el("span", "", label));
-    evidence.append(item);
-  });
-  thesis.append(lead, evidence);
+  thesis.append(lead);
   hero.append(thesis);
   root.append(hero);
 

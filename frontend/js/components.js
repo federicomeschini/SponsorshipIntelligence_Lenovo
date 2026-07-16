@@ -82,6 +82,12 @@ window.UI = (function () {
     const pct = (d) => ((new Date(d).getTime() - t0) / (t1 - t0)) * 100;
     const track = el("div", "ribbon__track");
     const ev = (id) => D.events.find((e) => e.id === id);
+    const now = Date.now();
+    const todayPct = Math.min(100, Math.max(0, pct(now)));
+
+    const elapsed = el("div", "ribbon__elapsed");
+    elapsed.style.width = todayPct + "%";
+    track.append(elapsed);
 
     const ann = ev("fifa_partner_announcement_2024");
     const dot = el("div", "ribbon__dot ribbon__dot--glow");
@@ -99,6 +105,13 @@ window.UI = (function () {
       span.append(el("span", "ribbon__label ribbon__label--" + w.pos, `${w.label}<em>${FMT.monthYear(w.from)}</em>`));
       track.append(span);
     });
+
+    if (now >= t0 && now <= t1) {
+      const today = el("div", "ribbon__today");
+      today.style.left = todayPct + "%";
+      today.append(el("span", "ribbon__today__label", "Today"));
+      track.append(today);
+    }
 
     for (let y = 2022; y <= 2026; y++) {
       const tick = el("div", "ribbon__year");
