@@ -217,6 +217,91 @@ body {
 .dash-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--oe-space-3); padding: var(--oe-space-5) var(--oe-space-l); margin-top: auto; border-top: 1px solid var(--oe-gray-200); font-size: 12px; color: var(--oe-gray-600); }
 .dash-footer .demo-notice { font-family: var(--oe-font-mono); font-size: 12px; letter-spacing: .03em; }
 
+/* ── landing (home) — light surface per brand rule; dark reserved for
+      accent moments, not full pages ─────────────────────────────────── */
+body.is-landing .oe-dashnav,
+body.is-landing .oe-topbar,
+body.is-landing .dash-footer { display: none; }
+body.is-landing .oe-shell { grid-template-columns: 1fr; }
+body.is-landing .dash-main { background: var(--app-bg); }
+body.is-landing .dash-body { padding: 0; max-width: none; gap: 0; }
+
+.landing {
+  min-height: 100dvh;
+  display: flex; flex-direction: column; gap: clamp(24px, 4vh, 44px);
+  color: var(--app-ink);
+  padding: clamp(28px, 5vw, 64px);
+  max-width: 1440px; margin: 0 auto; width: 100%;
+}
+.landing__head { display: flex; align-items: center; justify-content: space-between; gap: var(--oe-space-4); flex-wrap: wrap; }
+.landing__logo { height: 22px; width: auto; display: block; }
+.landing__fifa { height: 24px; width: auto; display: block; }
+.landing__title {
+  font-family: var(--oe-font-serif); font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 5rem); line-height: 1.04;
+  letter-spacing: -0.02em; margin: 0; color: var(--oe-gray-800); max-width: 16ch;
+}
+.landing__sub {
+  margin: var(--oe-space-4) 0 0; max-width: 58ch;
+  font-size: 17px; font-weight: 300; line-height: 1.6; color: var(--oe-fg-soft);
+}
+.landing-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px; margin-top: -10px;
+}
+.brand-card {
+  position: relative; min-height: 150px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 3px;
+  padding: 20px; text-align: left;
+  background: var(--app-surface); border: 1px solid var(--app-line);
+}
+.brand-card__logo { height: 56px; display: flex; align-items: center; margin-bottom: 8px; }
+/* fixed render height so wordmarks and symbols read at the same optical
+   size; max-width only reins in the very wide wordmarks. Square or
+   stacked marks carry less ink at wordmark height, so they get more. */
+.brand-card__logo img { height: 32px; width: auto; max-width: 85%; object-fit: contain; display: block; }
+.brand-card__logo img[src*="qatarenergy"] { height: 56px; }
+.brand-card__logo img[src*="mcdonalds"] { height: 44px; }
+.brand-card__logo img[src*="aramco"] { height: 44px; }
+.brand-card__logo img[src*="qatarairways"] { height: 40px; }
+.brand-card__logo img[src*="adidas"] { height: 38px; }
+.brand-card__logo img[src*="bankofamerica"],
+.brand-card__logo img[src*="hyundai"] { max-width: 95%; }
+.brand-card__name { font-family: var(--oe-font-sans); font-size: 15px; font-weight: 600; color: var(--oe-gray-900); }
+.brand-card__cat {
+  font-family: var(--oe-font-mono); font-size: 12px; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--oe-gray-600);
+}
+/* .reveal.is-in resets opacity to 1 after the entrance animation, so the
+   dimmed state needs the higher-specificity selector too. Nearly
+   monochrome + faded = unmistakably not clickable. */
+.brand-card--off,
+.brand-card--off.reveal.is-in { opacity: .4; background: transparent; filter: grayscale(.85); }
+.brand-card--off .brand-card__name { color: var(--oe-gray-700); }
+.brand-card--active {
+  border: 2px solid var(--oe-accent); padding: 19px;
+  cursor: pointer; font: inherit; box-shadow: var(--oe-shadow-2);
+  transition: transform var(--oe-dur-base) var(--oe-ease-out), box-shadow var(--oe-dur-base) var(--oe-ease-out);
+}
+.brand-card--active .brand-card__name { font-size: 17px; }
+.brand-card--active:hover { transform: translateY(-4px); box-shadow: var(--oe-shadow-3); }
+.brand-card__chip {
+  position: absolute; top: 13px; right: 13px;
+  font-family: var(--oe-font-mono); font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .05em;
+  background: var(--oe-pop); color: var(--oe-pop-on, #000); padding: 3px 8px;
+}
+.brand-card__action {
+  margin-top: 8px; font-family: var(--oe-font-mono); font-size: 12px;
+  font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--oe-accent);
+}
+.landing__foot {
+  margin-top: auto; display: flex; justify-content: space-between; flex-wrap: wrap;
+  gap: var(--oe-space-3); padding-top: var(--oe-space-5);
+  border-top: 1px solid var(--app-line);
+  font-family: var(--oe-font-mono); font-size: 12px; color: var(--oe-gray-600);
+}
+
 /* ── entrance animation ────────────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s var(--oe-ease-out), transform .5s var(--oe-ease-out); }
 .reveal.is-in { opacity: 1; transform: none; }

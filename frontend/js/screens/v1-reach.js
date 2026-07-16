@@ -70,7 +70,7 @@ window.SCREENS.reach = function (root) {
 
   const activationHead = el("div", "section-intro section-intro--compact reveal");
   activationHead.append(el("span", "oe-eyebrow", C.byProperty));
-  activationHead.append(el("p", "", "Only FIFA competitions and partnership activations are shown."));
+  activationHead.append(el("p", "", "Lenovo exposure measured across FIFA competitions and official FIFA channels."));
   root.append(activationHead);
 
   const fifaIds = new Set(["fifa", "fwc", "fwwc", "fcwc", "fifae", "fifaewc", "infantino"]);

@@ -24,6 +24,28 @@ window.COPY = (function () {
       market: "Source: market data (Lenovo Group, 0992.HK) · Elaboration: OpenEconomics",
     },
 
+    home: {
+      title: "FIFA Partnership Intelligence",
+      sub: "Measurement, causal proof and financial valuation for FIFA partner programmes. Select a programme to open its dashboard.",
+      gridTitle: "Partner programmes",
+      openLabel: "Open dashboard →",
+      activeChip: "Live",
+      brands: [
+        { id: "lenovo", name: "Lenovo", category: "Technology partner", active: true },
+        { id: "adidas", name: "adidas", category: "Official partner" },
+        { id: "cocacola", name: "Coca‑Cola", category: "Official partner" },
+        { id: "visa", name: "Visa", category: "Payment technology partner" },
+        { id: "hyundai", name: "Hyundai", category: "Mobility partner" },
+        { id: "kia", name: "Kia", category: "Mobility partner" },
+        { id: "qatarairways", name: "Qatar Airways", category: "Airline partner" },
+        { id: "qatarenergy", name: "QatarEnergy", category: "Energy partner" },
+        { id: "aramco", name: "Aramco", category: "Major worldwide partner" },
+        { id: "bankofamerica", name: "Bank of America", category: "Tournament sponsor" },
+        { id: "mcdonalds", name: "McDonald’s", category: "Tournament sponsor" },
+        { id: "verizon", name: "Verizon", category: "Tournament sponsor" },
+      ],
+    },
+
     nav: [
       { id: "overview", label: "Executive overview", group: "Decision case" },
       { id: "return", label: "Financial case" },
@@ -54,12 +76,12 @@ window.COPY = (function () {
       insight: `${F.big(K.totalExposure)} exposure contacts across digital and broadcast channels, concentrated on the tournament windows where global attention peaks.`,
       hero: "Cumulative FIFA partnership exposure",
       heroNote: "Cumulative contacts across the partnership window — impressions and audience contacts, not unique viewers.",
-      byProperty: "FIFA activation map",
+      byProperty: "Exposure by FIFA property",
       share: "Digital and broadcast mix",
       adstock: "Attention carryover",
       adstockNote: "Weekly exposure converted into an attention stock with a three-week half-life: activation weeks continue to contribute after the event itself.",
       engagement: "Fan engagement",
-      engagementNote: `${F.big(K.engagementsTotal)} fan interactions recorded across FIFA activations, peaking on match weeks.`,
+      engagementNote: `${F.big(K.engagementsTotal)} fan interactions recorded across FIFA contents in which Lenovo is exposed, peaking on match weeks.`,
     },
 
     attention: {
@@ -100,7 +122,8 @@ window.COPY = (function () {
     proof: {
       kicker: "Causal proof",
       title: "The counterfactual test",
-      insight: "The test is whether Lenovo moved beyond where it would have been without the partnership. A synthetic control built from non-sponsor competitors provides that baseline.",
+      insight: "The metric under test is the Brand Index — a weekly 0–100 score of how present Lenovo is in worldwide searches, media and surveys. The question is not whether it improved, but whether it moved beyond where it would have been without the partnership; a synthetic control built from non-sponsor competitors provides that baseline.",
+      pointMeaning: `≈ ${F.usd(K.usdPerPointYear)}/yr of brand earnings`,
       hero: "Actual Lenovo vs. the without-FIFA trajectory",
       actual: "Lenovo — actual",
       synthetic: "Lenovo without FIFA",

@@ -109,6 +109,23 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
      returns in `brand_financial_bridge_v1` and extended with a mild simulated
      walk. Explicitly framed as context — the valuation is earnings-based and
      never uses share-price movement.
+
+## FE-009 — Landing page with FIFA partner programmes
+
+- **Context:** The product needed a front door: the platform name and the
+  FIFA partner landscape, with Lenovo as the only live programme in this demo.
+- **Decision:** `#/home` is the default route. It renders outside the
+  dashboard chrome (`body.is-landing` hides sidebar/topbar/footer) on a light
+  surface per the brand rule that dark is reserved for accent sections, with
+  the OpenEconomics and FIFA marks in the header. Twelve partner cards carry
+  real brand logos (SVGs resolved from Wikimedia Commons into
+  `assets/logos/`, at a fixed 32px optical height); only the Lenovo card is
+  interactive (accent border, lime "Live" chip) and routes to `#/overview`.
+  Non-live cards keep their brand colors, dimmed to 50% opacity. Mengniu is
+  omitted (no vector logo available). The footer credits third-party marks.
+- **Consequences:** The product name is standardized as "FIFA Partnership
+  Intelligence" everywhere; the sidebar logo now links home. Adding a second
+  live programme is a one-line change in `COPY.home.brands`.
 - **Consequences:** The perception screen no longer claims any real survey
   rows (`REAL.funnelLift` is unused by the UI); consistency tests assert the
   wave-matrix completeness and the ×15 scale instead of real-row embedding.

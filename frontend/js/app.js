@@ -11,6 +11,7 @@
     about: '<circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/>',
   };
   const SUBS = {
+    home: "FIFA Partnership Intelligence",
     overview: "Lenovo \u00d7 FIFA \u00b7 Executive decision case",
     return: "Financial value \u00b7 scenarios & ROI",
     proof: "Counterfactual test \u00b7 without-FIFA baseline",
@@ -36,12 +37,13 @@
   const sub = document.getElementById("topbar-sub");
 
   function route() {
-    const id = (location.hash.replace(/^#\/?/, "") || "overview").split("?")[0];
-    const screen = window.SCREENS[id] ? id : "overview";
+    const id = (location.hash.replace(/^#\/?/, "") || "home").split("?")[0];
+    const screen = window.SCREENS[id] ? id : "home";
+    document.body.classList.toggle("is-landing", screen === "home");
     document.querySelectorAll(".oe-dashnav__item").forEach((b) =>
       b.classList.toggle("is-active", b.dataset.screen === screen));
     const navItem = COPY.nav.find((n) => n.id === screen);
-    title.textContent = navItem.label;
+    title.textContent = navItem ? navItem.label : COPY.productName;
     sub.textContent = SUBS[screen];
     CH.destroyAll();
     body.innerHTML = "";

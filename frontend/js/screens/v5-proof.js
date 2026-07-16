@@ -23,6 +23,8 @@ window.SCREENS.proof = function (root) {
   verdict.append(el("p", "", C.verdict));
   const verdictMeta = el("dl", "proof-verdict__meta");
   [
+    ["Metric", "Brand Index — 0–100 brand-salience scale"],
+    ["One point", C.pointMeaning],
     ["Comparison", D.kpi.donorCount + " non-sponsor brands"],
     ["Intervention", "FIFA partnership announcement"],
     ["Extension", "Dashed where illustrative"],
@@ -41,6 +43,7 @@ window.SCREENS.proof = function (root) {
       { label: C.actual, data: CF.actual, color: T.seriesHeadline, width: 2.2, fill: "-1", fillColor: T.gapFill, simFrom },
     ],
     milestones: UI.milestonesFor(CF.week, ["fifa_partner_announcement_2024", "fcwc_opening_2025", "wc_opening_2026", "wc_final_2026"]),
+    yTitle: "Brand Index (0–100)",
   });
   if (!FMT.reduced) {
     hChart.options.animation = { duration: 900, easing: "easeOutQuart" };
