@@ -32,7 +32,7 @@ body {
 .dash-body { padding: var(--oe-space-l); display: flex; flex-direction: column; gap: var(--oe-space-m); max-width: 1440px; width: 100%; margin: 0 auto; }
 
 /* ── screen head + insight line ────────────────────────────────────── */
-.screen-head { max-width: 900px; }
+.screen-head { max-width: none; }
 .screen-title {
   font-family: var(--oe-font-sans); font-weight: 600; font-size: 28px;
   line-height: 1.15; margin: var(--oe-space-3) 0 0; color: var(--oe-gray-900);
@@ -399,7 +399,7 @@ body {
   border-top: 1px solid color-mix(in oklch, var(--oe-pop) 65%, transparent);
   background: color-mix(in oklch, var(--oe-accent-soft) 72%, transparent);
   padding: 12px 16px;
-  max-width: 74ch;
+  max-width: none;
 }
 
 .hero {

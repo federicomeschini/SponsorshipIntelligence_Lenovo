@@ -23,11 +23,9 @@ window.SCREENS.proof = function (root) {
   verdict.append(el("p", "", C.verdict));
   const verdictMeta = el("dl", "proof-verdict__meta");
   [
-    ["Metric", "Brand Index — 0–100 brand-salience scale"],
     ["One point", C.pointMeaning],
     ["Comparison", D.kpi.donorCount + " non-sponsor brands"],
     ["Intervention", "FIFA partnership announcement"],
-    ["Extension", "Dashed where illustrative"],
   ].forEach(([term, value]) => {
     verdictMeta.append(el("div", "", `<dt>${term}</dt><dd>${value}</dd>`));
   });
@@ -97,7 +95,7 @@ window.SCREENS.proof = function (root) {
       { label: "Lenovo", data: lenovoZ, color: T.seriesHeadline, width: 2.2 },
     ],
     milestones: UI.milestonesFor(wSet, ["fifa_partner_announcement_2024", "wc_opening_2026"]),
-    yTitle: "Standard deviations vs pre-announcement baseline",
+    yTitle: "Std. deviations vs baseline",
   });
   mp.panel.append(el("p", "panel-note", C.marketNote));
   UI.source(mp.panel, COPY.src.search);

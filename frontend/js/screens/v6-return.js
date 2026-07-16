@@ -31,6 +31,8 @@ window.SCREENS.return = function (root) {
   const wfCanvas = document.createElement("canvas");
   wfBox.append(wfCanvas);
   wfPanel.append(wfBox);
+  const wfNote = el("p", "panel-note");
+  wfPanel.append(wfNote);
   UI.source(wfPanel, COPY.src.valuation);
 
   const terminal = el("aside", "roi-terminal");
@@ -46,9 +48,9 @@ window.SCREENS.return = function (root) {
   const ledger = el("div", "finance-ledger reveal");
   const ledgerValues = {};
   [
-    ["gross", "Gross brand value"],
-    ["investment", "Fee + activation"],
-    ["net", "Net value created"],
+    ["gross", "Additional brand value (gross)"],
+    ["investment", "Partnership cost (fee + activation)"],
+    ["net", "Net additional brand value"],
   ].forEach(([key, label], i) => {
     const item = el("div", "finance-ledger__item");
     item.append(el("span", "finance-ledger__index oe-num", "0" + (i + 1)));
@@ -65,15 +67,16 @@ window.SCREENS.return = function (root) {
     formula.textContent = C.formulaNote(s.deltaIndex);
     const steps = [
       { label: C.steps.annual, range: [0, s.annualUsd], color: T.seriesHeadlineDeep, printed: FMT.usd(s.annualUsd) + "/yr" },
-      { label: C.steps.persistence + " \u00d7" + s.persistenceYears, range: [s.annualUsd, s.grossUsd], color: T.seriesHeadline, printed: "+" + FMT.usd(s.grossUsd - s.annualUsd) },
+      { label: C.steps.persistence + " " + s.persistenceYears + " yrs", range: [s.annualUsd, s.grossUsd], color: T.seriesHeadline, printed: "+" + FMT.usd(s.grossUsd - s.annualUsd) },
       { label: C.steps.investment, range: [s.grossUsd - s.investmentUsd, s.grossUsd], color: T.seriesSecondary, printed: "\u2212" + FMT.usd(s.investmentUsd) },
       { label: C.steps.net, range: [0, s.netUsd], color: T.seriesHeadlineDeep, printed: FMT.usd(s.netUsd) },
     ];
     if (wfChart) wfChart.destroy();
     wfChart = CH.waterfall(wfCanvas, { steps, yFmt: FMT.usd });
+    wfNote.textContent = C.bridgeNote(s);
     roiMult.textContent = FMT.mult(s.roiMultiple);
     roiStatement.textContent = C.scenarios[k] + " case";
-    roiNet.innerHTML = `Every US$1 invested returns <b>US$${s.roiMultiple.toFixed(2)}</b> in gross brand value.`;
+    roiNet.innerHTML = `Every US$1 invested returns <b>US$${s.roiMultiple.toFixed(2)}</b> of additional brand value.`;
     ledgerValues.gross.textContent = FMT.usd(s.grossUsd);
     ledgerValues.investment.textContent = FMT.usd(s.investmentUsd);
     ledgerValues.net.textContent = FMT.usd(s.netUsd);
@@ -89,58 +92,6 @@ window.SCREENS.return = function (root) {
     renderScenario(button.dataset.k);
   });
   renderScenario("base");
-
-  const supportHead = el("div", "section-intro section-intro--compact reveal");
-  supportHead.append(el("span", "oe-eyebrow", C.supportIntro[0]));
-  supportHead.append(el("p", "", C.supportIntro[1]));
-  root.append(supportHead);
-
-  const grid = el("div", "panel-grid finance-support");
-  const rc = el("div", "oe-panel reveal");
-  rc.append(el("div", "oe-panel__head",
-    `<div><div class="oe-panel__label">Cross-check</div><p class="oe-panel__title">${C.royalty}</p></div>`));
-  const rv = R.royaltyView;
-  rc.append(el("p", "panel-note", C.royaltyIntro(rv.lowUsd, rv.highUsd)));
-  /* licensing bracket with the base-case estimate marked inside it */
-  const markerPct = ((D.kpi.grossValueUsd - rv.lowUsd) / (rv.highUsd - rv.lowUsd)) * 100;
-  const range = el("div", "xrange");
-  range.innerHTML =
-    `<div class="xrange__track"><b class="xrange__marker" style="left:${markerPct.toFixed(1)}%">` +
-    `<span class="xrange__marker-label oe-num">Base case ${FMT.usd(D.kpi.grossValueUsd)}</span></b></div>` +
-    `<div class="xrange__labels oe-num"><span>${FMT.usd(rv.lowUsd)} \u00b7 licensing low</span><span>${FMT.usd(rv.highUsd)} \u00b7 licensing high</span></div>`;
-  rc.append(range);
-  rc.append(el("p", "xcheck-verdict", C.royaltyVerdict));
-  const tbl = el("table", "xtable");
-  tbl.innerHTML =
-    `<thead><tr><th>${C.royaltyScheduleHead[0]}</th><th>${C.royaltyScheduleHead[1]}</th></tr></thead><tbody>` +
-    rv.schedule.map((p) => `<tr><td class="oe-num">${p.indexPoints.toFixed(1)} pts</td><td class="oe-num">${FMT.usd(p.usdPerYear)}/yr</td></tr>`).join("") +
-    "</tbody>";
-  rc.append(tbl);
-  UI.source(rc, COPY.src.valuation);
-  grid.append(rc);
-
-  const tp = UI.panel(grid, { label: "Sensitivity", title: C.tornado, height: 250 });
-  /* widest-impact assumption on top (classic tornado shape); bars are keyed
-     to which END of the stated range moved (low vs high), not to the dollar
-     sign \u2014 grouping by sign silently flips which color means what for
-     Investment (where a *higher* input is worse, not better). */
-  const sorted = [...R.tornado].sort((a, b) => Math.abs(b.hi - b.lo) - Math.abs(a.hi - a.lo));
-  const tChart = CH.barsH(tp.canvas, {
-    labels: sorted.map((t) => t.label),
-    datasets: [
-      { label: C.tornadoLegend[0], data: sorted.map((t) => t.lo), backgroundColor: T.seriesBenchmark, barPercentage: 0.6 },
-      { label: C.tornadoLegend[1], data: sorted.map((t) => t.hi), backgroundColor: T.seriesHeadline, barPercentage: 0.6 },
-    ],
-    xFmt: (v) => (v > 0 ? "+" : v < 0 ? "\u2212" : "") + FMT.usd(Math.abs(v)),
-    xTitle: C.tornadoAxis,
-  });
-  tChart.options.scales.x.grid.color = T.grid;
-  tChart.options.scales.x.ticks.maxTicksLimit = 7;
-  tChart.update();
-  tp.panel.append(el("p", "panel-note", C.tornadoNote));
-  UI.source(tp.panel, COPY.src.valuation);
-  tp.bindExport(tChart, "fifa-financial-sensitivity");
-  root.append(grid);
 
   /* market context: Lenovo share price, indexed — deliberately last and
      low-key; the valuation is earnings-based, not share-price-based */
