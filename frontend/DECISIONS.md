@@ -76,3 +76,29 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Context:** The initial demo treated FIFA as one property inside a broader Lenovo sponsorship portfolio. The presentation goal is instead a FIFA product for Lenovo, with financial value and causal proof as the primary decision content.
 - **Decision:** Remove the portfolio route from the loaded application, show only FIFA-family activation detail, and reorder the product as Overview → Financial case → Proof → supporting FIFA evidence. The overview, financial and proof screens use a stronger executive hierarchy while retaining the existing data contracts.
 - **Consequences:** Non-FIFA data remains available to the analytical pipeline and consistency tests but is not shown in the product. The base checkpoint is preserved at tag pre-fifa-frontend-redesign.
+
+## FE-008 — Presentation-scale financials, illustrative perception waves, per-chart attribution
+
+- **Context:** The demo needed to present at global-partnership scale (headline
+  value ≈ US$200M, not single-digit millions), the perception screen showed an
+  irregular survey-wave grid (waves pre-dating the partnership, holes in the
+  property × wave matrix) that read as broken, and charts carried no data
+  attribution.
+- **Decision:**
+  1. `DEMO_VALUE_SCALE = 15` in the generator multiplies every USD calibration
+     constant (US$/Index-point/year, fee, activation, royalty schedule). Ratios
+     — ROI multiple, scenario spreads, sensitivity — are unchanged; base gross
+     value lands at ≈ US$194M. The real `earningsCalibration` extract is not
+     modified; the scale is applied and asserted in tests.
+  2. The perception dataset is now fully illustrative: a regular six-wave
+     brand-tracking programme (Nov 2024 → Jun 2026, post-announcement only),
+     every FIFA competition and stage measured in every wave, lifts trending
+     upward and peaking on tournament waves. The funnel-hero fills are
+     interpolated from adjacent measured stages so both columns stay monotonic.
+  3. Every chart panel carries a source line (`COPY.src`): Blinkfire Analytics
+     for digital exposure, Nielsen for broadcast audience, GWI · Nielsen for
+     brand-tracking waves, Google Trends for search/donor series, GDELT for
+     news, OpenEconomics for all elaborations and models.
+- **Consequences:** The perception screen no longer claims any real survey
+  rows (`REAL.funnelLift` is unused by the UI); consistency tests assert the
+  wave-matrix completeness and the ×15 scale instead of real-row embedding.

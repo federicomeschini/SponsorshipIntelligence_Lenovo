@@ -20,6 +20,7 @@ window.SCREENS.reach = function (root) {
     ],
     milestones: UI.milestonesFor(E.week, ["fifa_partner_announcement_2024", "fcwc_opening_2025", "wc_opening_2026", "wc_final_2026"]),
   });
+  UI.source(hp.panel, COPY.src.exposure);
   hp.bindExport(heroChart, "fifa-reach-cumulative-exposure");
 
   const grid = el("div", "panel-grid");
@@ -37,6 +38,7 @@ window.SCREENS.reach = function (root) {
   cChart.options.scales.y.ticks = { callback: (v) => FMT.big(v) };
   cChart.update();
   cp.panel.append(el("p", "panel-note", C.adstockNote));
+  UI.source(cp.panel, COPY.src.blinkfire);
   cp.bindExport(cChart, "fifa-reach-attention-carryover");
 
   const dp = UI.panel(grid, { label: "Chart 3", title: C.share, height: 260 });
@@ -48,6 +50,7 @@ window.SCREENS.reach = function (root) {
     colors: [T.seriesHeadlineDeep, T.stackBroadcast],
     centerText: [FMT.big(fifaDigital + fifaBroadcast), "Total FIFA exposure"],
   });
+  UI.source(dp.panel, COPY.src.exposure);
   dp.bindExport(dChart, "fifa-reach-channel-mix");
   root.append(grid);
 
@@ -60,6 +63,7 @@ window.SCREENS.reach = function (root) {
   eChart.options.scales.y.ticks = { callback: (v) => FMT.big(v) };
   eChart.update();
   ep.panel.append(el("p", "panel-note", C.engagementNote));
+  UI.source(ep.panel, COPY.src.blinkfire);
   ep.bindExport(eChart, "fifa-reach-engagement");
   root.append(engagementGrid);
 
@@ -88,4 +92,5 @@ window.SCREENS.reach = function (root) {
     requestAnimationFrame(() => CH.sparkline(cv, { data: p.impressions, color: T.seriesHeadline }));
   });
   root.append(mm);
+  UI.source(root, COPY.src.blinkfire);
 };

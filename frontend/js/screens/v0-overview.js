@@ -13,7 +13,7 @@ window.SCREENS.overview = function (root) {
 
   const decisionHead = el("div", "section-intro reveal");
   decisionHead.append(el("span", "oe-eyebrow", "The decision in two chapters"));
-  decisionHead.append(el("p", "", "Start with value. Then inspect the evidence that makes the value defensible."));
+  decisionHead.append(el("p", "", "The value created by the partnership, and the evidence that makes it defensible."));
   root.append(decisionHead);
 
   const cum = [];
@@ -30,7 +30,7 @@ window.SCREENS.overview = function (root) {
   const decisionRow = el("div", "decision-row");
   [
     { id: "return", c: C.sections.financial, data: nets, stat: FMT.mult(K.roiMultiple), note: FMT.usd(base.netUsd) + " net value", kind: "financial" },
-    { id: "proof", c: C.sections.proof, data: gapTail, stat: FMT.pts(K.indexLift), note: "above without-FIFA", kind: "proof" },
+    { id: "proof", c: C.sections.proof, data: gapTail, stat: FMT.pts(K.indexLift), note: "above the without-FIFA baseline", kind: "proof" },
   ].forEach((p) => {
     const card = el("button", `decision-card decision-card--${p.kind} reveal`);
     card.type = "button";

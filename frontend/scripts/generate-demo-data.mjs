@@ -168,30 +168,62 @@ const exposure = {
 };
 
 // =============================================================================
-// 3. Post-tournament survey wave (simulated): extends the real 2024–2026 lift
-//    trajectory upward on the same scale.
+// 3. Perception waves (FE-008, illustrative): a regular brand-tracking
+//    programme fielded after the 2024-09-30 announcement — six waves, every
+//    FIFA competition and stage measured in every wave, so the perception
+//    screen shows a complete matrix with a coherent date axis. Lifts trend
+//    upward through the partnership and peak on tournament waves (FCWC on the
+//    2025-07 wave, FWC on the in-tournament 2026-06 wave).
 // =============================================================================
-const funnel = REAL.funnelLift.slice();
-[
-  { wave: "2026-09", property: "fwc", stage: "appeal", aware: 0.671, unaware: 0.179, lift: 0.492 },
-  { wave: "2026-09", property: "fwc", stage: "awareness", aware: 1.0, unaware: 0.512, lift: 0.488 },
-  { wave: "2026-09", property: "fwc", stage: "purchase_intent", aware: 0.566, unaware: 0.158, lift: 0.408 },
-  { wave: "2026-09", property: "fwwc", stage: "appeal", aware: 0.652, unaware: 0.163, lift: 0.489 },
-  { wave: "2026-09", property: "fwwc", stage: "awareness", aware: 1.0, unaware: 0.387, lift: 0.613 },
-  { wave: "2026-09", property: "fwwc", stage: "purchase_intent", aware: 0.561, unaware: 0.151, lift: 0.410 },
-].forEach((r) => funnel.push({ ...r, simulated: true }));
+const WAVES = ["2024-11", "2025-03", "2025-07", "2025-11", "2026-03", "2026-06"];
+const WAVE_LIFTS = {
+  fwc: {
+    awareness: [0.30, 0.34, 0.38, 0.40, 0.44, 0.46],
+    appeal: [0.18, 0.24, 0.29, 0.33, 0.41, 0.48],
+    purchase_intent: [0.14, 0.19, 0.24, 0.28, 0.35, 0.41],
+  },
+  fwwc: {
+    awareness: [0.26, 0.30, 0.33, 0.36, 0.39, 0.42],
+    appeal: [0.15, 0.20, 0.26, 0.30, 0.36, 0.43],
+    purchase_intent: [0.12, 0.16, 0.21, 0.25, 0.31, 0.37],
+  },
+  fcwc: {
+    awareness: [0.20, 0.24, 0.35, 0.32, 0.34, 0.36],
+    appeal: [0.12, 0.17, 0.31, 0.27, 0.30, 0.34],
+    purchase_intent: [0.09, 0.13, 0.26, 0.22, 0.25, 0.29],
+  },
+};
+const UNEXPOSED_BASE = { awareness: 0.50, appeal: 0.20, purchase_intent: 0.15 };
+const funnel = [];
+WAVES.forEach((wave, i) => {
+  for (const [property, stages] of Object.entries(WAVE_LIFTS))
+    for (const [stage, series] of Object.entries(stages)) {
+      const unaware = round(UNEXPOSED_BASE[stage] + i * 0.004 + noise(0.006), 3);
+      const lift = round(series[i], 3);
+      funnel.push({ wave, property, stage, aware: round(unaware + lift, 3), unaware, lift, simulated: true });
+    }
+});
 
-// Funnel hero (V3): five ordered stages, aware vs unaware, latest FWC wave.
-// awareness/appeal/purchase_intent are real (wave 2026-02, fwc); engagement and
-// consideration are simulated fills chosen to keep both columns monotonic.
-const fw = funnel.filter((r) => r.wave === "2026-02" && r.property === "fwc");
-const stageRow = (s) => fw.find((r) => r.stage === s);
+// Funnel hero (V3): five ordered stages, exposed vs not exposed, latest FWC
+// wave. Engagement and consideration are fills chosen to keep both columns
+// monotonic down the funnel.
+const heroWave = WAVES[WAVES.length - 1];
+const heroRow = (s) => funnel.find((r) => r.wave === heroWave && r.property === "fwc" && r.stage === s);
+const mid = (a, b, f) => round(a + (b - a) * f, 3);
+const hA = heroRow("awareness"), hP = heroRow("appeal"), hI = heroRow("purchase_intent");
+const fill = (stage, lo, hi, f) => ({
+  stage,
+  aware: mid(lo.aware, hi.aware, f),
+  unaware: mid(lo.unaware, hi.unaware, f),
+  lift: round(mid(lo.aware, hi.aware, f) - mid(lo.unaware, hi.unaware, f), 3),
+  simulated: true,
+});
 const funnelHero = [
-  { stage: "awareness", ...pick(stageRow("awareness")) },
-  { stage: "engagement", aware: 0.82, unaware: 0.36, lift: 0.46, simulated: true },
-  { stage: "appeal", ...pick(stageRow("appeal")) },
-  { stage: "consideration", aware: 0.6, unaware: 0.208, lift: 0.392, simulated: true },
-  { stage: "purchase_intent", ...pick(stageRow("purchase_intent")) },
+  { stage: "awareness", ...pick(hA) },
+  fill("engagement", hA, hP, 0.5), // interpolated fills keep both columns monotonic
+  { stage: "appeal", ...pick(hP) },
+  fill("consideration", hP, hI, 0.55),
+  { stage: "purchase_intent", ...pick(hI) },
 ];
 function pick(r) {
   return { aware: r.aware, unaware: r.unaware, lift: r.lift };
@@ -199,14 +231,18 @@ function pick(r) {
 
 // =============================================================================
 // 4. ROI block (V6). Base delta = the real exposure-weighted candidate.
+//    DEMO_VALUE_SCALE (FE-008): presentation scaling applied to every USD
+//    calibration constant so the demo speaks at global-partnership scale
+//    (base gross value ≈ US$194M). Ratios (ROI, sensitivity) are unchanged.
 // =============================================================================
-const USD_PER_POINT_YEAR = REAL.earningsCalibration.usdPerIndexPointPerYear; // 6.253e6
+const DEMO_VALUE_SCALE = 15;
+const USD_PER_POINT_YEAR = REAL.earningsCalibration.usdPerIndexPointPerYear * DEMO_VALUE_SCALE; // ≈ 93.8e6
 const roiInputs = {
   deltaIndex: REAL.counterfactualMeta.exposureWeightedGap, // +1.033
   usdPerPointYear: USD_PER_POINT_YEAR,
   persistenceYears: 2,
-  feeUsd: 2.9e6, // simulated — annualized partnership fee (illustrative)
-  activationUsd: 0.9e6, // simulated — activation & content production
+  feeUsd: 2.9e6 * DEMO_VALUE_SCALE, // simulated — annualized partnership fee (illustrative)
+  activationUsd: 0.9e6 * DEMO_VALUE_SCALE, // simulated — activation & content production
 };
 function waterfall({ deltaIndex, persistenceYears, feeUsd, activationUsd }) {
   const annual = deltaIndex * USD_PER_POINT_YEAR;
@@ -229,10 +265,10 @@ const scenarios = {
 };
 // royalty cross-check (simulated 4-point monotonic Index→USD/yr curve)
 const royaltySchedule = [
-  { indexPoints: 0.5, usdPerYear: 3.4e6 },
-  { indexPoints: 1.0, usdPerYear: 6.2e6 },
-  { indexPoints: 1.5, usdPerYear: 8.6e6 },
-  { indexPoints: 2.0, usdPerYear: 10.6e6 },
+  { indexPoints: 0.5, usdPerYear: 3.4e6 * DEMO_VALUE_SCALE },
+  { indexPoints: 1.0, usdPerYear: 6.2e6 * DEMO_VALUE_SCALE },
+  { indexPoints: 1.5, usdPerYear: 8.6e6 * DEMO_VALUE_SCALE },
+  { indexPoints: 2.0, usdPerYear: 10.6e6 * DEMO_VALUE_SCALE },
 ];
 function royaltyAt(pts) {
   const s = royaltySchedule;
@@ -344,8 +380,12 @@ const kpi = {
   roiMultiple: scenarios.base.roiMultiple, // ≈ 3.4×
   peakLift: PEAK,
   persistentLift: PLATEAU,
-  appealLiftRange: [33, 48], // pp, real range
-  intentLiftRange: [28, 41],
+  usdPerPointYear: USD_PER_POINT_YEAR,
+  investmentUsd: scenarios.base.investmentUsd,
+  appealLiftRange: [Math.round(WAVE_LIFTS.fwc.appeal[0] * 100), Math.round(WAVE_LIFTS.fwc.appeal[WAVES.length - 1] * 100)], // pp, FWC waves
+  intentLiftRange: [Math.round(WAVE_LIFTS.fwc.purchase_intent[0] * 100), Math.round(WAVE_LIFTS.fwc.purchase_intent[WAVES.length - 1] * 100)],
+  waveCount: WAVES.length,
+  exposedChoiceMultiple: round(heroRow("appeal").aware / heroRow("appeal").unaware, 1),
   fifaVsMedianMultiple: fifaVpm / portMedian, // 1.6
   totalMatches: REAL.worldCupMeta.totalMatches,
   surveyQuarters: 17,
@@ -374,7 +414,9 @@ const DEMO = {
   exposure,
   exposureByProperty: REAL.exposureWeekly,
   funnel,
+  funnelWaves: WAVES,
   funnelHero,
+  funnelHeroWave: heroWave,
   portfolio,
   portfolioMedianVpm: portMedian,
   earnedMedia,

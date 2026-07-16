@@ -165,6 +165,11 @@ window.UI = (function () {
   /* lime delta chip */
   const deltaChip = (text) => `<span class="delta-chip oe-num">${text}</span>`;
 
+  /* per-chart data attribution (strings centralized in COPY.src) */
+  function source(target, text) {
+    target.append(el("p", "panel-source", text));
+  }
+
   /* staggered entrance (<900ms, prefers-reduced-motion respected) */
   function animateIn(root) {
     const nodes = root.querySelectorAll(".reveal");
@@ -184,5 +189,5 @@ window.UI = (function () {
     }
   }
 
-  return { el, screenHead, panel, kpi, milestoneRibbon, milestonesFor, deltaChip, animateIn, PROP_NAMES, STAGE_NAMES };
+  return { el, screenHead, panel, kpi, milestoneRibbon, milestonesFor, deltaChip, source, animateIn, PROP_NAMES, STAGE_NAMES };
 })();

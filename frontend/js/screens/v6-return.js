@@ -31,6 +31,7 @@ window.SCREENS.return = function (root) {
   const wfCanvas = document.createElement("canvas");
   wfBox.append(wfCanvas);
   wfPanel.append(wfBox);
+  UI.source(wfPanel, COPY.src.valuation);
 
   const terminal = el("aside", "roi-terminal");
   terminal.append(el("span", "oe-tag-chip oe-tag-chip--lime", C.decisionLabel));
@@ -102,6 +103,7 @@ window.SCREENS.return = function (root) {
   rc.append(el("div", "stat-num oe-num", FMT.usd(rv.lowUsd) + " \u2013 " + FMT.usd(rv.highUsd)));
   rc.append(el("p", "panel-note", C.royaltyNote(rv.lowUsd, rv.highUsd) + " Schedule: " +
     rv.schedule.map((p) => `${p.indexPoints.toFixed(1)} pts \u2192 ${FMT.usd(p.usdPerYear)}/yr`).join(" \u00b7 ")));
+  UI.source(rc, COPY.src.valuation);
   grid.append(rc);
 
   const tp = UI.panel(grid, { label: "Sensitivity", title: C.tornado, height: 230 });
@@ -123,6 +125,7 @@ window.SCREENS.return = function (root) {
   tChart.update();
   tp.panel.append(el("p", "panel-note",
     "Each bar re-runs the base case with one assumption moved to the low or high end of its stated range (shown in parentheses), holding everything else fixed. Sorted by size of swing in net value."));
+  UI.source(tp.panel, COPY.src.valuation);
   tp.bindExport(tChart, "fifa-financial-sensitivity");
   root.append(grid);
 };

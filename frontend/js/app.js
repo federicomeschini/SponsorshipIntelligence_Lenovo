@@ -15,8 +15,8 @@
     return: "Financial value \u00b7 scenarios & ROI",
     proof: "Counterfactual test \u00b7 without-FIFA baseline",
     reach: "FIFA exposure delivered",
-    attention: "Search & media salience",
-    perception: "Brand Index & audience funnel",
+    attention: "Brand Index · media & search salience",
+    perception: "Brand-tracking waves · funnel lift",
     about: "Method, data status & evidence base",
   };
 

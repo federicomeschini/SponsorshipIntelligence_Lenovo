@@ -56,9 +56,11 @@ for (const [k, s] of Object.entries(D.roi.scenarios)) {
     Math.abs(s.netUsd - (s.grossUsd - s.investmentUsd)) < 1);
   check(`waterfall closes (${k}): roi = gross / investment`,
     Math.abs(s.roiMultiple - s.grossUsd / s.investmentUsd) < 1e-9);
-  check(`annual value (${k}) = delta × US$6.253M`,
-    Math.abs(s.annualUsd - s.deltaIndex * REAL.earningsCalibration.usdPerIndexPointPerYear) < 1);
+  check(`annual value (${k}) = delta × usd-per-point calibration`,
+    Math.abs(s.annualUsd - s.deltaIndex * D.roi.inputs.usdPerPointYear) < 1);
 }
+check("usd-per-point = real calibration × demo value scale (FE-008, ×15)",
+  Math.abs(D.roi.inputs.usdPerPointYear - REAL.earningsCalibration.usdPerIndexPointPerYear * 15) < 1);
 check("base delta equals the real exposure-weighted candidate (+1.033)",
   D.roi.scenarios.base.deltaIndex === REAL.counterfactualMeta.exposureWeightedGap);
 
@@ -73,20 +75,28 @@ check("kpi.digitalImpressions = Σ weekly FIFA digital", Math.abs(D.kpi.digitalI
 const cumBroadcast = D.exposure.broadcast.reduce((a, v) => a + v, 0);
 check("kpi.broadcastAudience = Σ weekly broadcast", D.kpi.broadcastAudience === cumBroadcast);
 
-// --- funnel deltas match the lift dataset ---------------------------------------
-const realRows = REAL.funnelLift;
-check("all real lift rows embedded unchanged",
-  realRows.every((r) => D.funnel.some((d) => d.wave === r.wave && d.property === r.property && d.stage === r.stage && d.lift === r.lift)));
-for (const s of D.funnelHero.filter((x) => !x.simulated)) {
-  const r = realRows.find((x) => x.wave === "2026-02" && x.property === "fwc" && x.stage === s.stage);
-  check(`funnel hero ${s.stage} matches real 2026-02 fwc wave`, r && r.lift === s.lift);
+// --- perception waves (FE-008: illustrative, regular programme) ------------------
+const props = ["fwc", "fwwc", "fcwc"], stages = ["awareness", "appeal", "purchase_intent"];
+check("wave matrix is complete (every wave × property × stage)",
+  D.funnelWaves.every((w) => props.every((p) => stages.every((s) =>
+    D.funnel.some((r) => r.wave === w && r.property === p && r.stage === s)))));
+check("all waves fall inside the partnership window",
+  D.funnelWaves.every((w) => w >= "2024-10" && w <= "2026-07"));
+check("funnel lift = aware − unaware on every row",
+  D.funnel.every((r) => Math.abs(r.lift - (r.aware - r.unaware)) < 0.005));
+const fwcAppeal = D.funnelWaves.map((w) => D.funnel.find((r) => r.wave === w && r.property === "fwc" && r.stage === "appeal").lift);
+check("FWC appeal lift increases wave over wave",
+  fwcAppeal.every((v, i) => !i || v > fwcAppeal[i - 1]));
+for (const s of ["awareness", "appeal", "purchase_intent"]) {
+  const r = D.funnel.find((x) => x.wave === D.funnelHeroWave && x.property === "fwc" && x.stage === s);
+  const h = D.funnelHero.find((x) => x.stage === s);
+  check(`funnel hero ${s} matches the latest FWC wave`, r && h && r.lift === h.lift && r.aware === h.aware);
 }
 check("funnel hero is monotonic (aware)", D.funnelHero.every((s, i, a) => !i || s.aware <= a[i - 1].aware));
 check("funnel hero is monotonic (unaware)", D.funnelHero.every((s, i, a) => !i || s.unaware <= a[i - 1].unaware));
 check("funnel hero lift = aware − unaware", D.funnelHero.every((s) => Math.abs(s.lift - (s.aware - s.unaware)) < 0.005));
-const sim = D.funnel.filter((r) => r.simulated && r.stage !== "awareness");
-check("simulated 2026-09 wave stays in the real lift range (±5pp)",
-  sim.every((r) => r.lift >= 0.28 && r.lift <= 0.53));
+check("kpi lift ranges match the FWC wave series",
+  D.kpi.appealLiftRange[1] === Math.round(fwcAppeal[fwcAppeal.length - 1] * 100));
 
 // --- portfolio -------------------------------------------------------------------
 const fifa = D.portfolio.find((p) => p.fifa);

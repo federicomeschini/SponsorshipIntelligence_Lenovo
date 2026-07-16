@@ -52,6 +52,7 @@ window.SCREENS.proof = function (root) {
   }
   chartPanel.append(el("p", "panel-note proof-gap-key",
     `<span aria-hidden="true"></span>${C.gapLabel}`));
+  UI.source(chartPanel, COPY.src.counterfactual);
 
   const marketGrid = el("div", "panel-grid panel-grid--hero");
   const mp = UI.panel(marketGrid, { label: "Robustness check", title: C.market, height: 310 });
@@ -96,6 +97,7 @@ window.SCREENS.proof = function (root) {
     yTitle: "Standard deviations vs pre-announcement baseline",
   });
   mp.panel.append(el("p", "panel-note", C.marketNote));
+  UI.source(mp.panel, COPY.src.search);
   mp.bindExport(mChart, "fifa-proof-versus-market");
 
   const evidenceHead = el("div", "section-intro section-intro--compact reveal");

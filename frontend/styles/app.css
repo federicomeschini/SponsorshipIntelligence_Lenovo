@@ -122,6 +122,11 @@ body {
 }
 .panel-export:hover { color: var(--oe-accent); border-color: var(--oe-accent); }
 .panel-note { font-size: 13px; font-weight: 300; color: var(--oe-fg-soft); line-height: 1.5; margin: var(--oe-space-3) 0 0; }
+.panel-source {
+  font-family: var(--oe-font-mono); font-size: 11px; letter-spacing: .02em;
+  color: var(--oe-gray-500); margin: var(--oe-space-3) 0 0; padding-top: 6px;
+  border-top: 1px solid var(--oe-gray-200, #e8e8e8);
+}
 
 /* KPI grid (light screens — numbers black per dashboard rule) */
 .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--oe-space-s); }
@@ -149,6 +154,16 @@ body {
 /* ── V3 funnel ─────────────────────────────────────────────────────── */
 .funnel { display: flex; flex-direction: column; gap: var(--oe-space-4); }
 .funnel-row { display: grid; grid-template-columns: 150px 1fr 110px; align-items: center; gap: var(--oe-space-4); }
+.funnel-row--head { align-items: end; margin-bottom: -6px; }
+.funnel-row--head .funnel-col {
+  font-family: var(--oe-font-mono); font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .04em; color: var(--oe-gray-600);
+}
+.funnel-wave-chip {
+  font-family: var(--oe-font-mono); font-size: 11px; letter-spacing: .03em;
+  text-transform: uppercase; color: var(--oe-gray-600);
+  border: 1px solid var(--oe-gray-300); padding: 3px 8px; white-space: nowrap;
+}
 .funnel-row .stage { font-size: 14px; font-weight: 600; color: var(--oe-gray-900); }
 .funnel-row .stage small { display: block; font-weight: 300; font-family: var(--oe-font-mono); font-size: 11px; color: var(--oe-gray-500); text-transform: uppercase; letter-spacing: .04em; }
 .funnel-bars { display: flex; flex-direction: column; gap: 3px; }
@@ -821,6 +836,10 @@ a:focus-visible {
 
   .funnel-row > :last-child {
     justify-self: start;
+  }
+
+  .funnel-row--head {
+    display: none;
   }
 
   .ribbon {

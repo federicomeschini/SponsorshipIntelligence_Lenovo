@@ -36,6 +36,7 @@ window.SCREENS.attention = function (root) {
     milestones: UI.milestonesFor(I.week, ["fifa_partner_announcement_2024", "fcwc_opening_2025", "wc_opening_2026", "wc_final_2026"]),
   });
   hp.panel.append(el("p", "panel-note", C.surveyNote));
+  UI.source(hp.panel, COPY.src.index);
   hp.bindExport(hChart, "attention-brand-index");
 
   /* earned media + commercial intent */
@@ -96,7 +97,8 @@ window.SCREENS.attention = function (root) {
     },
   });
   mp.panel.append(el("p", "panel-note", C.mediaNote +
-    ' <span class="oe-num" style="color:var(--oe-accent)">■</span> weekly volume · <span class="oe-num" style="color:var(--app-ink)">—</span> mean tone (GDELT score, higher = more positive coverage)'));
+    ' <span class="oe-num" style="color:var(--oe-accent)">■</span> weekly volume · <span class="oe-num" style="color:var(--app-ink)">—</span> mean tone (higher = more positive coverage)'));
+  UI.source(mp.panel, COPY.src.news);
   mp.bindExport(mChart, "attention-earned-media");
 
   const ip = UI.panel(grid, { label: "Chart 3", title: C.intent, height: 240 });
@@ -107,6 +109,7 @@ window.SCREENS.attention = function (root) {
     series: [{ label: "Commercial-intent search", data: CI.interest, color: T.seriesTertiary, fill: true, fillColor: "rgba(0,0,255,.07)", simFrom: ciSim }],
   });
   ip.panel.append(el("p", "panel-note", C.intentNote));
+  UI.source(ip.panel, COPY.src.search);
   ip.bindExport(iChart, "attention-commercial-intent");
   root.append(grid);
 };
