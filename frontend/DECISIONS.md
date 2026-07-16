@@ -99,6 +99,11 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
      for digital exposure, Nielsen for broadcast audience, GWI · Nielsen for
      brand-tracking waves, Google Trends for search/donor series, GDELT for
      news, OpenEconomics for all elaborations and models.
+  4. The simulated broadcast multiplier is reduced from 6–8× to 2.5–3.5×
+     digital on World Cup match weeks, so cumulative partnership exposure
+     lands at ≈ 5.1B contacts instead of 8B (which read as world-population
+     scale). The reach hero states that contacts are cumulative, not unique
+     viewers.
 - **Consequences:** The perception screen no longer claims any real survey
   rows (`REAL.funnelLift` is unused by the UI); consistency tests assert the
   wave-matrix completeness and the ×15 scale instead of real-row embedding.

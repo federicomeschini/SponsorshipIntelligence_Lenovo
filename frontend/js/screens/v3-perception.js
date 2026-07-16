@@ -63,7 +63,7 @@ window.SCREENS.perception = function (root) {
       maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
       scales: {
-        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: false, font: { size: 11 } } },
+        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: false } },
         y: { beginAtZero: true, grid: { color: T.grid }, border: { display: false }, ticks: { callback: (v) => "+" + v + " pp" } },
       },
       plugins: {
@@ -96,8 +96,11 @@ window.SCREENS.perception = function (root) {
       const cell = el("div", "heat-cell oe-num");
       const f = (r.lift - lo) / (hi - lo);
       const ramp = T.seqRamp;
-      cell.style.background = ramp[Math.min(ramp.length - 1, Math.round(f * (ramp.length - 1)))];
-      cell.style.color = f > 0.55 ? "#fff" : "var(--oe-gray-900)";
+      const rampIdx = Math.min(ramp.length - 1, Math.round(f * (ramp.length - 1)));
+      cell.style.background = ramp[rampIdx];
+      /* white text only from bluette-500 up — on the mid-ramp purples both
+         inks are weak, and black wins there */
+      cell.style.color = rampIdx >= 5 ? "#fff" : "var(--oe-gray-900)";
       cell.textContent = FMT.pp(r.lift);
       cell.title = `${UI.PROP_NAMES[p]} · ${UI.STAGE_NAMES[s]} · ${waveLabel(w)} wave`;
       heat.append(cell);

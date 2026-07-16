@@ -91,8 +91,8 @@ window.SCREENS.return = function (root) {
   renderScenario("base");
 
   const supportHead = el("div", "section-intro section-intro--compact reveal");
-  supportHead.append(el("span", "oe-eyebrow", "Stress-test the conclusion"));
-  supportHead.append(el("p", "", "Two independent views show what supports the valuation and what can move it."));
+  supportHead.append(el("span", "oe-eyebrow", C.supportIntro[0]));
+  supportHead.append(el("p", "", C.supportIntro[1]));
   root.append(supportHead);
 
   const grid = el("div", "panel-grid finance-support");
@@ -100,31 +100,44 @@ window.SCREENS.return = function (root) {
   rc.append(el("div", "oe-panel__head",
     `<div><div class="oe-panel__label">Cross-check</div><p class="oe-panel__title">${C.royalty}</p></div>`));
   const rv = R.royaltyView;
-  rc.append(el("div", "stat-num oe-num", FMT.usd(rv.lowUsd) + " \u2013 " + FMT.usd(rv.highUsd)));
-  rc.append(el("p", "panel-note", C.royaltyNote(rv.lowUsd, rv.highUsd) + " Schedule: " +
-    rv.schedule.map((p) => `${p.indexPoints.toFixed(1)} pts \u2192 ${FMT.usd(p.usdPerYear)}/yr`).join(" \u00b7 ")));
+  rc.append(el("p", "panel-note", C.royaltyIntro(rv.lowUsd, rv.highUsd)));
+  /* licensing bracket with the base-case estimate marked inside it */
+  const markerPct = ((D.kpi.grossValueUsd - rv.lowUsd) / (rv.highUsd - rv.lowUsd)) * 100;
+  const range = el("div", "xrange");
+  range.innerHTML =
+    `<div class="xrange__track"><b class="xrange__marker" style="left:${markerPct.toFixed(1)}%">` +
+    `<span class="xrange__marker-label oe-num">Base case ${FMT.usd(D.kpi.grossValueUsd)}</span></b></div>` +
+    `<div class="xrange__labels oe-num"><span>${FMT.usd(rv.lowUsd)} \u00b7 licensing low</span><span>${FMT.usd(rv.highUsd)} \u00b7 licensing high</span></div>`;
+  rc.append(range);
+  rc.append(el("p", "xcheck-verdict", C.royaltyVerdict));
+  const tbl = el("table", "xtable");
+  tbl.innerHTML =
+    `<thead><tr><th>${C.royaltyScheduleHead[0]}</th><th>${C.royaltyScheduleHead[1]}</th></tr></thead><tbody>` +
+    rv.schedule.map((p) => `<tr><td class="oe-num">${p.indexPoints.toFixed(1)} pts</td><td class="oe-num">${FMT.usd(p.usdPerYear)}/yr</td></tr>`).join("") +
+    "</tbody>";
+  rc.append(tbl);
   UI.source(rc, COPY.src.valuation);
   grid.append(rc);
 
-  const tp = UI.panel(grid, { label: "Sensitivity", title: C.tornado, height: 230 });
+  const tp = UI.panel(grid, { label: "Sensitivity", title: C.tornado, height: 250 });
   /* widest-impact assumption on top (classic tornado shape); bars are keyed
-     to which END of the stated range moved (low estimate vs high estimate),
-     not to the dollar sign \u2014 the old "Downside/Upside" split grouped bars by
-     sign instead, which silently flipped which color meant what for
+     to which END of the stated range moved (low vs high), not to the dollar
+     sign \u2014 grouping by sign silently flips which color means what for
      Investment (where a *higher* input is worse, not better). */
   const sorted = [...R.tornado].sort((a, b) => Math.abs(b.hi - b.lo) - Math.abs(a.hi - a.lo));
   const tChart = CH.barsH(tp.canvas, {
     labels: sorted.map((t) => t.label),
     datasets: [
-      { label: "Low estimate", data: sorted.map((t) => t.lo), backgroundColor: T.seriesBenchmark, barPercentage: 0.6 },
-      { label: "High estimate", data: sorted.map((t) => t.hi), backgroundColor: T.seriesHeadline, barPercentage: 0.6 },
+      { label: C.tornadoLegend[0], data: sorted.map((t) => t.lo), backgroundColor: T.seriesBenchmark, barPercentage: 0.6 },
+      { label: C.tornadoLegend[1], data: sorted.map((t) => t.hi), backgroundColor: T.seriesHeadline, barPercentage: 0.6 },
     ],
     xFmt: (v) => (v > 0 ? "+" : v < 0 ? "\u2212" : "") + FMT.usd(Math.abs(v)),
+    xTitle: C.tornadoAxis,
   });
   tChart.options.scales.x.grid.color = T.grid;
+  tChart.options.scales.x.ticks.maxTicksLimit = 7;
   tChart.update();
-  tp.panel.append(el("p", "panel-note",
-    "Each bar re-runs the base case with one assumption moved to the low or high end of its stated range (shown in parentheses), holding everything else fixed. Sorted by size of swing in net value."));
+  tp.panel.append(el("p", "panel-note", C.tornadoNote));
   UI.source(tp.panel, COPY.src.valuation);
   tp.bindExport(tChart, "fifa-financial-sensitivity");
   root.append(grid);

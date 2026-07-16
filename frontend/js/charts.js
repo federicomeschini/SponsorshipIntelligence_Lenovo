@@ -28,7 +28,7 @@ window.CH = (function () {
       const { ctx, chartArea, scales } = chart;
       const x = scales.x;
       ctx.save();
-      ctx.font = "600 10px " + T.font.mono;
+      ctx.font = "600 12px " + T.font.mono; // brand minimum type size
       let lastEnd = -Infinity, lane = 0; // stagger labels that would collide
       opts.items.forEach((m) => {
         const px = x.getPixelForValue(m.i);

@@ -129,7 +129,9 @@ partnershipWeeks.forEach((w, k) => {
   }
 });
 
-// broadcast audience (simulated): matches calendar; 6–8× digital on WC weeks
+// broadcast audience (simulated): matches calendar; 2.5–3.5× digital on WC
+// weeks. Kept deliberately conservative so total partnership exposure stays
+// plausibly below world-population scale (≈ 4.5B cumulative contacts).
 const wcMatchWeeks = new Map(REAL.worldCupCalendarWeekly.map((r) => [r.week, r.matches]));
 // FCWC 2025 window (opening 2025-06-15 → final 2025-07-13)
 const fcwcWeeks = new Set(["2025-06-09", "2025-06-16", "2025-06-23", "2025-06-30", "2025-07-07"]);
@@ -139,9 +141,9 @@ const fifaDigitalWeekly = partnershipWeeks.map((_, k) =>
 const broadcast = partnershipWeeks.map((w, k) => {
   let base = 0;
   const wm = [...wcMatchWeeks.keys()].find((mw) => Math.abs(new Date(mw) - new Date(w)) < weekMs);
-  if (wm) base = fifaDigitalWeekly[k] * (6 + 2 * rand()); // 6–8× digital (WC)
-  else if (fcwcWeeks.has(w)) base = 90e6 * (1 + 0.6 * rand()); // FCWC broadcast
-  else if (w >= "2024-10-14") base = 6e6 * (1 + noise(0.3)); // magazine/friendlies
+  if (wm) base = fifaDigitalWeekly[k] * (2.5 + 1 * rand()); // 2.5–3.5× digital (WC)
+  else if (fcwcWeeks.has(w)) base = 70e6 * (1 + 0.6 * rand()); // FCWC broadcast
+  else if (w >= "2024-10-14") base = 5e6 * (1 + noise(0.3)); // magazine/friendlies
   return Math.max(0, Math.round(base)); // audience contacts, no carry (no double count)
 });
 

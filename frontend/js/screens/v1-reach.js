@@ -20,6 +20,7 @@ window.SCREENS.reach = function (root) {
     ],
     milestones: UI.milestonesFor(E.week, ["fifa_partner_announcement_2024", "fcwc_opening_2025", "wc_opening_2026", "wc_final_2026"]),
   });
+  hp.panel.append(el("p", "panel-note", C.heroNote));
   UI.source(hp.panel, COPY.src.exposure);
   hp.bindExport(heroChart, "fifa-reach-cumulative-exposure");
 
