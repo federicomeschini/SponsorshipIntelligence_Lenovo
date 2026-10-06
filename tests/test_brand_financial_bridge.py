@@ -52,7 +52,7 @@ def test_monetization_cases_are_mechanical_and_never_accepted():
     )
     assert set(scenarios["case"]) == {
         "one_brand_index_point",
-        "announcement_period_candidate",
+        "total_sponsorship_effect",
         "world_cup_total_sponsorship_path_interim",
         "world_cup_incremental_tournament_interim",
     }

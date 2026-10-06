@@ -6,7 +6,7 @@ notebook, and ``tests/test_review_artifacts.py`` fails when a source has
 changed since the notebook was last executed.
 
     python -m srmp.review                 # execute every review notebook in place
-    python -m srmp.review 10_announcement_uplift.ipynb
+    python -m srmp.review 10_total_sponsorship_effect.ipynb
 """
 
 from __future__ import annotations

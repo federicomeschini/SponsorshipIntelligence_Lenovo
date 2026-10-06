@@ -1,7 +1,7 @@
 {
   "contract": "C-INDEX (proxy-led current version)",
   "status": "provisional_proxy_led_index_built",
-  "generated_at_utc": "2026-10-06T13:22:21.826649+00:00",
+  "generated_at_utc": "2026-10-06T13:49:47.573871+00:00",
   "source_version": "v4_proxy_led_brand_calibrated",
   "construct": "Lenovo brand salience, proxy-led",
   "weekly_movement": "100% from the validated Lenovo parent-brand Google Trends proxy; survey values do not pin individual weeks",

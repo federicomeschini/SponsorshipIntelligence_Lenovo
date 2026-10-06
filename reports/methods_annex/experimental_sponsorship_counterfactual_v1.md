@@ -1,6 +1,6 @@
 # Experimental sponsorship counterfactual v1
 
-> **SUPERSEDED for review by [`10_announcement_uplift.ipynb`](10_announcement_uplift.ipynb) (2026-10-06).** The July results below (exposure-weighted +1.033, p = 1/12, 'candidate_passes_experimental_screen') no longer hold: with October data the candidate is +0.77 and not distinguishable (p = 2/12). Kept as the historical record of the July design.
+> **SUPERSEDED for review by [`10_total_sponsorship_effect.ipynb`](10_total_sponsorship_effect.ipynb) (2026-10-06).** The July results below (exposure-weighted +1.033, p = 1/12, 'candidate_passes_experimental_screen') no longer hold: with October data the candidate is +0.77 and not distinguishable (p = 2/12). Kept as the historical record of the July design.
 
 > **Interim scope:** this experiment evaluates the 15 October 2024 FIFA
 > partnership announcement and the subsequent FCWC period. The World Cup is

@@ -279,12 +279,10 @@ def build_bridge(
         "reference_quarter": latest["calendar_quarter"],
         "reference_revenue_usd_m": latest_revenue,
     }
-    announcement = _read_json(
-        config["inputs"]["announcement_counterfactual_manifest"]
-    )
+    total_effect = _read_json(config["inputs"]["total_effect_manifest"])
     world_cup = interim_world_cup_gaps(
         config["inputs"]["world_cup_estimate_manifest"],
-        config["inputs"]["sponsorship_counterfactual_weekly"],
+        config["inputs"]["total_effect_weekly"],
     )
     index_cases = [
         {
@@ -293,11 +291,9 @@ def build_bridge(
             "role": "unit_mapping",
         },
         {
-            "case": "announcement_period_candidate",
-            "delta_brand_index": float(
-                announcement["candidate_attribution"]["exposure_weighted_delta_index"]
-            ),
-            "role": "unaccepted_total_Lenovo_specific_candidate",
+            "case": "total_sponsorship_effect",
+            "delta_brand_index": float(total_effect["total_effect"]["lift_index_points"]),
+            "role": "headline_total_effect_not_accepted",
         },
         {
             "case": "world_cup_total_sponsorship_path_interim",

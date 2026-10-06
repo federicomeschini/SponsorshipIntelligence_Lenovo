@@ -5,9 +5,9 @@ inputs:
   stock_response_manifest: data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json
   quarterly_financials: data/reference/lenovo_quarterly_financials.csv
   market_valuation_reference: data/reference/lenovo_market_valuation_reference.csv
-  announcement_counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
+  total_effect_manifest: data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json
   world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
-  sponsorship_counterfactual_weekly: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet
+  total_effect_weekly: data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet
 
 calibration:
   selected_horizon_weeks: 0

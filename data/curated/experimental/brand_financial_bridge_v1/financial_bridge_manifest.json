@@ -1,7 +1,7 @@
 {
   "experiment_id": "brand_financial_bridge_v1",
   "status": "exploratory_no_approved_monetization_coefficient",
-  "generated_at_utc": "2026-10-06T13:25:01.910087+00:00",
+  "generated_at_utc": "2026-10-06T13:53:18.502745+00:00",
   "canonical_contracts_replaced": [],
   "accepted_for_valuation": false,
   "primary_profit_mapping": {
@@ -101,25 +101,25 @@
         "accepted_for_valuation": false
       },
       {
-        "case": "announcement_period_candidate",
-        "delta_brand_index": 0.7707148828420021,
-        "role": "unaccepted_total_Lenovo_specific_candidate",
-        "delta_adjusted_net_margin_pp_central": -0.2086529341744684,
-        "quarterly_adjusted_profit_usd_m_central": -56.21736005462702,
-        "quarterly_adjusted_profit_usd_m_lower_95": -319.0102186241854,
-        "quarterly_adjusted_profit_usd_m_upper_95": 206.57549851493135,
-        "annualized_run_rate_usd_m_central": -224.8694402185081,
+        "case": "total_sponsorship_effect",
+        "delta_brand_index": 0.9085406801857857,
+        "role": "headline_total_effect_not_accepted",
+        "delta_adjusted_net_margin_pp_central": -0.24596602836913636,
+        "quarterly_adjusted_profit_usd_m_central": -66.27062702349642,
+        "quarterly_adjusted_profit_usd_m_lower_95": -376.058342024323,
+        "quarterly_adjusted_profit_usd_m_upper_95": 243.5170879773301,
+        "annualized_run_rate_usd_m_central": -265.08250809398567,
         "accepted_for_valuation": false
       },
       {
         "case": "world_cup_total_sponsorship_path_interim",
-        "delta_brand_index": 0.7033000954710266,
+        "delta_brand_index": 0.7317529294505829,
         "role": "interim_not_pure_World_Cup_effect",
-        "delta_adjusted_net_margin_pp_central": -0.19040196548961227,
-        "quarterly_adjusted_profit_usd_m_central": -51.30000156186624,
-        "quarterly_adjusted_profit_usd_m_lower_95": -291.1062472120664,
-        "quarterly_adjusted_profit_usd_m_upper_95": 188.50624408833391,
-        "annualized_run_rate_usd_m_central": -205.20000624746496,
+        "delta_adjusted_net_margin_pp_central": -0.1981049013321403,
+        "quarterly_adjusted_profit_usd_m_central": -53.37540356591857,
+        "quarterly_adjusted_profit_usd_m_lower_95": -302.8832934199008,
+        "quarterly_adjusted_profit_usd_m_upper_95": 196.13248628806366,
+        "annualized_run_rate_usd_m_central": -213.50161426367427,
         "accepted_for_valuation": false
       },
       {
@@ -281,17 +281,17 @@
       "path": "data/reference/lenovo_product_campaign_events.csv",
       "sha256": "7d6cac67cd0f1c9301b83af460de194b004fa59ac486b3e259f15f98b0da3d08"
     },
-    "announcement_counterfactual_manifest": {
-      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json",
-      "sha256": "4dbb16bf07683302cc2e4f6a8fac35111eb816b5ab985879d43c73e184808846"
+    "total_effect_manifest": {
+      "path": "data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json",
+      "sha256": "798737ff83795928207546fcf54eefbab5b710ef2ae222e66aae31b321f99233"
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "53403ae7ca4902d16352070539e83e5d4dd9b2250f63bd7aa1edbf904b2d3c06"
+      "sha256": "ecde7b7dc63fedf7ffd39055a31e22ec97aa18e9167ec4d336c72b430d511a7c"
     },
-    "sponsorship_counterfactual_weekly": {
-      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet",
-      "sha256": "6326f216c8f8b83708829a2d325f5dd30bc8c424707f0369397e09f83a7906db"
+    "total_effect_weekly": {
+      "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
+      "sha256": "245d6afb3d33d31b448f4dd3f4ce6478db7115adb988794ef3c684adb17d68a5"
     }
   },
   "decision": "No coefficient is approved for sponsorship monetization because the quarterly sample has only 15 first differences, controlled estimates are imprecise and model sensitivity changes sign.",

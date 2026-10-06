@@ -175,7 +175,7 @@ def build_brand_value_dominance(
     # Indirect chain: Index lift -> % brand salience -> incremental brand value.
     chain = config["indirect_chain"]
     salience = _salience_map(inputs["brand_index_weekly"], inputs["trends_weekly_averaged"], chain["index_query"])
-    counterfactual = pd.read_parquet(inputs["sponsorship_counterfactual_weekly"])
+    counterfactual = pd.read_parquet(inputs["total_effect_weekly"])
     post_cf = counterfactual[counterfactual["period"].eq("post")].sort_values("week")
     trailing = int(chain["provisional_trailing_weeks"])
     post_cf = post_cf.iloc[:-trailing] if trailing else post_cf

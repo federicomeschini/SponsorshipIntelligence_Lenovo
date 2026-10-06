@@ -69,22 +69,16 @@ def build_market_implied_earnings_bridge(
     market_cap_usd_m = float(market["market_cap_usd_m"])
     adjusted_earnings_multiple = market_cap_usd_m / adjusted_earnings_usd_m
 
-    announcement = _read_json(
-        config["inputs"]["announcement_counterfactual_manifest"]
-    )
+    total_effect = _read_json(config["inputs"]["total_effect_manifest"])
     world_cup = interim_world_cup_gaps(
         config["inputs"]["world_cup_estimate_manifest"],
-        config["inputs"]["sponsorship_counterfactual_weekly"],
+        config["inputs"]["total_effect_weekly"],
     )
     cases = [
         ("one_brand_index_point", 1.0, "unit_mapping"),
         (
-            "announcement_period_candidate",
-            float(
-                announcement["candidate_attribution"][
-                    "exposure_weighted_delta_index"
-                ]
-            ),
+            "total_sponsorship_effect",
+            float(total_effect["total_effect"]["lift_index_points"]),
             "attribution_not_accepted",
         ),
         (

@@ -1,7 +1,7 @@
 {
-  "experiment_id": "announcement_design_selection_v2",
-  "status": "pre_period_design_selection_expanded_donors_ADR_0035",
-  "generated_at_utc": "2026-10-06T13:24:38.845512+00:00",
+  "experiment_id": "sponsorship_total_effect_v1",
+  "status": "headline_total_sponsorship_effect_ADR_0038",
+  "generated_at_utc": "2026-10-06T13:52:52.132864+00:00",
   "selection": {
     "selected_method": "simplex_scm",
     "selected_pool": "expanded",
@@ -37,6 +37,17 @@
     "data_weeks_seen": [
       "2022-01-03",
       "2024-10-14"
+    ]
+  },
+  "total_effect": {
+    "lift_index_points": 0.9085406801857857,
+    "first_post_week": "2024-10-21",
+    "last_week": "2026-09-14",
+    "post_weeks": 100,
+    "synthetic_post_mean_index": 90.06675131981422,
+    "leave_one_donor_out_range": [
+      0.8775733586845057,
+      1.191623343435176
     ]
   },
   "primary": {
@@ -222,5 +233,5 @@
       1.8165051341926564
     ]
   },
-  "note": "Primary inference is unchanged from sponsorship_counterfactual_v1; only the design is re-selected on pre-period evidence."
+  "note": "Headline total sponsorship effect. Primary inference is unchanged from sponsorship_counterfactual_v1; the design is selected on pre-announcement evidence only."
 }

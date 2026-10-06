@@ -16,10 +16,10 @@ Each notebook records the hash of every production file it read; `tests/test_rev
 | Notebook | Question | Production experiments |
 |---|---|---|
 | [`00_data_inputs.ipynb`](00_data_inputs.ipynb) | What data are used, how current, how checked? | `srmp/ingest/*`, `srmp/exposure/aggregate.py` |
-| [`10_announcement_uplift.ipynb`](10_announcement_uplift.ipynb) | Did the partnership raise Lenovo's brand salience? | `sponsorship_counterfactual_v1`, `announcement_design_selection_v1` (v1 and v2 configs), `sponsorship_monetization_v1` (exposure) |
-| [`20_world_cup_impact_interim.ipynb`](20_world_cup_impact_interim.ipynb) | Did the 2026 World Cup add salience? (interim) | `world_cup_impact_v1` |
+| [`10_total_sponsorship_effect.ipynb`](10_total_sponsorship_effect.ipynb) | **Headline:** how much did the FIFA sponsorship lift Lenovo's brand salience overall? | `sponsorship_total_effect_v1`; context from `sponsorship_counterfactual_v1` and `sponsorship_monetization_v1` (exposure) |
+| [`20_world_cup_close_up.ipynb`](20_world_cup_close_up.ipynb) | Close-up: the World Cup within the total effect, and its incremental effect (interim) | `sponsorship_total_effect_v1`, `world_cup_impact_v1` |
 | [`30_cobrand_association.ipynb`](30_cobrand_association.ipynb) | Do people link Lenovo with FIFA more than other brands? | `cobrand_placebo_v1` |
-| [`40_brand_value.ipynb`](40_brand_value.ipynb) | What is the brand worth, and what does the lift add? | `brand_value_dcf_v1`, `brand_value_dominance_v1`, `sponsorship_total_return_v3`, `valuation_routes_v1` |
+| [`40_brand_value.ipynb`](40_brand_value.ipynb) | What is the brand worth, and what does the total lift add? | `brand_value_dcf_v1`, `brand_value_dominance_v1`, `sponsorship_total_return_v3`, `valuation_routes_v1` |
 
 ## Markdown annexes
 
@@ -27,7 +27,7 @@ Each notebook records the hash of every production file it read; `tests/test_rev
 |---|---|
 | [`survey_source_audit.md`](survey_source_audit.md) | Current (no new survey exports since July 2026) |
 | [`world_cup_impact_preregistration.md`](world_cup_impact_preregistration.md) | Protocol current; implementation status noted at the top |
-| [`experimental_sponsorship_counterfactual_v1.md`](experimental_sponsorship_counterfactual_v1.md) | Superseded by `10_announcement_uplift.ipynb`; historical July record |
+| [`experimental_sponsorship_counterfactual_v1.md`](experimental_sponsorship_counterfactual_v1.md) | Superseded by `10_total_sponsorship_effect.ipynb`; historical July record |
 | [`data_readiness_audit.md`](data_readiness_audit.md) | Superseded for coverage by `00_data_inputs.ipynb`; survey findings current |
 | [`brand_index_construction.md`](brand_index_construction.md) | **Stale** |
 | [`multisignal_index_comparison.md`](multisignal_index_comparison.md) | **Stale** |
@@ -45,4 +45,3 @@ These outputs are **not done** under the definition of done in `AGENTS.md` until
 2. `stock_brand_response_v2`: rewrite as a review notebook; current estimates differ materially from the July text.
 3. `brand_financial_bridge_v1` and `market_implied_earnings_bridge_v1`: rewrite or fold into `40_brand_value.ipynb`.
 4. `sponsorship_monetization_v1`: rewrite as a review notebook.
-5. Re-point the incremental brand value in `40_brand_value.ipynb` to the accepted uplift design once the uplift question is settled.

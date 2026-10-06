@@ -7,9 +7,9 @@ inputs:
   joint_donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
   market_prices: data/staged/market/market_prices_daily.parquet
   product_campaign_events: data/reference/lenovo_product_campaign_events.csv
-  announcement_counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
+  total_effect_manifest: data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json
   world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
-  sponsorship_counterfactual_weekly: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet
+  total_effect_weekly: data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet
 
 category_demand_queries:
   [donor_dell, donor_asus, donor_acer, donor_hp, donor_microsoft_surface, donor_macbook]

@@ -1,7 +1,7 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "status": "interim_estimate_gates_not_met",
-  "generated_at_utc": "2026-10-06T13:24:56.759866+00:00",
+  "generated_at_utc": "2026-10-06T13:53:12.986580+00:00",
   "protocol_hash": "bee13e0bad0a89d81d21b5ce1105719c935677fe824bc893b36d16f1eb2b44e4",
   "accepted_attribution_rows": 0,
   "treatment_week": "2026-06-08",

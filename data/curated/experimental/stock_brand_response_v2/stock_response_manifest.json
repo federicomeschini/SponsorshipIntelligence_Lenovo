@@ -1,7 +1,7 @@
 {
   "experiment_id": "stock_brand_response_v2",
   "status": "exploratory_no_familywise_signal",
-  "generated_at_utc": "2026-10-06T13:25:00.163539+00:00",
+  "generated_at_utc": "2026-10-06T13:53:16.545246+00:00",
   "accepted_for_profit_conversion": false,
   "accepted_for_causal_valuation": false,
   "factor_model": {

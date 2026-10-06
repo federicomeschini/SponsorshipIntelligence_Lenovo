@@ -14,14 +14,13 @@ def _manifest(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def test_v3_values_a_sustained_level_not_the_final_week():
+def test_v3_values_the_headline_total_effect_not_the_final_week():
     manifest = _manifest(V3 / "total_return_v3_manifest.json")
-    counterfactual = pd.read_parquet(
-        ROOT / "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet"
-    )
-    post = counterfactual[counterfactual["period"].eq("post")].sort_values("week")
+    effect = _manifest(ROOT / "data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json")
+    weekly = pd.read_parquet(ROOT / "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet")
     level = manifest["sustained_levels_index_points"]["all_post_mean"]
-    assert np.isclose(level, post["index_gap"].iloc[:-2].mean())
+    assert np.isclose(level, weekly.loc[weekly["period"].eq("post"), "index_gap"].mean())
+    assert np.isclose(level, effect["total_effect"]["lift_index_points"])
     assert manifest["primary_result"]["level_definition"] == "all_post_mean"
     assert manifest["valuation_base"] == "mean_post_announcement_market_cap"
 

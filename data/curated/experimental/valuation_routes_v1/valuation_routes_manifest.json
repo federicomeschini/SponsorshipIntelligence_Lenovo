@@ -1,10 +1,10 @@
 {
   "experiment_id": "valuation_routes_v1",
   "status": "route_comparison_and_breakeven",
-  "generated_at_utc": "2026-10-06T13:25:07.115929+00:00",
+  "generated_at_utc": "2026-10-06T13:53:25.120868+00:00",
   "measured_lift": {
-    "announcement_sustained_level_index_points": 0.8645303597046133,
-    "announcement_attribution_status": "candidate_not_distinguishable",
+    "announcement_sustained_level_index_points": 0.9085406801857857,
+    "announcement_attribution_status": "total_effect_not_distinguishable",
     "world_cup_incremental_primary_index_points": 0.25186771110776685,
     "world_cup_status": "interim_estimate_gates_not_met"
   },
@@ -32,23 +32,23 @@
   "inputs": {
     "total_return_v3_manifest": {
       "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json",
-      "sha256": "9ae664f81d59ee45280b5f962859e20823475bb2addc2ddf02d90041f3a8452b"
+      "sha256": "6871bd2f317171907061ecf2272a6e965893ce83b07e6684a05c9d8dae71a6a3"
     },
     "total_return_v3_scenarios": {
       "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_scenarios.parquet",
-      "sha256": "889fed2498b3eabd03dd75684d508dfcac356239e156f5e8b50bca9c8a40b263"
+      "sha256": "4761d5a4ee706234e22b2baa6243a1a42c47edd5d6888cf90e1523e8a42cafb2"
     },
     "market_implied_manifest": {
       "path": "data/curated/experimental/market_implied_earnings_bridge_v1/market_implied_earnings_bridge_manifest.json",
-      "sha256": "ebe4d71e88e16d482cb409c9e5573f2e3e40b7cf1a6fa3dd3dc3321c25e945f0"
+      "sha256": "9c9d5ca18adbd8e0b68c645499ac9ce3c675f5a43ca6da54adf7caf006d13e81"
     },
     "stock_response_manifest": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json",
-      "sha256": "9c2e0ba06d67e10d573c58b539fe419e9ef2dee37c56e4c2fa52c6dd921226b1"
+      "sha256": "d0b826bc170103881acca13742d6d003144895ceda0fae96fd09ad24f2da7553"
     },
     "financial_bridge_manifest": {
       "path": "data/curated/experimental/brand_financial_bridge_v1/financial_bridge_manifest.json",
-      "sha256": "da3cd0343bb292fdcfd230dda799f36026b330f8046c4c61fb5c2eb68973d061"
+      "sha256": "11be14a83e3f041326395124e3fa679a73e60f951399c2f350940c42835ecce5"
     },
     "quarterly_financials": {
       "path": "data/reference/lenovo_quarterly_financials.csv",
@@ -60,7 +60,7 @@
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "53403ae7ca4902d16352070539e83e5d4dd9b2250f63bd7aa1edbf904b2d3c06"
+      "sha256": "ecde7b7dc63fedf7ffd39055a31e22ec97aa18e9167ec4d336c72b430d511a7c"
     },
     "media_values_manifest": {
       "path": "data/staged/media_values/pull_manifest.json",

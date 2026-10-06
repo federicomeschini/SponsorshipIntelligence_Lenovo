@@ -1,11 +1,15 @@
-"""Announcement counterfactual with design chosen on pre-period evidence only (ADR-0034).
+"""Total effect of the FIFA sponsorship on the Lenovo Brand Index (ADR-0034, ADR-0038).
+
+Headline estimand: the mean gap between Lenovo and a synthetic no-sponsorship
+Lenovo over every week since the partnership announcement, World Cup included.
 
 Phase A selects the method and donor pool by rolling-origin out-of-sample
 prediction of Lenovo across the pre-announcement weeks. It receives a panel
 truncated before treatment, so no post-period outcome can influence the
 choice, and writes its selection record before Phase B runs. Phase B fits the
-selected design once and tests it against donor placebos; every other design
-is reported as a specification curve.
+selected design once, tests it against donor placebos, writes its weekly path
+and leave-one-donor-out range, and reports every other design as a
+specification curve.
 """
 
 from __future__ import annotations
@@ -143,7 +147,7 @@ def _p_value(treated: float, placebos: list[float]) -> float:
     return (1 + sum(value >= treated for value in placebos)) / (1 + len(placebos))
 
 
-def build(config_path: str = "config/experiments/announcement_design_selection_v1.yaml",
+def build(config_path: str = "config/experiments/sponsorship_total_effect_v1.yaml",
           selection_only: bool = False) -> dict[str, Any]:
     config_file = Path(config_path)
     config = yaml.safe_load(config_file.read_text(encoding="utf-8"))
@@ -218,6 +222,23 @@ def build(config_path: str = "config/experiments/announcement_design_selection_v
                                 {"placebo_unit": names[k], **placebo_stats[k]} for k in range(len(names))]}
     curve = pd.DataFrame(curve)
     _write(curve, target_dir, "specification_curve")
+
+    # Weekly path of the selected design and leave-one-donor-out lifts.
+    names, method = selection["selected_donors"], selection["selected_method"]
+    donors = panel[names].to_numpy(dtype=float)
+    fits, _, _, sd = _fit_methods(target, donors, pre, windows["all_post"], config)
+    gap = fits[method].gap_z * sd
+    weekly = pd.DataFrame({"week": panel.index, "actual_index": target, "synthetic_index": target - gap,
+                           "index_gap": gap, "period": np.where(pre, "pre", "post")})
+    _write(weekly, target_dir, "total_effect_weekly")
+    loo = []
+    for position, name in enumerate(names):
+        keep = [k for k in range(len(names)) if k != position]
+        alt, _, _, alt_sd = _fit_methods(target, donors[:, keep], pre, windows["all_post"], config)
+        loo.append({"specification": f"leave_out_{name}", "donor_count": len(keep),
+                    "post_mean_gap": float(alt[method].gap_z[windows["all_post"]].mean() * alt_sd)})
+    loo = pd.DataFrame(loo)
+    _write(loo, target_dir, "donor_sensitivity")
     alpha = float(config["inference"]["significance_level"])
     selected = curve[curve["selected_design"]]
     summary = {
@@ -232,9 +253,18 @@ def build(config_path: str = "config/experiments/announcement_design_selection_v
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "selection": {k: selection_record[k] for k in ("selected_method", "selected_pool", "selected_donors",
                                                        "post_period_outcomes_accessed", "data_weeks_seen")},
+        "total_effect": {
+            "lift_index_points": primary["lift_index_points"] if primary else None,
+            "first_post_week": str(panel.index[~pre].min().date()),
+            "last_week": str(panel.index.max().date()),
+            "post_weeks": int((~pre).sum()),
+            "synthetic_post_mean_index": float(weekly.loc[~pre, "synthetic_index"].mean()),
+            "leave_one_donor_out_range": [float(loo["post_mean_gap"].min()), float(loo["post_mean_gap"].max())],
+        },
         "primary": primary, "passes_primary_test": bool(primary and primary["p_value"] <= alpha),
         "specification_curve_summary": summary,
-        "note": "Primary inference is unchanged from sponsorship_counterfactual_v1; only the design is re-selected on pre-period evidence.",
+        "note": ("Headline total sponsorship effect. Primary inference is unchanged from sponsorship_counterfactual_v1; "
+                 "the design is selected on pre-announcement evidence only."),
     }
     (target_dir / "estimate_manifest.json").write_text(json.dumps(manifest, indent=2, default=str) + "\n", encoding="utf-8")
     return manifest
@@ -242,7 +272,7 @@ def build(config_path: str = "config/experiments/announcement_design_selection_v
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default="config/experiments/announcement_design_selection_v1.yaml")
+    parser.add_argument("--config", default="config/experiments/sponsorship_total_effect_v1.yaml")
     parser.add_argument("--selection-only", action="store_true")
     args = parser.parse_args()
     build(args.config, selection_only=args.selection_only)

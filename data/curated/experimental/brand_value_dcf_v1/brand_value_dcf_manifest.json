@@ -1,7 +1,7 @@
 {
   "experiment_id": "brand_value_dcf_v1",
   "status": "iso10668_income_approach_brand_earnings_split_ADR_0033",
-  "generated_at_utc": "2026-10-06T13:25:15.280669+00:00",
+  "generated_at_utc": "2026-10-06T13:53:33.112515+00:00",
   "standard": "ISO 10668 income approach, brand earnings split on economic profit",
   "valuation_date": "2026-03-31",
   "base_year": {
@@ -42,26 +42,26 @@
     "explicit_pv_usd_m": 36.48375022342132,
     "terminal_pv_usd_m": 94.86351826318038,
     "brand_value_usd_m": 131.3472684866017,
-    "incremental_brand_value_usd_m": 11.956956605810475,
-    "coefficient_usd_m_per_index_point": 13.830580351042666,
-    "world_cup_incremental_brand_value_usd_m": 3.483476616309171,
-    "salience_uplift_pct": 9.103315770156396,
+    "incremental_brand_value_usd_m": 12.624147585259145,
+    "coefficient_usd_m_per_index_point": 13.894972300720378,
+    "world_cup_incremental_brand_value_usd_m": 3.4996948692882626,
+    "salience_uplift_pct": 9.611275309122162,
     "elasticity_to_salience": 1.0
   },
   "by_role_definition": {
     "share_of_price_formation": {
       "role_of_brand": 0.004249180920834305,
       "brand_value_usd_m": 131.3472684866017,
-      "incremental_brand_value_usd_m": 11.956956605810475,
-      "coefficient_usd_m_per_index_point": 13.830580351042666,
-      "world_cup_incremental_brand_value_usd_m": 3.483476616309171
+      "incremental_brand_value_usd_m": 12.624147585259145,
+      "coefficient_usd_m_per_index_point": 13.894972300720378,
+      "world_cup_incremental_brand_value_usd_m": 3.4996948692882626
     },
     "firm_specific_share": {
       "role_of_brand": 0.06403250092232629,
       "brand_value_usd_m": 1979.3212497202885,
-      "incremental_brand_value_usd_m": 180.18386346784368,
-      "coefficient_usd_m_per_index_point": 208.4182023745327,
-      "world_cup_incremental_brand_value_usd_m": 52.49381558526889
+      "incremental_brand_value_usd_m": 190.2380145625743,
+      "coefficient_usd_m_per_index_point": 209.38854881398694,
+      "world_cup_incremental_brand_value_usd_m": 52.7382145219558
     }
   },
   "sensitivity_range_usd_m": {
@@ -127,7 +127,7 @@
     },
     "dominance_manifest": {
       "path": "data/curated/experimental/brand_value_dominance_v1/brand_value_dominance_manifest.json",
-      "sha256": "259d28a62bd057ebffeb358995c5ea0af5e1bd3f0aeff400f246d6d943bfe7ff"
+      "sha256": "a68152d4bbff7ff71872a0fa1c24c748b2019ad988796cca4771e63b692b073f"
     },
     "stock_response_weekly": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet",
@@ -135,7 +135,7 @@
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "53403ae7ca4902d16352070539e83e5d4dd9b2250f63bd7aa1edbf904b2d3c06"
+      "sha256": "ecde7b7dc63fedf7ffd39055a31e22ec97aa18e9167ec4d336c72b430d511a7c"
     }
   }
 }

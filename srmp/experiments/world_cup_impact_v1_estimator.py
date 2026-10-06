@@ -535,15 +535,15 @@ def estimate_world_cup_impact(
     return manifest
 
 
-def interim_world_cup_gaps(estimate_manifest_path: str, counterfactual_weekly_path: str) -> dict[str, float | None]:
+def interim_world_cup_gaps(estimate_manifest_path: str, total_effect_weekly_path: str) -> dict[str, float | None]:
     """World Cup gaps for illustrative valuation cases (never accepted inputs).
 
     ``incremental``: the engine's primary estimate above the pre-tournament path.
-    ``total_path``: the announcement counterfactual's mean gap over the
-    tournament weeks, i.e. against the frozen no-partnership path.
+    ``total_path``: the headline total-effect design's mean gap over the
+    tournament weeks, i.e. against the no-sponsorship Lenovo.
     """
     manifest = json.loads(Path(estimate_manifest_path).read_text(encoding="utf-8"))
-    weekly = pd.read_parquet(counterfactual_weekly_path)
+    weekly = pd.read_parquet(total_effect_weekly_path)
     weekly["week"] = pd.to_datetime(weekly["week"])
     start, end = pd.Timestamp(manifest["treatment_week"]), pd.Timestamp(manifest["final_week"])
     tournament = weekly[(weekly["week"] >= start) & (weekly["week"] <= end)]

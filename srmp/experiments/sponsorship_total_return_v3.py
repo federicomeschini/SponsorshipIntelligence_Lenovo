@@ -187,17 +187,14 @@ def _event_triangulation(
     return pd.DataFrame(rows)
 
 
-def _levels(counterfactual: pd.DataFrame, manifest: dict[str, Any], config: dict[str, Any]) -> dict[str, float]:
-    spec = config["sustained_level"]
-    post = counterfactual[counterfactual["period"].eq("post")].sort_values("week")
-    trailing = int(spec["provisional_trailing_weeks"])
-    stable = post.iloc[:-trailing] if trailing else post
-    tournament = pd.Timestamp("2026-06-08")
+def _levels(weekly: pd.DataFrame, config: dict[str, Any]) -> dict[str, float]:
+    """Sustained gap levels from the total-effect path (provisional weeks already excluded)."""
+    post = weekly[weekly["period"].eq("post")].sort_values("week")
+    tournament = pd.Timestamp(config["sustained_level"]["tournament_start_week"])
     return {
-        "all_post_mean": float(stable["index_gap"].mean()),
-        "exposure_weighted": float(manifest["candidate_attribution"]["exposure_weighted_delta_index"]),
-        "pre_tournament_post_mean": float(stable.loc[stable["week"] < tournament, "index_gap"].mean()),
-        "trailing_26_week_mean": float(stable["index_gap"].tail(26).mean()),
+        "all_post_mean": float(post["index_gap"].mean()),
+        "pre_tournament_post_mean": float(post.loc[post["week"] < tournament, "index_gap"].mean()),
+        "trailing_26_week_mean": float(post["index_gap"].tail(26).mean()),
     }
 
 
@@ -214,10 +211,10 @@ def build_total_return_v3(
     target = Path(config["outputs"]["directory"])
     target.mkdir(parents=True, exist_ok=True)
 
-    counterfactual = pd.read_parquet(inputs["sponsorship_counterfactual_weekly"])
+    counterfactual = pd.read_parquet(inputs["total_effect_weekly"])
     counterfactual["week"] = pd.to_datetime(counterfactual["week"])
-    cf_manifest = json.loads(Path(inputs["sponsorship_counterfactual_manifest"]).read_text(encoding="utf-8"))
-    levels = _levels(counterfactual, cf_manifest, config)
+    effect = json.loads(Path(inputs["total_effect_manifest"]).read_text(encoding="utf-8"))
+    levels = _levels(counterfactual, config)
 
     stock_weekly = pd.read_parquet(inputs["stock_response_weekly"])
     stock_weekly["week"] = pd.to_datetime(stock_weekly["week"])
@@ -241,7 +238,7 @@ def build_total_return_v3(
     market = pd.read_parquet(inputs["market_prices"])
     market["date"] = pd.to_datetime(market["date"])
     shares = int(pd.read_csv(inputs["market_valuation_reference"]).iloc[-1]["ordinary_shares_outstanding"])
-    announcement = cf_manifest["treatment"]["announcement_date"]
+    announcement = config["announcement_date"]
     lenovo_dates = market.loc[market["factor_id"].eq("LENOVO"), "date"]
     post_dates = lenovo_dates[lenovo_dates > pd.Timestamp(announcement)]
     caps = {
@@ -292,7 +289,7 @@ def build_total_return_v3(
         for name, value in caps.items()
     }
 
-    attribution_accepted = cf_manifest["status"] == "candidate_passes_experimental_screen"
+    attribution_accepted = bool(effect["passes_primary_test"])
     response_identified = empirical["lower_95"] > 0
     daily = pd.read_parquet(inputs["rolling_abnormal_returns_daily"])
     daily["date"] = pd.to_datetime(daily["date"])
@@ -307,7 +304,9 @@ def build_total_return_v3(
         "accepted_for_planning": bool(attribution_accepted and response_identified),
         "accepted_for_accounting_or_causal_claim": False,
         "evidence": {
-            "attribution_status": cf_manifest["status"],
+            "attribution_status": ("total_effect_passes_placebo_test" if attribution_accepted
+                                   else "total_effect_not_distinguishable"),
+            "total_effect_p_value": effect["primary"]["p_value"],
             "attribution_accepted": attribution_accepted,
             "base_13_week_response": empirical,
             "response_identified": response_identified,

@@ -1,7 +1,7 @@
 {
   "experiment_id": "brand_value_dominance_v1",
   "status": "owner_selected_relative_importance_valuation_ADR_0031",
-  "generated_at_utc": "2026-10-06T13:25:13.460369+00:00",
+  "generated_at_utc": "2026-10-06T13:53:31.391070+00:00",
   "method": "brand value = signed group general-dominance share of weekly Lenovo returns x company value; incremental brand value = brand value x sponsorship salience uplift x elasticity",
   "decision": "ADR-0031, ADR-0032 (owner-selected; variance share read as value share and value proportional to salience by assumption)",
   "accepted_for_accounting_or_causal_claim": false,
@@ -27,31 +27,31 @@
     "brand_value_usd_m": 90.12531439644003,
     "zero_interest_index_level": 80.61388839616578,
     "index_points_per_search_interest_unit": 0.20338631887586073,
-    "counterfactual_index_level": 90.11076164029538,
-    "counterfactual_search_interest": 46.69376630945434,
-    "sustained_lift_index_points": 0.8645303597046133,
-    "salience_uplift_pct": 9.103315770156396,
+    "counterfactual_index_level": 90.06675131981422,
+    "counterfactual_search_interest": 46.47737849770567,
+    "sustained_lift_index_points": 0.9085406801857857,
+    "salience_uplift_pct": 9.611275309122162,
     "brand_value_elasticity_to_salience": 1.0,
-    "incremental_brand_value_usd_m": 8.204391958354158,
+    "incremental_brand_value_usd_m": 8.662192089853761,
     "incremental_brand_value_90pct_usd_m": [
-      -100.5469511471559,
-      197.66263072914836
+      -106.1574104829244,
+      208.69208651328114
     ],
     "incremental_brand_value_donor_range_usd_m": [
-      7.617073691997439,
-      12.534238589574032
+      8.366944014338317,
+      11.36115368821849
     ],
-    "coefficient_usd_m_per_index_point": 9.489998663733887,
+    "coefficient_usd_m_per_index_point": 9.534181879541649,
     "coefficient_90pct_usd_m_per_point": [
-      -116.30239472620727,
-      228.6358466308625
+      -116.84387149424778,
+      229.70032169677432
     ],
     "world_cup_incremental_lift_index_points": 0.25186771110776685,
-    "world_cup_incremental_brand_value_usd_m": 2.39022424185042,
+    "world_cup_incremental_brand_value_usd_m": 2.4013525672853016,
     "incremental_brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 6.74550215670783,
-      "latest_market_cap": 21.964606436888065,
-      "mean_post_announcement_market_cap": 8.204391958354158
+      "pre_announcement_market_cap": 7.121897115657498,
+      "latest_market_cap": 23.19021825141205,
+      "mean_post_announcement_market_cap": 8.662192089853761
     }
   },
   "salience_map": {
@@ -101,8 +101,8 @@
     "brand_share_max": 0.033282293746051864,
     "brand_value_min_usd_m": 40.32842390325171,
     "brand_value_max_usd_m": 705.9189155703549,
-    "incremental_brand_value_min_usd_m": 3.671223773040234,
-    "incremental_brand_value_max_usd_m": 64.26202796563312
+    "incremental_brand_value_min_usd_m": 3.876075849171351,
+    "incremental_brand_value_max_usd_m": 67.84781043463643
   },
   "caveats": [
     "A share of explained return variance is not a share of value: a stable brand explains little variance yet can be worth much.",
@@ -124,19 +124,19 @@
     },
     "total_return_v3_manifest": {
       "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json",
-      "sha256": "9ae664f81d59ee45280b5f962859e20823475bb2addc2ddf02d90041f3a8452b"
+      "sha256": "6871bd2f317171907061ecf2272a6e965893ce83b07e6684a05c9d8dae71a6a3"
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "53403ae7ca4902d16352070539e83e5d4dd9b2250f63bd7aa1edbf904b2d3c06"
+      "sha256": "ecde7b7dc63fedf7ffd39055a31e22ec97aa18e9167ec4d336c72b430d511a7c"
     },
-    "sponsorship_counterfactual_weekly": {
-      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet",
-      "sha256": "6326f216c8f8b83708829a2d325f5dd30bc8c424707f0369397e09f83a7906db"
+    "total_effect_weekly": {
+      "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
+      "sha256": "245d6afb3d33d31b448f4dd3f4ce6478db7115adb988794ef3c684adb17d68a5"
     },
     "donor_sensitivity": {
-      "path": "data/curated/experimental/sponsorship_counterfactual_v1/donor_sensitivity.parquet",
-      "sha256": "4c7aefcd8f54ff1b86ea7266082a5d47282e8b1aa72a191852f3d910becba35a"
+      "path": "data/curated/experimental/sponsorship_total_effect_v1/donor_sensitivity.parquet",
+      "sha256": "f7e492fbee54e7b19a251c7f9dc36e8dc6a60fb12ee1faef98bb6c7b859719e3"
     },
     "brand_index_weekly": {
       "path": "data/curated/index/brand_index_weekly.parquet",

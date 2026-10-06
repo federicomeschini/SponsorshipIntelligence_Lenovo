@@ -6,8 +6,8 @@ inputs:
   rolling_abnormal_returns_daily: data/curated/experimental/stock_brand_response_v2/rolling_abnormal_returns_daily.parquet
   total_return_v3_manifest: data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json
   world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
-  sponsorship_counterfactual_weekly: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet
-  donor_sensitivity: data/curated/experimental/sponsorship_counterfactual_v1/donor_sensitivity.parquet
+  total_effect_weekly: data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet
+  donor_sensitivity: data/curated/experimental/sponsorship_total_effect_v1/donor_sensitivity.parquet
   brand_index_weekly: data/curated/index/brand_index_weekly.parquet
   trends_weekly_averaged: data/curated/trends/trends_weekly_averaged.parquet
 
@@ -27,7 +27,7 @@ groups:
 # the lift converts to a ratio-scale salience uplift.
 indirect_chain:
   index_query: brand_lenovo
-  provisional_trailing_weeks: 2
+  provisional_trailing_weeks: 0   # already excluded by the total-effect experiment
   brand_value_elasticity_to_salience: 1.0   # proportional; explicit assumption
 
 brand_share_definition: share_of_explained_variance   # owner's reading: share of price formation

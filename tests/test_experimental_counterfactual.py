@@ -97,7 +97,7 @@ def test_joint_panel_and_donor_quality_screen_are_complete():
     }
 
 
-SELECTION = ROOT / "data/curated/experimental/announcement_design_selection_v1"
+SELECTION = ROOT / "data/curated/experimental/sponsorship_total_effect_v1"
 
 
 def test_design_is_selected_on_pre_period_only_and_before_estimation():
@@ -117,8 +117,8 @@ def test_design_is_selected_on_pre_period_only_and_before_estimation():
 
 def test_phase_a_cannot_see_post_period_rows():
     import yaml
-    from srmp.experiments import announcement_design_selection_v1 as module
-    config = yaml.safe_load((ROOT / "config/experiments/announcement_design_selection_v1.yaml").read_text(encoding="utf-8"))
+    from srmp.experiments import sponsorship_total_effect_v1 as module
+    config = yaml.safe_load((ROOT / "config/experiments/sponsorship_total_effect_v1.yaml").read_text(encoding="utf-8"))
     panel, groups = module._load_panel(config)
     pre = panel[panel.index < pd.Timestamp(config["treatment"]["first_full_post_week"])]
     poisoned = pre.copy()
@@ -128,8 +128,19 @@ def test_phase_a_cannot_see_post_period_rows():
     assert selection["pre_period_end"] == record["data_weeks_seen"][1]
 
 
+def test_total_effect_path_matches_headline_estimate():
+    manifest = json.loads((SELECTION / "estimate_manifest.json").read_text(encoding="utf-8"))
+    weekly = pq.read_table(SELECTION / "total_effect_weekly.parquet").to_pandas()
+    post = weekly[weekly["period"].eq("post")]
+    assert abs(post["index_gap"].mean() - manifest["total_effect"]["lift_index_points"]) < 1e-9
+    assert abs(manifest["total_effect"]["lift_index_points"] - manifest["primary"]["lift_index_points"]) < 1e-9
+    assert manifest["total_effect"]["post_weeks"] == len(post)
+    low, high = manifest["total_effect"]["leave_one_donor_out_range"]
+    assert low <= manifest["total_effect"]["lift_index_points"] <= high or low > 0
+
+
 def test_expanded_donor_selection_excludes_pre_period_constant_series():
-    record = json.loads((ROOT / "data/curated/experimental/announcement_design_selection_v2/selection_record.json")
+    record = json.loads((ROOT / "data/curated/experimental/sponsorship_total_effect_v1/selection_record.json")
                         .read_text(encoding="utf-8"))
     assert record["post_period_outcomes_accessed"] is False
     assert "donor_western_digital" not in record["selected_donors"]

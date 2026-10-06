@@ -37,9 +37,7 @@ DERIVED: list[tuple[str, ...]] = [
     ("srmp.index.figure",),
     ("srmp.experiments.sponsorship_monetization_v1",),          # adstocked exposure
     ("srmp.experiments.sponsorship_counterfactual_v1",),
-    ("srmp.experiments.announcement_design_selection_v1",),
-    ("srmp.experiments.announcement_design_selection_v1",
-     "--config", "config/experiments/announcement_design_selection_v2.yaml"),
+    ("srmp.experiments.sponsorship_total_effect_v1",),            # headline estimate
     ("srmp.experiments.cobrand_placebo_v1",),
     ("srmp.experiments.world_cup_impact_v1",),
     ("srmp.experiments.stock_brand_response_v2",),

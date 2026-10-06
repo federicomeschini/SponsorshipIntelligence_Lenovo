@@ -1,5 +1,5 @@
 case,delta_brand_index,role,delta_adjusted_net_margin_pp_central,quarterly_adjusted_profit_usd_m_central,quarterly_adjusted_profit_usd_m_lower_95,quarterly_adjusted_profit_usd_m_upper_95,annualized_run_rate_usd_m_central,accepted_for_valuation
 one_brand_index_point,1.0,unit_mapping,-0.2707264888995826,-72.94183790421455,-413.9146988414691,268.03102303303996,-291.7673516168582,False
-announcement_period_candidate,0.7707148828420021,unaccepted_total_Lenovo_specific_candidate,-0.2086529341744684,-56.21736005462702,-319.0102186241854,206.57549851493135,-224.8694402185081,False
-world_cup_total_sponsorship_path_interim,0.7033000954710266,interim_not_pure_World_Cup_effect,-0.19040196548961227,-51.30000156186624,-291.1062472120664,188.50624408833391,-205.20000624746496,False
+total_sponsorship_effect,0.9085406801857857,headline_total_effect_not_accepted,-0.24596602836913636,-66.27062702349642,-376.058342024323,243.5170879773301,-265.08250809398567,False
+world_cup_total_sponsorship_path_interim,0.7317529294505829,interim_not_pure_World_Cup_effect,-0.1981049013321403,-53.37540356591857,-302.8832934199008,196.13248628806366,-213.50161426367427,False
 world_cup_incremental_tournament_interim,0.25186771110776685,interim_incremental_tournament_lift,-0.06818726109538012,-18.37169375692827,-104.25174779106145,67.50836027720491,-73.48677502771308,False

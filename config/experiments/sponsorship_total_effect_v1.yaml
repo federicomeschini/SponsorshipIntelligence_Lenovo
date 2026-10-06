@@ -1,5 +1,5 @@
-experiment_id: announcement_design_selection_v1
-status: pre_period_design_selection_then_single_estimate_ADR_0034
+experiment_id: sponsorship_total_effect_v1
+status: headline_total_sponsorship_effect_ADR_0038
 
 inputs:
   brand_index: data/curated/index/brand_index_weekly.parquet
@@ -18,6 +18,10 @@ selection:
     base: registry inclusion_policy == base
     base_plus_sensitivity: base plus registry sensitivity donors (Huawei, MSI)
     parallel_trend_screened: base donors whose pre-period gap to Lenovo has no linear trend (|HAC t| < 2)
+    expanded: base plus the 16 screened ADR-0035 candidates
+    expanded_plus_sensitivity: expanded plus Huawei and MSI
+    expanded_parallel_trend_screened: parallel-trend screen applied to base and candidates
+  include_candidate_pools: true
   parallel_trend_screen:
     max_abs_t: 2.0
     hac_lags: 4
@@ -52,4 +56,4 @@ estimation:
     cv_block_weeks: 13
 
 outputs:
-  directory: data/curated/experimental/announcement_design_selection_v1
+  directory: data/curated/experimental/sponsorship_total_effect_v1

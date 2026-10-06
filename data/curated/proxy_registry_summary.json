@@ -1,6 +1,6 @@
 {
   "status": "provisional_gate_run_against_noncanonical_anchor",
-  "generated_at_utc": "2026-10-06T13:22:19.900714+00:00",
+  "generated_at_utc": "2026-10-06T13:49:45.588356+00:00",
   "anchor_path": "data/staged/survey/brand_index_wave_anchor_constructed.parquet",
   "anchored_stages": [
     "engagement",
