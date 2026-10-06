@@ -1,7 +1,7 @@
 {
   "source": "Google Trends common-anchor comparison panels",
-  "status": "complete_joint_scale_panel",
-  "generated_at_utc": "2026-07-15T10:47:08.123560+00:00",
+  "status": "usable_incomplete_joint_scale_panel",
+  "generated_at_utc": "2026-10-06T12:58:05.021296+00:00",
   "config_path": "config\\joint_trends_donors.yaml",
   "composition_id": "worldwide_common_anchor_v1",
   "common_anchor": {
@@ -9,22 +9,35 @@
     "brand_id": "lenovo",
     "term": "Lenovo"
   },
-  "panels": 6,
-  "donor_queries": 21,
+  "panels": 10,
+  "donor_queries": 37,
   "draws_per_panel": 10,
   "successful_draws_by_panel": {
     "core_legacy": 10,
     "core_expansion_a": 10,
     "core_expansion_b": 10,
     "sensitivity": 10,
-    "core_expansion_c": 10,
-    "core_expansion_d": 10
+    "core_expansion_c": 9,
+    "core_expansion_d": 10,
+    "candidate_e": 10,
+    "candidate_f": 10,
+    "candidate_g": 10,
+    "candidate_h": 10
   },
-  "failed_draws": [],
-  "weeks_min": 237,
-  "weeks_max": 237,
+  "failed_draws": [
+    {
+      "panel_id": "core_expansion_c",
+      "draw": 0,
+      "status": "failed",
+      "rows": 0,
+      "explore_status": 200,
+      "multiline_status": null
+    }
+  ],
+  "weeks_min": 249,
+  "weeks_max": 249,
   "curated_path": "data\\curated\\trends\\jointly_scaled_donor_trends.parquet",
-  "curated_sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf",
+  "curated_sha256": "d03dea0cf14b0af202f704502829d0801ba2763df187b0be17881f1309aaf4a7",
   "scaling_rule": "Each panel/draw is multiplicatively mapped to the median Lenovo anchor path in the first panel using positive overlapping weeks.",
   "limitations": [
     "Google Trends is sampled and rounded; repeated draws quantify request instability, not sampling independence.",

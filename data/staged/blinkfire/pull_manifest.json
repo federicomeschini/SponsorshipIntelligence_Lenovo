@@ -1,13 +1,44 @@
 {
-  "source": "data\\raw\\blinkfire\\lenovo_sponsorship_exposure_daily_export.csv",
+  "source": "data/raw/blinkfire/lenovo_sponsorship_exposure_daily_export.csv",
   "source_sha256": "59b378a06b6cf55e32caca1b63906e88b3d49b2252f3dc693862e5b411e88e77",
-  "generated_at_utc": "2026-07-14T10:16:15.150583+00:00",
+  "exports": [
+    {
+      "path": "data\\raw\\blinkfire\\lenovo_sponsorship_exposure_daily_export.csv",
+      "sha256": "59b378a06b6cf55e32caca1b63906e88b3d49b2252f3dc693862e5b411e88e77",
+      "raw_rows": 620,
+      "dated_rows": 619,
+      "properties": 13,
+      "date_min": "2024-10-01",
+      "date_max": "2026-06-11",
+      "total_row_validation": "passed",
+      "overlapping_dates_replaced": []
+    },
+    {
+      "path": "data\\raw\\blinkfire\\impressions_views_by_wc.xlsx",
+      "sha256": "4fa993469db14fcea5044bef7965e3ded52b553b13ce8128535d1bc59539eeb9",
+      "raw_rows": 41,
+      "dated_rows": 40,
+      "properties": 13,
+      "date_min": "2026-06-11",
+      "date_max": "2026-07-20",
+      "total_row_validation": "passed",
+      "overlapping_dates_replaced": [
+        {
+          "date": "2026-06-11",
+          "impressions_before": 43520133,
+          "impressions_after": 49645720
+        }
+      ]
+    }
+  ],
+  "merge_rule": "later export replaces earlier export on overlapping dates",
+  "generated_at_utc": "2026-10-05T08:57:29.582353+00:00",
   "status": "complete_client_scope",
-  "raw_rows": 620,
-  "dated_rows": 619,
-  "normalized_rows": 8047,
+  "raw_rows": 661,
+  "dated_rows": 658,
+  "normalized_rows": 8554,
   "date_min": "2024-10-01",
-  "date_max": "2026-06-11",
+  "date_max": "2026-07-20",
   "properties": 13,
   "total_row_excluded": true,
   "total_row_validation": "passed",
@@ -21,5 +52,5 @@
     "platform",
     "post_metadata"
   ],
-  "method_note": "Client confirmed this is the complete available D2 scope; views are not relabelled as engagements."
+  "method_note": "Client confirmed these are the complete available D2 scope; views are not relabelled as engagements."
 }

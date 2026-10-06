@@ -1,31 +1,31 @@
 {
   "source": "GDELT",
-  "generated_at_utc": "2026-07-14T10:23:56.269680+00:00",
+  "generated_at_utc": "2026-10-05T09:53:27.547046+00:00",
   "query": "Lenovo",
   "horizon": {
     "start": "2022-01-01",
-    "end": "2026-07-14"
+    "end": "2026-10-05"
   },
   "status": "doc_api_complete",
-  "row_count": 1634,
+  "row_count": 1707,
   "pulls": [
     {
       "mode": "timelinevolraw",
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=Lenovo&mode=timelinevolraw&format=json&startdatetime=20220101000000&enddatetime=20260714235959&maxrecords=250",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=Lenovo&mode=timelinevolraw&format=json&startdatetime=20220101000000&enddatetime=20261005235959&maxrecords=250",
       "status_code": 200,
-      "response_sha256": "259e275695e065ed1911f6a960e291d80d0691a1a6daa310e081316e330c2815",
+      "response_sha256": "a7553b94905cc573d83c58c3548d7c03d8d8db2def2d252d94755c548ed042d5",
       "cache_hit": true
     },
     {
       "mode": "timelinetone",
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=Lenovo&mode=timelinetone&format=json&startdatetime=20220101000000&enddatetime=20260714235959&maxrecords=250",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=Lenovo&mode=timelinetone&format=json&startdatetime=20220101000000&enddatetime=20261005235959&maxrecords=250",
       "status_code": 200,
-      "response_sha256": "0cd58663ba300bec244717b178eb63fbb7456daafd6dfeb36abf1d9ce49b4118",
-      "cache_hit": true
+      "response_sha256": "6bca73a34960578bf27571ae0207124a4b05131199226d0341d9a1e64786e66e",
+      "cache_hit": false
     }
   ],
-  "calendar_day_count": 1656,
-  "missing_calendar_day_count": 22,
+  "calendar_day_count": 1739,
+  "missing_calendar_day_count": 32,
   "missing_calendar_days": [
     "2023-03-23",
     "2025-06-15",
@@ -48,7 +48,17 @@
     "2026-07-01",
     "2026-07-02",
     "2026-07-03",
-    "2026-07-04"
+    "2026-07-04",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-26",
+    "2026-10-03",
+    "2026-10-04",
+    "2026-10-05"
   ],
   "fallback": {
     "type": "BigQuery",

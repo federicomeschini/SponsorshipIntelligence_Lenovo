@@ -1,0 +1,2 @@
+# Raw pulls are immutable and hashed in their pull manifests: never convert line endings.
+data/raw/** -text

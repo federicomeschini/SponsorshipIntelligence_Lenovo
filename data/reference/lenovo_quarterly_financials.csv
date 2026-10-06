@@ -15,3 +15,4 @@ calendar_quarter,fiscal_year,fiscal_quarter,period_start,period_end,revenue_usd_
 2025Q3,FY25/26,Q2,2025-07-01,2025-09-30,20452,512,340,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q2.pdf,official_financial_highlights_table
 2025Q4,FY25/26,Q3,2025-10-01,2025-12-31,22204,589,546,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q3.pdf,official_financial_highlights_table
 2026Q1,FY25/26,Q4,2026-01-01,2026-03-31,21588,559,521,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2526_q4.pdf,official_Q4_financial_highlights_table
+2026Q2,FY26/27,Q1,2026-04-01,2026-06-30,26943,1075,-609,adjusted_non_HKFRS_net_income,https://investor.lenovo.com/en/financial/results/press_2627_q1.pdf,official_financial_highlights_table

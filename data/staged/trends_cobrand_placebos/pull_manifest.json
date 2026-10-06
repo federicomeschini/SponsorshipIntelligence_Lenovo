@@ -1,0 +1,33 @@
+{
+  "source": "Google Trends common-anchor comparison panels",
+  "status": "complete_joint_scale_panel",
+  "generated_at_utc": "2026-10-06T13:04:02.848565+00:00",
+  "config_path": "config\\cobrand_placebo_trends.yaml",
+  "composition_id": "worldwide_cobrand_common_anchor_v1",
+  "common_anchor": {
+    "query_id": "cobrand_lenovo_fifa",
+    "brand_id": "lenovo",
+    "term": "Lenovo FIFA"
+  },
+  "panels": 6,
+  "donor_queries": 24,
+  "draws_per_panel": 10,
+  "successful_draws_by_panel": {
+    "fifa_a": 10,
+    "fifa_b": 10,
+    "fifa_c": 10,
+    "worldcup_a": 10,
+    "worldcup_b": 10,
+    "worldcup_c": 10
+  },
+  "failed_draws": [],
+  "weeks_min": 249,
+  "weeks_max": 249,
+  "curated_path": "data\\curated\\trends\\cobrand_placebo_trends.parquet",
+  "curated_sha256": "0dcc0e839fbd87a52db04538a94b971d13d982b0f7f9154d3e1a15a8e9e77795",
+  "scaling_rule": "Each panel/draw is multiplicatively mapped to the median Lenovo anchor path in the first panel using positive overlapping weeks.",
+  "limitations": [
+    "Google Trends is sampled and rounded; repeated draws quantify request instability, not sampling independence.",
+    "A common Lenovo anchor establishes cross-panel scale but does not make search constructs identical across brands."
+  ]
+}

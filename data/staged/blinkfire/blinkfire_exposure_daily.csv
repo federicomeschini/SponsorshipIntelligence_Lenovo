@@ -8034,15 +8034,522 @@
 2026-06-10,"motogp","MotoGP",12463279,9464265
 2026-06-10,"ny_yankees","NY Yankees",0,0
 2026-06-11,"carolina_hurricanes","Caroline Hurricanes",361794,104223
-2026-06-11,"ducati","Ducati",986709,958774
-2026-06-11,"f1","F1",29356576,16619764
+2026-06-11,"ducati","Ducati",1021298,997366
+2026-06-11,"f1","F1",33687523,22191012
 2026-06-11,"fcwc","FCWC",0,0
-2026-06-11,"fifa","FIFA",4455690,1473117
+2026-06-11,"fifa","FIFA",5419089,1792591
 2026-06-11,"fifae","FIFAe",0,0
 2026-06-11,"fifaewc","FIFAeWC",0,0
-2026-06-11,"fwc","FWC",2900601,2854583
+2026-06-11,"fwc","FWC",2881770,2858749
 2026-06-11,"fwwc","FWWC",0,0
-2026-06-11,"infantino","Infantino",0,0
+2026-06-11,"infantino","Infantino",797019,792024
 2026-06-11,"montreal_canadiens","Montreal Canadiens",0,0
-2026-06-11,"motogp","MotoGP",5458763,762925
+2026-06-11,"motogp","MotoGP",5477227,764985
 2026-06-11,"ny_yankees","NY Yankees",0,0
+2026-06-12,"carolina_hurricanes","Caroline Hurricanes",2256223,873904
+2026-06-12,"ducati","Ducati",340450,8573
+2026-06-12,"f1","F1",13672662,13159093
+2026-06-12,"fcwc","FCWC",0,0
+2026-06-12,"fifa","FIFA",75027621,24800669
+2026-06-12,"fifae","FIFAe",0,0
+2026-06-12,"fifaewc","FIFAeWC",0,0
+2026-06-12,"fwc","FWC",94171902,92167051
+2026-06-12,"fwwc","FWWC",0,0
+2026-06-12,"infantino","Infantino",1087512,1078938
+2026-06-12,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-12,"motogp","MotoGP",1107791,940272
+2026-06-12,"ny_yankees","NY Yankees",0,0
+2026-06-13,"carolina_hurricanes","Caroline Hurricanes",900961,159437
+2026-06-13,"ducati","Ducati",780295,640516
+2026-06-13,"f1","F1",64919296,50460359
+2026-06-13,"fcwc","FCWC",0,0
+2026-06-13,"fifa","FIFA",18234860,6085295
+2026-06-13,"fifae","FIFAe",0,0
+2026-06-13,"fifaewc","FIFAeWC",0,0
+2026-06-13,"fwc","FWC",20064079,19969824
+2026-06-13,"fwwc","FWWC",0,0
+2026-06-13,"infantino","Infantino",0,0
+2026-06-13,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-13,"motogp","MotoGP",0,0
+2026-06-13,"ny_yankees","NY Yankees",0,0
+2026-06-14,"carolina_hurricanes","Caroline Hurricanes",1412739,659918
+2026-06-14,"ducati","Ducati",735552,0
+2026-06-14,"f1","F1",17489765,16837864
+2026-06-14,"fcwc","FCWC",0,0
+2026-06-14,"fifa","FIFA",33753056,12806762
+2026-06-14,"fifae","FIFAe",0,0
+2026-06-14,"fifaewc","FIFAeWC",0,0
+2026-06-14,"fwc","FWC",27165328,26881912
+2026-06-14,"fwwc","FWWC",0,0
+2026-06-14,"infantino","Infantino",335240,333964
+2026-06-14,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-14,"motogp","MotoGP",1062906,1058153
+2026-06-14,"ny_yankees","NY Yankees",0,0
+2026-06-15,"carolina_hurricanes","Caroline Hurricanes",5921257,1995583
+2026-06-15,"ducati","Ducati",1339268,1307409
+2026-06-15,"f1","F1",21067162,20332432
+2026-06-15,"fcwc","FCWC",1177406,1149758
+2026-06-15,"fifa","FIFA",55034943,17955082
+2026-06-15,"fifae","FIFAe",0,0
+2026-06-15,"fifaewc","FIFAeWC",0,0
+2026-06-15,"fwc","FWC",77340882,76783118
+2026-06-15,"fwwc","FWWC",0,0
+2026-06-15,"infantino","Infantino",219235,0
+2026-06-15,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-15,"motogp","MotoGP",5781184,5334370
+2026-06-15,"ny_yankees","NY Yankees",0,0
+2026-06-16,"carolina_hurricanes","Caroline Hurricanes",675463,620875
+2026-06-16,"ducati","Ducati",248931,0
+2026-06-16,"f1","F1",3459581,3253947
+2026-06-16,"fcwc","FCWC",0,0
+2026-06-16,"fifa","FIFA",49847631,16424216
+2026-06-16,"fifae","FIFAe",9,0
+2026-06-16,"fifaewc","FIFAeWC",0,0
+2026-06-16,"fwc","FWC",67183852,65368383
+2026-06-16,"fwwc","FWWC",0,0
+2026-06-16,"infantino","Infantino",1729899,1701035
+2026-06-16,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-16,"motogp","MotoGP",8710153,6011253
+2026-06-16,"ny_yankees","NY Yankees",0,0
+2026-06-17,"carolina_hurricanes","Caroline Hurricanes",477808,191623
+2026-06-17,"ducati","Ducati",627326,603430
+2026-06-17,"f1","F1",9961402,9542577
+2026-06-17,"fcwc","FCWC",0,0
+2026-06-17,"fifa","FIFA",39293838,12899623
+2026-06-17,"fifae","FIFAe",0,0
+2026-06-17,"fifaewc","FIFAeWC",0,0
+2026-06-17,"fwc","FWC",56402110,54278945
+2026-06-17,"fwwc","FWWC",0,0
+2026-06-17,"infantino","Infantino",620596,617090
+2026-06-17,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-17,"motogp","MotoGP",1875102,1266179
+2026-06-17,"ny_yankees","NY Yankees",0,0
+2026-06-18,"carolina_hurricanes","Caroline Hurricanes",387395,112678
+2026-06-18,"ducati","Ducati",899045,614717
+2026-06-18,"f1","F1",11927169,11410830
+2026-06-18,"fcwc","FCWC",0,0
+2026-06-18,"fifa","FIFA",66823881,22034850
+2026-06-18,"fifae","FIFAe",0,0
+2026-06-18,"fifaewc","FIFAeWC",0,0
+2026-06-18,"fwc","FWC",61266248,55719238
+2026-06-18,"fwwc","FWWC",0,0
+2026-06-18,"infantino","Infantino",602311,601500
+2026-06-18,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-18,"motogp","MotoGP",8900102,5159794
+2026-06-18,"ny_yankees","NY Yankees",0,0
+2026-06-19,"carolina_hurricanes","Caroline Hurricanes",257543,213191
+2026-06-19,"ducati","Ducati",2684300,2439884
+2026-06-19,"f1","F1",7909997,7095567
+2026-06-19,"fcwc","FCWC",0,0
+2026-06-19,"fifa","FIFA",26586321,8766161
+2026-06-19,"fifae","FIFAe",0,0
+2026-06-19,"fifaewc","FIFAeWC",0,0
+2026-06-19,"fwc","FWC",20474057,15720406
+2026-06-19,"fwwc","FWWC",0,0
+2026-06-19,"infantino","Infantino",336878,331431
+2026-06-19,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-19,"motogp","MotoGP",16722160,12743130
+2026-06-19,"ny_yankees","NY Yankees",0,0
+2026-06-20,"carolina_hurricanes","Caroline Hurricanes",661645,538569
+2026-06-20,"ducati","Ducati",8762135,7337475
+2026-06-20,"f1","F1",0,0
+2026-06-20,"fcwc","FCWC",0,0
+2026-06-20,"fifa","FIFA",19290228,6351424
+2026-06-20,"fifae","FIFAe",0,0
+2026-06-20,"fifaewc","FIFAeWC",0,0
+2026-06-20,"fwc","FWC",31047616,29536564
+2026-06-20,"fwwc","FWWC",0,0
+2026-06-20,"infantino","Infantino",1957975,1939041
+2026-06-20,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-20,"motogp","MotoGP",23292192,15969055
+2026-06-20,"ny_yankees","NY Yankees",0,0
+2026-06-21,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-06-21,"ducati","Ducati",4447646,3832891
+2026-06-21,"f1","F1",0,0
+2026-06-21,"fcwc","FCWC",0,0
+2026-06-21,"fifa","FIFA",51423315,16925731
+2026-06-21,"fifae","FIFAe",0,0
+2026-06-21,"fifaewc","FIFAeWC",0,0
+2026-06-21,"fwc","FWC",56413986,53931848
+2026-06-21,"fwwc","FWWC",0,0
+2026-06-21,"infantino","Infantino",1445456,1429213
+2026-06-21,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-21,"motogp","MotoGP",77838814,62479653
+2026-06-21,"ny_yankees","NY Yankees",0,0
+2026-06-22,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-06-22,"ducati","Ducati",1161485,1070495
+2026-06-22,"f1","F1",10737309,35747
+2026-06-22,"fcwc","FCWC",0,0
+2026-06-22,"fifa","FIFA",72493403,23606221
+2026-06-22,"fifae","FIFAe",0,0
+2026-06-22,"fifaewc","FIFAeWC",0,0
+2026-06-22,"fwc","FWC",273352351,267177783
+2026-06-22,"fwwc","FWWC",0,0
+2026-06-22,"infantino","Infantino",0,0
+2026-06-22,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-22,"motogp","MotoGP",11458388,5033339
+2026-06-22,"ny_yankees","NY Yankees",0,0
+2026-06-23,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-06-23,"ducati","Ducati",2856131,1981621
+2026-06-23,"f1","F1",3417630,0
+2026-06-23,"fcwc","FCWC",526847,469523
+2026-06-23,"fifa","FIFA",71785092,23636593
+2026-06-23,"fifae","FIFAe",0,0
+2026-06-23,"fifaewc","FIFAeWC",0,0
+2026-06-23,"fwc","FWC",159448119,142532914
+2026-06-23,"fwwc","FWWC",0,0
+2026-06-23,"infantino","Infantino",1143239,0
+2026-06-23,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-23,"motogp","MotoGP",41988326,33792048
+2026-06-23,"ny_yankees","NY Yankees",0,0
+2026-06-24,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-06-24,"ducati","Ducati",5758220,3237370
+2026-06-24,"f1","F1",5276653,5246402
+2026-06-24,"fcwc","FCWC",0,0
+2026-06-24,"fifa","FIFA",64261195,21210099
+2026-06-24,"fifae","FIFAe",0,0
+2026-06-24,"fifaewc","FIFAeWC",0,0
+2026-06-24,"fwc","FWC",51961026,51402843
+2026-06-24,"fwwc","FWWC",0,0
+2026-06-24,"infantino","Infantino",505310,496171
+2026-06-24,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-24,"motogp","MotoGP",13115768,3891278
+2026-06-24,"ny_yankees","NY Yankees",0,0
+2026-06-25,"carolina_hurricanes","Caroline Hurricanes",27167,0
+2026-06-25,"ducati","Ducati",1001259,930039
+2026-06-25,"f1","F1",30611363,26059341
+2026-06-25,"fcwc","FCWC",0,0
+2026-06-25,"fifa","FIFA",54238633,18736366
+2026-06-25,"fifae","FIFAe",0,0
+2026-06-25,"fifaewc","FIFAeWC",0,0
+2026-06-25,"fwc","FWC",141558586,107020655
+2026-06-25,"fwwc","FWWC",0,0
+2026-06-25,"infantino","Infantino",0,0
+2026-06-25,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-25,"motogp","MotoGP",14242330,9982792
+2026-06-25,"ny_yankees","NY Yankees",0,0
+2026-06-26,"carolina_hurricanes","Caroline Hurricanes",144981,0
+2026-06-26,"ducati","Ducati",3589616,3103092
+2026-06-26,"f1","F1",13669487,6129291
+2026-06-26,"fcwc","FCWC",2028971,2006427
+2026-06-26,"fifa","FIFA",81496210,26935837
+2026-06-26,"fifae","FIFAe",0,0
+2026-06-26,"fifaewc","FIFAeWC",0,0
+2026-06-26,"fwc","FWC",41736205,41153107
+2026-06-26,"fwwc","FWWC",0,0
+2026-06-26,"infantino","Infantino",854502,343358
+2026-06-26,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-26,"motogp","MotoGP",29587798,24834807
+2026-06-26,"ny_yankees","NY Yankees",0,0
+2026-06-27,"carolina_hurricanes","Caroline Hurricanes",1693945,0
+2026-06-27,"ducati","Ducati",1032644,976665
+2026-06-27,"f1","F1",73227459,61558344
+2026-06-27,"fcwc","FCWC",0,0
+2026-06-27,"fifa","FIFA",133934913,44336885
+2026-06-27,"fifae","FIFAe",0,0
+2026-06-27,"fifaewc","FIFAeWC",0,0
+2026-06-27,"fwc","FWC",49184524,45618716
+2026-06-27,"fwwc","FWWC",0,0
+2026-06-27,"infantino","Infantino",0,0
+2026-06-27,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-27,"motogp","MotoGP",22917361,17590437
+2026-06-27,"ny_yankees","NY Yankees",0,0
+2026-06-28,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-06-28,"ducati","Ducati",3443567,3279658
+2026-06-28,"f1","F1",98237267,78425996
+2026-06-28,"fcwc","FCWC",668776,648712
+2026-06-28,"fifa","FIFA",107040648,35428464
+2026-06-28,"fifae","FIFAe",0,0
+2026-06-28,"fifaewc","FIFAeWC",0,0
+2026-06-28,"fwc","FWC",141452321,76379056
+2026-06-28,"fwwc","FWWC",0,0
+2026-06-28,"infantino","Infantino",1754754,0
+2026-06-28,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-28,"motogp","MotoGP",19263277,16141663
+2026-06-28,"ny_yankees","NY Yankees",0,0
+2026-06-29,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-06-29,"ducati","Ducati",0,0
+2026-06-29,"f1","F1",23490197,21901747
+2026-06-29,"fcwc","FCWC",0,0
+2026-06-29,"fifa","FIFA",121504077,40105204
+2026-06-29,"fifae","FIFAe",0,0
+2026-06-29,"fifaewc","FIFAeWC",0,0
+2026-06-29,"fwc","FWC",75524118,72867597
+2026-06-29,"fwwc","FWWC",0,0
+2026-06-29,"infantino","Infantino",7458864,6562397
+2026-06-29,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-29,"motogp","MotoGP",6488403,3416789
+2026-06-29,"ny_yankees","NY Yankees",0,0
+2026-06-30,"carolina_hurricanes","Caroline Hurricanes",566014,0
+2026-06-30,"ducati","Ducati",176325,171202
+2026-06-30,"f1","F1",1448815,84449
+2026-06-30,"fcwc","FCWC",0,0
+2026-06-30,"fifa","FIFA",71289551,23552468
+2026-06-30,"fifae","FIFAe",0,0
+2026-06-30,"fifaewc","FIFAeWC",0,0
+2026-06-30,"fwc","FWC",138334356,126921135
+2026-06-30,"fwwc","FWWC",0,0
+2026-06-30,"infantino","Infantino",948177,946233
+2026-06-30,"montreal_canadiens","Montreal Canadiens",0,0
+2026-06-30,"motogp","MotoGP",33914828,31689858
+2026-06-30,"ny_yankees","NY Yankees",0,0
+2026-07-01,"carolina_hurricanes","Caroline Hurricanes",392218,0
+2026-07-01,"ducati","Ducati",652106,612882
+2026-07-01,"f1","F1",10311744,8202522
+2026-07-01,"fcwc","FCWC",0,0
+2026-07-01,"fifa","FIFA",173285537,56606279
+2026-07-01,"fifae","FIFAe",0,0
+2026-07-01,"fifaewc","FIFAeWC",0,0
+2026-07-01,"fwc","FWC",129951784,127087302
+2026-07-01,"fwwc","FWWC",0,0
+2026-07-01,"infantino","Infantino",0,0
+2026-07-01,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-01,"motogp","MotoGP",1715969,1199621
+2026-07-01,"ny_yankees","NY Yankees",0,0
+2026-07-02,"carolina_hurricanes","Caroline Hurricanes",1406402,0
+2026-07-02,"ducati","Ducati",391185,379397
+2026-07-02,"f1","F1",8931880,7763542
+2026-07-02,"fcwc","FCWC",0,0
+2026-07-02,"fifa","FIFA",67226930,22372917
+2026-07-02,"fifae","FIFAe",0,0
+2026-07-02,"fifaewc","FIFAeWC",0,0
+2026-07-02,"fwc","FWC",84634538,79630775
+2026-07-02,"fwwc","FWWC",0,0
+2026-07-02,"infantino","Infantino",940244,0
+2026-07-02,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-02,"motogp","MotoGP",1442196,32586
+2026-07-02,"ny_yankees","NY Yankees",0,0
+2026-07-03,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-03,"ducati","Ducati",2559575,2506283
+2026-07-03,"f1","F1",10053145,7523147
+2026-07-03,"fcwc","FCWC",0,0
+2026-07-03,"fifa","FIFA",70939863,27247366
+2026-07-03,"fifae","FIFAe",0,0
+2026-07-03,"fifaewc","FIFAeWC",0,0
+2026-07-03,"fwc","FWC",87546294,86322413
+2026-07-03,"fwwc","FWWC",0,0
+2026-07-03,"infantino","Infantino",736821,736124
+2026-07-03,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-03,"motogp","MotoGP",5253858,4031695
+2026-07-03,"ny_yankees","NY Yankees",0,0
+2026-07-04,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-04,"ducati","Ducati",2227937,1497184
+2026-07-04,"f1","F1",23799393,21840252
+2026-07-04,"fcwc","FCWC",0,0
+2026-07-04,"fifa","FIFA",177257000,58976940
+2026-07-04,"fifae","FIFAe",0,0
+2026-07-04,"fifaewc","FIFAeWC",0,0
+2026-07-04,"fwc","FWC",152344952,128482823
+2026-07-04,"fwwc","FWWC",0,0
+2026-07-04,"infantino","Infantino",0,0
+2026-07-04,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-04,"motogp","MotoGP",2195872,696791
+2026-07-04,"ny_yankees","NY Yankees",0,0
+2026-07-05,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-05,"ducati","Ducati",3119878,2524958
+2026-07-05,"f1","F1",40703158,35975615
+2026-07-05,"fcwc","FCWC",0,0
+2026-07-05,"fifa","FIFA",91712754,41016521
+2026-07-05,"fifae","FIFAe",0,0
+2026-07-05,"fifaewc","FIFAeWC",0,0
+2026-07-05,"fwc","FWC",12482144,9815565
+2026-07-05,"fwwc","FWWC",0,0
+2026-07-05,"infantino","Infantino",3274741,3233399
+2026-07-05,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-05,"motogp","MotoGP",2653751,828270
+2026-07-05,"ny_yankees","NY Yankees",0,0
+2026-07-06,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-06,"ducati","Ducati",269009,258959
+2026-07-06,"f1","F1",13270566,12608000
+2026-07-06,"fcwc","FCWC",0,0
+2026-07-06,"fifa","FIFA",175609416,57958148
+2026-07-06,"fifae","FIFAe",0,0
+2026-07-06,"fifaewc","FIFAeWC",0,0
+2026-07-06,"fwc","FWC",292903357,290790738
+2026-07-06,"fwwc","FWWC",0,0
+2026-07-06,"infantino","Infantino",7250960,683422
+2026-07-06,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-06,"motogp","MotoGP",8498061,6927025
+2026-07-06,"ny_yankees","NY Yankees",0,0
+2026-07-07,"carolina_hurricanes","Caroline Hurricanes",187374,0
+2026-07-07,"ducati","Ducati",2562799,2530862
+2026-07-07,"f1","F1",29229333,27727146
+2026-07-07,"fcwc","FCWC",0,0
+2026-07-07,"fifa","FIFA",120264389,34660661
+2026-07-07,"fifae","FIFAe",0,0
+2026-07-07,"fifaewc","FIFAeWC",0,0
+2026-07-07,"fwc","FWC",251635212,118572187
+2026-07-07,"fwwc","FWWC",0,0
+2026-07-07,"infantino","Infantino",0,0
+2026-07-07,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-07,"motogp","MotoGP",6596989,4402344
+2026-07-07,"ny_yankees","NY Yankees",0,0
+2026-07-08,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-08,"ducati","Ducati",813348,247196
+2026-07-08,"f1","F1",15727,5012
+2026-07-08,"fcwc","FCWC",0,0
+2026-07-08,"fifa","FIFA",95030041,32845213
+2026-07-08,"fifae","FIFAe",0,0
+2026-07-08,"fifaewc","FIFAeWC",0,0
+2026-07-08,"fwc","FWC",108258532,104612525
+2026-07-08,"fwwc","FWWC",0,0
+2026-07-08,"infantino","Infantino",3857216,3823472
+2026-07-08,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-08,"motogp","MotoGP",6924133,5538848
+2026-07-08,"ny_yankees","NY Yankees",0,0
+2026-07-09,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-09,"ducati","Ducati",303484,293566
+2026-07-09,"f1","F1",1777778,1486743
+2026-07-09,"fcwc","FCWC",0,0
+2026-07-09,"fifa","FIFA",4993026,1647395
+2026-07-09,"fifae","FIFAe",0,0
+2026-07-09,"fifaewc","FIFAeWC",0,0
+2026-07-09,"fwc","FWC",20055939,18138217
+2026-07-09,"fwwc","FWWC",0,0
+2026-07-09,"infantino","Infantino",0,0
+2026-07-09,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-09,"motogp","MotoGP",12135269,7142406
+2026-07-09,"ny_yankees","NY Yankees",0,0
+2026-07-10,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-10,"ducati","Ducati",3748788,3478602
+2026-07-10,"f1","F1",0,0
+2026-07-10,"fcwc","FCWC",0,0
+2026-07-10,"fifa","FIFA",232805905,76965465
+2026-07-10,"fifae","FIFAe",0,0
+2026-07-10,"fifaewc","FIFAeWC",0,0
+2026-07-10,"fwc","FWC",167756722,157521967
+2026-07-10,"fwwc","FWWC",0,0
+2026-07-10,"infantino","Infantino",1152028,1146050
+2026-07-10,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-10,"motogp","MotoGP",13280366,10249386
+2026-07-10,"ny_yankees","NY Yankees",0,0
+2026-07-11,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-11,"ducati","Ducati",5685780,4650578
+2026-07-11,"f1","F1",0,0
+2026-07-11,"fcwc","FCWC",0,0
+2026-07-11,"fifa","FIFA",7838776,1179914
+2026-07-11,"fifae","FIFAe",0,0
+2026-07-11,"fifaewc","FIFAeWC",0,0
+2026-07-11,"fwc","FWC",26344553,26114710
+2026-07-11,"fwwc","FWWC",0,0
+2026-07-11,"infantino","Infantino",232614,0
+2026-07-11,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-11,"motogp","MotoGP",24221538,17970158
+2026-07-11,"ny_yankees","NY Yankees",0,0
+2026-07-12,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-12,"ducati","Ducati",6202353,2977477
+2026-07-12,"f1","F1",15124427,14868823
+2026-07-12,"fcwc","FCWC",0,0
+2026-07-12,"fifa","FIFA",224643260,73762680
+2026-07-12,"fifae","FIFAe",0,0
+2026-07-12,"fifaewc","FIFAeWC",0,0
+2026-07-12,"fwc","FWC",178271868,175794286
+2026-07-12,"fwwc","FWWC",0,0
+2026-07-12,"infantino","Infantino",2615663,2595837
+2026-07-12,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-12,"motogp","MotoGP",58743799,41205160
+2026-07-12,"ny_yankees","NY Yankees",0,0
+2026-07-13,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-13,"ducati","Ducati",773603,750528
+2026-07-13,"f1","F1",0,0
+2026-07-13,"fcwc","FCWC",0,0
+2026-07-13,"fifa","FIFA",59983846,19908263
+2026-07-13,"fifae","FIFAe",0,0
+2026-07-13,"fifaewc","FIFAeWC",0,0
+2026-07-13,"fwc","FWC",172827192,167980183
+2026-07-13,"fwwc","FWWC",0,0
+2026-07-13,"infantino","Infantino",0,0
+2026-07-13,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-13,"motogp","MotoGP",3770794,706691
+2026-07-13,"ny_yankees","NY Yankees",0,0
+2026-07-14,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-14,"ducati","Ducati",2144157,1167145
+2026-07-14,"f1","F1",0,0
+2026-07-14,"fcwc","FCWC",0,0
+2026-07-14,"fifa","FIFA",5261283,2081690
+2026-07-14,"fifae","FIFAe",0,0
+2026-07-14,"fifaewc","FIFAeWC",0,0
+2026-07-14,"fwc","FWC",67429548,62974603
+2026-07-14,"fwwc","FWWC",0,0
+2026-07-14,"infantino","Infantino",0,0
+2026-07-14,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-14,"motogp","MotoGP",23625785,23022651
+2026-07-14,"ny_yankees","NY Yankees",0,0
+2026-07-15,"carolina_hurricanes","Caroline Hurricanes",847003,0
+2026-07-15,"ducati","Ducati",2221914,1462748
+2026-07-15,"f1","F1",0,0
+2026-07-15,"fcwc","FCWC",0,0
+2026-07-15,"fifa","FIFA",42629108,19788963
+2026-07-15,"fifae","FIFAe",0,0
+2026-07-15,"fifaewc","FIFAeWC",0,0
+2026-07-15,"fwc","FWC",33078301,30282212
+2026-07-15,"fwwc","FWWC",0,0
+2026-07-15,"infantino","Infantino",2726326,2690474
+2026-07-15,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-15,"motogp","MotoGP",308098,274535
+2026-07-15,"ny_yankees","NY Yankees",0,0
+2026-07-16,"carolina_hurricanes","Caroline Hurricanes",539419,0
+2026-07-16,"ducati","Ducati",306954,255494
+2026-07-16,"f1","F1",1078627,331327
+2026-07-16,"fcwc","FCWC",0,0
+2026-07-16,"fifa","FIFA",109794116,36343024
+2026-07-16,"fifae","FIFAe",519372,486303
+2026-07-16,"fifaewc","FIFAeWC",0,0
+2026-07-16,"fwc","FWC",68946036,66911438
+2026-07-16,"fwwc","FWWC",0,0
+2026-07-16,"infantino","Infantino",1493771,1488841
+2026-07-16,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-16,"motogp","MotoGP",1191114,585023
+2026-07-16,"ny_yankees","NY Yankees",0,0
+2026-07-17,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-17,"ducati","Ducati",166484,0
+2026-07-17,"f1","F1",394,381
+2026-07-17,"fcwc","FCWC",0,0
+2026-07-17,"fifa","FIFA",1386624,458105
+2026-07-17,"fifae","FIFAe",0,0
+2026-07-17,"fifaewc","FIFAeWC",0,0
+2026-07-17,"fwc","FWC",14792886,14719873
+2026-07-17,"fwwc","FWWC",0,0
+2026-07-17,"infantino","Infantino",0,0
+2026-07-17,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-17,"motogp","MotoGP",5856217,5657594
+2026-07-17,"ny_yankees","NY Yankees",0,0
+2026-07-18,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-18,"ducati","Ducati",0,0
+2026-07-18,"f1","F1",41718482,35829521
+2026-07-18,"fcwc","FCWC",0,0
+2026-07-18,"fifa","FIFA",4728036,1552861
+2026-07-18,"fifae","FIFAe",0,0
+2026-07-18,"fifaewc","FIFAeWC",0,0
+2026-07-18,"fwc","FWC",4752097,4687625
+2026-07-18,"fwwc","FWWC",0,0
+2026-07-18,"infantino","Infantino",739938,717728
+2026-07-18,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-18,"motogp","MotoGP",8746102,5075478
+2026-07-18,"ny_yankees","NY Yankees",0,0
+2026-07-19,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-19,"ducati","Ducati",116670,110356
+2026-07-19,"f1","F1",31664473,27478015
+2026-07-19,"fcwc","FCWC",0,0
+2026-07-19,"fifa","FIFA",48658829,18102336
+2026-07-19,"fifae","FIFAe",0,0
+2026-07-19,"fifaewc","FIFAeWC",0,0
+2026-07-19,"fwc","FWC",77980262,64635089
+2026-07-19,"fwwc","FWWC",0,0
+2026-07-19,"infantino","Infantino",3475014,3448250
+2026-07-19,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-19,"motogp","MotoGP",2861582,2435292
+2026-07-19,"ny_yankees","NY Yankees",0,0
+2026-07-20,"carolina_hurricanes","Caroline Hurricanes",0,0
+2026-07-20,"ducati","Ducati",0,0
+2026-07-20,"f1","F1",14180914,12993223
+2026-07-20,"fcwc","FCWC",0,0
+2026-07-20,"fifa","FIFA",151196943,49807683
+2026-07-20,"fifae","FIFAe",0,0
+2026-07-20,"fifaewc","FIFAeWC",0,0
+2026-07-20,"fwc","FWC",332106353,321752902
+2026-07-20,"fwwc","FWWC",0,0
+2026-07-20,"infantino","Infantino",1921119,1884233
+2026-07-20,"montreal_canadiens","Montreal Canadiens",0,0
+2026-07-20,"motogp","MotoGP",8447370,6415919
+2026-07-20,"ny_yankees","NY Yankees",0,0

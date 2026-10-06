@@ -1,0 +1,482 @@
+[
+  {
+    "panel_id": "fifa_a",
+    "draw": 0,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 1,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 2,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 3,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 4,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 5,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 6,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 7,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 8,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_a",
+    "draw": 9,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "d3aea2846664f57ad567d3958b5b0650dcf972048de6d753e4a6157a76e2cd1e"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 0,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 1,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 2,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 3,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 4,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 5,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 6,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 7,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 8,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_b",
+    "draw": 9,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "c9b91c8d0a9c945511ce6036b935feff26320e7c464251fb7d27b78afe6fea9a"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 0,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 1,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 2,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 3,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 4,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 5,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 6,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 7,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 8,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "fifa_c",
+    "draw": 9,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "cc445e91538e6db7922161ff24d30aaf1ce86486cd46768b102b63c42d04e191"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 0,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 1,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 2,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 3,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 4,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 5,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 6,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 7,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 8,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_a",
+    "draw": 9,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "49f24c498450f7a3583a6ebeb258eae462e902199783b12755c6bbea48f17541"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 0,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 1,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 2,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 3,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 4,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 5,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 6,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 7,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 8,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_b",
+    "draw": 9,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "aaffa5ecd613afd0c0dab00dcc40babde8e48244b2e3aebecf0589b37dbed5da"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 0,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 1,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 2,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 3,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 4,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 5,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 6,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 7,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 8,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  },
+  {
+    "panel_id": "worldcup_c",
+    "draw": 9,
+    "status": "ok",
+    "rows": 1245,
+    "cached_raw_response": true,
+    "response_sha256": "97e32bf913d4d26433f0a3090f491bc6f74f56ff9fb4aaacc19bd8db24fc7b3e"
+  }
+]

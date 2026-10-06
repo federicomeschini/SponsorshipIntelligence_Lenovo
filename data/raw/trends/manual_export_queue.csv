@@ -1,171 +1,171 @@
 query_id,family,term,geo_id,draw,export_filename,status,explore_url
-brand_lenovo,brand,Lenovo,worldwide,1,brand_lenovo__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,2,brand_lenovo__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,3,brand_lenovo__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,4,brand_lenovo__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,5,brand_lenovo__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,6,brand_lenovo__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,7,brand_lenovo__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,8,brand_lenovo__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,9,brand_lenovo__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-brand_lenovo,brand,Lenovo,worldwide,10,brand_lenovo__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,1,category_lenovo_laptop__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,2,category_lenovo_laptop__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,3,category_lenovo_laptop__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,4,category_lenovo_laptop__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,5,category_lenovo_laptop__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,6,category_lenovo_laptop__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,7,category_lenovo_laptop__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,8,category_lenovo_laptop__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,9,category_lenovo_laptop__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,10,category_lenovo_laptop__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop
-category_thinkpad,category_purchase,ThinkPad,worldwide,1,category_thinkpad__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,2,category_thinkpad__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,3,category_thinkpad__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,4,category_thinkpad__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,5,category_thinkpad__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,6,category_thinkpad__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,7,category_thinkpad__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,8,category_thinkpad__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,9,category_thinkpad__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_thinkpad,category_purchase,ThinkPad,worldwide,10,category_thinkpad__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,1,category_lenovo_legion__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,2,category_lenovo_legion__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,3,category_lenovo_legion__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,4,category_lenovo_legion__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,5,category_lenovo_legion__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,6,category_lenovo_legion__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,7,category_lenovo_legion__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,8,category_lenovo_legion__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,9,category_lenovo_legion__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,10,category_lenovo_legion__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Legion
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,1,category_lenovo_laptop_price__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,2,category_lenovo_laptop_price__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,3,category_lenovo_laptop_price__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,4,category_lenovo_laptop_price__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,5,category_lenovo_laptop_price__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,6,category_lenovo_laptop_price__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,7,category_lenovo_laptop_price__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,8,category_lenovo_laptop_price__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,9,category_lenovo_laptop_price__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,10,category_lenovo_laptop_price__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+laptop+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,1,category_thinkpad_price__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,2,category_thinkpad_price__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,3,category_thinkpad_price__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,4,category_thinkpad_price__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,5,category_thinkpad_price__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,6,category_thinkpad_price__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,7,category_thinkpad_price__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,8,category_thinkpad_price__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,9,category_thinkpad_price__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-category_thinkpad_price,category_purchase,ThinkPad price,worldwide,10,category_thinkpad_price__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=ThinkPad+price
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,1,cobrand_fifa__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,2,cobrand_fifa__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,3,cobrand_fifa__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,4,cobrand_fifa__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,5,cobrand_fifa__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,6,cobrand_fifa__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,7,cobrand_fifa__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,8,cobrand_fifa__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,9,cobrand_fifa__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,10,cobrand_fifa__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+FIFA
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,1,cobrand_f1__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,2,cobrand_f1__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,3,cobrand_f1__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,4,cobrand_f1__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,5,cobrand_f1__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,6,cobrand_f1__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,7,cobrand_f1__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,8,cobrand_f1__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,9,cobrand_f1__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_f1,co_branded_property,Lenovo F1,worldwide,10,cobrand_f1__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+F1
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,1,cobrand_motogp__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,2,cobrand_motogp__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,3,cobrand_motogp__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,4,cobrand_motogp__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,5,cobrand_motogp__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,6,cobrand_motogp__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,7,cobrand_motogp__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,8,cobrand_motogp__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,9,cobrand_motogp__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,10,cobrand_motogp__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+MotoGP
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,1,cobrand_ducati__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,2,cobrand_ducati__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,3,cobrand_ducati__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,4,cobrand_ducati__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,5,cobrand_ducati__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,6,cobrand_ducati__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,7,cobrand_ducati__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,8,cobrand_ducati__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,9,cobrand_ducati__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,10,cobrand_ducati__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Ducati
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,1,cobrand_fcwc__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,2,cobrand_fcwc__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,3,cobrand_fcwc__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,4,cobrand_fcwc__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,5,cobrand_fcwc__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,6,cobrand_fcwc__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,7,cobrand_fcwc__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,8,cobrand_fcwc__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,9,cobrand_fcwc__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,10,cobrand_fcwc__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Lenovo+Club+World+Cup
-donor_dell,competitor_donor,Dell,worldwide,1,donor_dell__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,2,donor_dell__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,3,donor_dell__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,4,donor_dell__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,5,donor_dell__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,6,donor_dell__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,7,donor_dell__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,8,donor_dell__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,9,donor_dell__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_dell,competitor_donor,Dell,worldwide,10,donor_dell__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Dell
-donor_asus,competitor_donor,Asus,worldwide,1,donor_asus__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,2,donor_asus__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,3,donor_asus__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,4,donor_asus__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,5,donor_asus__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,6,donor_asus__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,7,donor_asus__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,8,donor_asus__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,9,donor_asus__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_asus,competitor_donor,Asus,worldwide,10,donor_asus__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Asus
-donor_acer,competitor_donor,Acer,worldwide,1,donor_acer__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,2,donor_acer__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,3,donor_acer__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,4,donor_acer__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,5,donor_acer__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,6,donor_acer__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,7,donor_acer__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,8,donor_acer__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,9,donor_acer__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_acer,competitor_donor,Acer,worldwide,10,donor_acer__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Acer
-donor_hp,competitor_donor,HP laptop,worldwide,1,donor_hp__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,2,donor_hp__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,3,donor_hp__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,4,donor_hp__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,5,donor_hp__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,6,donor_hp__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,7,donor_hp__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,8,donor_hp__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,9,donor_hp__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_hp,competitor_donor,HP laptop,worldwide,10,donor_hp__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=HP+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,1,donor_samsung__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,2,donor_samsung__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,3,donor_samsung__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,4,donor_samsung__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,5,donor_samsung__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,6,donor_samsung__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,7,donor_samsung__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,8,donor_samsung__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,9,donor_samsung__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_samsung,competitor_donor,Samsung laptop,worldwide,10,donor_samsung__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Samsung+laptop
-donor_huawei,competitor_donor,Huawei,worldwide,1,donor_huawei__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,2,donor_huawei__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,3,donor_huawei__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,4,donor_huawei__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,5,donor_huawei__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,6,donor_huawei__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,7,donor_huawei__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,8,donor_huawei__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,9,donor_huawei__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
-donor_huawei,competitor_donor,Huawei,worldwide,10,donor_huawei__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-07-14&q=Huawei
+brand_lenovo,brand,Lenovo,worldwide,1,brand_lenovo__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,2,brand_lenovo__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,3,brand_lenovo__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,4,brand_lenovo__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,5,brand_lenovo__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,6,brand_lenovo__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,7,brand_lenovo__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,8,brand_lenovo__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,9,brand_lenovo__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+brand_lenovo,brand,Lenovo,worldwide,10,brand_lenovo__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,1,category_lenovo_laptop__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,2,category_lenovo_laptop__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,3,category_lenovo_laptop__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,4,category_lenovo_laptop__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,5,category_lenovo_laptop__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,6,category_lenovo_laptop__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,7,category_lenovo_laptop__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,8,category_lenovo_laptop__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,9,category_lenovo_laptop__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_lenovo_laptop,category_purchase,Lenovo laptop,worldwide,10,category_lenovo_laptop__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop
+category_thinkpad,category_purchase,ThinkPad,worldwide,1,category_thinkpad__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,2,category_thinkpad__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,3,category_thinkpad__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,4,category_thinkpad__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,5,category_thinkpad__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,6,category_thinkpad__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,7,category_thinkpad__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,8,category_thinkpad__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,9,category_thinkpad__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_thinkpad,category_purchase,ThinkPad,worldwide,10,category_thinkpad__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,1,category_lenovo_legion__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,2,category_lenovo_legion__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,3,category_lenovo_legion__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,4,category_lenovo_legion__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,5,category_lenovo_legion__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,6,category_lenovo_legion__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,7,category_lenovo_legion__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,8,category_lenovo_legion__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,9,category_lenovo_legion__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_legion,category_purchase,Lenovo Legion,worldwide,10,category_lenovo_legion__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Legion
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,1,category_lenovo_laptop_price__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,2,category_lenovo_laptop_price__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,3,category_lenovo_laptop_price__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,4,category_lenovo_laptop_price__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,5,category_lenovo_laptop_price__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,6,category_lenovo_laptop_price__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,7,category_lenovo_laptop_price__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,8,category_lenovo_laptop_price__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,9,category_lenovo_laptop_price__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_lenovo_laptop_price,category_purchase,Lenovo laptop price,worldwide,10,category_lenovo_laptop_price__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+laptop+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,1,category_thinkpad_price__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,2,category_thinkpad_price__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,3,category_thinkpad_price__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,4,category_thinkpad_price__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,5,category_thinkpad_price__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,6,category_thinkpad_price__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,7,category_thinkpad_price__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,8,category_thinkpad_price__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,9,category_thinkpad_price__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+category_thinkpad_price,category_purchase,ThinkPad price,worldwide,10,category_thinkpad_price__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=ThinkPad+price
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,1,cobrand_fifa__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,2,cobrand_fifa__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,3,cobrand_fifa__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,4,cobrand_fifa__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,5,cobrand_fifa__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,6,cobrand_fifa__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,7,cobrand_fifa__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,8,cobrand_fifa__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,9,cobrand_fifa__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_fifa,co_branded_property,Lenovo FIFA,worldwide,10,cobrand_fifa__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+FIFA
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,1,cobrand_f1__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,2,cobrand_f1__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,3,cobrand_f1__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,4,cobrand_f1__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,5,cobrand_f1__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,6,cobrand_f1__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,7,cobrand_f1__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,8,cobrand_f1__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,9,cobrand_f1__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_f1,co_branded_property,Lenovo F1,worldwide,10,cobrand_f1__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+F1
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,1,cobrand_motogp__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,2,cobrand_motogp__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,3,cobrand_motogp__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,4,cobrand_motogp__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,5,cobrand_motogp__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,6,cobrand_motogp__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,7,cobrand_motogp__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,8,cobrand_motogp__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,9,cobrand_motogp__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_motogp,co_branded_property,Lenovo MotoGP,worldwide,10,cobrand_motogp__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+MotoGP
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,1,cobrand_ducati__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,2,cobrand_ducati__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,3,cobrand_ducati__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,4,cobrand_ducati__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,5,cobrand_ducati__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,6,cobrand_ducati__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,7,cobrand_ducati__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,8,cobrand_ducati__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,9,cobrand_ducati__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_ducati,co_branded_property,Lenovo Ducati,worldwide,10,cobrand_ducati__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Ducati
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,1,cobrand_fcwc__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,2,cobrand_fcwc__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,3,cobrand_fcwc__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,4,cobrand_fcwc__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,5,cobrand_fcwc__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,6,cobrand_fcwc__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,7,cobrand_fcwc__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,8,cobrand_fcwc__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,9,cobrand_fcwc__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+cobrand_fcwc,co_branded_property,Lenovo Club World Cup,worldwide,10,cobrand_fcwc__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Lenovo+Club+World+Cup
+donor_dell,competitor_donor,Dell,worldwide,1,donor_dell__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,2,donor_dell__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,3,donor_dell__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,4,donor_dell__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,5,donor_dell__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,6,donor_dell__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,7,donor_dell__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,8,donor_dell__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,9,donor_dell__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_dell,competitor_donor,Dell,worldwide,10,donor_dell__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Dell
+donor_asus,competitor_donor,Asus,worldwide,1,donor_asus__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,2,donor_asus__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,3,donor_asus__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,4,donor_asus__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,5,donor_asus__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,6,donor_asus__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,7,donor_asus__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,8,donor_asus__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,9,donor_asus__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_asus,competitor_donor,Asus,worldwide,10,donor_asus__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Asus
+donor_acer,competitor_donor,Acer,worldwide,1,donor_acer__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,2,donor_acer__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,3,donor_acer__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,4,donor_acer__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,5,donor_acer__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,6,donor_acer__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,7,donor_acer__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,8,donor_acer__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,9,donor_acer__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_acer,competitor_donor,Acer,worldwide,10,donor_acer__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Acer
+donor_hp,competitor_donor,HP laptop,worldwide,1,donor_hp__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,2,donor_hp__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,3,donor_hp__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,4,donor_hp__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,5,donor_hp__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,6,donor_hp__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,7,donor_hp__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,8,donor_hp__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,9,donor_hp__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_hp,competitor_donor,HP laptop,worldwide,10,donor_hp__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=HP+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,1,donor_samsung__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,2,donor_samsung__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,3,donor_samsung__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,4,donor_samsung__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,5,donor_samsung__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,6,donor_samsung__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,7,donor_samsung__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,8,donor_samsung__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,9,donor_samsung__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_samsung,competitor_donor,Samsung laptop,worldwide,10,donor_samsung__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Samsung+laptop
+donor_huawei,competitor_donor,Huawei,worldwide,1,donor_huawei__worldwide__draw01.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,2,donor_huawei__worldwide__draw02.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,3,donor_huawei__worldwide__draw03.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,4,donor_huawei__worldwide__draw04.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,5,donor_huawei__worldwide__draw05.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,6,donor_huawei__worldwide__draw06.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,7,donor_huawei__worldwide__draw07.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,8,donor_huawei__worldwide__draw08.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,9,donor_huawei__worldwide__draw09.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei
+donor_huawei,competitor_donor,Huawei,worldwide,10,donor_huawei__worldwide__draw10.csv,missing,https://trends.google.com/trends/explore?date=2022-01-01+2026-10-05&q=Huawei

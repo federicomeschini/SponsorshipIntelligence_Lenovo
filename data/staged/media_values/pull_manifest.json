@@ -1,0 +1,78 @@
+{
+  "source": "data\\raw\\media_values\\lenovo_media_values_fifa_competitions_oct24_apr26.xlsx",
+  "source_sha256": "20904c73863320b7c23f2714c9a0dba0a473050af0797858f5078bc087adf231",
+  "generated_at_utc": "2026-10-05T08:58:26.744760+00:00",
+  "status": "staged_comparison_only",
+  "banned_as_feature": true,
+  "permitted_use": "industry-claimed (AVE) comparison line only; never a model input (P1, W-08)",
+  "row_count": 66610,
+  "date_min": "2025-05-01",
+  "date_max": "2026-04-01",
+  "filename_period_label": "Oct24-Apr26",
+  "observed_period_note": "Dated rows start in May 2025; the October 2024 announcement period is not covered.",
+  "currency": "not stated in the export",
+  "measures": {
+    "media_value_full": "100% media equivalency (unadjusted AVE)",
+    "media_value_qi": "quality-index adjusted media value"
+  },
+  "totals": {
+    "media_value_full": 694447407.51,
+    "media_value_qi": 164694468.21,
+    "qi_to_full_ratio": 0.2372
+  },
+  "by_competition": {
+    "FIFA Club World Cup": {
+      "media_value_full": 453941544.77,
+      "media_value_qi": 121971300.78
+    },
+    "FIFA U-17 World Cup": {
+      "media_value_full": 172039633.46,
+      "media_value_qi": 24567618.27
+    },
+    "FIFA U-20 World Cup": {
+      "media_value_full": 43961539.82,
+      "media_value_qi": 12221495.6
+    },
+    "FIFA Beach Soccer World Cup": {
+      "media_value_full": 6381184.62,
+      "media_value_qi": 1919651.78
+    },
+    "FIFA U-17 Women's World Cup": {
+      "media_value_full": 8199980.09,
+      "media_value_qi": 1191676.31
+    },
+    "FIFA World Cup Play-Off Tournament": {
+      "media_value_full": 4206804.11,
+      "media_value_qi": 1188618.22
+    },
+    "FIFA Futsal Women's World Cup": {
+      "media_value_full": 3216394.43,
+      "media_value_qi": 983597.9
+    },
+    "FIFA Women's Champions Cup": {
+      "media_value_full": 2500326.23,
+      "media_value_qi": 650509.35
+    }
+  },
+  "competitions": [
+    "FIFA Beach Soccer World Cup",
+    "FIFA Club World Cup",
+    "FIFA Futsal Women's World Cup",
+    "FIFA U-17 Women's World Cup",
+    "FIFA U-17 World Cup",
+    "FIFA U-20 World Cup",
+    "FIFA Women's Champions Cup",
+    "FIFA World Cup Play-Off Tournament"
+  ],
+  "brand_lines": [
+    "Lenovo",
+    "Lenovo - Motorola",
+    "Lenovo - Motorola - Football Is Calling",
+    "Lenovo - Motorola - Make It Iconic",
+    "Lenovo - Smarter AI For All",
+    "Lenovo - Smarter Technology For All",
+    "Motorola",
+    "Motorola Razr"
+  ],
+  "markets": 226
+}

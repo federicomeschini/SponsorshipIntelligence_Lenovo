@@ -1,47 +1,65 @@
 {
   "source": "Yahoo Finance chart API",
-  "generated_at_utc": "2026-07-14T09:55:40.630251+00:00",
+  "generated_at_utc": "2026-10-05T14:09:26.262410+00:00",
   "config_path": "config/market.yaml",
   "horizon": {
     "start": "2022-01-01",
-    "end": "2026-07-14"
+    "end": "2026-10-05"
   },
-  "row_count": 4529,
+  "row_count": 7148,
   "pulls": [
     {
       "factor_id": "LENOVO",
       "ticker": "0992.HK",
-      "file": "LENOVO__20220101_20260714.json",
-      "url": "https://query1.finance.yahoo.com/v8/finance/chart/0992.HK?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
-      "sha256": "f1068f8383ef05f9481a7749154d6d5f3510b41ad17454e9942f57fac5d54d13",
-      "row_count": 1109,
-      "cache_hit": false
+      "file": "LENOVO__20220101_20261005.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/0992.HK?period1=1640995200&period2=1791244800&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "9fa7f5ab24358bd9b5d1a0269eba58b702d8adce8a5c99c8229bf33229767bf1",
+      "row_count": 1167,
+      "cache_hit": true
     },
     {
       "factor_id": "HSI",
       "ticker": "^HSI",
-      "file": "HSI__20220101_20260714.json",
-      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
-      "sha256": "0168a77200aaf2a74b0e7ad0a9508be39b18aae0f508e9db55bf07a35e95faf3",
-      "row_count": 1109,
-      "cache_hit": false
+      "file": "HSI__20220101_20261005.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5EHSI?period1=1640995200&period2=1791244800&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "229e19375ca1f408a32d00d7b803ec7a6f5d40b3ec7d961afcfab7e4d112806d",
+      "row_count": 1167,
+      "cache_hit": true
     },
     {
       "factor_id": "NDX",
       "ticker": "^NDX",
-      "file": "NDX__20220101_20260714.json",
-      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
-      "sha256": "093822b082bf0766ae42b6185db634bdf2b393ca9fdbe14719f5953dd95b3098",
-      "row_count": 1134,
-      "cache_hit": false
+      "file": "NDX__20220101_20261005.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1640995200&period2=1791244800&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "04133cc7e080f0a0d40a22d81b2cd15296889b8364f48a667d76dd4ea254407b",
+      "row_count": 1192,
+      "cache_hit": true
     },
     {
       "factor_id": "USDHKD",
       "ticker": "HKD=X",
-      "file": "USDHKD__20220101_20260714.json",
-      "url": "https://query1.finance.yahoo.com/v8/finance/chart/HKD%3DX?period1=1640995200&period2=1784073600&interval=1d&events=history&includeAdjustedClose=true",
-      "sha256": "af1f0b912f3c302274f78b0dc832720c19a385541406684f4db3d95c7e136d2a",
-      "row_count": 1177,
+      "file": "USDHKD__20220101_20261005.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/HKD%3DX?period1=1640995200&period2=1791244800&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "70c9376c6d786d23795ad04b5a5e42204fc8d5bb4f4e7dc3fb803b16b47b3d9a",
+      "row_count": 1236,
+      "cache_hit": true
+    },
+    {
+      "factor_id": "UST10Y",
+      "ticker": "^TNX",
+      "file": "UST10Y__20220101_20261005.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETNX?period1=1640995200&period2=1791244800&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "42fafbd263cce6957d69f9b814b24384d28a7dbe2f52ec8d164d762e1245be38",
+      "row_count": 1193,
+      "cache_hit": false
+    },
+    {
+      "factor_id": "ACWI",
+      "ticker": "ACWI",
+      "file": "ACWI__20220101_20261005.json",
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/ACWI?period1=1640995200&period2=1791244800&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "deb0a24b57b065db382a99222740d132ea2239f5a254a34ca2ba7c169c77c544",
+      "row_count": 1193,
       "cache_hit": false
     }
   ],

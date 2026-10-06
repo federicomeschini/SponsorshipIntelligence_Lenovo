@@ -4,7 +4,7 @@ SELECT
   COUNT(DISTINCT DocumentIdentifier) AS news_volume,
   AVG(SAFE_CAST(SPLIT(V2Tone, ',')[SAFE_OFFSET(0)] AS FLOAT64)) AS mean_tone
 FROM `gdelt-bq.gdeltv2.gkg_partitioned`
-WHERE _PARTITIONDATE BETWEEN DATE('2022-01-01') AND DATE('2026-07-14')
+WHERE _PARTITIONDATE BETWEEN DATE('2022-01-01') AND DATE('2026-10-05')
   AND REGEXP_CONTAINS(LOWER(COALESCE(V2Organizations, '')), r'(^|[;,])lenovo([,;]|$)')
 GROUP BY date
 ORDER BY date;

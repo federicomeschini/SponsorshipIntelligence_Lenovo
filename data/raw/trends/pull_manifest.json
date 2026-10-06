@@ -1,6 +1,6 @@
 {
   "source": "Google Trends",
-  "generated_at_utc": "2026-07-14T14:50:52.650646+00:00",
+  "generated_at_utc": "2026-10-05T09:58:13.218088+00:00",
   "config_path": "config/queries_trends.yaml",
   "composition_id": "worldwide_v1",
   "backend": "anonymous_web",
@@ -11,16 +11,15 @@
   "draws_required_per_query": 10,
   "expected_export_count": 170,
   "available_export_count": 0,
-  "fetched_draws_ok": 163,
-  "fetched_draws_failed": 7,
+  "fetched_draws_ok": 164,
+  "fetched_draws_failed": 6,
   "missing_exports": [
     "cobrand_fcwc__worldwide__draw01",
     "cobrand_fcwc__worldwide__draw02",
     "cobrand_fcwc__worldwide__draw03",
     "cobrand_fcwc__worldwide__draw04",
     "cobrand_fcwc__worldwide__draw05",
-    "cobrand_fcwc__worldwide__draw06",
-    "cobrand_fcwc__worldwide__draw07"
+    "cobrand_fcwc__worldwide__draw06"
   ],
   "ignored_manual_files": [
     "multiTimeline.csv"

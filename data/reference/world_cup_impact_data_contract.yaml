@@ -14,7 +14,7 @@ incoming_tables:
     required_columns: [property_id, week, impressions, views, days_observed, measurement_scope]
     invariants:
       - Zero means observed zero; missing coverage remains missing.
-      - media_value is prohibited from all models.
+      - media_value is prohibited as a monetary model input; ADR-0028 allows it only as a unitless relative-intensity weight in sensitivities.
   world_cup_event_calendar:
     grain: event
     required_columns: [event_id, event_type, event_timestamp_utc, property_id, source, status]
