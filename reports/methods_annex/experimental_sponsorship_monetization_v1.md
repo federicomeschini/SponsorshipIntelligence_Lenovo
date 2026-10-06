@@ -1,5 +1,11 @@
 # Experimental sponsorship-to-monetization path v1
 
+> **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
+> - *Affected:* counterfactual gate (the announcement candidate no longer passes: p = 2/12), exposure coverage (now to 20 July 2026), the remark that the workspace has no Git repository
+> - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session
+> - *Consequence for interpretation:* the bridge remains blocked for valuation, now for an additional reason (attribution not distinguishable)
+> - *Required action:* rewrite as a review notebook (tracked under "Open documentation actions" in `README.md`).
+
 ## Status and purpose
 
 This is a logical experimental branch, not a Git branch: the workspace has no

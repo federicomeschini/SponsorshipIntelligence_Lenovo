@@ -1,5 +1,7 @@
 # World Cup sponsorship impact preregistration
 
+> **Protocol current; implementation status updated (2026-10-06).** The frozen protocol below still governs the evaluation. Since it was written: tournament milestones were filled from the official FIFA calendar (ADR-0027), the estimator was implemented with a post-hoc factor-model robustness check (ADR-0029), and interim results are reviewed in [`20_world_cup_impact_interim.ipynb`](20_world_cup_impact_interim.ipynb). Statements below that dates are null or that only a skeleton exists describe July 2026.
+
 ## Why this is the primary evaluation
 
 The largest effect of the Lenovo sponsorship may occur during the World Cup,

@@ -1,5 +1,11 @@
 # Brand Index-to-financial bridge v1
 
+> **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
+> - *Affected:* sample size and coefficients (now 17 quarters including FY26/27 Q1); the World Cup cases, which now use the interim engine (ADR-0036)
+> - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session
+> - *Consequence for interpretation:* quoted coefficients and dollar figures are July values; the overall conclusion (no profit coefficient approved) still holds in the current output
+> - *Required action:* rewrite as a review notebook reading `data/curated/experimental/brand_financial_bridge_v1/` (tracked under "Open documentation actions" in `README.md`).
+
 > **Status:** exploratory single-company association. No coefficient in this
 > branch is approved for sponsorship valuation.
 

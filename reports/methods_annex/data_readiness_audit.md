@@ -1,5 +1,7 @@
 # Data readiness audit — 2026-07-14
 
+> **SUPERSEDED for data coverage by [`00_data_inputs.ipynb`](00_data_inputs.ipynb) (2026-10-06).** The survey-readiness findings below remain valid (survey inputs unchanged since July 2026); all coverage dates are July values.
+
 ## Current position
 
 The supplied consumer-research workbook is a segmented crosstab, not a

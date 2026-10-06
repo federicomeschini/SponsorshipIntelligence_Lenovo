@@ -1,5 +1,7 @@
 # Survey source audit
 
+> **Current as of 2026-10-06:** no new survey exports have been received since this audit.
+
 ## Verdict
 
 The consumer-research workbook is usable as a **segmented crosstab source**.

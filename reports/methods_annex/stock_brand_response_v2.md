@@ -1,5 +1,11 @@
 # Brand Index-to-stock response v2
 
+> **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
+> - *Affected:* every estimate: immediate response now +0.15 pp per unexpected BI point (p = 0.85; July +0.305), 13-week now -0.09 pp (July +9.4)
+> - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session
+> - *Consequence for interpretation:* the July text overstates the share-price link; with current data no horizon shows a signal
+> - *Required action:* rewrite as a review notebook reading `data/curated/experimental/stock_brand_response_v2/` (tracked under "Open documentation actions" in `README.md`).
+
 > **Status:** exploratory market association. It is not a profit coefficient,
 > a causal sponsorship estimate, or an accepted valuation input.
 

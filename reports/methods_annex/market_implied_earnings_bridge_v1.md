@@ -1,5 +1,11 @@
 # Market-implied earnings bridge v1
 
+> **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
+> - *Affected:* per-BI-point mapping (now US$3.02m, July US$6.25m); the superseded-by reference (now `sponsorship_total_return_v3`); World Cup cases (now interim engine)
+> - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session
+> - *Consequence for interpretation:* do not quote US$6.25m per point; see `40_brand_value.ipynb` for the current valuation routes
+> - *Required action:* fold into `40_brand_value.ipynb` or rewrite as its own notebook (tracked under "Open documentation actions" in `README.md`).
+
 > **Status:** the per-BI unit calibration remains a planning diagnostic, but
 > its US$45.7m single-multiplication result is superseded for total-return use
 > by sponsorship_total_return_v2.

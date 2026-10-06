@@ -1,5 +1,11 @@
 # Lenovo-only multi-signal index comparison
 
+> **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
+> - *Affected:* all comparison statistics (now include GDELT and Trends through early October 2026)
+> - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session
+> - *Consequence for interpretation:* comparison figures are July values
+> - *Required action:* refresh within the Brand Index review notebook (tracked under "Open documentation actions" in `README.md`).
+
 This is an experimental comparison of Lenovo-only brand-performance composites.
 It does not replace the canonical simple parent-brand salience index. It is a
 descriptive measurement comparison, not a forecast competition.
