@@ -1,7 +1,7 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "role": "primary_sponsorship_impact_evaluation",
-  "protocol_hash": "261ba608d64121089c14e153a2c28cf3f374241e5c1a1897aa312026f209f7aa",
+  "protocol_hash": "bee13e0bad0a89d81d21b5ce1105719c935677fe824bc893b36d16f1eb2b44e4",
   "frozen_estimands": {
     "primary": {
       "name": "sustained_world_cup_brand_index_uplift",

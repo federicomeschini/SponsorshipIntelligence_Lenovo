@@ -6,7 +6,8 @@ inputs:
   quarterly_financials: data/reference/lenovo_quarterly_financials.csv
   market_valuation_reference: data/reference/lenovo_market_valuation_reference.csv
   announcement_counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
-  world_cup_simulation_manifest: data/curated/experimental/world_cup_simulation_v1/simulation_manifest.json
+  world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
+  sponsorship_counterfactual_weekly: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet
 
 calibration:
   selected_horizon_weeks: 0

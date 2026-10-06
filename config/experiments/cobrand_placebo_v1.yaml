@@ -1,0 +1,35 @@
+experiment_id: cobrand_placebo_v1
+status: cobrand_association_placebo_test_ADR_0035
+
+# Fixed before the co-brand placebo data were downloaded.
+inputs:
+  cobrand_trends: data/curated/trends/cobrand_placebo_trends.parquet
+  lenovo_property_trends: data/curated/trends/trends_weekly_averaged.parquet
+
+constructs:
+  fifa:
+    treated: cobrand_lenovo_fifa
+    placebos: [fifa_dell, fifa_hp, fifa_asus, fifa_acer, fifa_msi, fifa_apple, fifa_microsoft,
+               fifa_razer, fifa_sony, fifa_xiaomi, fifa_huawei, fifa_intel]
+  world_cup:
+    treated: worldcup_lenovo
+    placebos: [worldcup_dell, worldcup_hp, worldcup_asus, worldcup_acer, worldcup_msi, worldcup_apple,
+               worldcup_microsoft, worldcup_razer, worldcup_sony, worldcup_xiaomi, worldcup_huawei]
+
+baseline_window: [2023-10-16, 2024-10-13]     # 52 weeks before the announcement, after EA's FIFA-to-FC rename
+test_windows:
+  post_announcement_pre_world_cup: [2024-10-21, 2026-06-07]
+  world_cup_tournament: [2026-06-08, 2026-07-19]
+  after_the_final: [2026-07-20, null]
+provisional_trailing_weeks: 2
+log_floor: 1.0                                  # common-scale units added before taking logs
+statistic: log((window mean + floor) / (baseline mean + floor))
+p_value: one-sided rank of Lenovo among treated + placebos (1 + #placebos >= Lenovo) / (1 + placebos)
+significance_level: 0.10
+
+# Within-Lenovo comparison: the same log change for Lenovo's other sponsored
+# properties (separately normalised queries, so only the log change is comparable).
+lenovo_property_queries: [cobrand_fifa, cobrand_f1, cobrand_motogp, cobrand_ducati]
+
+outputs:
+  directory: data/curated/experimental/cobrand_placebo_v1

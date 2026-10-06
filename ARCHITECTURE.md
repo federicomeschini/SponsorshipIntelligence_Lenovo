@@ -59,7 +59,7 @@ Every screen, table, and estimate in the platform maps to one arrow or one node 
 
 | # | Principle | Consequence |
 |---|-----------|-------------|
-| P1 | **Exposure is treatment intensity, never monetary value.** | Advertising Value Equivalency (AVE) and Blinkfire's `media_value` field are banned as inputs to any model. They may appear only as an "industry-claimed value" comparison line in the UI. |
+| P1 | **Exposure is treatment intensity, never monetary value.** | Advertising Value Equivalency (AVE) and Blinkfire's `media_value` field are banned as monetary inputs to any model. They may appear as an "industry-claimed value" comparison line in the UI. *Amended by ADR-0028:* media value may also be used as a unitless relative exposure-intensity weight (its within-sample shape, rescaled to sum to one) in labelled sensitivity analyses; its amounts never enter attribution, valuation or ROI. |
 | P2 | **Stock prices are never regressed in levels.** | The financial layer operates exclusively on abnormal returns from a factor model (event-study framework). Any regression involving raw or log price levels is a defect. |
 | P3 | **Survey and proxy roles must be explicit.** | The current weekly index is proxy-led: the parent-brand proxy supplies weekly movement, while GWI supplies orientation and display-scale calibration. It must not be described as weekly survey measurement or as an interpolation that passes through survey values. Funnel-stage evidence remains at survey frequency. |
 | P4 | **Every proxy must pass the validation gate (§5.2) before entering the index.** | No proxy is admitted on plausibility alone. Quarterly correlation with the survey (composite AND stage-level) is a hard gate. |
@@ -236,11 +236,10 @@ srmp/
 │   ├── validation/          # proxy gate (L1)
 │   ├── index/               # composite.py / proxy_led.py (L2)
 │   ├── exposure/            # adstock, aggregation (L3)
-│   ├── elasticity/          # brand_dl.py, property_panel.R (L4)
-│   ├── financial/           # factor_model.py, event_study.py (L5)
-│   ├── counterfactual/      # scm.py, placebos.py (L6)
-│   ├── roi/                 # royalty_relief.py, sensitivity.py (L7)
-│   └── viz/                 # dashboard data contracts + chart builders
+│   ├── counterfactual/      # scm.py: simplex SCM, ASCM, SDID, factor model (L6)
+│   ├── roi/                 # royalty_schedule.py (L7)
+│   ├── experiments/         # one module per experiment; L4-L7 analyses live here
+│   └── pipeline.py          # ordered rebuild of every derived artifact
 ├── reports/
 │   ├── placebos/
 │   └── methods_annex/
@@ -342,7 +341,7 @@ banned_features: [blinkfire.media_value]
 | W-05 | **Spurious regression risk on trending series** | Index and adstock enter regressions in differences or with deterministic trend controls; unit-root screening (ADF/KPSS) logged per series; never regress two levels series without cointegration justification (which is out of scope → so never). |
 | W-06 | **Broadcast/earned exposure not in Blinkfire** (biggest World Cup exposure component missing) | Declared blind spot: caveat CV-01/CV-02 on affected views. Elasticities are labelled "per owned/social impression, upward-biased if broadcast co-moves". `[OPEN]` optional extension: ingest GRP/broadcast audience data if client provides; schema slot reserved in C-EXPOSURE (`channel` column). |
 | W-07 | **HKEX timezone/calendar vs. event timestamps** | All D7 timestamps stored in UTC + local tz; mapping rule: event → first HKEX trading session with a close AFTER the event moment. Half-day sessions and HK holidays from exchange calendar package. Unit-tested. |
-| W-08 | **Blinkfire media_value contamination** | Column ingested but registered in `banned_features`. CI test fails the build if any model artifact lists it among regressors/features. Appears only in V0 comparison view. |
+| W-08 | **Blinkfire media_value contamination** | Column ingested but registered in `banned_features`. CI test fails the build if media value is read anywhere except its ingest and the ADR-0028 relative-intensity sensitivity, or if that sensitivity uses monetary totals. Monetary amounts appear only in the V0 comparison view. |
 | W-09 | **Trends geo/language composition drift** | Query families defined per geo in `queries_trends.yaml` (incl. "联想" for CN where Google coverage is unreliable → flag CN as low-quality geo; prefer Wikipedia zh pageviews for CN salience). Composition fixed by config version; changes require a DECISIONS.md entry. |
 | W-10 | **Proxy structural breaks** (Wikipedia redesigns, GDELT ingest changes, Trends rebasing) | Break detection (Bai–Perron or simple CUSUM) on every proxy at refresh; detected break → proxy auto-moved to `watchlist`, index re-estimated without it, alert emitted. |
 | W-11 | **Endogenous exposure timing** (posts spike when brand news is good) | GDELT tone as control in L4a; week FE in L4b absorb brand-wide shocks; robustness: re-estimate excluding product-launch weeks. Documented residual risk. |
@@ -389,7 +388,7 @@ Once a layer's output is validated by a human, freeze key numbers (e.g., δ̂, �
 ## 11. Agent guardrails — hard constraints
 
 **MUST NOT**
-1. Use `blinkfire.media_value` (or any AVE-style monetary exposure valuation) as a model input. (P1, W-08)
+1. Use `blinkfire.media_value` (or any AVE-style monetary exposure valuation) as a monetary model input; the only permitted model use is the unitless relative-intensity sensitivity of ADR-0028. (P1, W-08)
 2. Regress stock prices in levels, or include stock returns/prices as an input to the Brand Index. (P2; circularity)
 3. Interpolate the survey linearly or describe GWI calibration points as weekly anchors. (P3)
 4. Admit a proxy into L2 that has not passed the L1 gate, or keep one that a structural-break check has quarantined. (P4, W-10)

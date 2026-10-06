@@ -1,0 +1,135 @@
+{
+  "experiment_id": "announcement_design_selection_v1",
+  "status": "pre_period_design_selection_then_single_estimate_ADR_0034",
+  "generated_at_utc": "2026-10-06T13:22:48.062852+00:00",
+  "selection": {
+    "selected_method": "synthetic_did",
+    "selected_pool": "base_plus_sensitivity",
+    "selected_donors": [
+      "donor_dell",
+      "donor_asus",
+      "donor_acer",
+      "donor_hp",
+      "donor_microsoft_surface",
+      "donor_razer",
+      "donor_logitech",
+      "donor_macbook",
+      "donor_corsair",
+      "donor_steelseries",
+      "donor_benq",
+      "donor_huawei",
+      "donor_msi"
+    ],
+    "post_period_outcomes_accessed": false,
+    "data_weeks_seen": [
+      "2022-01-03",
+      "2024-10-14"
+    ]
+  },
+  "primary": {
+    "donor_pool": "base_plus_sensitivity",
+    "method": "synthetic_did",
+    "window": "all_post",
+    "placebo_filter": "none",
+    "statistic": "rmspe_ratio",
+    "lift_index_points": 1.1492264773365874,
+    "pre_rmspe_index_points": 0.5454902049494641,
+    "treated_statistic": 3.3655915206016815,
+    "placebos_kept": 13,
+    "p_value": 0.2857142857142857,
+    "selected_design": true,
+    "is_primary": true,
+    "placebos": [
+      {
+        "placebo_unit": "donor_dell",
+        "pre_rmspe_z": 0.8233894608105213,
+        "rmspe_ratio": 1.9901300061527456,
+        "mean_gap_over_pre_rmspe": 1.1439576597890946
+      },
+      {
+        "placebo_unit": "donor_asus",
+        "pre_rmspe_z": 0.5636826165074563,
+        "rmspe_ratio": 3.665028418689091,
+        "mean_gap_over_pre_rmspe": 2.284409157874071
+      },
+      {
+        "placebo_unit": "donor_acer",
+        "pre_rmspe_z": 0.6190519386061292,
+        "rmspe_ratio": 1.8182789864380973,
+        "mean_gap_over_pre_rmspe": -0.5437704655617848
+      },
+      {
+        "placebo_unit": "donor_hp",
+        "pre_rmspe_z": 0.7778256611478497,
+        "rmspe_ratio": 2.20769215780496,
+        "mean_gap_over_pre_rmspe": -0.4021610794842897
+      },
+      {
+        "placebo_unit": "donor_microsoft_surface",
+        "pre_rmspe_z": 0.827509272672307,
+        "rmspe_ratio": 1.9899005631604227,
+        "mean_gap_over_pre_rmspe": -1.4096616953844459
+      },
+      {
+        "placebo_unit": "donor_razer",
+        "pre_rmspe_z": 0.6521882675088287,
+        "rmspe_ratio": 3.133968771377275,
+        "mean_gap_over_pre_rmspe": -2.306344929175252
+      },
+      {
+        "placebo_unit": "donor_logitech",
+        "pre_rmspe_z": 0.7995834979426037,
+        "rmspe_ratio": 1.2116439718808112,
+        "mean_gap_over_pre_rmspe": -0.43044945781992777
+      },
+      {
+        "placebo_unit": "donor_macbook",
+        "pre_rmspe_z": 0.8669529539862353,
+        "rmspe_ratio": 4.576340493730595,
+        "mean_gap_over_pre_rmspe": 3.2669670551517465
+      },
+      {
+        "placebo_unit": "donor_corsair",
+        "pre_rmspe_z": 0.7465421223855747,
+        "rmspe_ratio": 1.9764232690646315,
+        "mean_gap_over_pre_rmspe": 0.6273495593767972
+      },
+      {
+        "placebo_unit": "donor_steelseries",
+        "pre_rmspe_z": 0.8833101365534741,
+        "rmspe_ratio": 2.5450881455474494,
+        "mean_gap_over_pre_rmspe": -1.7476154781735256
+      },
+      {
+        "placebo_unit": "donor_benq",
+        "pre_rmspe_z": 1.0520503537454782,
+        "rmspe_ratio": 5.0116765474793965,
+        "mean_gap_over_pre_rmspe": 3.059139996178033
+      },
+      {
+        "placebo_unit": "donor_huawei",
+        "pre_rmspe_z": 1.0643805876297334,
+        "rmspe_ratio": 3.3044285546289176,
+        "mean_gap_over_pre_rmspe": -2.6237850157015394
+      },
+      {
+        "placebo_unit": "donor_msi",
+        "pre_rmspe_z": 1.2272696490531103,
+        "rmspe_ratio": 1.7662564535585497,
+        "mean_gap_over_pre_rmspe": 0.7063424125512344
+      }
+    ]
+  },
+  "passes_primary_test": false,
+  "specification_curve_summary": {
+    "specifications": 216,
+    "share_lift_positive": 1.0,
+    "share_p_at_or_below_alpha": 0.013888888888888888,
+    "selected_design_share_p_at_or_below_alpha": 0.0,
+    "lift_range_index_points": [
+      0.2748445174233113,
+      1.8165051341926564
+    ]
+  },
+  "note": "Primary inference is unchanged from sponsorship_counterfactual_v1; only the design is re-selected on pre-period evidence."
+}

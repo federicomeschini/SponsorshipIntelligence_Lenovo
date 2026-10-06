@@ -1,5 +1,7 @@
 # World Cup simulation v1
 
+> **Retired (ADR-0036): the simulation was replaced by observed Blinkfire exposure in the world_cup_impact_v1 engine; the official calendar now comes from srmp/ingest/fifa_calendar.py.**
+
 > **Status:** simulation only, incomplete outcome, never an accepted attribution
 > or valuation input. This branch does not replace the preregistered World Cup
 > evaluation or any canonical data contract.

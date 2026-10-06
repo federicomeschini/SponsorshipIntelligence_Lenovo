@@ -16,6 +16,8 @@ import pyarrow.parquet as pq
 import yaml
 from scipy.optimize import minimize
 
+from srmp.exposure.adstock import geometric_adstock
+
 
 def _load(path: str) -> pd.DataFrame:
     source = Path(path)
@@ -348,6 +350,95 @@ def _exposure_control_regression(
     }
 
 
+def _media_value_intensity(spec: dict[str, Any]) -> pd.DataFrame:
+    """Weekly relative exposure intensity from media value (ADR-0028).
+
+    Media value proxies audience x on-screen time x visibility quality x market
+    rate, so it carries broadcast exposure that Blinkfire omits. Only its
+    within-sample shape is used: adstock is rescaled to sum to one, so no
+    monetary amount leaves this function.
+    """
+    daily = _load(spec["path"])
+    measure = spec["measure"]
+    if not bool(daily["banned_as_feature"].all()):
+        raise ValueError("Media value rows must carry the monetary-use ban flag.")
+    daily["week"] = pd.to_datetime(daily["week"])
+    weekly = daily.groupby("week")[measure].sum()
+    grid = pd.date_range(weekly.index.min(), weekly.index.max(), freq="W-MON")
+    weekly = weekly.reindex(grid, fill_value=0.0)
+    adstock = pd.Series(
+        geometric_adstock(weekly.to_numpy(dtype=float), float(spec["adstock_delta"])),
+        index=grid,
+    )
+    return pd.DataFrame({
+        "media_intensity_week_share": weekly / weekly.sum(),
+        "media_intensity_adstock_share": adstock / adstock.sum(),
+    }).rename_axis("week")
+
+
+def _media_value_sensitivity(
+    gap: pd.Series,
+    post: pd.Series,
+    exposure_controls: pd.DataFrame,
+    event_controls: pd.DataFrame,
+    spec: dict[str, Any],
+    hac_lags: int,
+) -> dict[str, Any]:
+    """Re-weight the gap and re-run the timing check on media-value intensity."""
+    intensity = _media_value_intensity(spec)
+    frame = intensity.join(pd.DataFrame({"gap": gap, "post": post}), how="inner").join(
+        exposure_controls[["fifa_adstock", "fifa_impressions", "nonfifa_adstock"]], how="left"
+    )
+    frame = frame[frame["post"].astype(bool)].dropna(subset=["gap"])
+    exposure_columns = ["fifa_adstock", "fifa_impressions", "nonfifa_adstock"]
+    frame[exposure_columns] = frame[exposure_columns].fillna(0.0)
+    media_w = frame["media_intensity_adstock_share"]
+    blink_w = frame["fifa_adstock"]
+    timing_controls = pd.DataFrame({
+        "fifa_adstock": frame["media_intensity_adstock_share"],
+        "nonfifa_adstock": frame["nonfifa_adstock"],
+    })
+    timing = _exposure_control_regression(frame["gap"], timing_controls, event_controls, hac_lags)
+    timing["coefficients"]["media_intensity_log_adstock_z"] = timing["coefficients"].pop(
+        "fifa_log_adstock_z"
+    )
+    timing["regressor_definition"].pop("fifa_log_adstock_z", None)
+    timing["regressor_definition"]["media_intensity_log_adstock_z"] = (
+        "standardized log1p of the media-value adstock share (unitless relative intensity)"
+    )
+    coefficient = timing["coefficients"]["media_intensity_log_adstock_z"]["estimate_index_points"]
+    return {
+        "role": "sensitivity_only_relative_exposure_intensity",
+        "decision": "ADR-0028",
+        "source": spec["path"],
+        "source_sha256": _sha256(spec["path"]),
+        "measure": spec["measure"],
+        "adstock_delta": float(spec["adstock_delta"]),
+        "monetary_totals_used": False,
+        "window_start": frame.index.min().date().isoformat(),
+        "window_end": frame.index.max().date().isoformat(),
+        "window_weeks": int(len(frame)),
+        "weeks_with_media_value": int((frame["media_intensity_week_share"] > 0).sum()),
+        "media_intensity_weighted_gap_index_points": float((frame["gap"] * media_w).sum() / media_w.sum()),
+        "blinkfire_weighted_gap_same_window_index_points": (
+            float((frame["gap"] * blink_w).sum() / blink_w.sum()) if blink_w.sum() > 0 else None
+        ),
+        "unweighted_mean_gap_same_window_index_points": float(frame["gap"].mean()),
+        "weekly_correlation_with_blinkfire_fifa_impressions": {
+            "pearson": float(frame["media_intensity_week_share"].corr(frame["fifa_impressions"])),
+            "spearman": float(frame["media_intensity_week_share"].corr(
+                frame["fifa_impressions"], method="spearman")),
+        },
+        "timing_regression": timing,
+        "timing_coherence_support": "directionally_supported" if coefficient > 0 else "not_supported",
+        "limitations": [
+            "Media value covers 2025-05 to 2026-04: no 2024 announcement weeks and no 2026 Men's World Cup.",
+            "Market rate cards weight audiences by local advertising prices, so this is value-weighted exposure, not unique contacts.",
+            "Vendor methodology (channels, QI definition, currency) is not documented in the export.",
+        ],
+    }
+
+
 def build_counterfactual(
     config_path: str = "config/experiments/sponsorship_counterfactual_v1.yaml",
     output_dir: str = "data/curated/experimental/sponsorship_counterfactual_v1",
@@ -375,6 +466,14 @@ def build_counterfactual(
     weighted_delta = _exposure_weighted_gap(gap, exposure_controls, treatment)
     exposure_regression = _exposure_control_regression(
         gap, exposure_controls, event_controls, int(config["exposure"]["hac_lags"])
+    )
+    media_spec = config.get("media_value_intensity")
+    media_sensitivity = (
+        _media_value_sensitivity(
+            gap, post, exposure_controls, event_controls, media_spec,
+            int(config["exposure"]["hac_lags"]),
+        )
+        if media_spec else None
     )
     event_any = event_controls.max(axis=1).reindex(gap.index, fill_value=0.0).gt(0)
     gap_without_event_weeks = gap.mask(event_any)
@@ -460,6 +559,10 @@ def build_counterfactual(
     (target / "exposure_control_regression.json").write_text(
         json.dumps(exposure_regression, indent=2) + "\n", encoding="utf-8"
     )
+    if media_sensitivity:
+        (target / "media_value_intensity_sensitivity.json").write_text(
+            json.dumps(media_sensitivity, indent=2) + "\n", encoding="utf-8"
+        )
 
     fit_pass = pre_rmspe <= float(config["screen"]["max_pre_rmspe_index_points"])
     placebo_pass = placebo_p <= float(config["screen"]["max_placebo_p_value"])
@@ -519,6 +622,15 @@ def build_counterfactual(
             "quality_screen_artifact": "donor_quality_screen.parquet",
             "joint_panel_path": config["inputs"]["joint_donor_trends"],
         },
+        "media_value_intensity_sensitivity": (
+            {key: media_sensitivity[key] for key in (
+                "role", "decision", "window_start", "window_end", "window_weeks",
+                "media_intensity_weighted_gap_index_points",
+                "blinkfire_weighted_gap_same_window_index_points",
+                "unweighted_mean_gap_same_window_index_points",
+                "timing_coherence_support", "monetary_totals_used",
+            )} if media_sensitivity else None
+        ),
         "sensitivity_range": {
             "exposure_weighted_min": float(sensitivity_frame["exposure_weighted_gap"].min()),
             "exposure_weighted_max": float(sensitivity_frame["exposure_weighted_gap"].max()),
@@ -528,7 +640,7 @@ def build_counterfactual(
             "Huawei and MSI are sensitivity-only because of comparability or World Cup vendor-visibility concerns.",
             "Product and campaign controls are event-week indicators, not media-spend or launch-intensity measures.",
             "Synthetic control isolates Lenovo-specific excess salience under donor assumptions; it does not prove sponsorship is the only cause.",
-            "Blinkfire exposure omits broadcast, so exposure-weighting covers digital/social/owned exposure only.",
+            "Blinkfire exposure omits broadcast, so the primary exposure-weighting covers digital/social/owned exposure only; a media-value intensity sensitivity (ADR-0028) adds broadcast-inclusive weighting for 2025-05 to 2026-04.",
             "Blinkfire coverage starts 2024-09-30, leaving only three observed weeks before the first full post-treatment week.",
             "The FIFA versus non-FIFA exposure regression is a timing diagnostic, not a causal estimator, because Lenovo chooses activation timing.",
             "Negative treatment-contamination searches are evidence-bounded and must be refreshed when FIFA announces new partners or brands launch World Cup campaigns.",

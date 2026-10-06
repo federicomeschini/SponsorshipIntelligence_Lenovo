@@ -32,9 +32,9 @@ def test_proxy_led_index_uses_validated_brand_trend_and_not_survey_pinning():
     assert manifest["calibration"]["correlation"] > 0
     assert "price_queries" in manifest["excluded_from_core_index"]
     rows = pq.read_table(ROOT / "data/curated/index/brand_index_weekly.parquet").to_pylist()
-    assert len(rows) == 236
+    assert len(rows) == 248
     assert str(rows[0]["week"]) == "2022-01-03"
-    assert str(rows[-1]["week"]) == "2026-07-06"
+    assert str(rows[-1]["week"]) == "2026-09-28"
     assert all(row["source_version"] == "v4_proxy_led_brand_calibrated" for row in rows)
     assert not any(row["anchored"] for row in rows)
     components = pq.read_table(
@@ -73,7 +73,7 @@ def test_multisignal_method_comparison_is_lenovo_only_and_complete():
     table = pq.read_table(
         ROOT / "data/curated/index/brand_index_method_comparison_weekly.parquet"
     )
-    assert table.num_rows == 236
+    assert table.num_rows == 248
     assert set(table.column_names) == {
         "week",
         "evidence_weighted_index_level", "evidence_weighted_index_se",

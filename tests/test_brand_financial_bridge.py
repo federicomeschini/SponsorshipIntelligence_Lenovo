@@ -20,9 +20,10 @@ def test_financial_bridge_uses_direct_profit_and_is_not_accepted():
     assert "not profit" in manifest["stock_corroboration"]["interpretation"]
 
 
-def test_quarterly_panel_contains_16_official_lenovo_periods_and_controls():
+def test_quarterly_panel_contains_official_lenovo_periods_and_controls():
     panel = pd.read_parquet(EXPERIMENT / "quarterly_financial_bridge.parquet")
-    assert len(panel) == 16
+    # FY22/23 Q1 through FY26/27 Q1 (added October 2026, ADR-0027).
+    assert len(panel) == 17
     assert panel["revenue_usd_m"].gt(0).all()
     assert panel["adjusted_net_income_usd_m"].gt(0).all()
     assert panel["source_url"].str.startswith(
@@ -52,8 +53,8 @@ def test_monetization_cases_are_mechanical_and_never_accepted():
     assert set(scenarios["case"]) == {
         "one_brand_index_point",
         "announcement_period_candidate",
-        "world_cup_total_sponsorship_path_simulation",
-        "world_cup_incremental_tournament_simulation",
+        "world_cup_total_sponsorship_path_interim",
+        "world_cup_incremental_tournament_interim",
     }
     assert not scenarios["accepted_for_valuation"].any()
     unit = scenarios[scenarios["case"].eq("one_brand_index_point")].iloc[0]

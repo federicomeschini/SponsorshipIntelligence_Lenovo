@@ -1,0 +1,137 @@
+{
+  "experiment_id": "sponsorship_total_return_v3",
+  "status": "prototype_sustained_level_planning_valuation",
+  "generated_at_utc": "2026-10-06T13:25:05.416454+00:00",
+  "accepted_for_planning": false,
+  "accepted_for_accounting_or_causal_claim": false,
+  "evidence": {
+    "attribution_status": "candidate_not_distinguishable",
+    "attribution_accepted": false,
+    "base_13_week_response": {
+      "estimate": 0.03109948107060024,
+      "lower_95": -0.02001606160841319,
+      "upper_95": 0.08221502374961367
+    },
+    "response_identified": false
+  },
+  "sustained_levels_index_points": {
+    "all_post_mean": 0.8645303597046133,
+    "exposure_weighted": 0.7707148828420021,
+    "pre_tournament_post_mean": 0.8344581433976541,
+    "trailing_26_week_mean": 1.778298220798794
+  },
+  "innovation_conversion": {
+    "mean_lag_coefficient": -0.23377065443418038,
+    "factor": 1.2337706544341804
+  },
+  "market_cap_usd_m": {
+    "pre_announcement_market_cap": 17438.513229666776,
+    "latest_market_cap": 56783.03424055771,
+    "mean_post_announcement_market_cap": 21210.044023906707
+  },
+  "valuation_base": "mean_post_announcement_market_cap",
+  "primary_result": {
+    "level_definition": "all_post_mean",
+    "sustained_gap_index_points": 0.8645303597046133,
+    "observed_value_usd_m": 692.0319798483273,
+    "full_contract_value_usd_m": 1029.534109736429,
+    "empirical_95_full_contract_usd_m": {
+      "lower": -690.2378472270465,
+      "upper": 2614.256864988198
+    },
+    "donor_leave_one_out_full_contract_usd_m": {
+      "min_level": 0.8026422301939992,
+      "max_level": 1.3207840204945165,
+      "min_value_usd_m": 957.5242401279273,
+      "max_value_usd_m": 1552.5653765329012
+    },
+    "market_cap_base_sensitivity_full_contract_usd_m": {
+      "pre_announcement_market_cap": 846.464258763242,
+      "latest_market_cap": 2756.244661213009,
+      "mean_post_announcement_market_cap": 1029.534109736429
+    }
+  },
+  "event_triangulation": [
+    {
+      "event": "fifa_tech_world_announcement",
+      "window": "0_to_1_trading_days",
+      "start": "2024-10-16 00:00:00",
+      "end": "2024-10-17 00:00:00",
+      "log_car": 0.01740667758751429,
+      "simple_car": 0.01755905665361257,
+      "pre_event_market_cap_usd_m": 17438.513229666776,
+      "gross_event_value_usd_m": 306.20384175449124,
+      "interpretation": "gross Lenovo event; FIFA is confounded with Tech World",
+      "market_cap_reference_date": "2024-10-15 00:00:00"
+    },
+    {
+      "event": "fifa_tech_world_announcement",
+      "window": "0_to_2_trading_days",
+      "start": "2024-10-16 00:00:00",
+      "end": "2024-10-18 00:00:00",
+      "log_car": 0.042464099550094205,
+      "simple_car": 0.04337859794020682,
+      "pre_event_market_cap_usd_m": 17438.513229666776,
+      "gross_event_value_usd_m": 756.4582540646926,
+      "interpretation": "gross Lenovo event; FIFA is confounded with Tech World",
+      "market_cap_reference_date": "2024-10-15 00:00:00"
+    },
+    {
+      "event": "world_cup_observed_to_latest_market_date",
+      "window": "tournament_start_to_latest",
+      "start": "2026-06-11 00:00:00",
+      "end": "2026-10-05 00:00:00",
+      "log_car": 0.16522642207682292,
+      "simple_car": 0.1796601895849499,
+      "pre_event_market_cap_usd_m": 36411.88813617354,
+      "gross_event_value_usd_m": 6541.766725690926,
+      "interpretation": "gross period value; FIFA is confounded with financing, buyback and other corporate news",
+      "market_cap_reference_date": "2026-06-10 00:00:00"
+    }
+  ],
+  "comparison_with_v2": "v2 sums weekly gap changes, which telescope to the final-week gap; v3 values a rule-fixed sustained level and a rule-fixed market-cap base.",
+  "inputs": {
+    "stock_response_weekly": {
+      "path": "data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet",
+      "sha256": "0e9930abe84cde2d4b668da89d14a9606bb3aba4af9f40dc4e9baf64da828147"
+    },
+    "stock_response_coefficients": {
+      "path": "data/curated/experimental/stock_brand_response_v2/stock_response_coefficients.parquet",
+      "sha256": "f9b445f50b4573c24c378e38118f56a2a2b2f2f0a2f00fac07c6f6dd2173265d"
+    },
+    "endpoint_stability": {
+      "path": "data/curated/experimental/stock_brand_response_v2/endpoint_stability.parquet",
+      "sha256": "9744c144d2046a3881fc598e99679bb29607ac5adb31dd92d3bde8bfca138ce6"
+    },
+    "sponsorship_counterfactual_weekly": {
+      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet",
+      "sha256": "6326f216c8f8b83708829a2d325f5dd30bc8c424707f0369397e09f83a7906db"
+    },
+    "sponsorship_counterfactual_manifest": {
+      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json",
+      "sha256": "4dbb16bf07683302cc2e4f6a8fac35111eb816b5ab985879d43c73e184808846"
+    },
+    "donor_sensitivity": {
+      "path": "data/curated/experimental/sponsorship_counterfactual_v1/donor_sensitivity.parquet",
+      "sha256": "4c7aefcd8f54ff1b86ea7266082a5d47282e8b1aa72a191852f3d910becba35a"
+    },
+    "market_prices": {
+      "path": "data/staged/market/market_prices_daily.parquet",
+      "sha256": "ef3564d75cbc2bdfccac96ca8a150dee3a15da80ee218841f6c4fc2cf99e47c1"
+    },
+    "rolling_abnormal_returns_daily": {
+      "path": "data/curated/experimental/stock_brand_response_v2/rolling_abnormal_returns_daily.parquet",
+      "sha256": "aaaba4fc68bdeec8339903b30e19a7211bb4ce3f888b6b845f1c6bd5596db807"
+    },
+    "market_valuation_reference": {
+      "path": "data/reference/lenovo_market_valuation_reference.csv",
+      "sha256": "c117f44cb4bf68fadfe1809a7d86fb14e96d012d4f7828bdaf6ee1e8b088a6f5"
+    }
+  },
+  "guardrails": [
+    "Planning acceptance requires both an accepted attribution and a base response whose 95% interval excludes zero.",
+    "The response curve is constrained nonnegative for the scenario values; the empirical interval is unconstrained.",
+    "The Women's World Cup share is an explicit scenario assumption.",
+    "Market-implied value, not accounting profit or a causal audit value."
+  ]
+}

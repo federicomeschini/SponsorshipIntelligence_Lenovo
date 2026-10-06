@@ -1,0 +1,104 @@
+{
+  "experiment_id": "cobrand_placebo_v1",
+  "status": "cobrand_association_placebo_test_ADR_0035",
+  "generated_at_utc": "2026-10-06T13:24:40.453230+00:00",
+  "tests": [
+    {
+      "construct": "fifa",
+      "window": "post_announcement_pre_world_cup",
+      "treated_log_change": 1.054825884908262,
+      "treated_multiple": 2.8714751432149215,
+      "placebo_median_log_change": 0.882836105407705,
+      "placebo_max_log_change": 2.5400106447118245,
+      "placebos": 12,
+      "p_value": 0.23076923076923078,
+      "significant": false
+    },
+    {
+      "construct": "fifa",
+      "window": "world_cup_tournament",
+      "treated_log_change": 3.7457371755614726,
+      "treated_multiple": 42.3402078837606,
+      "placebo_median_log_change": 3.622634832657946,
+      "placebo_max_log_change": 5.943881128754649,
+      "placebos": 12,
+      "p_value": 0.38461538461538464,
+      "significant": false
+    },
+    {
+      "construct": "fifa",
+      "window": "after_the_final",
+      "treated_log_change": 1.7708341923426785,
+      "treated_multiple": 5.875752825565288,
+      "placebo_median_log_change": 1.4063965609629467,
+      "placebo_max_log_change": 3.325184344636347,
+      "placebos": 12,
+      "p_value": 0.23076923076923078,
+      "significant": false
+    },
+    {
+      "construct": "world_cup",
+      "window": "post_announcement_pre_world_cup",
+      "treated_log_change": 1.1958494130496673,
+      "treated_multiple": 3.3063650476824127,
+      "placebo_median_log_change": 1.147846629650514,
+      "placebo_max_log_change": 2.6633399380998455,
+      "placebos": 11,
+      "p_value": 0.5,
+      "significant": false
+    },
+    {
+      "construct": "world_cup",
+      "window": "world_cup_tournament",
+      "treated_log_change": 4.074498724115805,
+      "treated_multiple": 58.82098765432103,
+      "placebo_median_log_change": 4.100735212037926,
+      "placebo_max_log_change": 5.995714761396677,
+      "placebos": 11,
+      "p_value": 0.5833333333333334,
+      "significant": false
+    },
+    {
+      "construct": "world_cup",
+      "window": "after_the_final",
+      "treated_log_change": 1.7364561863114811,
+      "treated_multiple": 5.677188832212121,
+      "placebo_median_log_change": 1.6747093027873245,
+      "placebo_max_log_change": 3.2493930553609003,
+      "placebos": 11,
+      "p_value": 0.4166666666666667,
+      "significant": false
+    }
+  ],
+  "lenovo_property_comparison": {
+    "after_the_final": {
+      "cobrand_ducati": 0.22813924638856978,
+      "cobrand_f1": 0.9479959377473204,
+      "cobrand_fifa": 1.8523110651345092,
+      "cobrand_motogp": 0.29017230856469606
+    },
+    "post_announcement_pre_world_cup": {
+      "cobrand_ducati": 0.4042592879632374,
+      "cobrand_f1": 1.029249883773029,
+      "cobrand_fifa": 1.170574851339105,
+      "cobrand_motogp": 0.5462063796668
+    },
+    "world_cup_tournament": {
+      "cobrand_ducati": 0.8361326526271411,
+      "cobrand_f1": 1.122555489205786,
+      "cobrand_fifa": 3.8715059377583145,
+      "cobrand_motogp": 0.8796410596497999
+    }
+  },
+  "interpretation": "Measures whether people came to associate Lenovo with FIFA beyond what non-sponsor tech brands show. It is evidence of association, not of brand-salience lift.",
+  "inputs": {
+    "cobrand_trends": {
+      "path": "data/curated/trends/cobrand_placebo_trends.parquet",
+      "sha256": "0dcc0e839fbd87a52db04538a94b971d13d982b0f7f9154d3e1a15a8e9e77795"
+    },
+    "lenovo_property_trends": {
+      "path": "data/curated/trends/trends_weekly_averaged.parquet",
+      "sha256": "6b114d3b23ba37aa4cbacb6e8e7ba21cf469f73537454ece108ae10690b37134"
+    }
+  }
+}

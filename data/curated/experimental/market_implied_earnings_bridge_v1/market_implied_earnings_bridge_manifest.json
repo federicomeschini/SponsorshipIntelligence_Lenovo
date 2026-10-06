@@ -1,30 +1,30 @@
 {
   "experiment_id": "market_implied_earnings_bridge_v1",
   "status": "operational_positive_planning_calibration",
-  "generated_at_utc": "2026-07-15T14:16:02.435465+00:00",
+  "generated_at_utc": "2026-10-06T13:25:03.538066+00:00",
   "accepted_for_planning": true,
   "accepted_for_total_sponsorship_valuation": false,
-  "superseded_for_total_return_by": "sponsorship_total_return_v2",
+  "superseded_for_total_return_by": "sponsorship_total_return_v3",
   "accepted_for_accounting_or_causal_claim": false,
   "selected_stock_response": {
     "horizon_weeks": 0,
-    "empirical_return_percent_per_BI_point": 0.30517081832346454,
-    "planning_return_percent_per_BI_point": 0.30517081832346454,
-    "empirical_lower_95_percent": -0.8168693841757155,
-    "empirical_upper_95_percent": 1.4272110208226447,
+    "empirical_return_percent_per_BI_point": 0.14761240249103735,
+    "planning_return_percent_per_BI_point": 0.14761240249103735,
+    "empirical_lower_95_percent": -1.3757578848983785,
+    "empirical_upper_95_percent": 1.6709826898804532,
     "planning_lower_percent": 0.0,
-    "planning_upper_percent": 1.4272110208226447,
-    "p_value_normal_approx": 0.59397967574058,
+    "planning_upper_percent": 1.6709826898804532,
+    "p_value_normal_approx": 0.849370881744774,
     "p_value_holm": 1.0,
     "monotonicity_rule": "Coefficient is floored at zero for commercial planning; the empirical estimate and interval remain reported."
   },
   "operational_unit_mapping": {
-    "statement": "One BI point maps to a 0.305% increase in market-implied annual adjusted earnings under a constant earnings multiple.",
+    "statement": "One BI point maps to a 0.148% increase in market-implied annual adjusted earnings under a constant earnings multiple.",
     "annual_adjusted_earnings_base_usd_m": 2049.0,
     "fiscal_year": "FY25/26",
-    "annual_adjusted_earnings_usd_m_per_BI_point": 6.252950067447789,
+    "annual_adjusted_earnings_usd_m_per_BI_point": 3.024578127041355,
     "planning_lower_usd_m_per_BI_point": 0.0,
-    "planning_upper_usd_m_per_BI_point": 29.24355381665599
+    "planning_upper_usd_m_per_BI_point": 34.238435315650484
   },
   "market_value_cross_check": {
     "reference_date": "2026-03-31",
@@ -32,18 +32,18 @@
     "official_market_cap_usd_m": 14500.0,
     "official_market_cap_hkd_m": 113500.0,
     "adjusted_earnings_multiple": 7.076622742801367,
-    "equity_value_usd_m_per_BI_point": 44.24976865690236,
-    "equity_value_divided_by_multiple_usd_m": 6.252950067447789
+    "equity_value_usd_m_per_BI_point": 21.403798361200415,
+    "equity_value_divided_by_multiple_usd_m": 3.024578127041355
   },
   "scenarios_artifact": "market_implied_earnings_scenarios.parquet",
   "inputs": {
     "stock_response_manifest": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json",
-      "sha256": "a0ad8376beb16405066ca8d48065171a5f9daf2d4d97e7b7afd4ad30b35b669e"
+      "sha256": "9c2e0ba06d67e10d573c58b539fe419e9ef2dee37c56e4c2fa52c6dd921226b1"
     },
     "quarterly_financials": {
       "path": "data/reference/lenovo_quarterly_financials.csv",
-      "sha256": "3be92141966a3ff253772a23b205b1fd0d23a8773cb115a6165c7608284d6bcc"
+      "sha256": "e418999c1ccf5806c79b09a2b7819069636b3a83e2949a259c84a66b52e4b1ab"
     },
     "market_valuation_reference": {
       "path": "data/reference/lenovo_market_valuation_reference.csv",
@@ -51,11 +51,15 @@
     },
     "announcement_counterfactual_manifest": {
       "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json",
-      "sha256": "9b864c802beb5013743032ce8092e2c00ec7e403e03dd514a8525fa5f8158a72"
+      "sha256": "4dbb16bf07683302cc2e4f6a8fac35111eb816b5ab985879d43c73e184808846"
     },
-    "world_cup_simulation_manifest": {
-      "path": "data/curated/experimental/world_cup_simulation_v1/simulation_manifest.json",
-      "sha256": "07e8fdcd96406c802cdfc73093d8bee7df6939aca26beeb84650158f558012c9"
+    "world_cup_estimate_manifest": {
+      "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
+      "sha256": "53403ae7ca4902d16352070539e83e5d4dd9b2250f63bd7aa1edbf904b2d3c06"
+    },
+    "sponsorship_counterfactual_weekly": {
+      "path": "data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet",
+      "sha256": "6326f216c8f8b83708829a2d325f5dd30bc8c424707f0369397e09f83a7906db"
     }
   },
   "guardrails": [

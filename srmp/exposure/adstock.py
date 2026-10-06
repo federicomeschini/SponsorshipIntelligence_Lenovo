@@ -14,7 +14,3 @@ def geometric_adstock(values: Iterable[float], delta: float) -> list[float]:
         result.append(carry)
     return result
 
-
-def estimate_delta(*args: object, **kwargs: object) -> float:
-    """Select delta from the configured grid against the stage-1 fit."""
-    raise NotImplementedError("L3 delta estimation is not implemented yet")

@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_counterfactual_v1",
-  "status": "candidate_passes_experimental_screen",
-  "generated_at_utc": "2026-07-15T10:59:57.112762+00:00",
+  "status": "candidate_not_distinguishable",
+  "generated_at_utc": "2026-10-06T13:22:36.653403+00:00",
   "canonical_contracts_replaced": [],
   "treatment": {
     "event_id": "fifa_partner_announcement_2024",
@@ -11,15 +11,15 @@
   "inputs": {
     "joint_donor_trends": {
       "path": "data/curated/trends/jointly_scaled_donor_trends.parquet",
-      "sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf"
+      "sha256": "d03dea0cf14b0af202f704502829d0801ba2763df187b0be17881f1309aaf4a7"
     },
     "brand_index": {
       "path": "data/curated/index/brand_index_weekly.parquet",
-      "sha256": "5f98aa492773941292a32bdf4017637de493750263573f6750aa18f16d20c45c"
+      "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449"
     },
     "adstock_exposure": {
       "path": "data/curated/experimental/sponsorship_monetization_v1/exposure_adstock_weekly.parquet",
-      "sha256": "357989cb0bf650c1baddadcf1b096a2765d23fdf290923d05905d0239d773f8e"
+      "sha256": "c192f49e093776334ec53e9d030cae1dc09a873757c07c3a704adafa13fa7028"
     },
     "property_taxonomy": {
       "path": "data/reference/property_taxonomy.csv",
@@ -27,25 +27,25 @@
     },
     "donor_registry": {
       "path": "data/reference/counterfactual_donor_registry.csv",
-      "sha256": "8c47b4393335c1130733d9a29bcbf16cf5a2e41fad27eb234774211651108931"
+      "sha256": "2b24180871063e88e6b976fa1f917fda355c7eb99d015a9198c5e80447238f9c"
     },
     "product_campaign_events": {
       "path": "data/reference/lenovo_product_campaign_events.csv",
-      "sha256": "7489cc473753800a2c42c16ef9b37be0310a84918621628abc6305cdf918d241"
+      "sha256": "7d6cac67cd0f1c9301b83af460de194b004fa59ac486b3e259f15f98b0da3d08"
     }
   },
   "base_donor_weights": {
-    "donor_dell": 0.03548689,
-    "donor_asus": 0.46121008,
-    "donor_acer": 0.00188166,
-    "donor_hp": 0.02604116,
+    "donor_dell": 0.09944963,
+    "donor_asus": 0.38370826,
+    "donor_acer": 0.0,
+    "donor_hp": 0.03677507,
     "donor_microsoft_surface": 0.0,
     "donor_razer": 0.0,
-    "donor_logitech": 0.03335681,
-    "donor_macbook": 0.37716006,
-    "donor_corsair": 0.03467431,
-    "donor_steelseries": 0.02976308,
-    "donor_benq": 0.00042595
+    "donor_logitech": 0.07352634,
+    "donor_macbook": 0.31284223,
+    "donor_corsair": 0.0699014,
+    "donor_steelseries": 0.0,
+    "donor_benq": 0.02379707
   },
   "counterfactual_roles": {
     "donors": "competitor-brand salience proxies screened for no known FIFA treatment",
@@ -75,7 +75,7 @@
   },
   "event_controls": {
     "source": "data/reference/lenovo_product_campaign_events.csv",
-    "event_rows": 21,
+    "event_rows": 22,
     "weekly_columns": [
       "product_campaign_control",
       "promotion_calendar_control",
@@ -86,20 +86,20 @@
   },
   "diagnostics": {
     "pre_weeks": 146,
-    "post_weeks": 90,
-    "pre_rmspe_index_points": 0.24351726855692923,
-    "post_rmspe_index_points": 1.3370248114236938,
-    "post_pre_rmspe_ratio": 5.490472274704927,
-    "donor_placebo_p_value": 0.08333333333333333,
+    "post_weeks": 102,
+    "pre_rmspe_index_points": 0.2616861778169008,
+    "post_rmspe_index_points": 1.319642280978367,
+    "post_pre_rmspe_ratio": 5.042842889094844,
+    "donor_placebo_p_value": 0.16666666666666666,
     "pre_fit_pass": true,
-    "placebo_pass": true,
+    "placebo_pass": false,
     "timing_coherence_support": "not_supported"
   },
   "candidate_attribution": {
-    "exposure_weighted_delta_index": 1.03334129893261,
-    "event_week_excluded_exposure_weighted_delta_index": 1.0213094319716267,
-    "all_post_mean_delta_index": 0.8235027275919129,
-    "post_counterfactual_mean_index": 89.99025727240809,
+    "exposure_weighted_delta_index": 0.7707148828420021,
+    "event_week_excluded_exposure_weighted_delta_index": 0.7664270630260933,
+    "all_post_mean_delta_index": 0.8512061616457972,
+    "post_counterfactual_mean_index": 90.09236540698166,
     "policy": "candidate only; explicit methodological acceptance required before valuation"
   },
   "donor_pool": {
@@ -108,16 +108,28 @@
     "quality_screen_artifact": "donor_quality_screen.parquet",
     "joint_panel_path": "data/curated/trends/jointly_scaled_donor_trends.parquet"
   },
+  "media_value_intensity_sensitivity": {
+    "role": "sensitivity_only_relative_exposure_intensity",
+    "decision": "ADR-0028",
+    "window_start": "2025-04-28",
+    "window_end": "2026-03-30",
+    "window_weeks": 49,
+    "media_intensity_weighted_gap_index_points": 0.8634212048641646,
+    "blinkfire_weighted_gap_same_window_index_points": 0.9377681911107071,
+    "unweighted_mean_gap_same_window_index_points": 0.8055648936453305,
+    "timing_coherence_support": "directionally_supported",
+    "monetary_totals_used": false
+  },
   "sensitivity_range": {
-    "exposure_weighted_min": 0.998473403336665,
-    "exposure_weighted_max": 1.5278758174036302
+    "exposure_weighted_min": 0.6786995673555303,
+    "exposure_weighted_max": 1.43390042633719
   },
   "known_limitations": [
     "Donor outcomes come from common-anchor Google Trends panels and are standardized using pre-treatment data for SCM fitting.",
     "Huawei and MSI are sensitivity-only because of comparability or World Cup vendor-visibility concerns.",
     "Product and campaign controls are event-week indicators, not media-spend or launch-intensity measures.",
     "Synthetic control isolates Lenovo-specific excess salience under donor assumptions; it does not prove sponsorship is the only cause.",
-    "Blinkfire exposure omits broadcast, so exposure-weighting covers digital/social/owned exposure only.",
+    "Blinkfire exposure omits broadcast, so the primary exposure-weighting covers digital/social/owned exposure only; a media-value intensity sensitivity (ADR-0028) adds broadcast-inclusive weighting for 2025-05 to 2026-04.",
     "Blinkfire coverage starts 2024-09-30, leaving only three observed weeks before the first full post-treatment week.",
     "The FIFA versus non-FIFA exposure regression is a timing diagnostic, not a causal estimator, because Lenovo chooses activation timing.",
     "Negative treatment-contamination searches are evidence-bounded and must be refreshed when FIFA announces new partners or brands launch World Cup campaigns."

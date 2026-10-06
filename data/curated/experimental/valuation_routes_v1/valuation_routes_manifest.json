@@ -1,0 +1,74 @@
+{
+  "experiment_id": "valuation_routes_v1",
+  "status": "route_comparison_and_breakeven",
+  "generated_at_utc": "2026-10-06T13:25:07.115929+00:00",
+  "measured_lift": {
+    "announcement_sustained_level_index_points": 0.8645303597046133,
+    "announcement_attribution_status": "candidate_not_distinguishable",
+    "world_cup_incremental_primary_index_points": 0.25186771110776685,
+    "world_cup_status": "interim_estimate_gates_not_met"
+  },
+  "routes_identified": [],
+  "trailing_four_quarter_revenue_usd_m": 91187.0,
+  "cost_grid_usd_m": {
+    "annual": [
+      50,
+      100,
+      150,
+      250
+    ],
+    "total_contract": [
+      150,
+      300,
+      500,
+      1000
+    ]
+  },
+  "assumptions": {
+    "royalty_relief_tax_rate": 0.2,
+    "significance_level": 0.05
+  },
+  "reading": "No route has both an identified brand-to-money link and an accepted attribution. Breakeven lifts show what the sponsorship would have to deliver under each route; compare them with the measured lift and its placebo distribution, not with a point value.",
+  "inputs": {
+    "total_return_v3_manifest": {
+      "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json",
+      "sha256": "9ae664f81d59ee45280b5f962859e20823475bb2addc2ddf02d90041f3a8452b"
+    },
+    "total_return_v3_scenarios": {
+      "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_scenarios.parquet",
+      "sha256": "889fed2498b3eabd03dd75684d508dfcac356239e156f5e8b50bca9c8a40b263"
+    },
+    "market_implied_manifest": {
+      "path": "data/curated/experimental/market_implied_earnings_bridge_v1/market_implied_earnings_bridge_manifest.json",
+      "sha256": "ebe4d71e88e16d482cb409c9e5573f2e3e40b7cf1a6fa3dd3dc3321c25e945f0"
+    },
+    "stock_response_manifest": {
+      "path": "data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json",
+      "sha256": "9c2e0ba06d67e10d573c58b539fe419e9ef2dee37c56e4c2fa52c6dd921226b1"
+    },
+    "financial_bridge_manifest": {
+      "path": "data/curated/experimental/brand_financial_bridge_v1/financial_bridge_manifest.json",
+      "sha256": "da3cd0343bb292fdcfd230dda799f36026b330f8046c4c61fb5c2eb68973d061"
+    },
+    "quarterly_financials": {
+      "path": "data/reference/lenovo_quarterly_financials.csv",
+      "sha256": "e418999c1ccf5806c79b09a2b7819069636b3a83e2949a259c84a66b52e4b1ab"
+    },
+    "event_triangulation": {
+      "path": "data/curated/experimental/sponsorship_total_return_v3/event_value_triangulation.parquet",
+      "sha256": "3980ce3c8cd12c5117bfbec1d3f25db6f749d4f2855485b4ff6bf3d229337c7b"
+    },
+    "world_cup_estimate_manifest": {
+      "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
+      "sha256": "53403ae7ca4902d16352070539e83e5d4dd9b2250f63bd7aa1edbf904b2d3c06"
+    },
+    "media_values_manifest": {
+      "path": "data/staged/media_values/pull_manifest.json",
+      "sha256": "c6003f173f890d9c12da409b7473a5e0404d4950c086818314b2f213add69b04"
+    },
+    "royalty_schedule": {
+      "path": "config/royalty_schedule.yaml",
+      "sha256": "ee6e588a5f63d391f02d01fb8f99b9bf3ff827b65af39e6b51f7484b8ad083e6"
+    }
+  }
+}

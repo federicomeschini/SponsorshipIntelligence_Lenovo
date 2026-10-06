@@ -1,0 +1,9 @@
+version: 1
+# Official FIFA World Cup 2026 calendar (competition 17, season 285023).
+api_url: https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=285023&from=2026-06-01T00%3A00%3A00Z&to=2026-07-31T23%3A59%3A59Z&language=en&count=200
+source_page: https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums
+competition_id: "17"
+season_id: "285023"
+expected_matches: 104
+raw_snapshot: data/raw/fifa_calendar/fwc26_official_api_snapshot.json
+staged_output_dir: data/staged/fifa_calendar

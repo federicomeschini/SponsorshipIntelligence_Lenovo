@@ -1,38 +1,38 @@
 {
   "status": "descriptive_association_not_causal",
   "sample_start": "2024-09-30",
-  "sample_end": "2026-06-08",
-  "observations": 89,
+  "sample_end": "2026-07-20",
+  "observations": 95,
   "hac_lags": 4,
-  "r_squared": 0.38871478131464754,
+  "r_squared": 0.29109691341208777,
   "coefficients": {
     "intercept": {
-      "estimate_index_points": 0.8349896399065801,
-      "hac_se": 0.14482216162552236
+      "estimate_index_points": 0.8436625413618342,
+      "hac_se": 0.15069982217477512
     },
     "fifa_log_adstock_z": {
-      "estimate_index_points": -0.1441748457207128,
-      "hac_se": 0.15995005525023473
+      "estimate_index_points": -0.16977155631066027,
+      "hac_se": 0.18941614208058652
     },
     "nonfifa_log_adstock_z": {
-      "estimate_index_points": 0.09269046359812462,
-      "hac_se": 0.09974217865606268
+      "estimate_index_points": 0.04220951540573724,
+      "hac_se": 0.10882082524992265
     },
     "linear_time_z": {
-      "estimate_index_points": 0.6886159029910558,
-      "hac_se": 0.27340575024528646
+      "estimate_index_points": 0.6251447919518611,
+      "hac_se": 0.29276666889318853
     },
     "product_campaign_control": {
-      "estimate_index_points": 0.24671908858194375,
-      "hac_se": 0.1939007542058049
+      "estimate_index_points": 0.13048467856102236,
+      "hac_se": 0.2449088802350877
     },
     "promotion_calendar_control": {
-      "estimate_index_points": 0.44466979231720866,
-      "hac_se": 0.17879812754468805
+      "estimate_index_points": -0.11459324087497594,
+      "hac_se": 0.11771510588917179
     },
     "mixed_event_control": {
-      "estimate_index_points": -0.7927752251717368,
-      "hac_se": 0.58706183627645
+      "estimate_index_points": -0.6258683757093739,
+      "hac_se": 0.5204563251927211
     }
   },
   "regressor_definition": {

@@ -114,8 +114,13 @@ def _fetch_series(session: requests.Session, term: str, google_geo: str,
 
     Returns ``(points, http)`` where ``points`` maps each finished week to
     ``(interest, suppressed)``; ``interest`` is ``None`` on suppressed weeks.
-    ``points`` is ``None`` when the window could not be retrieved.
+    ``points`` is ``None`` when the window could not be retrieved. A raw
+    response already persisted for this vintage is reused, never re-fetched.
     """
+    if raw_path.exists():
+        content = raw_path.read_bytes()
+        return _parse_multiline(content.decode("utf-8")), {
+            "cached_raw_response": True, "response_sha256": hashlib.sha256(content).hexdigest()}
     explore_params = {"hl": "en-US", "tz": "0", "req": json.dumps(
         {"comparisonItem": [{"keyword": term, "geo": google_geo, "time": f"{start} {end}"}],
          "category": 0, "property": ""}, separators=(",", ":"))}
@@ -144,15 +149,18 @@ def _fetch_series(session: requests.Session, term: str, google_geo: str,
     # Persist the raw response as an immutable provenance artifact.
     raw_path.write_bytes(data.content)
     http["response_sha256"] = hashlib.sha256(data.content).hexdigest()
+    return _parse_multiline(data.text), http
 
+
+def _parse_multiline(text: str) -> dict[date, tuple[float | None, bool]]:
     points: dict[date, tuple[float | None, bool]] = {}
-    for point in _strip_prefix(data.text)["default"]["timelineData"]:
+    for point in _strip_prefix(text)["default"]["timelineData"]:
         if point.get("isPartial"):
             continue  # trailing incomplete week: excluded, matching finished-week exports
         period = datetime.fromtimestamp(int(point["time"]), tz=timezone.utc).date()
         suppressed = not bool(point.get("hasData", [True])[0])  # API equivalent of the UI "<1"
         points[period] = (None if suppressed else float(point["value"][0]), suppressed)
-    return points, http
+    return points
 
 
 def _windows(start: date, end: date, sub_windows: int, fraction: float) -> list[tuple[date, date]]:
@@ -264,7 +272,8 @@ def _pull_anonymous(config: dict[str, Any], raw_dir: Path, end: str) -> tuple[li
                     "status": status,
                     **{key: http.get(key) for key in ("explore_status", "multiline_status", "error")},
                 })
-                time.sleep(delay)
+                if not http.get("cached_raw_response"):
+                    time.sleep(delay)
     return rows, fetch_log
 
 
@@ -356,7 +365,9 @@ def pull_trends(config_path: str, output_dir: str, manifest_path: str,
         fetched = set()
     elif use_anonymous:
         backend_used = "anonymous_web"
-        rows, fetch_log = _pull_anonymous(config, raw_dir / "anonymous", end)
+        # One raw folder per data vintage keeps earlier pulls immutable; the
+        # July 2026 vintage predates this layout and sits directly in anonymous/.
+        rows, fetch_log = _pull_anonymous(config, raw_dir / "anonymous" / end, end)
         fetched = set(available)
     else:
         backend_used = "none"

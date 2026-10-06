@@ -1,0 +1,54 @@
+experiment_id: brand_value_dominance_v1
+status: owner_selected_relative_importance_valuation_ADR_0031
+
+inputs:
+  stock_response_weekly: data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet
+  rolling_abnormal_returns_daily: data/curated/experimental/stock_brand_response_v2/rolling_abnormal_returns_daily.parquet
+  total_return_v3_manifest: data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json
+  world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
+  sponsorship_counterfactual_weekly: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet
+  donor_sensitivity: data/curated/experimental/sponsorship_counterfactual_v1/donor_sensitivity.parquet
+  brand_index_weekly: data/curated/index/brand_index_weekly.parquet
+  trends_weekly_averaged: data/curated/trends/trends_weekly_averaged.parquet
+
+# Outcome is the weekly Lenovo log return (P2: returns, never price levels).
+# Regressor groups are fixed by rule from stock_brand_response_v2; dominance
+# is computed over groups so a block of controls cannot dilute or inflate
+# the brand by the number of its columns.
+outcome: lenovo_log_return
+groups:
+  market: [hsi_log_return, ndx_hkd_lagged_log_return]
+  category_demand: [category_demand_change]
+  lenovo_events: [earnings_control, product_campaign_control, promotion_calendar_control, mixed_event_control]
+  brand: [brand_index_innovation]
+
+# ADR-0032: the sponsorship is valued through its Index lift, not a direct
+# sponsorship-to-returns link. The Index is affine in raw search interest, so
+# the lift converts to a ratio-scale salience uplift.
+indirect_chain:
+  index_query: brand_lenovo
+  provisional_trailing_weeks: 2
+  brand_value_elasticity_to_salience: 1.0   # proportional; explicit assumption
+
+brand_share_definition: share_of_explained_variance   # owner's reading: share of price formation
+lower_bound_definition: share_of_total_variance
+
+valuation_base:
+  primary: mean_post_announcement_market_cap
+  sensitivities: [latest_market_cap, pre_announcement_market_cap]
+
+bootstrap:
+  method: moving_block
+  block_weeks: 8
+  replications: 1000
+  seed: 20261005
+
+stability:
+  brand_measures: [delta_brand_index]
+  sample_windows:
+    - [2022-01-01, 2024-10-14]
+    - [2024-10-15, 2026-12-31]
+    - [2022-01-01, 2025-12-31]
+
+outputs:
+  directory: data/curated/experimental/brand_value_dominance_v1

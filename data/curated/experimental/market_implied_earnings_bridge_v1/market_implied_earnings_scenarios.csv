@@ -1,5 +1,5 @@
 case,role,delta_brand_index_points,annual_adjusted_earnings_percent_equivalent,annual_adjusted_earnings_usd_m_central,annual_adjusted_earnings_usd_m_planning_lower,annual_adjusted_earnings_usd_m_planning_upper,calibration_accepted_for_planning,attribution_accepted,accepted_for_accounting_or_causal_claim
-one_brand_index_point,unit_mapping,1.0,0.30517081832346454,6.252950067447789,0.0,29.24355381665599,True,True,False
-announcement_period_candidate,attribution_not_accepted,1.03334129893261,0.31534560980269644,6.46143154485725,0.0,30.21857188630899,True,False,False
-world_cup_total_path_simulation,simulation_not_accepted,0.3665207724090401,0.11185144404861506,2.291836088556123,0.0,10.718369932866086,True,False,False
-world_cup_incremental_simulation,simulation_not_accepted,-0.1604003870832563,-0.048949517385597795,-1.0029756112308987,-4.690677351881658,-0.0,True,False,False
+one_brand_index_point,unit_mapping,1.0,0.14761240249103735,3.024578127041355,0.0,34.238435315650484,True,True,False
+announcement_period_candidate,attribution_not_accepted,0.7707148828420021,0.1137670754919063,2.3310873768291605,0.0,26.388071662995028,True,False,False
+world_cup_total_path_interim,interim_not_accepted,0.7033000954710266,0.10381581676465418,2.127186085507764,0.0,24.079894826275552,True,False,False
+world_cup_incremental_interim,interim_not_accepted,0.25186771110776685,0.037178797946536,0.7617935699245226,0.0,8.623556334864219,True,False,False

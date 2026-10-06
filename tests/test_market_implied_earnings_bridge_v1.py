@@ -19,11 +19,16 @@ def test_positive_operational_mapping_is_available():
     assert manifest["accepted_for_total_sponsorship_valuation"] is False
     assert (
         manifest["superseded_for_total_return_by"]
-        == "sponsorship_total_return_v2"
+        == "sponsorship_total_return_v3"
     )
     assert manifest["accepted_for_accounting_or_causal_claim"] is False
     mapping = manifest["operational_unit_mapping"]
-    assert 6.0 < mapping["annual_adjusted_earnings_usd_m_per_BI_point"] < 6.5
+    # Mapping = planning beta x latest complete fiscal-year adjusted earnings.
+    assert mapping["fiscal_year"] == "FY25/26"
+    assert mapping["annual_adjusted_earnings_base_usd_m"] == 2049.0
+    beta = manifest["selected_stock_response"]["planning_return_percent_per_BI_point"] / 100
+    assert abs(mapping["annual_adjusted_earnings_usd_m_per_BI_point"] - beta * 2049.0) < 1e-9
+    assert mapping["annual_adjusted_earnings_usd_m_per_BI_point"] >= 0
     assert mapping["planning_lower_usd_m_per_BI_point"] == 0
     assert mapping["planning_upper_usd_m_per_BI_point"] > 0
 

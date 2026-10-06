@@ -1,0 +1,17 @@
+route,cost_basis,cost_usd_m,required_sustained_lift_index_points,required_royalty_uplift_basis_points,measured_sustained_lift_index_points,measured_lift_distinguishable
+market_implied_equity_v3,total contract,150,0.12331363148710207,,0.8645303597046133,False
+market_implied_equity_v3,total contract,300,0.2475087098587971,,0.8645303597046133,False
+market_implied_equity_v3,total contract,500,0.4144952636169806,,0.8645303597046133,False
+market_implied_equity_v3,total contract,1000,0.8391209070369392,,0.8645303597046133,False
+market_implied_annual_earnings,annual,50,16.531231100619657,,0.8645303597046133,False
+direct_profit_margin,annual,50,,,0.8645303597046133,False
+relief_from_royalty,annual,50,,6.854047177777534,0.8645303597046133,False
+market_implied_annual_earnings,annual,100,33.06246220123931,,0.8645303597046133,False
+direct_profit_margin,annual,100,,,0.8645303597046133,False
+relief_from_royalty,annual,100,,13.708094355555067,0.8645303597046133,False
+market_implied_annual_earnings,annual,150,49.59369330185897,,0.8645303597046133,False
+direct_profit_margin,annual,150,,,0.8645303597046133,False
+relief_from_royalty,annual,150,,20.5621415333326,0.8645303597046133,False
+market_implied_annual_earnings,annual,250,82.65615550309828,,0.8645303597046133,False
+direct_profit_margin,annual,250,,,0.8645303597046133,False
+relief_from_royalty,annual,250,,34.27023588888767,0.8645303597046133,False

@@ -42,13 +42,18 @@ def test_complete_available_blinkfire_export_is_reconciled_and_normalized():
     table = pq.read_table(staged / "blinkfire_exposure_daily.parquet")
     assert manifest["status"] == "complete_client_scope"
     assert manifest["total_row_validation"] == "passed"
-    assert manifest["dated_rows"] == 619
+    # Base export through 2026-06-11 plus the World Cup export through 2026-07-20,
+    # overlapping on 2026-06-11 where the later export wins.
+    assert manifest["dated_rows"] == 619 + 40 - 1
+    assert [len(item["overlapping_dates_replaced"]) for item in manifest["exports"]] == [0, 1]
+    assert all(item["total_row_validation"] == "passed" for item in manifest["exports"])
+    assert manifest["date_max"] == "2026-07-20"
     assert manifest["properties"] == 13
-    assert table.num_rows == 8047
+    assert table.num_rows == 658 * 13
     assert table.column_names == ["date", "property_id", "source_label", "impressions", "views"]
     weekly = pq.read_table(staged / "blinkfire_exposure_weekly.parquet")
     weekly_manifest = json.loads((staged / "weekly_manifest.json").read_text(encoding="utf-8"))
-    assert weekly.num_rows == weekly_manifest["row_count"] == 1157
+    assert weekly.num_rows == weekly_manifest["row_count"] == 1235
     assert weekly_manifest["contract_status"] == "not_C_EXPOSURE_until_adstock_is_added"
 
 
@@ -86,8 +91,9 @@ def test_gdelt_volume_and_tone_pull_is_complete_and_audited():
     manifest = json.loads((raw / "pull_manifest.json").read_text(encoding="utf-8"))
     table = pq.read_table(staged / "gdelt_brand_daily.parquet")
     assert manifest["status"] == "doc_api_complete"
-    assert table.num_rows == manifest["row_count"] == 1634
-    assert manifest["calendar_day_count"] == 1656
-    assert manifest["missing_calendar_day_count"] == 22
+    # October 2026 refresh: 2022-01-01 to 2026-10-05.
+    assert table.num_rows == manifest["row_count"] == 1707
+    assert manifest["calendar_day_count"] == 1739
+    assert manifest["missing_calendar_day_count"] == 32
     assert all(pull["status_code"] == 200 for pull in manifest["pulls"])
     assert (raw / "gdelt_bigquery_fallback.sql").exists()

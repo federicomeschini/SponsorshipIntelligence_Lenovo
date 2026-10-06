@@ -1,5 +1,9 @@
 # Dynamic sponsorship total return v2
 
+> **Retired (ADR-0036): superseded by sponsorship_total_return_v3 (sustained level, ADR-0030); its event-study triangulation moved into v3.**
+
+> **October 2026 refresh (ADR-0027):** the figures below are the July 2026 vintage. On data through 2026-09-28 the same model returns -US$1.222bn base because its shock sum telescopes to the final-week gap; the value is not a usable planning number until that definition is replaced. Do not quote US$1.250bn.
+
 > **Status:** operational planning valuation. It supersedes the US$45.7m
 > single-multiplication result for total-return use.
 

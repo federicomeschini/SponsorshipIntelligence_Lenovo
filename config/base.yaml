@@ -48,5 +48,9 @@ roi:
   royalty_schedule: config/royalty_schedule.yaml
   persistence_multiplier: 2.0
 
+# Banned as monetary value or model feature (P1). ADR-0028 permits media value
+# only as a unitless relative exposure-intensity weight in labelled sensitivities.
 banned_features:
   - blinkfire.media_value
+  - media_values.media_value_full
+  - media_values.media_value_qi

@@ -135,6 +135,9 @@ def pull_joint_trends(
     staged_dir.mkdir(parents=True, exist_ok=True)
     curated_path.parent.mkdir(parents=True, exist_ok=True)
     end = str(config["horizon"].get("end") or date.today())
+    # One raw folder per data vintage; the July 2026 vintage predates this
+    # layout and sits directly in the raw output directory.
+    (raw_dir / end).mkdir(parents=True, exist_ok=True)
     anchor = config["common_anchor"]
     draws_required = int(acquisition["draws_per_panel"])
     delay = float(acquisition["request_delay_seconds"])
@@ -148,7 +151,7 @@ def pull_joint_trends(
         items = [anchor, *panel["queries"]]
         for draw in range(draws_required):
             raw_name = f"{panel['panel_id']}__draw{draw:02d}.json"
-            raw_path = raw_dir / raw_name
+            raw_path = raw_dir / end / raw_name
             if raw_path.exists():
                 content = raw_path.read_bytes()
                 fetched = _parse_panel_response(content, items)

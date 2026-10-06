@@ -2,13 +2,16 @@ experiment_id: world_cup_impact_v1
 status: preregistered_waiting_for_world_cup_data
 role: primary_sponsorship_impact_evaluation
 
-# Dates stay null until the client event/activation calendar is supplied and
-# approved. They must not be inferred from search peaks after the event.
+# Dates must never be inferred from search peaks after the event. Tournament
+# dates come from the official FIFA calendar snapshot (first and last of the
+# 104 matches, ADR-0027); the post window end is the final's week plus the
+# preregistered 13 weeks. activation_start stays null until the client
+# activation calendar is supplied and approved.
 milestones:
   activation_start: null
-  tournament_start: null
-  tournament_end: null
-  primary_post_window_end: null
+  tournament_start: 2026-06-11
+  tournament_end: 2026-07-19
+  primary_post_window_end: 2026-10-18
 
 estimands:
   primary:
@@ -34,6 +37,49 @@ counterfactual:
   prohibit_post_outcome_tuning: true
   sensitivity_only_donors: [huawei]
 
+# Estimator rules (ADR-0029), fixed by rule before the primary window closes.
+# No setting below is chosen by looking at post-treatment outcomes.
+estimation:
+  donor_pool: registry_inclusion_policy_base
+  outcome_column: index_level
+  pre_window: all_weeks_before_treatment
+  provisional_treatment_rule: monday_of_tournament_start_week_until_activation_start_is_approved
+  ascm:
+    ridge_lambda_multipliers: [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30, 100]
+    lambda_rule: multiplier times training weeks; selected on an inner pre-period split
+    inner_validation_weeks: 26
+  exposure_weighting:
+    source: world_cup_exposure
+    property_group: fifa
+    adstock_delta: 0.80
+    unobserved_weeks: excluded_not_zero
+  media_value_intensity_sensitivity:
+    path: data/staged/media_values/media_values_daily.parquet
+    measure: media_value_qi
+    adstock_delta: 0.80
+    use: relative_intensity_weight_only_ADR_0028
+  # Added after the first tournament weeks were seen (ADR-0029): labelled
+  # robustness only, never the primary and never a valuation input.
+  category_shock_robustness:
+    method: generalized_synthetic_control_interactive_fixed_effects
+    reference: Xu (2017) Political Analysis 25(1)
+    max_factors: 5
+    factor_count_rule: blocked cross-validation over pre-treatment weeks
+    cv_block_weeks: 13
+  provisional_trailing_weeks: 2
+  vintage_alignment:
+    max_days_between_pulls: 7
+    manifests:
+      brand_index_trends_pull: data/raw/trends/pull_manifest.json
+      donor_trends_pull: data/staged/trends_joint_donors/pull_manifest.json
+  cobrand_query: cobrand_fifa
+  cobrand_baseline_weeks: 52
+  placebo:
+    in_space: every_base_donor_as_pseudo_treated
+    statistic: post_pre_rmspe_ratio
+    interval: estimate_plus_minus_90th_percentile_absolute_placebo_primary_estimand
+  time_placebo_weeks: [2023-06-05]
+
 data_sources:
   brand_index:
     path: data/curated/index/brand_index_weekly.parquet
@@ -44,11 +90,12 @@ data_sources:
     required_for_estimation: true
     note: repeated common anchor across Google Trends panels; current separately normalized donor pulls are interim only
   world_cup_exposure:
-    path: null
+    path: data/staged/blinkfire/blinkfire_exposure_weekly.parquet
     required_for_estimation: true
+    required_coverage_through: primary_post_window_end
     note: updated Blinkfire property-week exposure through the persistence window
   world_cup_event_calendar:
-    path: null
+    path: data/staged/fifa_calendar/official_fifa_calendar.parquet
     required_for_estimation: true
     note: exact UTC activation, match, campaign, and tournament dates
   product_launch_controls:

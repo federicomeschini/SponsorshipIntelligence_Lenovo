@@ -1,6 +1,9 @@
 version: 1
 composition_id: worldwide_common_anchor_v1
-horizon: {start: 2022-01-01, end: null}
+# Pinned to the October 2026 vintage so the ADR-0035 candidate panels join
+# the existing donors on the same scale (existing panels reuse their raw
+# files). Set back to null at the next full refresh.
+horizon: {start: 2022-01-01, end: 2026-10-05}
 common_anchor: {query_id: anchor_lenovo, brand_id: lenovo, term: Lenovo}
 acquisition:
   draws_per_panel: 10
@@ -44,3 +47,29 @@ panels:
       - {query_id: donor_steelseries, brand_id: steelseries, term: SteelSeries}
       - {query_id: donor_benq, brand_id: benq, term: BenQ}
       - {query_id: donor_aoc_monitor, brand_id: aoc_monitor, term: AOC monitor}
+  # ADR-0035 candidate donors: global tech / consumer-electronics brands with
+  # no known FIFA sponsorship. Candidates until screened and registered.
+  - panel_id: candidate_e
+    queries:
+      - {query_id: donor_intel, brand_id: intel, term: Intel}
+      - {query_id: donor_amd, brand_id: amd, term: AMD}
+      - {query_id: donor_kingston, brand_id: kingston, term: Kingston}
+      - {query_id: donor_western_digital, brand_id: western_digital, term: Western Digital}
+  - panel_id: candidate_f
+    queries:
+      - {query_id: donor_sony, brand_id: sony, term: Sony}
+      - {query_id: donor_xiaomi, brand_id: xiaomi, term: Xiaomi}
+      - {query_id: donor_tp_link, brand_id: tp_link, term: TP-Link}
+      - {query_id: donor_seagate, brand_id: seagate, term: Seagate}
+  - panel_id: candidate_g
+    queries:
+      - {query_id: donor_alienware, brand_id: alienware, term: Alienware}
+      - {query_id: donor_chromebook, brand_id: chromebook, term: Chromebook}
+      - {query_id: donor_ipad, brand_id: ipad, term: iPad}
+      - {query_id: donor_synology, brand_id: synology, term: Synology}
+  - panel_id: candidate_h
+    queries:
+      - {query_id: donor_epson, brand_id: epson, term: Epson}
+      - {query_id: donor_canon, brand_id: canon, term: Canon}
+      - {query_id: donor_philips, brand_id: philips, term: Philips}
+      - {query_id: donor_nintendo, brand_id: nintendo, term: Nintendo}

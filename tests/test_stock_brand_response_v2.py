@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 
@@ -35,7 +36,7 @@ def test_brand_index_shocks_and_earnings_controls_are_present():
     assert weekly["brand_index_innovation"].notna().sum() >= 150
     assert weekly["earnings_control"].sum() >= 40
     events = pd.read_csv(ROOT / "data/reference/lenovo_financial_results_events.csv")
-    assert len(events) == 16
+    assert len(events) == 17
     assert events["source_url"].str.startswith(
         "https://investor.lenovo.com/"
     ).all()
@@ -47,5 +48,7 @@ def test_long_horizon_signal_is_endpoint_sensitive():
         "sample_endpoint"
     )
     assert len(h13) == 3
-    assert h13.iloc[0]["estimate"] < 0
-    assert h13.iloc[-1]["estimate"] > 0
+    # The 13-week sign flips across endpoints (2024: negative, 2025: positive,
+    # full sample to 2026-09: about zero), so no endpoint is a stable estimate.
+    signs = np.sign(h13["estimate"].to_numpy())
+    assert signs.min() < 0 < signs.max()

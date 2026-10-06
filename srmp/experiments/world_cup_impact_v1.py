@@ -1,4 +1,4 @@
-"""Prospective World Cup impact protocol and data-readiness skeleton."""
+"""Prospective World Cup impact protocol, data readiness and interim estimation."""
 
 from __future__ import annotations
 
@@ -14,6 +14,8 @@ import pyarrow.csv as pacsv
 import pyarrow.parquet as pq
 import yaml
 
+from srmp.experiments.world_cup_impact_v1_estimator import estimate_world_cup_impact
+
 
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -23,7 +25,16 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _source_status(name: str, source: dict[str, Any]) -> dict[str, Any]:
+def _coverage_end(table: pa.Table) -> str | None:
+    for column in ("week", "date"):
+        if column in table.column_names:
+            values = [value for value in table.column(column).to_pylist() if value is not None]
+            return str(max(values))[:10] if values else None
+    return None
+
+
+def _source_status(name: str, source: dict[str, Any],
+                   milestones: dict[str, Any] | None = None) -> dict[str, Any]:
     raw_path = source.get("path")
     if not raw_path:
         return {
@@ -53,6 +64,16 @@ def _source_status(name: str, source: dict[str, Any]) -> dict[str, Any]:
         table = pq.read_table(path)
         result["rows"] = table.num_rows
         result["columns"] = table.column_names
+        result["coverage_end"] = _coverage_end(table)
+    required = source.get("required_coverage_through")
+    if required:
+        through = (milestones or {}).get(required, required)
+        result["required_coverage_through"] = str(through) if through else None
+        # Week labels mark the week start, so a week covers six further days.
+        if through and result.get("coverage_end"):
+            covered = datetime.fromisoformat(result["coverage_end"]).date().toordinal() + 6
+            if covered < datetime.fromisoformat(str(through)).date().toordinal():
+                result["status"] = "available_coverage_incomplete"
     return result
 
 
@@ -70,7 +91,7 @@ def build_world_cup_skeleton(
     milestones = config["milestones"]
     missing_dates = [name for name, value in milestones.items() if value is None]
     sources = [
-        _source_status(name, source)
+        _source_status(name, source, config["milestones"])
         for name, source in config["data_sources"].items()
     ]
     required_missing = [
@@ -144,5 +165,9 @@ if __name__ == "__main__":
     parser.add_argument("--config", default="config/experiments/world_cup_impact_v1.yaml")
     parser.add_argument("--contract", default="data/reference/world_cup_impact_data_contract.yaml")
     parser.add_argument("--output-dir", default="data/curated/experimental/world_cup_impact_v1")
+    parser.add_argument("--readiness-only", action="store_true")
     args = parser.parse_args()
-    build_world_cup_skeleton(args.config, args.contract, args.output_dir)
+    readiness = build_world_cup_skeleton(args.config, args.contract, args.output_dir)
+    if not args.readiness_only:
+        config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
+        estimate_world_cup_impact(config, readiness["protocol_hash"], args.output_dir)

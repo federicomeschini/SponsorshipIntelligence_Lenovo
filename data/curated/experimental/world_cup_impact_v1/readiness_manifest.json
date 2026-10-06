@@ -1,38 +1,35 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "status": "waiting_for_world_cup_data",
-  "generated_at_utc": "2026-07-15T10:59:59.924483+00:00",
+  "generated_at_utc": "2026-10-06T13:24:41.735694+00:00",
   "role": "primary sponsorship impact evaluation; earlier announcement/FCWC SCM remains interim",
   "canonical_contracts_replaced": [],
   "config": {
     "path": "config\\experiments\\world_cup_impact_v1.yaml",
-    "sha256": "e45826caa44679e269fcfb26e9777fbfff842343b2b00b676b68ae166bc8680e"
+    "sha256": "3f4452d5cdcf106c99ccf2f98b91170df166b73c572dde0df0ce4779e791c4b4"
   },
   "data_contract": {
     "path": "data\\reference\\world_cup_impact_data_contract.yaml",
-    "sha256": "f3224c04724dd9636358bcfe092af8fe5c5d32fb470a2c34d04394c73414e3f4",
+    "sha256": "1d6dc41963c274d7106a2f2edc2d312fecde8a058162b42b56a81f4554e03e0b",
     "id": "EXP-WC-IMPACT-V1"
   },
-  "protocol_hash": "261ba608d64121089c14e153a2c28cf3f374241e5c1a1897aa312026f209f7aa",
+  "protocol_hash": "bee13e0bad0a89d81d21b5ce1105719c935677fe824bc893b36d16f1eb2b44e4",
   "missing_milestone_dates": [
-    "activation_start",
-    "tournament_start",
-    "tournament_end",
-    "primary_post_window_end"
+    "activation_start"
   ],
   "required_sources_waiting": [
-    "world_cup_exposure",
-    "world_cup_event_calendar"
+    "brand_index",
+    "world_cup_exposure"
   ],
   "source_readiness": [
     {
       "source": "brand_index",
-      "status": "available_pending_coverage_check",
+      "status": "available_coverage_incomplete",
       "path": "data\\curated\\index\\brand_index_weekly.parquet",
-      "sha256": "5f98aa492773941292a32bdf4017637de493750263573f6750aa18f16d20c45c",
+      "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449",
       "required_for_estimation": true,
       "note": null,
-      "rows": 236,
+      "rows": 248,
       "columns": [
         "week",
         "index_level",
@@ -41,16 +38,18 @@
         "calendar_quarter",
         "source_version",
         "anchored"
-      ]
+      ],
+      "coverage_end": "2026-09-28",
+      "required_coverage_through": "2026-10-18"
     },
     {
       "source": "jointly_scaled_donor_trends",
       "status": "available_pending_coverage_check",
       "path": "data\\curated\\trends\\jointly_scaled_donor_trends.parquet",
-      "sha256": "c1db0b898811c0198bb201c34de5a2bafd05e17386c59a4d59d8e1d404bf8ddf",
+      "sha256": "d03dea0cf14b0af202f704502829d0801ba2763df187b0be17881f1309aaf4a7",
       "required_for_estimation": true,
       "note": "repeated common anchor across Google Trends panels; current separately normalized donor pulls are interim only",
-      "rows": 6399,
+      "rows": 11703,
       "columns": [
         "panel_id",
         "common_anchor_query",
@@ -62,25 +61,58 @@
         "interest_common_scale_sd",
         "draws_used",
         "suppressed_draws"
-      ]
+      ],
+      "coverage_end": "2026-09-27"
     },
     {
       "source": "world_cup_exposure",
-      "status": "waiting_for_path",
+      "status": "available_coverage_incomplete",
+      "path": "data\\staged\\blinkfire\\blinkfire_exposure_weekly.parquet",
+      "sha256": "0b57226cf8d851fc2261f697b9783e35e804b6280d16dd4c71d7e584971f16e0",
       "required_for_estimation": true,
-      "note": "updated Blinkfire property-week exposure through the persistence window"
+      "note": "updated Blinkfire property-week exposure through the persistence window",
+      "rows": 1235,
+      "columns": [
+        "property_id",
+        "week",
+        "impressions",
+        "views",
+        "view_rate",
+        "days_observed",
+        "measurement_scope"
+      ],
+      "coverage_end": "2026-07-20",
+      "required_coverage_through": "2026-10-18"
     },
     {
       "source": "world_cup_event_calendar",
-      "status": "waiting_for_path",
+      "status": "available_pending_coverage_check",
+      "path": "data\\staged\\fifa_calendar\\official_fifa_calendar.parquet",
+      "sha256": "992cd1497f29ee0aa84ad13f9361932e836502b8643577701ac9032ec6c66d58",
       "required_for_estimation": true,
-      "note": "exact UTC activation, match, campaign, and tournament dates"
+      "note": "exact UTC activation, match, campaign, and tournament dates",
+      "rows": 104,
+      "columns": [
+        "event_id",
+        "event_type",
+        "event_timestamp_utc",
+        "property_id",
+        "source",
+        "status",
+        "match_number",
+        "stage",
+        "home_team",
+        "away_team",
+        "stadium",
+        "host_country"
+      ],
+      "coverage_end": null
     },
     {
       "source": "product_launch_controls",
       "status": "available_pending_coverage_check",
       "path": "data\\reference\\lenovo_product_campaign_events.csv",
-      "sha256": "7489cc473753800a2c42c16ef9b37be0310a84918621628abc6305cdf918d241",
+      "sha256": "7d6cac67cd0f1c9301b83af460de194b004fa59ac486b3e259f15f98b0da3d08",
       "required_for_estimation": true,
       "note": "Lenovo launches, promotions, CES and major non-sponsorship campaigns"
     },

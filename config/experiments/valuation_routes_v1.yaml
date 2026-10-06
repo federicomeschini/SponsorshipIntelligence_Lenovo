@@ -1,0 +1,27 @@
+experiment_id: valuation_routes_v1
+status: route_comparison_and_breakeven
+
+inputs:
+  total_return_v3_manifest: data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json
+  total_return_v3_scenarios: data/curated/experimental/sponsorship_total_return_v3/total_return_v3_scenarios.parquet
+  market_implied_manifest: data/curated/experimental/market_implied_earnings_bridge_v1/market_implied_earnings_bridge_manifest.json
+  stock_response_manifest: data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json
+  financial_bridge_manifest: data/curated/experimental/brand_financial_bridge_v1/financial_bridge_manifest.json
+  quarterly_financials: data/reference/lenovo_quarterly_financials.csv
+  event_triangulation: data/curated/experimental/sponsorship_total_return_v3/event_value_triangulation.parquet
+  world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
+  media_values_manifest: data/staged/media_values/pull_manifest.json
+  royalty_schedule: config/royalty_schedule.yaml
+
+# The sponsorship fee and activation cost are not in the workspace, so every
+# breakeven is reported over a cost grid instead of one assumed number.
+cost_grid_usd_m:
+  annual: [50, 100, 150, 250]
+  total_contract: [150, 300, 500, 1000]
+
+assumptions:
+  royalty_relief_tax_rate: 0.20  # placeholder until Lenovo's effective rate is sourced
+  significance_level: 0.05
+
+outputs:
+  directory: data/curated/experimental/valuation_routes_v1

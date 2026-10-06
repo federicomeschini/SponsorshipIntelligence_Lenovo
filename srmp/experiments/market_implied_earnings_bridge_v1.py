@@ -12,6 +12,7 @@ import pandas as pd
 import yaml
 
 from srmp.experiments.brand_financial_bridge_v1 import _sha256, _write
+from srmp.experiments.world_cup_impact_v1_estimator import interim_world_cup_gaps
 
 
 def _read_json(path: str) -> dict[str, Any]:
@@ -53,12 +54,14 @@ def build_market_implied_earnings_bridge(
         planning_upper = empirical_upper
 
     financials = pd.read_csv(config["inputs"]["quarterly_financials"])
-    latest_year = financials.iloc[-1]["fiscal_year"]
+    # The profit base is the latest complete fiscal year, matching the dated
+    # fiscal-year-end market capitalisation; a newer partial year is ignored.
+    complete_years = financials.groupby("fiscal_year", sort=False)["fiscal_quarter"].nunique()
+    complete_years = complete_years[complete_years.eq(4)]
+    if complete_years.empty:
+        raise ValueError("The earnings bridge needs at least one complete fiscal year")
+    latest_year = complete_years.index[-1]
     latest_four = financials[financials["fiscal_year"].eq(latest_year)]
-    if len(latest_four) != 4:
-        raise ValueError(
-            "Latest fiscal year must contain four quarters for the earnings bridge"
-        )
     adjusted_earnings_usd_m = float(
         latest_four["adjusted_net_income_usd_m"].sum()
     )
@@ -69,10 +72,9 @@ def build_market_implied_earnings_bridge(
     announcement = _read_json(
         config["inputs"]["announcement_counterfactual_manifest"]
     )
-    world_cup = _read_json(config["inputs"]["world_cup_simulation_manifest"])
-    world_cup_base = next(
-        row for row in world_cup["scenario_results"]
-        if row["scenario"] == "base"
+    world_cup = interim_world_cup_gaps(
+        config["inputs"]["world_cup_estimate_manifest"],
+        config["inputs"]["sponsorship_counterfactual_weekly"],
     )
     cases = [
         ("one_brand_index_point", 1.0, "unit_mapping"),
@@ -86,18 +88,14 @@ def build_market_implied_earnings_bridge(
             "attribution_not_accepted",
         ),
         (
-            "world_cup_total_path_simulation",
-            float(
-                world_cup_base[
-                    "frozen_preannouncement_exposure_weighted_gap_index_points"
-                ]
-            ),
-            "simulation_not_accepted",
+            "world_cup_total_path_interim",
+            float(world_cup["total_path"]),
+            "interim_not_accepted",
         ),
         (
-            "world_cup_incremental_simulation",
-            float(world_cup_base["exposure_weighted_gap_index_points"]),
-            "simulation_not_accepted",
+            "world_cup_incremental_interim",
+            float(world_cup["incremental"]),
+            "interim_not_accepted",
         ),
     ]
     rows: list[dict[str, Any]] = []
@@ -143,7 +141,7 @@ def build_market_implied_earnings_bridge(
             config["calibration"]["planning_use_accepted"]
         ),
         "accepted_for_total_sponsorship_valuation": False,
-        "superseded_for_total_return_by": "sponsorship_total_return_v2",
+        "superseded_for_total_return_by": "sponsorship_total_return_v3",
         "accepted_for_accounting_or_causal_claim": False,
         "selected_stock_response": {
             "horizon_weeks": horizon,
@@ -164,7 +162,7 @@ def build_market_implied_earnings_bridge(
         },
         "operational_unit_mapping": {
             "statement": (
-                "One BI point maps to a 0.305% increase in market-implied "
+                f"One BI point maps to a {planning_beta * 100:.3f}% increase in market-implied "
                 "annual adjusted earnings under a constant earnings multiple."
             ),
             "annual_adjusted_earnings_base_usd_m": adjusted_earnings_usd_m,

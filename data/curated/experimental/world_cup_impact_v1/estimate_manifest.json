@@ -1,0 +1,180 @@
+{
+  "experiment_id": "world_cup_impact_v1",
+  "status": "interim_estimate_gates_not_met",
+  "generated_at_utc": "2026-10-06T13:24:56.759866+00:00",
+  "protocol_hash": "bee13e0bad0a89d81d21b5ce1105719c935677fe824bc893b36d16f1eb2b44e4",
+  "accepted_attribution_rows": 0,
+  "treatment_week": "2026-06-08",
+  "treatment_week_status": "provisional",
+  "final_week": "2026-07-13",
+  "window_end_week": "2026-10-12",
+  "data_through": {
+    "brand_index": "2026-09-20",
+    "fifa_exposure": "2026-07-20"
+  },
+  "panel": {
+    "pre_weeks": 231,
+    "window_weeks_observed": 15,
+    "persistence_weeks_observed": 9,
+    "base_donors": [
+      "donor_dell",
+      "donor_asus",
+      "donor_acer",
+      "donor_hp",
+      "donor_microsoft_surface",
+      "donor_razer",
+      "donor_logitech",
+      "donor_macbook",
+      "donor_corsair",
+      "donor_steelseries",
+      "donor_benq"
+    ],
+    "sensitivity_donors": [
+      "donor_huawei"
+    ]
+  },
+  "ascm": {
+    "ridge_multiplier": 0.0001,
+    "ridge_lambda": 0.023100000000000002,
+    "selected_at_grid_boundary": true
+  },
+  "primary": {
+    "method": "augmented_scm",
+    "role": "primary",
+    "pre_rmspe_index_points": 0.3523290994494664,
+    "holdout_rmspe_index_points": 1.1149522271424193,
+    "primary_exposure_weighted_gap": 0.25186771110776685,
+    "primary_event_weeks_excluded": 0.25186771110776685,
+    "all_post_mean_gap": 0.3501978329038572,
+    "tournament_mean_gap": 0.014223069562274981,
+    "peak_four_week_mean_gap": 1.1013864323218538,
+    "post_event_persistence_mean_gap": 0.574181008464912
+  },
+  "vintages": {
+    "pulls": {
+      "brand_index_trends_pull": "2026-10-05T09:58:13.218088+00:00",
+      "donor_trends_pull": "2026-10-06T12:58:05.021296+00:00"
+    },
+    "max_gap_days": 1.1249051297222221,
+    "aligned": true
+  },
+  "provisional_trailing_weeks_excluded": 2,
+  "category_shock_robust": {
+    "method": "generalized_scm_factor",
+    "estimates": {
+      "method": "generalized_scm_factor",
+      "role": "robustness_category_shock_added_after_partial_outcome_ADR_0029",
+      "pre_rmspe_index_points": 0.5178068567690961,
+      "holdout_rmspe_index_points": 1.1305286678074535,
+      "primary_exposure_weighted_gap": 0.06595068814018769,
+      "primary_event_weeks_excluded": 0.06595068814018769,
+      "all_post_mean_gap": 0.20749287338598452,
+      "tournament_mean_gap": -0.24893747024920734,
+      "peak_four_week_mean_gap": 0.9193423390603498,
+      "post_event_persistence_mean_gap": 0.511779769142779
+    },
+    "placebo": {
+      "post_pre_rmspe_ratio": 1.2856543170421846,
+      "p_value": 0.6666666666666666,
+      "factor_count": 2
+    },
+    "status": "robustness_only_added_after_partial_outcome_never_a_valuation_input"
+  },
+  "placebo": {
+    "post_pre_rmspe_ratio": 1.968561201709769,
+    "p_value": 0.25,
+    "primary_estimand_p_value": 0.9166666666666666,
+    "interval_half_width_index_points": 1.7815253666908668
+  },
+  "time_placebos": [
+    {
+      "fake_treatment_week": "2023-06-05",
+      "window_weeks": 15,
+      "mean_gap_index_points": -0.0303249755300736,
+      "post_pre_rmspe_ratio": 1.1742958587300387
+    }
+  ],
+  "confounder_diagnostics": {
+    "artifact": "confounder_diagnostics.json",
+    "category_shock_loading": {
+      "status": "computed",
+      "definition": "Lenovo YoY % on donor-median YoY %, fitted on pre-treatment weeks",
+      "loading": 1.1799662356820821,
+      "intercept": 4.261166618260863,
+      "residual_sd_pct": 5.163000178747317,
+      "raw_lenovo_minus_category_tournament_pct": 4.846646172608016,
+      "loading_adjusted_residual_tournament_pct": -3.689992522752702,
+      "loading_adjusted_residual_after_final_pct": -0.3411880250387384,
+      "tournament_residual_in_sd_units": -0.7146992823943682,
+      "category_yoy_peak_pct": 78.27593392496325
+    },
+    "pre_trend": {
+      "last_8_pre_weeks_mean_gap": 0.02826273957191089,
+      "last_8_pre_weeks_slope_per_week": -0.11963471486291181
+    }
+  },
+  "media_value_intensity_sensitivity": {
+    "status": "waiting_for_media_value_coverage_of_window",
+    "media_value_covers_through": "2026-03-30",
+    "window_start": "2026-06-08"
+  },
+  "cobrand_search": {
+    "status": "descriptive_level_change_not_counterfactual",
+    "query_id": "cobrand_fifa",
+    "baseline_mean": 6.239487884615386,
+    "tournament_mean": 76.83333333333333,
+    "tournament_weeks": 6
+  },
+  "survey_lift": {
+    "status": "waiting_for_post_world_cup_survey"
+  },
+  "gates": [
+    {
+      "gate": "activation_start_approved",
+      "passed": false,
+      "detail": "provisional treatment week 2026-06-08 (tournament start week)"
+    },
+    {
+      "gate": "brand_index_covers_window",
+      "passed": false,
+      "detail": "index through 2026-09-20, window ends 2026-10-18"
+    },
+    {
+      "gate": "exposure_covers_window",
+      "passed": false,
+      "detail": "Blinkfire through 2026-07-20"
+    },
+    {
+      "gate": "outcome_and_donor_vintages_aligned",
+      "passed": true,
+      "detail": "pulls 1.1 days apart"
+    },
+    {
+      "gate": "minimum_pre_weeks",
+      "passed": true,
+      "detail": "231 pre weeks"
+    },
+    {
+      "gate": "minimum_credible_donors",
+      "passed": true,
+      "detail": "11 base donors"
+    },
+    {
+      "gate": "minimum_post_weeks_after_tournament",
+      "passed": false,
+      "detail": "9 observed post-tournament weeks"
+    },
+    {
+      "gate": "placebo_p_value",
+      "passed": false,
+      "detail": "p = 0.2500 over 11 donor placebos"
+    }
+  ],
+  "interpretation": "Incremental World Cup lift above the pre-tournament path, which already contains the 2024 partnership. Interim rows describe the data so far and are never valuation inputs.",
+  "caveats": [
+    "Blinkfire exposure is digital/social only; broadcast is weighted only where media value covers the window (ADR-0028).",
+    "Weeks without observed exposure carry no weight rather than zero exposure.",
+    "Product and campaign controls enter as an event-week-excluded robustness estimand.",
+    "The placebo gate ranks the two-sided post/pre RMSPE ratio, so a large negative gap can pass it; the sign is carried into delta_index_attrib unchanged."
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "role": "diagnostic_only_does_not_change_preregistered_estimate",
+  "pre_trend": {
+    "last_8_pre_weeks_mean_gap": 0.02826273957191089,
+    "last_8_pre_weeks_slope_per_week": -0.11963471486291181
+  },
+  "seasonal_same_window_prior_years": [
+    {
+      "window_start": "2025-06-09",
+      "lenovo_minus_weighted_donors_index_points": 0.16020088378925873
+    },
+    {
+      "window_start": "2024-06-10",
+      "lenovo_minus_weighted_donors_index_points": 0.002851150101351559
+    },
+    {
+      "window_start": "2023-06-12",
+      "lenovo_minus_weighted_donors_index_points": -0.06910543473674469
+    },
+    {
+      "window_start": "2022-06-13",
+      "lenovo_minus_weighted_donors_index_points": -0.01948165359755968
+    }
+  ],
+  "current_window_same_construction_index_points": 0.32193509333194487,
+  "median_donor_shift_in_window_pre_sd": 0.9669996316001835,
+  "leave_one_donor_out_mean_gap": {
+    "donor_dell": 0.27638552668147204,
+    "donor_asus": 0.4233899635600824,
+    "donor_acer": 0.34522600630206396,
+    "donor_hp": 0.3884184101606342,
+    "donor_microsoft_surface": 0.34418502029098763,
+    "donor_razer": 0.4147245083172139,
+    "donor_logitech": 0.1715797295855371,
+    "donor_macbook": 0.5919383287554788,
+    "donor_corsair": 0.35291880522486874,
+    "donor_steelseries": 0.36744278251121804,
+    "donor_benq": 0.3293291573371455
+  },
+  "category_shock_loading": {
+    "status": "computed",
+    "definition": "Lenovo YoY % on donor-median YoY %, fitted on pre-treatment weeks",
+    "loading": 1.1799662356820821,
+    "intercept": 4.261166618260863,
+    "residual_sd_pct": 5.163000178747317,
+    "raw_lenovo_minus_category_tournament_pct": 4.846646172608016,
+    "loading_adjusted_residual_tournament_pct": -3.689992522752702,
+    "loading_adjusted_residual_after_final_pct": -0.3411880250387384,
+    "tournament_residual_in_sd_units": -0.7146992823943682,
+    "category_yoy_peak_pct": 78.27593392496325
+  }
+}

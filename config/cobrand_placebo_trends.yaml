@@ -1,0 +1,54 @@
+version: 1
+# ADR-0035: co-brand association test. "Lenovo FIFA" / "Lenovo World Cup"
+# against the same construct for brands with no FIFA sponsorship. Every panel
+# carries "Lenovo FIFA" as the common anchor so all queries share one scale.
+composition_id: worldwide_cobrand_common_anchor_v1
+horizon: {start: 2022-01-01, end: 2026-10-05}
+common_anchor: {query_id: cobrand_lenovo_fifa, brand_id: lenovo, term: Lenovo FIFA}
+acquisition:
+  draws_per_panel: 10
+  request_delay_seconds: 2
+  max_retries: 5
+  # "Lenovo FIFA" is below 1 in most pre-2025 weeks; scaling rests on the
+  # positive 2025-2026 weeks, so a lower overlap floor applies to this panel set.
+  min_anchor_overlap_weeks: 12   # worldcup_b anchors on 17 positive weeks (Apple/Microsoft World Cup dominate its scale)
+  raw_output_dir: data/raw/trends_cobrand_placebos
+  staged_output_dir: data/staged/trends_cobrand_placebos
+  curated_output: data/curated/trends/cobrand_placebo_trends.parquet
+panels:
+  - panel_id: fifa_a
+    queries:
+      - {query_id: fifa_dell, brand_id: dell, term: Dell FIFA}
+      - {query_id: fifa_hp, brand_id: hp, term: HP FIFA}
+      - {query_id: fifa_asus, brand_id: asus, term: Asus FIFA}
+      - {query_id: fifa_acer, brand_id: acer, term: Acer FIFA}
+  - panel_id: fifa_b
+    queries:
+      - {query_id: fifa_msi, brand_id: msi, term: MSI FIFA}
+      - {query_id: fifa_apple, brand_id: apple, term: Apple FIFA}
+      - {query_id: fifa_microsoft, brand_id: microsoft, term: Microsoft FIFA}
+      - {query_id: fifa_razer, brand_id: razer, term: Razer FIFA}
+  - panel_id: fifa_c
+    queries:
+      - {query_id: fifa_sony, brand_id: sony, term: Sony FIFA}
+      - {query_id: fifa_xiaomi, brand_id: xiaomi, term: Xiaomi FIFA}
+      - {query_id: fifa_huawei, brand_id: huawei, term: Huawei FIFA}
+      - {query_id: fifa_intel, brand_id: intel, term: Intel FIFA}
+  - panel_id: worldcup_a
+    queries:
+      - {query_id: worldcup_lenovo, brand_id: lenovo, term: Lenovo World Cup}
+      - {query_id: worldcup_dell, brand_id: dell, term: Dell World Cup}
+      - {query_id: worldcup_hp, brand_id: hp, term: HP World Cup}
+      - {query_id: worldcup_asus, brand_id: asus, term: Asus World Cup}
+  - panel_id: worldcup_b
+    queries:
+      - {query_id: worldcup_acer, brand_id: acer, term: Acer World Cup}
+      - {query_id: worldcup_msi, brand_id: msi, term: MSI World Cup}
+      - {query_id: worldcup_apple, brand_id: apple, term: Apple World Cup}
+      - {query_id: worldcup_microsoft, brand_id: microsoft, term: Microsoft World Cup}
+  - panel_id: worldcup_c
+    queries:
+      - {query_id: worldcup_razer, brand_id: razer, term: Razer World Cup}
+      - {query_id: worldcup_sony, brand_id: sony, term: Sony World Cup}
+      - {query_id: worldcup_xiaomi, brand_id: xiaomi, term: Xiaomi World Cup}
+      - {query_id: worldcup_huawei, brand_id: huawei, term: Huawei World Cup}

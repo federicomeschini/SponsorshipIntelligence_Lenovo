@@ -1,0 +1,58 @@
+experiment_id: sponsorship_total_return_v3
+status: prototype_sustained_level_planning_valuation
+supersedes_for_shock_definition: sponsorship_total_return_v2
+
+inputs:
+  stock_response_weekly: data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet
+  stock_response_coefficients: data/curated/experimental/stock_brand_response_v2/stock_response_coefficients.parquet
+  endpoint_stability: data/curated/experimental/stock_brand_response_v2/endpoint_stability.parquet
+  sponsorship_counterfactual_weekly: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_weekly.parquet
+  sponsorship_counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
+  donor_sensitivity: data/curated/experimental/sponsorship_counterfactual_v1/donor_sensitivity.parquet
+  market_prices: data/staged/market/market_prices_daily.parquet
+  rolling_abnormal_returns_daily: data/curated/experimental/stock_brand_response_v2/rolling_abnormal_returns_daily.parquet
+  market_valuation_reference: data/reference/lenovo_market_valuation_reference.csv
+
+# ADR-0030: value a sustained gap level, not the final-week gap. Each
+# definition is fixed by rule; the primary is the plainest one.
+sustained_level:
+  provisional_trailing_weeks: 2
+  primary: all_post_mean
+  definitions:
+    all_post_mean: mean gap over every post-announcement week except the provisional trailing weeks
+    exposure_weighted: the counterfactual's exposure-weighted candidate gap
+    pre_tournament_post_mean: mean gap from the first post week to the week before the tournament
+    trailing_26_week_mean: mean gap over the last 26 non-provisional weeks
+  innovation_conversion: a step of size L generates L * (1 - mean lag coefficient) cumulative innovations
+
+response:
+  horizons_weeks: [0, 1, 4, 13]
+  scenarios:
+    low:
+      source: full_sample_immediate_response_held_constant
+    base:
+      source: endpoint_stability
+      calibration_endpoint: 2025-12-31
+    high:
+      source: full_sample_all_horizons
+  empirical_interval: base 13-week estimate plus or minus 1.96 robust standard errors, unconstrained
+
+# Market capitalisation base fixed by rule so share-price swings after the
+# fact do not rescale the value.
+valuation_base:
+  primary: mean_post_announcement_market_cap
+  sensitivities: [pre_announcement_market_cap, latest_market_cap]
+
+contract_projection:
+  womens_world_cup_equivalent_mens_impact:
+    low: 0.25
+    base: 0.50
+    high: 0.75
+
+event_triangulation:          # gross event values, confounded with other Lenovo news
+  announcement_first_hk_session: 2024-10-16
+  announcement_windows_trading_days: [2, 3]
+  tournament_start: 2026-06-11
+
+outputs:
+  directory: data/curated/experimental/sponsorship_total_return_v3

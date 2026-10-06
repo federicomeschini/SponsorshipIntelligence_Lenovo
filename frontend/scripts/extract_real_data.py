@@ -161,7 +161,7 @@ def main() -> None:
     ]
     cal = pd.read_csv(
         ROOT
-        / "data/curated/experimental/world_cup_simulation_v1/official_fifa_calendar.csv"
+        / "data/staged/fifa_calendar/official_fifa_calendar.csv"
     )
     cal["date"] = pd.to_datetime(cal["event_timestamp_utc"], format="ISO8601")
     cal["week"] = cal["date"].dt.to_period("W-SUN").dt.start_time
@@ -184,16 +184,22 @@ def main() -> None:
         "totalMatches": int(len(cal)),
     }
 
-    # --- Simulated WC exposure (pipeline artifact, base scenario) -----------
-    wce = pd.read_csv(
-        ROOT
-        / "data/curated/experimental/world_cup_simulation_v1/simulated_world_cup_exposure.csv"
-    )
-    wce = wce[wce["scenario"] == "base"].sort_values("week")
+    # --- WC exposure: observed FIFA-family Blinkfire impressions by match week.
+    # The world_cup_simulation_v1 scenarios were retired (ADR-0036); the key
+    # name is kept so the front end keeps working until the dashboard refresh.
+    bf = pd.read_csv(ROOT / "data/staged/blinkfire/blinkfire_exposure_weekly.csv")
+    tax = pd.read_csv(ROOT / "data/reference/property_taxonomy.csv")
+    fifa_ids = set(tax.loc[tax["property_group"].eq("fifa"), "property_id"])
+    bf["week"] = pd.to_datetime(bf["week"])
+    matches = cal.assign(week=(cal["date"].dt.tz_convert(None).dt.normalize()
+                               - pd.to_timedelta(cal["date"].dt.weekday, unit="D")))
+    matches = matches.groupby("week")["match_number"].count()
+    wce = (bf[bf["property_id"].isin(fifa_ids)].groupby("week")["impressions"].sum()
+           .loc[matches.index.min():matches.index.max()])
     out["worldCupSimulatedExposure"] = {
-        "week": week_str(wce["week"]),
-        "impressions": [int(v) for v in wce["impressions"]],
-        "matches": [int(v) for v in wce["match_count"]],
+        "week": week_str(pd.Series(wce.index)),
+        "impressions": [int(v) for v in wce],
+        "matches": [int(matches.get(week, 0)) for week in wce.index],
     }
 
     # --- Lenovo share price, weekly (brand_financial_bridge_v1) -------------

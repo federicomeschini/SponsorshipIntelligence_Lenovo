@@ -20,8 +20,11 @@ def test_experimental_bridge_is_isolated_and_truthfully_blocked():
     assert all(len(item["sha256"]) == 64 for item in manifest["inputs"].values())
     assert manifest["outputs"]["model_eligible_panel_rows"] == 5
     assert manifest["outputs"]["monetization_rows"] == 0
-    assert manifest["counterfactual_gate"]["status"] == "candidate_passes_experimental_screen"
-    assert manifest["counterfactual_gate"]["donor_placebo_p_value"] == 1 / 12
+    # The gate mirrors the current announcement counterfactual verdict.
+    counterfactual = json.loads((ROOT / "data/curated/experimental/sponsorship_counterfactual_v1/"
+                                 "counterfactual_manifest.json").read_text(encoding="utf-8"))
+    assert manifest["counterfactual_gate"]["status"] == counterfactual["status"]
+    assert manifest["counterfactual_gate"]["donor_placebo_p_value"] == counterfactual["diagnostics"]["donor_placebo_p_value"]
     assert manifest["counterfactual_gate"]["used_for_valuation"] is False
     assert manifest["royalty_schedule_gate"]["status"] == "blocked_schedule_not_approved"
     assert set(manifest["valuation_gate"]["missing_inputs"]) == {

@@ -1,6 +1,6 @@
 {
   "status": "experimental_comparison_built",
-  "generated_at_utc": "2026-07-15T08:12:52.164221+00:00",
+  "generated_at_utc": "2026-10-06T13:22:23.593992+00:00",
   "construct": "Lenovo-only multi-signal brand-performance composite",
   "status_of_current_canonical_index": "unchanged; this comparison does not replace v4_proxy_led_brand_calibrated",
   "components": {
@@ -23,10 +23,10 @@
   "methods": {
     "evidence_weighted": {
       "weights": {
-        "brand_salience_proxy_z": 0.261191,
-        "product_portfolio_proxy_z": 0.330858,
-        "commercial_intent_proxy_z": 0.175512,
-        "earned_news_tone_z": 0.232439
+        "brand_salience_proxy_z": 0.26918,
+        "product_portfolio_proxy_z": 0.329814,
+        "commercial_intent_proxy_z": 0.16898,
+        "earned_news_tone_z": 0.232027
       },
       "weight_metadata": {
         "ridge": 5.0,
@@ -34,48 +34,48 @@
       },
       "calibration": {
         "intercept": -0.75333,
-        "slope": 0.111218,
-        "correlation": 0.681401,
-        "first_difference_correlation": 0.249857,
-        "residual_sd": 0.104271
+        "slope": 0.111518,
+        "correlation": 0.68356,
+        "first_difference_correlation": 0.249321,
+        "residual_sd": 0.103984
       },
       "leave_one_quarter_stability": {
         "review": "leave_one_quarter_out",
         "n_refits": 17,
         "weight_ranges": {
           "brand_salience_proxy_z": {
-            "min": 0.2021540669327308,
-            "max": 0.3192039925422541,
-            "sd": 0.028718578257823372,
-            "max_abs_shift_from_full": 0.05903723963583535
+            "min": 0.21071454426311814,
+            "max": 0.3283576601821895,
+            "sd": 0.02866411954407345,
+            "max_abs_shift_from_full": 0.05917813844868641
           },
           "product_portfolio_proxy_z": {
-            "min": 0.2685033966727916,
-            "max": 0.3626833764122011,
-            "sd": 0.019641954212368987,
-            "max_abs_shift_from_full": 0.062354114801462024
+            "min": 0.2704529580787755,
+            "max": 0.3595791958807297,
+            "sd": 0.01905347203861428,
+            "max_abs_shift_from_full": 0.05936060376655489
           },
           "commercial_intent_proxy_z": {
-            "min": 0.13472036807023255,
-            "max": 0.22284113944014727,
-            "sd": 0.022372408129265907,
-            "max_abs_shift_from_full": 0.04732912225573452
+            "min": 0.12987413592193595,
+            "max": 0.21639776368797622,
+            "sd": 0.02209079136882162,
+            "max_abs_shift_from_full": 0.04741803759865629
           },
           "earned_news_tone_z": {
-            "min": 0.154888754655589,
-            "max": 0.2798620410612434,
-            "sd": 0.029770310936162846,
-            "max_abs_shift_from_full": 0.07755041011717842
+            "min": 0.15430341976978376,
+            "max": 0.27884455355780535,
+            "sd": 0.029689511826015057,
+            "max_abs_shift_from_full": 0.07772377056206267
           }
         }
       }
     },
     "pca": {
       "weights": {
-        "brand_salience_proxy_z": 0.572026,
-        "product_portfolio_proxy_z": 0.575044,
-        "commercial_intent_proxy_z": 0.543453,
-        "earned_news_tone_z": 0.216261
+        "brand_salience_proxy_z": 0.572007,
+        "product_portfolio_proxy_z": 0.575292,
+        "commercial_intent_proxy_z": 0.54366,
+        "earned_news_tone_z": 0.215131
       },
       "weight_metadata": {
         "method": "first_principal_component",
@@ -83,87 +83,87 @@
       },
       "calibration": {
         "intercept": -0.75333,
-        "slope": 0.054367,
-        "correlation": 0.675926,
-        "first_difference_correlation": 0.283614,
-        "residual_sd": 0.104992
+        "slope": 0.054498,
+        "correlation": 0.677521,
+        "first_difference_correlation": 0.282861,
+        "residual_sd": 0.104783
       },
       "leave_one_quarter_stability": {
         "review": "leave_one_quarter_out",
         "n_refits": 17,
         "weight_ranges": {
           "brand_salience_proxy_z": {
-            "min": 0.5651229863856677,
-            "max": 0.5788445243710332,
-            "sd": 0.003394496973502898,
-            "max_abs_shift_from_full": 0.006903473795715875
+            "min": 0.5651751251861584,
+            "max": 0.5784024603056347,
+            "sd": 0.00331417126741081,
+            "max_abs_shift_from_full": 0.006831896222499467
           },
           "product_portfolio_proxy_z": {
-            "min": 0.5702794016801078,
-            "max": 0.5824488674465368,
-            "sd": 0.0027886535823401053,
-            "max_abs_shift_from_full": 0.007404934663414409
+            "min": 0.5704820934843747,
+            "max": 0.5835350948703012,
+            "sd": 0.0029337602794764985,
+            "max_abs_shift_from_full": 0.008243100215490684
           },
           "commercial_intent_proxy_z": {
-            "min": 0.5331867835903275,
-            "max": 0.5519160537328436,
-            "sd": 0.004494641759189604,
-            "max_abs_shift_from_full": 0.010266284025492789
+            "min": 0.5340191056159579,
+            "max": 0.5516152263267143,
+            "sd": 0.004353403787170026,
+            "max_abs_shift_from_full": 0.00964050666359284
           },
           "earned_news_tone_z": {
-            "min": 0.1702355642273144,
-            "max": 0.2574480658206479,
-            "sd": 0.023526038172131798,
-            "max_abs_shift_from_full": 0.04602577656347573
+            "min": 0.16910347109467716,
+            "max": 0.2564772306648805,
+            "sd": 0.023444248173615446,
+            "max_abs_shift_from_full": 0.046027452580497064
           }
         }
       }
     },
     "entropy": {
       "weights": {
-        "brand_salience_proxy_z": 0.154594,
-        "product_portfolio_proxy_z": 0.198529,
-        "commercial_intent_proxy_z": 0.524613,
-        "earned_news_tone_z": 0.122264
+        "brand_salience_proxy_z": 0.148336,
+        "product_portfolio_proxy_z": 0.198579,
+        "commercial_intent_proxy_z": 0.529641,
+        "earned_news_tone_z": 0.123445
       },
       "weight_metadata": {
         "method": "Shannon_entropy",
         "weight_interpretation": "higher temporal dispersion receives higher weight"
       },
       "calibration": {
-        "intercept": -0.842718,
-        "slope": 0.323225,
-        "correlation": 0.649008,
-        "first_difference_correlation": 0.266652,
-        "residual_sd": 0.108385
+        "intercept": -0.842894,
+        "slope": 0.324035,
+        "correlation": 0.64884,
+        "first_difference_correlation": 0.264313,
+        "residual_sd": 0.108405
       },
       "leave_one_quarter_stability": {
         "review": "leave_one_quarter_out",
         "n_refits": 17,
         "weight_ranges": {
           "brand_salience_proxy_z": {
-            "min": 0.14208596650484717,
-            "max": 0.20228895170759076,
-            "sd": 0.013090196374030956,
-            "max_abs_shift_from_full": 0.047695178022734847
+            "min": 0.13534576896345768,
+            "max": 0.1982204520806599,
+            "sd": 0.013448463388923583,
+            "max_abs_shift_from_full": 0.04988456613904185
           },
           "product_portfolio_proxy_z": {
-            "min": 0.1784989580573645,
-            "max": 0.2233433894104264,
-            "sd": 0.010303341288127366,
-            "max_abs_shift_from_full": 0.02481430518556188
+            "min": 0.17843743125960093,
+            "max": 0.22713149031306615,
+            "sd": 0.010828035243026909,
+            "max_abs_shift_from_full": 0.0285529661105256
           },
           "commercial_intent_proxy_z": {
-            "min": 0.46195960832037686,
-            "max": 0.5553126070053097,
-            "sd": 0.02186839969957833,
-            "max_abs_shift_from_full": 0.06265350508815637
+            "min": 0.4620647549361845,
+            "max": 0.5608745025494813,
+            "sd": 0.022580717303986853,
+            "max_abs_shift_from_full": 0.06757630457121777
           },
           "earned_news_tone_z": {
-            "min": 0.09771320184888167,
-            "max": 0.1347902274291465,
-            "sd": 0.009616841486178328,
-            "max_abs_shift_from_full": 0.02455082683286472
+            "min": 0.09868930435258914,
+            "max": 0.13600258890339428,
+            "sd": 0.009771147080556083,
+            "max_abs_shift_from_full": 0.024755225995850047
           }
         }
       }

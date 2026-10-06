@@ -18,6 +18,7 @@ from srmp.experiments.sponsorship_counterfactual_v1 import (
     _monday,
     _weekly_event_controls,
 )
+from srmp.experiments.world_cup_impact_v1_estimator import interim_world_cup_gaps
 
 
 def _sha256(path: str | Path) -> str:
@@ -281,9 +282,9 @@ def build_bridge(
     announcement = _read_json(
         config["inputs"]["announcement_counterfactual_manifest"]
     )
-    world_cup = _read_json(config["inputs"]["world_cup_simulation_manifest"])
-    world_cup_base = next(
-        row for row in world_cup["scenario_results"] if row["scenario"] == "base"
+    world_cup = interim_world_cup_gaps(
+        config["inputs"]["world_cup_estimate_manifest"],
+        config["inputs"]["sponsorship_counterfactual_weekly"],
     )
     index_cases = [
         {
@@ -299,20 +300,14 @@ def build_bridge(
             "role": "unaccepted_total_Lenovo_specific_candidate",
         },
         {
-            "case": "world_cup_total_sponsorship_path_simulation",
-            "delta_brand_index": float(
-                world_cup_base[
-                    "frozen_preannouncement_exposure_weighted_gap_index_points"
-                ]
-            ),
-            "role": "simulation_not_pure_World_Cup_effect",
+            "case": "world_cup_total_sponsorship_path_interim",
+            "delta_brand_index": float(world_cup["total_path"]),
+            "role": "interim_not_pure_World_Cup_effect",
         },
         {
-            "case": "world_cup_incremental_tournament_simulation",
-            "delta_brand_index": float(
-                world_cup_base["exposure_weighted_gap_index_points"]
-            ),
-            "role": "simulation_incremental_tournament_lift",
+            "case": "world_cup_incremental_tournament_interim",
+            "delta_brand_index": float(world_cup["incremental"]),
+            "role": "interim_incremental_tournament_lift",
         },
     ]
     scenario_rows = []

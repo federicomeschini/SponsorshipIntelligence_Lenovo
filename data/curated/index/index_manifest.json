@@ -1,18 +1,18 @@
 {
   "contract": "C-INDEX (proxy-led current version)",
   "status": "provisional_proxy_led_index_built",
-  "generated_at_utc": "2026-07-15T08:12:48.163065+00:00",
+  "generated_at_utc": "2026-10-06T13:22:21.826649+00:00",
   "source_version": "v4_proxy_led_brand_calibrated",
   "construct": "Lenovo brand salience, proxy-led",
   "weekly_movement": "100% from the validated Lenovo parent-brand Google Trends proxy; survey values do not pin individual weeks",
   "survey_role": "quarterly orientation and display-scale calibration using the non-canonical GWI engagement/consideration composite",
   "calibration": {
-    "intercept": -0.729769,
-    "slope": 0.149941,
+    "intercept": -0.720662,
+    "slope": 0.154823,
     "n_quarters": 17,
-    "correlation": 0.665724,
-    "first_difference_correlation": 0.291147,
-    "residual_sd": 0.106307,
+    "correlation": 0.670654,
+    "first_difference_correlation": 0.290839,
+    "residual_sd": 0.105676,
     "survey_quarters": [
       "2022Q1",
       "2022Q2",
@@ -49,13 +49,13 @@
     "window_accounting": {
       "min_window_estimates": 2,
       "max_window_estimates": 6,
-      "mean_window_estimates": 4.093,
+      "mean_window_estimates": 4.097,
       "interpretation": "overlap-rescaled window estimates; not independent repeated draws"
     },
-    "n_weeks": 236,
+    "n_weeks": 248,
     "week_span": [
       "2022-01-03",
-      "2026-07-06"
+      "2026-09-28"
     ]
   },
   "excluded_from_core_index": {

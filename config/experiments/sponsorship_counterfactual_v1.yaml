@@ -24,6 +24,13 @@ exposure:
   control_definition: all_non_fifa_properties
   hac_lags: 4
 
+# ADR-0028: media value as a relative exposure-intensity weight (sensitivity
+# only). Its monetary amounts never enter attribution or valuation.
+media_value_intensity:
+  path: data/staged/media_values/media_values_daily.parquet
+  measure: media_value_qi
+  adstock_delta: 0.80
+
 event_controls:
   carryover_weeks: 1
 
