@@ -252,3 +252,9 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
     - the code and notebook list from the data page, which becomes "Data sources" (sources and the status of each figure).
   - **Kept:** source credits in plain terms ("Source: … · Elaboration: OpenEconomics").
 - **Consequences:** Traceability lives in the repository (DECISIONS.md, review notebooks, `frontend/scripts/build_eroi_data.py`), not on the dashboard.
+
+## FE-018 — "Planning estimates" label dropped
+
+- **Context:** The owner asked to drop the masthead status label. The data date already tells readers how current the figures are, and the green dot read as a "live" light.
+- **Decision:** The masthead information group shows only "Data through <date>". The `.bar-status` styles are removed.
+- **Consequences:** Presentation only.
