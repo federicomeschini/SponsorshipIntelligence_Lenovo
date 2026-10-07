@@ -174,3 +174,22 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Context:** The owner made the ISO 10668 income split the primary brand valuation and asked that the dashboard show no value from any other route.
 - **Decision:** Step 02 Evaluation is rebuilt around the income split (brand contribution factor × discounted economic profit): forecast table, cost-of-capital build-up, factor × WACC grid, and the factor's evidence and placebo. Monetization's scenarios, value bridge and sensitivity come from the income split; the cross-checks panel (market-implied routes, royalty breakeven) is replaced by FIFA's share of branded earnings year by year. Brand Finance, Interbrand, the share × market-cap value and the comparison routes are removed; `tests/test_frontend_data.py` checks that none of them appears.
 - **Consequences:** The cross-checks live only in notebook 40.
+
+## FE-012 — Results-first tone on the dashboard
+
+- **Context:** The owner found the dashboard too defensive: it reported every weakness of the evidence next to the results. The owner asked that it show results and assumptions without listing each weakness.
+- **Decision:**
+  - **Removed from the dashboard:**
+    - the Evaluation placebo panel ("how firm is the factor?");
+    - the "where it strains" assumption list and the "honest summary";
+    - the minimum attainable p-value and the cross-check placebo column;
+    - the specification table ("why this split");
+    - the interim World Cup test and its open gates;
+    - the "not measured / not in the data / not audited" phrasing.
+  - **Replaced with:**
+    - a neutral "Key assumptions" list;
+    - a "Valuation inputs at a glance" table with sources;
+    - a "Scope" list on Method.
+  - **Relabelled:** the bridge's "Unexplained residual" is now "Not attributed to FIFA".
+  - **Unchanged:** all figures, bands and the ceiling; the significance p-value against rival brands is still shown.
+- **Consequences:** The dashboard states results and assumptions. The full diagnostics (placebo, specification curve, factor non-identification, unsourced ERP and debt spread, gap persistence) remain in the review notebooks 05–40 and in the ADRs, which the Method page points to. This changes presentation only; no analytical result changes.

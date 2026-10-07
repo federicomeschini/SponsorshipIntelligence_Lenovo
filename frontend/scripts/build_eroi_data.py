@@ -292,7 +292,7 @@ def build_monetization(exposure: dict, evaluation: dict) -> dict:
     d, cf = fs["decomposition_index_points"], fs["counterfactual_index_level"]
     bridge = [
         {"label": "Whole gap to the twin", "points": r(d["total_gap"], 3), "value": r(d["total_gap"] / cf * bv, 0), "total": True},
-        {"label": "Unexplained residual", "points": r(-d["residual"], 3), "value": r(-d["residual"] / cf * bv, 0)},
+        {"label": "Not attributed to FIFA", "points": r(-d["residual"], 3), "value": r(-d["residual"] / cf * bv, 0)},
         {"label": "Other sponsorships and events", "points": r(-(d["other_sponsorships"] + d["events"]), 3),
          "value": r(-(d["other_sponsorships"] + d["events"]) / cf * bv, 0)},
         {"label": "FIFA-specific value", "points": r(d["fifa"], 3), "value": r(d["fifa"] / cf * bv, 0), "total": True},
