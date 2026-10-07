@@ -31,10 +31,18 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload frontend artifact
+      # Publish only what the browser needs: no build scripts, decision logs or shortcuts.
+      - name: Stage the site
+        run: |
+          mkdir -p _site
+          cp frontend/index.html frontend/lenovo.html frontend/404.html frontend/.nojekyll _site/
+          cp -r frontend/js frontend/styles frontend/data frontend/ds-kit frontend/vendor frontend/assets _site/
+          test -f _site/data/eroi-data.js
+
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

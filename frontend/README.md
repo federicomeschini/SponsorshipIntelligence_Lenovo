@@ -1,75 +1,62 @@
-# SRMP Front End — Sponsorship Intelligence (demo product)
+# Front end — FIFA Partnership Intelligence
 
-Static, no-build executive decision product for the Lenovo × FIFA partnership, per
-[`VISUALIZATION.md`](../VISUALIZATION.md) (demo track). OpenEconomics brand via
-the pinned `ds-kit/`; charts via vendored Chart.js 4. **Zero backend, zero
-network calls at runtime** — everything needed is in this folder.
+Static, no-build front end on the OpenEconomics brand (pinned `ds-kit/`, vendored
+Chart.js 4). **Zero backend, zero network calls at runtime.**
+
+- `index.html` — the landing page with the FIFA partner programmes. Only Lenovo is live.
+- `lenovo.html` — the **Lenovo × FIFA case dashboard** in the EROI · Event Return on
+  Investment design (FE-009): a Summary plus three chapters (Exposure → Evaluation →
+  Monetization) and a Method page, navigated through a process-arrow bar.
 
 ## Run it
 
-Any of these works:
+- Double-click `Launch Demo.lnk` or `index.html` (works from `file://`), or
+- `npx serve frontend`, or
+- GitHub Pages: pushes to `main` that change `frontend/` deploy via
+  [`.github/workflows/pages.yml`](../.github/workflows/pages.yml), which publishes only the
+  runtime files (HTML, `js/`, `styles/`, `data/`, `ds-kit/`, `vendor/`, `assets/`, `404.html`,
+  `.nojekyll`). One-time setup: repository Settings → Pages → Source = **GitHub Actions**.
+  All paths are relative, so the site works under the project URL
+  (`https://<user>.github.io/<repo>/`) as well as from `file://`.
 
-- **Double-click `Launch Demo.lnk`** (Windows shortcut, opens in your default browser).
-- **Double-click `index.html`** (runs from `file://`).
-- `npx serve frontend` (or any static server) for in-room demos.
-- **GitHub Pages:** pushes to `main` that change `frontend/` are deployed by
-  [`.github/workflows/pages.yml`](../.github/workflows/pages.yml). The repository
-  Pages source must be set to **GitHub Actions** once in Settings → Pages.
-
-No build step exists, so there is nothing else to configure.
-
-## Data flow (demo track, isolation rule §0.4)
+## Data flow
 
 ```
-pipeline artifacts (data/curated, data/staged, data/reference)
-        │  python frontend/scripts/extract_real_data.py
+production outputs (data/curated, data/staged, data/reference)
+        │  python frontend/scripts/build_eroi_data.py      (after python -m srmp.pipeline)
         ▼
-frontend/data/real-data.js        (window.SRMP_REAL — real series, checked in)
-        │  node frontend/scripts/generate-demo-data.mjs   (seed 20260715)
+frontend/data/eroi-data.js   (window.EROI — generated, checked in)
         ▼
-frontend/data/demo-data.js        (window.SRMP_DEMO — simulated fills + every
-        │                          derived KPI, checked in)
-        ▼
-the FIFA-first app (js/screens/*) reads SRMP_DEMO only
+lenovo.html + js/eroi.js     (formats and draws; estimates nothing)
 ```
 
-- Regenerating data is an explicit, logged step: run the two scripts above from
-  the repo root, then `node frontend/tests/check-consistency.mjs` must pass.
-- The demo never reads `data/raw|staged|curated` at runtime and nothing here is
-  imported by `srmp/`.
-- Real vs simulated: real series are embedded unchanged; simulated fills
-  (broadcast, tournament arc after 2026-07-06, engagement, post-tournament
-  survey wave, ROI inputs, portfolio value rates) are produced only by the
-  seeded generator. Chart lines render simulated ranges dashed.
+- No simulated or illustrative numbers: every figure is copied from a production manifest
+  or derived in `build_eroi_data.py` with the arithmetic stated there (rebased series,
+  scenario values, sensitivity ranges). The only arithmetic in the page is the optional
+  programme-cost multiple the viewer types in.
+- `tests/test_frontend_data.py` (repo root test suite) fails when `eroi-data.js` is stale
+  against the manifests. After any pipeline rebuild, re-run the build script.
+- The figures are explained, with every calculation, in the review notebooks
+  (`reports/methods_annex/10`, `20`, `35`, `40`).
+
+## What the Lenovo dashboard shows
+
+| Chapter | Question | Output it hands on |
+|---|---|---|
+| 01 Exposure | How much more did Lenovo stand out than rivals, and how much of that is FIFA? | FIFA-specific effect (ADR-0043), with its 95% band and the whole gap as ceiling |
+| 02 Evaluation | What is the Lenovo brand worth, from what moves its share price? | Brand value from the brand's share of Lenovo-specific price drivers, corroborated by independent valuations (ADR-0044) |
+| 03 Monetization | What did FIFA add to that value, and what cost would it cover? | FIFA-added brand value per scenario; break-even programme cost |
 
 ## Layout
 
 ```
 frontend/
-├── index.html                 # app shell (hash-routed SPA: #/overview … #/about)
-├── ds-kit/                    # pinned OpenEconomics design-system kit (copy)
-├── vendor/chart.umd.js        # Chart.js 4 (vendored — offline/file:// safe)
-├── styles/app.css             # layout glue on top of ds-kit components
-├── js/
-│   ├── theme.js               # semantic chart slots → OE tokens (only brand values in JS)
-│   ├── copy.js                # every UI string (demo register, §4)
-│   ├── format.js  charts.js  components.js  app.js
-│   └── screens/v0-overview.js … v7-about.js
-├── data/                      # generated, checked in (see above)
-├── scripts/                   # extract + seeded generator
-└── tests/check-consistency.mjs
+├── index.html, js/landing.js      # landing page
+├── lenovo.html, js/eroi.js        # Lenovo case dashboard
+├── styles/app.css                 # landing styles (on top of ds-kit)
+├── styles/eroi.css                # dashboard styles (EROI design)
+├── data/eroi-data.js              # generated
+├── scripts/build_eroi_data.py     # generator (reads production outputs)
+├── ds-kit/  vendor/  assets/      # brand kit, Chart.js, partner logos
+└── DECISIONS.md                   # front-end decision log
 ```
-
-## Checks
-
-```
-node frontend/tests/check-consistency.mjs
-```
-
-Verifies the §7.3 invariants: shared timeline alignment, simulated series
-continuous with the real series they extend, V6 waterfall arithmetic closes,
-funnel deltas match the lift dataset, and the three memorable numbers
-(impressions, Index lift, ROI multiple) are the same everywhere.
-
-Front-end-specific decisions (no-build stack, Chart.js, timeline extension,
-z-score market benchmark) are logged in [`DECISIONS.md`](DECISIONS.md).

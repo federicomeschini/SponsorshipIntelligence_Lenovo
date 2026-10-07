@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- ==========================================================================
+     EROI · Event Return on Investment — Lenovo × FIFA case dashboard (FE-009)
+     Static, no build step. Every figure comes from data/eroi-data.js, which
+     frontend/scripts/build_eroi_data.py generates from production outputs.
+     ========================================================================== -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EROI · FIFA × Lenovo · OpenEconomics</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="ds-kit/fonts.css">
+<link rel="stylesheet" href="styles/eroi.css">
+</head>
+<body>
+
+<header class="masthead" id="masthead">
+  <div class="brandbar">
+    <div class="brandbar-left">
+      <a class="brandbar-logo" href="index.html#/home" aria-label="All FIFA partner programmes"><img src="ds-kit/components/logo-black.svg" alt="OpenEconomics" style="width:100%;display:block"></a>
+      <div class="brandbar-titles">
+        <div class="brandbar-product">EROI · Event Return on Investment</div>
+        <div class="brandbar-case" id="case-label">FIFA × Lenovo</div>
+      </div>
+    </div>
+    <div class="brandbar-right">
+      <a class="chip chip--back" href="index.html#/home">← All partners</a>
+      <span class="chip chip--status">Planning estimates · not audited</span>
+      <span class="chip" id="updated-chip"></span>
+      <button class="chip chip--btn" type="button" id="method-link">Method &amp; evidence</button>
+    </div>
+  </div>
+  <nav class="process" id="process" aria-label="Study steps"></nav>
+</header>
+
+<main class="view" id="view" aria-live="polite"></main>
+
+<footer class="stage-foot">
+  <span>OpenEconomics analysis · figures from the production pipeline (ADR-0038 to ADR-0043)</span>
+  <span id="foot-updated"></span>
+  <span>www.openeconomics.eu · © OpenEconomics Srl <span id="year"></span></span>
+</footer>
+
+<script src="vendor/chart.umd.js"></script>
+<script src="data/eroi-data.js"></script>
+<script src="js/eroi.js"></script>
+</body>
+</html>

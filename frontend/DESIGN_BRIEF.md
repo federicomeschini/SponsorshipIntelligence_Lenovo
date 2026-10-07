@@ -1,5 +1,7 @@
 # FIFA-first executive product redesign
 
+> **Historical (FE-009, 2026-10-07).** This brief describes the retired V0–V7 screens. The Lenovo case is now `lenovo.html` in the EROI design.
+
 ## 1. Feature summary
 
 Reframe the existing sponsorship dashboard as a Lenovo × FIFA decision product for Lenovo executives. Remove visible portfolio-property content and reorganize the experience around the financial case, causal proof, and the supporting FIFA evidence chain.

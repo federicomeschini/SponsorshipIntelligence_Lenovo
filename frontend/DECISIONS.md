@@ -129,3 +129,42 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Consequences:** The perception screen no longer claims any real survey
   rows (`REAL.funnelLift` is unused by the UI); consistency tests assert the
   wave-matrix completeness and the ×15 scale instead of real-row embedding.
+
+## FE-009 — Lenovo case in the EROI design, on production data only
+
+- **Context:** The owner adopted the EROI · Event Return on Investment design
+  (`EROI-FIFA-Lenovo.html`, a self-contained illustrative demonstration) as the look
+  and storyline for the Lenovo case: a Summary plus three chapters (Exposure →
+  Evaluation → Monetization) and a Method page under a process-arrow bar. The
+  previous V0–V7 screens ran on a seeded simulated-data layer (`demo-data.js`:
+  simulated broadcast, tournament arc, ROI inputs) that no longer reflects the
+  analysis (ADR-0038 to ADR-0043).
+- **Decision:** The landing page stays as it was (now a self-contained
+  `js/landing.js`); the Lenovo card opens `lenovo.html`, built in the EROI design
+  (stylesheet adopted as `styles/eroi.css`; fonts from `ds-kit/` instead of embedded).
+  Its data come only from production outputs through `scripts/build_eroi_data.py` →
+  `data/eroi-data.js`. The chain is mapped to the current analysis: 01 Exposure ends in
+  the FIFA-specific effect (primary, with bands and the total effect as ceiling); 02
+  Evaluation in brand value from the share of price formation (literal and
+  Lenovo-specific readings; the direct stock regression is shown as inconclusive); 03
+  Monetization applies the uplift to brand value, with scenario (band low / primary /
+  ceiling) and reading switches. Because the rights fee and activation spend are not in
+  the data, no ROI is claimed: the page states the break-even programme cost and lets
+  the viewer enter a cost to read the multiple. The capitalised value is shown with the
+  quarterly gap path ("is the lift holding?") instead of an assumed persistence
+  multiplier. Media value never appears as money (P1). The retired screens,
+  `demo-data.js`, `real-data.js`, their two generator scripts and
+  `tests/check-consistency.mjs` are removed (git history keeps them);
+  `tests/test_frontend_data.py` replaces the consistency check against the manifests.
+  Old `#/overview`-style links redirect to `lenovo.html`.
+- **Consequences:** Every figure on the Lenovo dashboard is traceable to a manifest and a
+  review notebook, and goes stale visibly (failing test) when the pipeline changes. The
+  dashboard is less "executive-certain" than the July demo (VISUALIZATION.md §4): it
+  shows bands, readings and the missing cost explicitly. `VISUALIZATION.md` and
+  `DESIGN_BRIEF.md` describe the retired demo and are labelled accordingly.
+
+## FE-010 — One brand-value measure on the dashboard (ADR-0044)
+
+- **Context:** FE-009 showed two brand-value readings with a switch. The owner chose the Lenovo-specific share of price formation as the measure (ADR-0044) and asked that the literal reading not appear on the dashboard.
+- **Decision:** The dashboard shows one brand value (Lenovo-specific) and one FIFA-added value per scenario; the reading switch, the reading row of the sensitivity chart and every mention of the literal reading are removed (`tests/test_frontend_data.py` checks this). Evaluation adds a "how firm is the share?" panel (placebo: a random or time-shifted series obtains a similar share) and a corroboration panel (Brand Finance 2025, Interbrand 2015), so the limit of the evidence travels with the figure.
+- **Consequences:** The literal reading survives only in the analytical record (manifest reference, notebook 40).

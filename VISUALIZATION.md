@@ -1,5 +1,7 @@
 # VISUALIZATION.md — SRMP Front End (PoC / Demo Product)
 
+> **Superseded for the Lenovo case (FE-009, 2026-10-07).** The Lenovo dashboard is now `frontend/lenovo.html` in the EROI design, built only from production outputs (`frontend/README.md`, `frontend/DECISIONS.md` FE-009). This document describes the retired July demo (simulated data, V0–V7 screens); the landing page is unchanged.
+
 **Status:** v2.1 — canonical reference for the demo front end. **Implemented in
 `frontend/`** (see `frontend/README.md`); deviations from v2.0 are logged in
 `frontend/DECISIONS.md` (FE-001…FE-006) and folded into §2.1, §5 and §6 below.
