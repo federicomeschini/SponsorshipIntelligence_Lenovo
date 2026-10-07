@@ -241,3 +241,14 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **New data:** the builder adds a `method` block (Brand Index loadings, validity screen and variants; the twin's design competition; the specification range; the exposure carryover). A test checks it against the manifests.
   - **Unchanged:** FE-011, FE-012 and FE-014 still apply. No money figure outside the income split; results and assumptions rather than weaknesses; other sponsorships not itemised.
 - **Consequences:** The dashboard carries the method in readable form; the full diagnostics stay in notebooks 05–40.
+
+## FE-017 — No internal references on the dashboard
+
+- **Context:** The owner found the internal references (ADR numbers, module names, notebook numbers, code paths) useless to the dashboard's readers.
+- **Decision:**
+  - **Removed:**
+    - the Method "Traceability" panel; Scope now spans the row;
+    - ADR numbers and module names from every chart source line and the footer;
+    - the code and notebook list from the data page, which becomes "Data sources" (sources and the status of each figure).
+  - **Kept:** source credits in plain terms ("Source: … · Elaboration: OpenEconomics").
+- **Consequences:** Traceability lives in the repository (DECISIONS.md, review notebooks, `frontend/scripts/build_eroi_data.py`), not on the dashboard.

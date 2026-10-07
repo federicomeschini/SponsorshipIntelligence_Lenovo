@@ -488,7 +488,7 @@
       { color: T.lime, label: "Gap", square: true },
     ]);
     note(pD, `Before the announcement the two lines track each other within <b>${D.preRmspe.toFixed(1)} points</b> (root-mean-square). The design (${D.method.replace(/_/g, " ")}, ${D.donors.length} rivals) was chosen on how well it predicted Lenovo before the deal, never on the result.`);
-    src(pD, "Sources: Google Trends joint panel · GWI survey · Synthetic control: OpenEconomics (ADR-0038, ADR-0040)");
+    src(pD, "Sources: Google Trends · GWI Core · Elaboration: OpenEconomics");
 
     const pE = panel(col(g3, 5), { cls: "panel--dark", label: "Total gap · the ceiling" });
     pE.append(el("div", "figure-v lime", F.pts(X.total.lift)));
@@ -529,7 +529,7 @@
     ]);
     const tt = X.timingTests;
     note(pF, `Before FIFA existed, motorsport race weeks did not move Lenovo's gap (${tt["pre_period_nonfifa:levels_with_trend"].nonfifa_log_adstock.points_per_sd >= 0 ? "+" : "−"}${Math.abs(tt["pre_period_nonfifa:levels_with_trend"].nonfifa_log_adstock.points_per_sd).toFixed(2)} pts per s.d., p = ${tt["pre_period_nonfifa:levels_with_trend"].nonfifa_log_adstock.p.toFixed(2)}): that exposure is already in the twin. After the deal, other sponsorships ran above their usual level (F1 ${SP.properties.find((p) => p.id === "f1").observedOverBaseline}× after its 2025 upgrade) but never line up with the gap, while accumulated FIFA exposure does (${F.pts(tt["full_sample:levels_with_trend"].fifa_log_adstock.points_per_sd)} per s.d., p = ${F.p(tt["full_sample:levels_with_trend"].fifa_log_adstock.p)}).`);
-    src(pF, "Sources: Blinkfire Analytics · co-brand Google search · Diagnostic: sponsorship_exposure_timing_v1 (ADR-0042)");
+    src(pF, "Sources: Blinkfire Analytics · Google Trends · Elaboration: OpenEconomics");
 
     const pG = panel(col(g4, 5), { label: "Splitting the gap", title: "What explains the gap", sub: `Average gap over the ${FS.weeks} weeks with exposure data, split by a regression on accumulated FIFA exposure, with controls and a trend.` });
     const cvG = chartIn(pG, 300);
@@ -565,7 +565,7 @@
       ["After the final", W.afterFinal.weeks, F.pts(W.afterFinal.gap)],
     ]);
     note(pI, `Against the no-sponsorship twin the tournament weeks sit at ${F.pts(W.tournament.gap)} and the weeks after the final at <b>${F.pts(W.afterFinal.gap)}</b>, against ${F.pts(W.beforeTournament.gap)} earlier. The pre-registered evaluation of the tournament closes on 18 October 2026.`);
-    src(pI, "Sources: sponsorship_total_effect_v1 · world_cup_impact_v1 (pre-registered, ADR-0019/0029, amended ADR-0040)");
+    src(pI, "Elaboration: OpenEconomics · pre-registered evaluation");
 
     const g6 = grid(root);
     const pJ = panel(col(g6, 12), { label: "Robustness", title: "Same design, different outcomes", sub: "The engine re-run on Google share of search alone and on the former search-salience index (each in its own units)." });
@@ -645,7 +645,7 @@
     table(pA, [{ t: "Year" }, { t: "Revenue", num: true }, { t: "NOPAT", num: true }, { t: "Capital charge", num: true }, { t: "Economic profit", num: true }, { t: "Branded earnings", num: true }],
       D.forecast.map((f) => [f.year, F.usd(f.revenue), F.usd(f.nopat), "−" + F.usd(f.charge), F.usd(f.ep), F.usd(f.branded)]));
     note(pA, `Discounted, five years of branded earnings are worth ${F.usd(D.explicitPv)} and the years after ${F.usd(D.terminalPv)}: brand value ${F.usd(D.brandValue)}.`);
-    src(pA, `Source: Lenovo ${D.baseYear} results and balance sheet · Valuation: OpenEconomics (brand_value_dcf_v2, ADR-0045)`);
+    src(pA, `Source: Lenovo ${D.baseYear} results and balance sheet · Elaboration: OpenEconomics`);
 
     const pB = panel(col(g1, 5), { label: "Discount rate", title: "Cost of capital", sub: "CAPM cost of equity, after-tax cost of debt, market-value weights." });
     readout(pB, [
@@ -673,7 +673,7 @@
       colors: own.map((g) => (g.group === "brand" ? T.brand : T.peer)), xFmt: (v) => v.toFixed(0) + "%",
     });
     note(pC, `The brand accounts for <b>${F.pct(FAC.share, 1)}</b> of the movement Lenovo's own drivers explain; its effect on returns is positive. Market factors, set aside, explain ${F.pct(dom.market.share, 0)} of all explained weekly movement.`);
-    src(pC, "Source: market data (0992.HK, Hang Seng, Nasdaq-100 in HKD) · Elaboration: OpenEconomics (stock_brand_response_v2, brand_value_dominance_v1)");
+    src(pC, "Source: market data (0992.HK, Hang Seng, Nasdaq-100 in HKD) · Elaboration: OpenEconomics");
 
     const pD = panel(col(g2, 5), { label: "Assumptions", title: "Valuation inputs at a glance", sub: "Every input of the income split, with its source." });
     table(pD, [{ t: "Input" }, { t: "Source" }, { t: "Value", num: true }], [
@@ -763,7 +763,7 @@
       fmt: (v) => F.usd(v),
     });
     note(pA, `<b>How to read it.</b> Lenovo's whole gap to its rivals is worth ${F.usd(br[0].value)}. ${F.usd(-br[1].value)} of it is not attributed to FIFA, leaving <b>${F.usd(br[2].value)}</b> from FIFA.`);
-    src(pA, "Elaboration: OpenEconomics · brand_value_dcf_v2, sponsorship_exposure_timing_v1 (ADR-0043, ADR-0045)");
+    src(pA, "Elaboration: OpenEconomics");
 
     const pB = panel(col(g1, 4), { cls: "panel--dark", label: "Decision signal" });
     pB.append(el("div", "figure-v lime", F.usd(value)));
@@ -822,7 +822,7 @@
     const cvD = chartIn(pD, 230);
     barsV(cvD, { labels: fl.map((f) => "Year " + f.year), values: fl.map((f) => f.value), colors: T.limeInk, yFmt: (v) => F.usd(v) });
     note(pD, `FIFA's contribution is worth about <b>${F.usd(fl[0].value)}</b> of branded earnings in year 1, rising to ${F.usd(fl[fl.length - 1].value)} in year 5; the five forecast years account for ${F.pct(M.fifaExplicitShare, 0)} of the ${F.usd(M.scenarios.base.value)} and the long run for the rest.`);
-    src(pD, "Elaboration: OpenEconomics · brand_value_dcf_v2 (ADR-0045)");
+    src(pD, "Source: Lenovo annual results · Elaboration: OpenEconomics");
 
     pager(root, "evaluation", "method");
   }
@@ -831,7 +831,6 @@
   const MT = E.method;
   const pairGrid = (root) => { const g = grid(root); g.classList.add("grid--pair"); return g; };
   const K = X.kpi;
-  const REPO = "https://github.com/federicomeschini/SponsorshipIntelligence_Lenovo/blob/main/";
   const STATUS_CLS = { Observed: "tag--obs", Constructed: "tag--con", Estimated: "tag--est", Assumed: "tag--ass" };
   const status = (s) => `<span class="tag ${STATUS_CLS[s] || ""}">${s}</span>`;
 
@@ -850,16 +849,6 @@
   function inputs(p, rows) {
     table(p, [{ t: "Input" }, { t: "Source" }, { t: "Status" }], rows.map(([a, b, c]) => [a, b, status(c)]));
   }
-  function reproduce(p, items) {
-    const ul = el("ul", "repro");
-    items.forEach(([label, path]) => {
-      const li = el("li");
-      li.innerHTML = `<span>${label}</span><a href="${REPO + path}" target="_blank" rel="noopener"><code>${path}</code> ↗</a>`;
-      ul.append(li);
-    });
-    p.append(ul);
-  }
-
   const TOPICS = [
     { id: "exposure", step: "01", name: "FIFA exposure", q: "How is FIFA exposure measured?",
       d: "Blinkfire impressions on FIFA social media, accumulated week by week with carryover.",
@@ -885,15 +874,15 @@
     { id: "monetization", step: "03", name: "FIFA-added brand value", q: "How is the FIFA effect turned into money?",
       d: "The FIFA-specific uplift in brand share applied to the brand value, with scenarios.",
       key: () => F.usd(M.scenarios.base.value), view: "monetization", render: topicMonetization },
-    { id: "sources", step: "", name: "Data and traceability", q: "What data is the study built on?",
-      d: "Every source, the status of every figure, and the code that reproduces it.",
-      key: () => "7 sources · 10 code files", view: null, render: topicSources },
+    { id: "sources", step: "", name: "Data sources", q: "What data is the study built on?",
+      d: "Every source, and which figures are observed, constructed, estimated or assumed.",
+      key: () => "7 sources", view: null, render: topicSources },
   ];
   const GROUPS = [
     { step: "01", label: "Step 01 · Exposure", title: "From exposure to a FIFA-specific effect" },
     { step: "02", label: "Step 02 · Evaluation", title: "From the share price to a brand value" },
     { step: "03", label: "Step 03 · Monetization", title: "From brand share to money" },
-    { step: "", label: "Foundations", title: "Data and reproducibility" },
+    { step: "", label: "Foundations", title: "The data behind the study" }
   ];
 
   function viewMethod(root, sub) {
@@ -926,7 +915,7 @@
     });
 
     const g2 = pairGrid(root);
-    const p3 = panel(col(g2, 7), { label: "Scope", title: "What the figures cover" });
+    const p3 = panel(col(g2, 12), { label: "Scope", title: "What the figures cover" });
     const ul = el("ul", "caveats");
     [
       "Exposure: FIFA social media impressions measured by Blinkfire.",
@@ -937,14 +926,6 @@
       "World Cup: the pre-registered evaluation window closes on 18 October 2026.",
     ].forEach((t) => ul.append(el("li", null, t)));
     p3.append(ul);
-    const p4 = panel(col(g2, 5), { label: "Traceability", title: "Where every number comes from" });
-    readout(p4, [
-      ["Data through", F.day(E.meta.dataThrough)],
-      ["Dashboard built", F.day(E.meta.built)],
-      ["Decisions", E.meta.decisions],
-      ["Review notebooks", "05 · 10 · 15 · 40"],
-    ]);
-    note(p4, `Figures are generated from the production outputs; <a href="#/method/sources">Data and traceability</a> lists the code and notebooks behind each step.`);
     pager(root, "monetization", null);
   }
 
@@ -1050,7 +1031,7 @@
       yTitle: "Brand Index (100 = pre-announcement)", tip: (v) => v.toFixed(1), milestones: marksFor(X.brandIndex.weeks, KEY_MARKS) });
     table(p5, [{ t: "Variant" }, { t: "Correlation with the headline", num: true }, { t: "Average since the announcement", num: true }],
       [["Headline", "1.000", X.brandIndex.postMean.toFixed(1)], ...BI.sensitivities.map((s) => [s.label, s.corr.toFixed(3), s.postMean.toFixed(1)])], { primary: 0 });
-    src(p5, "Sources: Google Trends, GWI Core · Elaboration: OpenEconomics (brand_factor, ADR-0039)");
+    src(p5, "Sources: Google Trends, GWI Core · Elaboration: OpenEconomics");
   }
 
   function topicTwin(root) {
@@ -1098,7 +1079,7 @@
       { label: "No-sponsorship twin", data: X.core.synthetic, color: T.counterfactual, dash: [5, 4] }],
       yTitle: "Brand Index (100 = pre-announcement)", tip: (v) => v.toFixed(1), milestones: marksFor(X.core.weeks, KEY_MARKS) });
     legend(p5, [{ color: T.brandDeep, label: "Lenovo — actual Brand Index" }, { color: T.counterfactual, label: "No-sponsorship twin", dash: true }]);
-    src(p5, "Elaboration: OpenEconomics · sponsorship_total_effect_v1 (ADR-0038, ADR-0040)");
+    src(p5, "Sources: Google Trends, GWI Core · Elaboration: OpenEconomics");
   }
 
   function topicFifaSpecific(root) {
@@ -1135,7 +1116,7 @@
       { label: "Whole gap", value: d.total_gap, total: true, color: T.counterfactual },
       { label: "Not attributed to FIFA", value: d.fifa - d.total_gap, color: T.peer },
       { label: "FIFA-specific", value: d.fifa, total: true, color: T.brandDeep }], fmt: (v) => v.toFixed(2) });
-    src(p3, "Elaboration: OpenEconomics · sponsorship_exposure_timing_v1 (ADR-0042, ADR-0043)");
+    src(p3, "Sources: Blinkfire Analytics, Google Trends · Elaboration: OpenEconomics");
   }
 
   /* --- Step 02 topics ------------------------------------------------------ */
@@ -1172,7 +1153,7 @@
     const cv = chartIn(p3, 180);
     barsH(cv, { labels: own.map((x) => NAME[x.group] || x.group), values: own.map((x) => x.shareOfLenovoSpecific),
       colors: own.map((x) => (x.group === "brand" ? T.brand : T.peer)), xFmt: (v) => F.pct(v, 0) });
-    src(p3, "Elaboration: OpenEconomics · brand_value_dominance_v1 (ADR-0044)");
+    src(p3, "Source: market data · Elaboration: OpenEconomics");
   }
 
   function topicIncomeSplit(root) {
@@ -1206,7 +1187,7 @@
     table(p3, [{ t: "Year" }, { t: "Revenue", num: true }, { t: "NOPAT", num: true }, { t: "Capital charge", num: true }, { t: "Economic profit", num: true }, { t: "Branded earnings", num: true }],
       D.forecast.map((f) => [String(f.year), F.usd(f.revenue), F.usd(f.nopat), "−" + F.usd(f.charge), F.usd(f.ep), F.usd(f.branded)]));
     readout(p3, [["Discounted, years 1–5", F.usd(D.explicitPv)], ["Discounted, beyond year 5", F.usd(D.terminalPv)], ["Brand value", F.usd(B.brandValue)]]);
-    src(p3, "Source: Lenovo annual results · Elaboration: OpenEconomics (brand_value_dcf_v2, ADR-0045)");
+    src(p3, "Source: Lenovo annual results · Elaboration: OpenEconomics");
   }
 
   function topicWacc(root) {
@@ -1269,13 +1250,13 @@
     const fl = M.fifaBrandedEarnings;
     table(p3, [{ t: "Base case" }, ...fl.map((f) => ({ t: "Year " + f.year, num: true }))],
       [["FIFA's branded earnings", ...fl.map((f) => F.usd(f.value))], ["Discounted", ...fl.map((f) => F.usd(f.pv))]]);
-    src(p3, "Elaboration: OpenEconomics · brand_value_dcf_v2 (ADR-0045)");
+    src(p3, "Source: Lenovo annual results · Elaboration: OpenEconomics");
   }
 
   /* --- Foundations ---------------------------------------------------------- */
   function topicSources(root) {
     head(root, { kicker: "Method · Foundations", title: "What data is the study built on?",
-      lead: "Every figure on the dashboard is generated from the production pipeline. The sources, the status of each figure, and the code and notebooks that reproduce them are listed here." });
+      lead: "The study combines search, survey, social media, market and financial data. Each figure is labelled by how it is obtained: observed directly, constructed from observed data, estimated by a model, or assumed." });
     const g = pairGrid(root);
     const p1 = panel(col(g, 6), { label: "Data sources", title: "What the study is built on" });
     table(p1, [{ t: "Source" }, { t: "Contribution" }], [
@@ -1293,19 +1274,6 @@
       [status("Constructed"), "Brand Index, share of attention, accumulated exposure"],
       [status("Estimated"), "No-sponsorship twin, FIFA-specific effect, brand contribution factor, brand value"],
       [status("Assumed"), "Equity risk premium, debt spread, growth path, weekly carryover, elasticity of 1"],
-    ]);
-    const p3 = panel(col(g, 12), { label: "Reproducibility", title: "Code and review notebooks", sub: "The pipeline runs with python -m srmp.pipeline; each review notebook explains one step in full." });
-    reproduce(p3, [
-      ["Brand Index model", "srmp/index/brand_factor.py"],
-      ["Brand Index review", "reports/methods_annex/05_brand_index.ipynb"],
-      ["No-sponsorship twin", "srmp/experiments/sponsorship_total_effect_v1.py"],
-      ["FIFA-specific effect", "srmp/experiments/sponsorship_exposure_timing_v1.py"],
-      ["Step 01 review", "reports/methods_annex/10_total_sponsorship_effect.ipynb"],
-      ["Exposure and survey review", "reports/methods_annex/15_exposure_and_survey_lift.ipynb"],
-      ["Brand contribution factor", "srmp/experiments/brand_value_dominance_v1.py"],
-      ["Income split", "srmp/experiments/brand_value_dcf_v2.py"],
-      ["Steps 02–03 review", "reports/methods_annex/40_brand_value.ipynb"],
-      ["Decision log", "DECISIONS.md"],
     ]);
   }
 
