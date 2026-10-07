@@ -25,10 +25,14 @@
       </div>
     </div>
     <div class="brandbar-right">
-      <a class="chip chip--back" href="index.html#/home">← All partners</a>
-      <span class="chip chip--status">Planning estimates</span>
-      <span class="chip" id="updated-chip"></span>
-      <button class="chip chip--btn" type="button" id="method-link">Method &amp; evidence</button>
+      <div class="bar-meta" aria-label="Status of the figures">
+        <span class="bar-status">Planning estimates</span>
+        <span class="bar-date" id="updated-chip"></span>
+      </div>
+      <nav class="bar-actions" aria-label="Navigation">
+        <a class="bar-link" href="index.html#/home">← All partners</a>
+        <button class="bar-btn" type="button" id="method-link">Method &amp; evidence <span aria-hidden="true">→</span></button>
+      </nav>
     </div>
   </div>
   <nav class="process" id="process" aria-label="Study steps"></nav>

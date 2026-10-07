@@ -193,3 +193,30 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **Relabelled:** the bridge's "Unexplained residual" is now "Not attributed to FIFA".
   - **Unchanged:** all figures, bands and the ceiling; the significance p-value against rival brands is still shown.
 - **Consequences:** The dashboard states results and assumptions. The full diagnostics (placebo, specification curve, factor non-identification, unsourced ERP and debt spread, gap persistence) remain in the review notebooks 05–40 and in the ADRs, which the Method page points to. This changes presentation only; no analytical result changes.
+
+## FE-013 — Masthead separates information from actions
+
+- **Context:** The four masthead chips looked alike, although two are information (status, data date) and two are actions (back to partners, Method).
+- **Decision:**
+  - **Information:** plain mono text with no border, so it does not look clickable. The status has a green dot, and a divider separates it from the date.
+  - **Actions:** a vertical rule separates them from the information. "← All partners" is a quiet text link. "Method & evidence →" is the one solid button and shows outlined while the Method view is open.
+  - **Print:** the actions are hidden.
+- **Consequences:** Presentation only. The ids `updated-chip` and `method-link` are unchanged, so `eroi.js` needed no change.
+
+## FE-014 — Gap waterfalls show FIFA and one aggregate remainder
+
+- **Context:** The owner asked that the gap waterfalls never set other sponsorships against FIFA; whatever is not FIFA is aggregated and not itemised.
+- **Decision:**
+  - **Charts:** the step 01 "What explains the gap" waterfall and the step 03 value bridge now have three bars: whole gap, "Not attributed to FIFA" (= FIFA-specific − whole gap, aggregating the residual, other sponsorships and events) and FIFA-specific.
+  - **Text:** their notes and subtitles, and the Exposure lead, no longer name other sponsorships or events.
+  - **Data and tests:** the builder writes a three-step `bridge`, and `tests/test_frontend_data.py` checks it.
+- **Consequences:** Presentation only; the decomposition by component stays in the manifest and notebook 10 §5.8.
+
+## FE-015 — Sensitivity tornado removed from Monetization
+
+- **Context:** The owner found the "What moves the answer" tornado hard to read and asked for it to be removed.
+- **Decision:**
+  - **Removed:** the panel, along with the `monetization.tornado` block in the builder.
+  - **Layout:** "FIFA's share of branded earnings, year by year" now spans the full row.
+  - **Wording:** the Method step 01 card no longer itemises other sponsorships and events (FE-014).
+- **Consequences:** The input-by-input sensitivity of the brand value stays in notebook 40 (tornado and factor × WACC grid). On the dashboard, the Evaluation grid and the scenario ladder still show the main ranges.

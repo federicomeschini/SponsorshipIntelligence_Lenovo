@@ -288,26 +288,18 @@ def build_monetization(exposure: dict, evaluation: dict) -> dict:
               "ambitious": fs["attribution_band_upper_index_points"]}
     scenarios = {name: {"upliftPct": r(uplift[key], 3), "indexPoints": r(points[name], 3), "value": r(added[key] * 1e6, 0)}
                  for name, key in keys.items()}
-    # Bridge: whole gap (same weeks) -> less residual -> less other sponsorships and events -> FIFA-specific.
+    # Bridge: whole gap (same weeks) -> less everything not attributed to FIFA (residual, other
+    # sponsorships and events, aggregated; FE-014) -> FIFA-specific.
     d, cf = fs["decomposition_index_points"], fs["counterfactual_index_level"]
+    rest = d["fifa"] - d["total_gap"]
     bridge = [
         {"label": "Whole gap to the twin", "points": r(d["total_gap"], 3), "value": r(d["total_gap"] / cf * bv, 0), "total": True},
-        {"label": "Not attributed to FIFA", "points": r(-d["residual"], 3), "value": r(-d["residual"] / cf * bv, 0)},
-        {"label": "Other sponsorships and events", "points": r(-(d["other_sponsorships"] + d["events"]), 3),
-         "value": r(-(d["other_sponsorships"] + d["events"]) / cf * bv, 0)},
+        {"label": "Not attributed to FIFA", "points": r(rest, 3), "value": r(rest / cf * bv, 0)},
         {"label": "FIFA-specific value", "points": r(d["fifa"], 3), "value": r(d["fifa"] / cf * bv, 0), "total": True},
     ]
-    # Sensitivity of the base-case FIFA-added value, one income-split input at a time.
+    # FIFA's share of the brand value, applied to the forecast below.
     base_pct = elasticity * uplift["primary"] / 100
     D = evaluation["dcf"]
-    tornado = [
-        {"label": "FIFA-specific uplift (95% band to whole gap)", "lo": r(scenarios["conservative"]["value"], 0), "hi": r(scenarios["ambitious"]["value"], 0)},
-        {"label": "Brand contribution factor (bootstrap 90%)", "lo": r(base_pct * D["factorBand"][0], 0), "hi": r(base_pct * D["factorBand"][1], 0)},
-        {"label": "Cost of capital (WACC ±1 point)", "lo": r(base_pct * D["waccRange"][0], 0), "hi": r(base_pct * D["waccRange"][1], 0)},
-        {"label": "Terminal growth (±0.5 point)", "lo": r(base_pct * D["growthRange"][0], 0), "hi": r(base_pct * D["growthRange"][1], 0)},
-        {"label": "Elasticity of brand value to brand share (0.5 to 1.5, assumed)", "lo": r(0.5 * base_pct * bv, 0), "hi": r(1.5 * base_pct * bv, 0)},
-    ]
-    tornado.sort(key=lambda x: abs(x["hi"] - x["lo"]), reverse=True)
 
     # Is the lift holding? Quarterly mean gap of the total path.
     w = pd.read_parquet(E / "sponsorship_total_effect_v1/total_effect_weekly.parquet")
@@ -317,7 +309,7 @@ def build_monetization(exposure: dict, evaluation: dict) -> dict:
     rate = dcf["discount_rate"]["wacc"]
     flow = [{"year": f["year"], "value": r(base_pct * f["branded"], 0), "pv": r(base_pct * f["branded"] / (1 + rate) ** f["year"], 0)}
             for f in D["forecast"]]
-    return {"scenarios": scenarios, "bridge": bridge, "tornado": tornado, "fifaBrandedEarnings": flow,
+    return {"scenarios": scenarios, "bridge": bridge, "fifaBrandedEarnings": flow,
             "fifaExplicitShare": r(sum(x["pv"] for x in flow) / scenarios["base"]["value"], 3),
             "quarterlyGap": [{"q": str(k), "gap": r(v, 2)} for k, v in q.items()]}
 

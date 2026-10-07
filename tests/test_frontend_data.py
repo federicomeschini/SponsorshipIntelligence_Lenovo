@@ -46,7 +46,8 @@ def test_dashboard_brand_values_match_the_valuation_manifest():
         assert np.isclose(d["monetization"]["scenarios"][case]["value"], dcf["fifa_added_brand_value_usd_m"][key] * 1e6, rtol=1e-6)
     # The value bridge ends at the FIFA-specific value and starts from the whole gap.
     bridge = d["monetization"]["bridge"]
-    assert np.isclose(sum(step["value"] for step in bridge[1:3]) + bridge[0]["value"], bridge[3]["value"], rtol=1e-4)
+    assert len(bridge) == 3  # FE-014: everything not attributed to FIFA is one aggregate step
+    assert np.isclose(bridge[0]["value"] + bridge[1]["value"], bridge[2]["value"], rtol=1e-4, atol=1)
 
 
 def test_dashboard_uses_no_simulated_data_or_monetary_media_value():

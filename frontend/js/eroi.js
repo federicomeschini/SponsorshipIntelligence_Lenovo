@@ -402,7 +402,7 @@
     head(root, {
       kicker: "Step 01 · Exposure",
       title: "How much more did Lenovo stand out because of FIFA?",
-      lead: `FIFA properties delivered ${F.big(K.eventImpressions)} measured digital impressions for Lenovo. Because the whole PC market moved in these two years, the brand is measured as its <em>share</em> of attention against rival brands and compared with a synthetic Lenovo built from ${D.donors.length} rivals with no part in the FIFA deal. The gap is then split between FIFA, Lenovo's other sponsorships and Lenovo's own events.`,
+      lead: `FIFA properties delivered ${F.big(K.eventImpressions)} measured digital impressions for Lenovo. Because the whole PC market moved in these two years, the brand is measured as its <em>share</em> of attention against rival brands and compared with a synthetic Lenovo built from ${D.donors.length} rivals with no part in the FIFA deal. The part of that gap explained by FIFA exposure is then isolated.`,
     });
 
     flow(root, [
@@ -456,7 +456,7 @@
     });
     note(pB, `Exposure is concentrated in tournament windows; the World Cup alone delivered ${F.big(X.byProperty[0].impressions)} impressions (digital and social, through ${F.day(X.event.coverageEnd)}).`);
     src(pB, "Source: Blinkfire Analytics (client exports) · Elaboration: OpenEconomics");
-    const pC = panel(col(g2, 5), { label: "Composition", title: "Which properties delivered it", sub: "Digital impressions by FIFA property over the partnership window." });
+    const pC = panel(col(g2, 5), { label: "Composition", title: "Which social media delivered it", sub: "Digital impressions by FIFA social media account over the partnership window." });
     const cvC = chartIn(pC, 300);
     barsH(cvC, {
       labels: X.byProperty.map((p) => p.label), values: X.byProperty.map((p) => p.impressions),
@@ -531,18 +531,17 @@
     note(pF, `Before FIFA existed, motorsport race weeks did not move Lenovo's gap (${tt["pre_period_nonfifa:levels_with_trend"].nonfifa_log_adstock.points_per_sd >= 0 ? "+" : "−"}${Math.abs(tt["pre_period_nonfifa:levels_with_trend"].nonfifa_log_adstock.points_per_sd).toFixed(2)} pts per s.d., p = ${tt["pre_period_nonfifa:levels_with_trend"].nonfifa_log_adstock.p.toFixed(2)}): that exposure is already in the twin. After the deal, other sponsorships ran above their usual level (F1 ${SP.properties.find((p) => p.id === "f1").observedOverBaseline}× after its 2025 upgrade) but never line up with the gap, while accumulated FIFA exposure does (${F.pts(tt["full_sample:levels_with_trend"].fifa_log_adstock.points_per_sd)} per s.d., p = ${F.p(tt["full_sample:levels_with_trend"].fifa_log_adstock.p)}).`);
     src(pF, "Sources: Blinkfire Analytics · co-brand Google search · Diagnostic: sponsorship_exposure_timing_v1 (ADR-0042)");
 
-    const pG = panel(col(g4, 5), { label: "Splitting the gap", title: "What explains the gap", sub: `Average gap over the ${FS.weeks} weeks with exposure data, split by a regression on FIFA exposure, other sponsorships and Lenovo events, with a trend.` });
+    const pG = panel(col(g4, 5), { label: "Splitting the gap", title: "What explains the gap", sub: `Average gap over the ${FS.weeks} weeks with exposure data, split by a regression on accumulated FIFA exposure, with controls and a trend.` });
     const cvG = chartIn(pG, 300);
     waterfall(cvG, {
       steps: [
         { label: "Whole gap", value: d.total_gap, total: true, color: T.counterfactual },
-        { label: "Not attributed to FIFA", value: -d.residual, color: T.peer },
-        { label: "Other sponsorships & events", value: -(d.other_sponsorships + d.events), color: T.peerLine },
+        { label: "Not attributed to FIFA", value: d.fifa - d.total_gap, color: T.peer },
         { label: "FIFA-specific", value: d.fifa, total: true, color: T.brandDeep },
       ],
       fmt: (v) => v.toFixed(2),
     });
-    note(pG, `Other sponsorships account for ${F.pts(d.other_sponsorships)} and Lenovo events for ${F.pts(d.events)}. The remaining ${F.pts(d.residual)} is not linked to any measured exposure and is not attributed to FIFA in the primary estimate.`);
+    note(pG, `Of the ${F.pts(d.total_gap)} gap, <b>${F.pts(d.fifa)}</b> is explained by FIFA exposure and is the primary estimate; the remaining ${F.pts(d.total_gap - d.fifa)} is not attributed to FIFA.`);
 
     /* --- output ------------------------------------------------------------- */
     const g5 = grid(root);
@@ -759,12 +758,11 @@
       steps: [
         { label: br[0].label, value: br[0].value, total: true, color: T.counterfactual },
         { label: br[1].label, value: br[1].value, color: T.peer },
-        { label: br[2].label, value: br[2].value, color: T.peerLine },
-        { label: br[3].label, value: br[3].value, total: true, color: T.brandDeep },
+        { label: br[2].label, value: br[2].value, total: true, color: T.brandDeep },
       ],
       fmt: (v) => F.usd(v),
     });
-    note(pA, `<b>How to read it.</b> Lenovo's whole gap to its rivals is worth ${F.usd(br[0].value)}. ${F.usd(-br[1].value)} of it is not attributed to FIFA and other sponsorships and events net to ${F.usd(br[2].value)}, leaving <b>${F.usd(br[3].value)}</b> from FIFA.`);
+    note(pA, `<b>How to read it.</b> Lenovo's whole gap to its rivals is worth ${F.usd(br[0].value)}. ${F.usd(-br[1].value)} of it is not attributed to FIFA, leaving <b>${F.usd(br[2].value)}</b> from FIFA.`);
     src(pA, "Elaboration: OpenEconomics · brand_value_dcf_v2, sponsorship_exposure_timing_v1 (ADR-0043, ADR-0045)");
 
     const pB = panel(col(g1, 4), { cls: "panel--dark", label: "Decision signal" });
@@ -819,27 +817,7 @@
     note(pQ, "Conservative is the low end of the 95% band; ambitious credits the whole gap, residual included, to FIFA.");
 
     const g3 = grid(root);
-    const pC = panel(col(g3, 6), { label: "Sensitivity", title: "What moves the answer", sub: "Base case; each input moved across its range with the others held." });
-    const cvC = chartIn(pC, 280);
-    const tor = M.tornado;
-    make(cvC, {
-      type: "bar",
-      data: {
-        labels: tor.map((t) => t.label),
-        datasets: [{ label: "Range", data: tor.map((t) => [Math.min(t.lo, t.hi), Math.max(t.lo, t.hi)]), backgroundColor: T.brandDeep, borderWidth: 0, barPercentage: 0.6 }],
-      },
-      options: {
-        indexAxis: "y", maintainAspectRatio: false,
-        scales: {
-          x: { grid: { color: T.grid }, border: { display: false }, ticks: { callback: (v) => F.usd(v), maxTicksLimit: 6 } },
-          y: { grid: { display: false }, border: { display: false }, ticks: { font: { family: T.sans, size: 11 }, color: T.ink, callback(v) { const l = this.getLabelForValue(v); return l.length > 34 ? [l.slice(0, l.indexOf("(")).trim(), l.slice(l.indexOf("("))] : l; } } },
-        },
-        plugins: { tooltip: { callbacks: { label: (c) => F.usd(c.raw[0]) + " to " + F.usd(c.raw[1]) } } },
-      },
-    });
-    note(pC, "The brand contribution factor is the input that moves the value most, followed by the FIFA-specific uplift.");
-
-    const pD = panel(col(g3, 6), { label: "The same value as a flow", title: "FIFA's share of branded earnings, year by year", sub: "Base case: the FIFA-specific uplift applied to each forecast year's branded earnings. Discounted and continued beyond year 5, these flows make up the FIFA-added brand value." });
+    const pD = panel(col(g3, 12), { label: "The same value as a flow", title: "FIFA's share of branded earnings, year by year", sub: "Base case: the FIFA-specific uplift applied to each forecast year's branded earnings. Discounted and continued beyond year 5, these flows make up the FIFA-added brand value." });
     const fl = M.fifaBrandedEarnings;
     const cvD = chartIn(pD, 230);
     barsV(cvD, { labels: fl.map((f) => "Year " + f.year), values: fl.map((f) => f.value), colors: T.limeInk, yFmt: (v) => F.usd(v) });
@@ -857,7 +835,7 @@
       lead: "Three steps, each producing one number the next consumes. The review notebooks document every calculation behind them.",
     });
     flow(root, [
-      { k: "Step 01 · Exposure", v: F.pts(FS.primary_index_points) + " FIFA-specific", d: `Brand Index (share of attention against rivals, with the GWI survey) against a synthetic no-sponsorship Lenovo from ${X.design.donors.length} rival brands; the gap split between FIFA exposure, other sponsorships, events and a residual.` },
+      { k: "Step 01 · Exposure", v: F.pts(FS.primary_index_points) + " FIFA-specific", d: `Brand Index (share of attention against rivals, with the GWI survey) against a synthetic no-sponsorship Lenovo from ${X.design.donors.length} rival brands; the part of the gap explained by FIFA exposure isolated.` },
       { k: "Step 02 · Evaluation", v: F.usd(B.brandValue) + " brand value", cls: "flow-cell--mid", d: `ISO 10668 income split: the brand contribution factor (${F.pct(FAC.share, 1)}, from the share price) × Lenovo's discounted economic profit (${F.usd(D.epPv)}).` },
       { k: "Step 03 · Monetization", v: F.usd(M.scenarios.base.value) + " added by FIFA", cls: "flow-cell--out", d: "FIFA-specific uplift × brand value, with the 95% band and the whole-gap ceiling as scenarios." },
     ], { tall: true });
