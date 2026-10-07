@@ -80,10 +80,13 @@ def test_incremental_brand_value_follows_the_index_lift_chain():
     manifest = _manifest(DOMINANCE / "brand_value_dominance_manifest.json")
     chain = manifest["primary_result"]
     values = manifest["values"]
-    # Step 1: brand value is the signed brand share of price formation x company value.
-    assert np.isclose(chain["brand_value_usd_m"], values["brand_share_of_price_formation"] * values["market_cap_usd_m"])
+    # Step 1 (ADR-0044): brand value is the signed brand share of the Lenovo-specific explained movement x company value.
+    assert values["brand_share_definition"] == "share_of_lenovo_specific_explained_variance"
+    assert np.isclose(chain["brand_value_usd_m"], values["brand_share"] * values["market_cap_usd_m"])
     sign = manifest["coefficients"]["brand_full_sample"]["brand"]["sign"]
-    assert np.sign(values["brand_share_of_price_formation"]) in (0, sign)
+    assert np.sign(values["brand_share"]) in (0, sign)
+    weights = pd.read_parquet(DOMINANCE / "dominance_weights.parquet").set_index("group")["dominance_r2"]
+    assert np.isclose(abs(values["brand_share"]), weights["brand"] / weights.drop("market").sum())
     # Step 2: the Brand Index is a ratio scale (ADR-0040), so the uplift is lift / counterfactual level.
     assert manifest["index_scale"]["display_scale"] == "percent_of_base_share"
     assert chain["zero_index_level"] == 0.0
@@ -105,5 +108,13 @@ def test_fifa_specific_incremental_value_is_the_primary_uplift_times_brand_value
     bv = manifest["values"]["brand_value_usd_m"]
     elasticity = manifest["primary_result"]["brand_value_elasticity_to_brand_share"]
     for name, pct in fs["uplift_pct"].items():
-        assert np.isclose(fs["incremental_brand_value_usd_m"]["literal"][name], elasticity * pct / 100 * bv)
+        assert np.isclose(fs["incremental_brand_value_usd_m"][name], elasticity * pct / 100 * bv)
     assert fs["uplift_pct"]["statistical_band_95_low"] < fs["uplift_pct"]["primary"] <= fs["uplift_pct"]["attribution_band_upper"]
+
+
+def test_brand_share_placebo_is_reported_with_the_measure():
+    manifest = _manifest(DOMINANCE / "brand_value_dominance_manifest.json")
+    placebo = manifest["placebo"]
+    assert np.isclose(placebo["actual_unsigned_share"], abs(manifest["values"]["brand_share"]))
+    for key in ("random_series", "time_shifted_brand"):
+        assert 0 <= placebo[key]["probability_at_or_above_actual"] <= 1 and placebo[key]["draws"] > 100

@@ -2,9 +2,10 @@
 incremental brand value through its lift of the Brand Index (ADR-0031, ADR-0032, ADR-0040).
 
 Owner-selected chain:
-1. Brand value (BV) = the brand's signed general-dominance share of explained
-   weekly return variance x company value (the general effect of the Brand
-   Index on price formation).
+1. Brand value (BV) = the brand's signed general-dominance share of the
+   Lenovo-specific explained weekly return variance (market factors set aside;
+   ADR-0044) x company value. The share of all explained variance (the "literal"
+   reading, ADR-0031) is kept as a secondary reference only.
 2. The sponsorship's sustained Index lift is converted to a percentage uplift in
    brand share of attention. The Brand Index is a ratio scale (proportional to
    Lenovo's brand share, true zero at 0; ADR-0040), so the uplift is
@@ -106,16 +107,52 @@ def _shares(frame: pd.DataFrame, outcome: str, groups: dict[str, list[str]]) -> 
             "signed_explained_share": signed, "total_share": weights, "coefficients": signs}
 
 
+def _lenovo_specific(result: dict[str, Any]) -> float:
+    """Signed brand share of the explained variance that is not market factors (ADR-0044)."""
+    weights = result["weights"]
+    rest = sum(v for k, v in weights.items() if k != "market")
+    sign = result["coefficients"].get("brand", {}).get("sign", 1.0)
+    return float(sign * weights.get("brand", 0.0) / rest) if rest > 0 else 0.0
+
+
+def _placebos(frame: pd.DataFrame, outcome: str, groups: dict[str, list[str]], spec: dict[str, Any],
+              actual: float) -> dict[str, Any]:
+    """What share would a meaningless 'brand' get? Random series and time-shifted brand series.
+
+    Reported as the share an unrelated regressor obtains and the probability that it reaches
+    the actual (unsigned) share; a diagnostic of how well the market data identify the brand.
+    """
+    column = groups["brand"][0]
+    rng = np.random.default_rng(int(spec["seed"]))
+    unsigned = lambda f: abs(_lenovo_specific(_shares(f, outcome, groups)))  # noqa: E731
+    noise = []
+    for _ in range(int(spec["noise_draws"])):
+        f = frame.copy()
+        f[column] = rng.normal(size=len(f))
+        noise.append(unsigned(f))
+    shift = []
+    k0 = int(spec["minimum_shift_weeks"])
+    for k in range(k0, len(frame) - k0 + 1):
+        f = frame.copy()
+        f[column] = np.roll(frame[column].to_numpy(), k)
+        shift.append(unsigned(f))
+    summary = lambda d: {"median": float(np.median(d)), "mean": float(np.mean(d)), "p90": float(np.quantile(d, 0.9)),  # noqa: E731
+                         "probability_at_or_above_actual": float(np.mean(np.asarray(d) >= abs(actual))), "draws": len(d)}
+    return {"actual_unsigned_share": abs(actual), "random_series": summary(noise), "time_shifted_brand": summary(shift)}
+
+
 def _block_bootstrap(
     frame: pd.DataFrame, outcome: str, groups: dict[str, list[str]], spec: dict[str, Any], keys: list[str],
 ) -> dict[str, dict[str, float]]:
     rng = np.random.default_rng(int(spec["seed"]))
     n, block = len(frame), int(spec["block_weeks"])
     draws: dict[str, list[float]] = {f"{key}_{kind}": [] for key in keys for kind in ("explained", "total")}
+    draws["brand_lenovo_specific"] = []
     for _ in range(int(spec["replications"])):
         starts = rng.integers(0, n - block + 1, size=int(np.ceil(n / block)))
         rows = np.concatenate([np.arange(start, start + block) for start in starts])[:n]
         result = _shares(frame.iloc[rows].reset_index(drop=True), outcome, groups)
+        draws["brand_lenovo_specific"].append(_lenovo_specific(result))
         for key in keys:
             draws[f"{key}_explained"].append(result["signed_explained_share"].get(key, 0.0))
             draws[f"{key}_total"].append(result["total_share"].get(key, 0.0)
@@ -168,10 +205,11 @@ def build_brand_value_dominance(
     def money(share: float, base: float = cap) -> float:
         return share * base
 
-    x = brand["signed_explained_share"]["brand"]
-    # Alternative reading: the brand's share of the Lenovo-specific drivers only (market factors excluded).
-    specific = {k: v for k, v in brand["weights"].items() if k != "market"}
-    x_specific = (brand["weights"]["brand"] / sum(specific.values()) * np.sign(x)) if sum(specific.values()) > 0 else 0.0
+    # ADR-0044: the brand's share of the Lenovo-specific explained movement is the measure.
+    x_literal = brand["signed_explained_share"]["brand"]
+    x = _lenovo_specific(brand)
+    share_band = (boot_brand["brand_lenovo_specific"]["p05"], boot_brand["brand_lenovo_specific"]["p95"])
+    placebo = _placebos(panel, outcome, groups, config["placebo"], x)
 
     # Indirect chain: Index lift -> % brand share of attention -> incremental brand value.
     chain = config["indirect_chain"]
@@ -187,7 +225,7 @@ def build_brand_value_dominance(
     uplift = level / headroom
     coefficient = elasticity * brand_value / headroom
     donor_levels = pd.read_parquet(inputs["donor_sensitivity"])["post_mean_gap"]
-    bv_low, bv_high = money(boot_brand["brand_explained"]["p05"]), money(boot_brand["brand_explained"]["p95"])
+    bv_low, bv_high = money(share_band[0]), money(share_band[1])
     indirect = {
         "brand_value_usd_m": brand_value,
         "zero_index_level": scale["zero_index_level"],
@@ -206,25 +244,26 @@ def build_brand_value_dominance(
             coefficient * world_cup_gap if world_cup_gap is not None else None),
         "incremental_brand_value_by_cap_base_usd_m": {
             name: elasticity * uplift * money(x, float(value)) for name, value in caps.items()},
+        "note": "Total-effect chain (upper attribution band); the primary sponsorship value is fifa_specific_incremental_brand_value.",
     }
     values = {
-        "brand_share_of_price_formation": x,
-        "brand_share_of_total_variance": brand["total_share"]["brand"] * np.sign(x),
+        "brand_share_definition": config["brand_share_definition"],
+        "brand_share": x,
         "brand_value_usd_m": money(x),
-        "brand_value_lower_bound_usd_m": money(brand["total_share"]["brand"] * np.sign(x)),
-        "brand_value_90pct_usd_m": [money(boot_brand["brand_explained"]["p05"]),
-                                    money(boot_brand["brand_explained"]["p95"])],
+        "brand_share_90pct": list(share_band),
+        "brand_value_90pct_usd_m": [bv_low, bv_high],
         "market_cap_base": config["valuation_base"]["primary"],
         "market_cap_usd_m": cap,
         "brand_value_by_cap_base_usd_m": {name: money(x, float(value)) for name, value in caps.items()},
-        "brand_share_of_lenovo_specific_formation": x_specific,
-        "brand_value_lenovo_specific_usd_m": money(x_specific),
-        "incremental_brand_value_lenovo_specific_usd_m": elasticity * uplift * money(x_specific),
+        "literal_reading_reference": {
+            "definition": "share of all explained variance, market factors included (ADR-0031; secondary since ADR-0044)",
+            "brand_share": x_literal, "brand_value_usd_m": money(x_literal),
+            "brand_value_90pct_usd_m": [money(boot_brand["brand_explained"]["p05"]), money(boot_brand["brand_explained"]["p95"])],
+        },
     }
 
     # FIFA-specific incremental brand value (ADR-0043): primary uplift with statistical and attribution bands.
     fifa = json.loads(Path(inputs["fifa_specific_manifest"]).read_text(encoding="utf-8"))["fifa_specific_effect"]
-    readings = {"literal": values["brand_value_usd_m"], "lenovo_specific": values["brand_value_lenovo_specific_usd_m"]}
     uplifts = {"primary": fifa["primary_uplift_pct"],
                "statistical_band_95_low": fifa["statistical_band_95_uplift_pct"][0],
                "statistical_band_95_high": fifa["statistical_band_95_uplift_pct"][1],
@@ -235,41 +274,42 @@ def build_brand_value_dominance(
                          "statistical_band_95": fifa["statistical_band_95_index_points"],
                          "attribution_band_upper": fifa["attribution_band_upper_index_points"]},
         "period": fifa["period"],
-        "incremental_brand_value_usd_m": {
-            reading: {name: elasticity * pct / 100 * bv for name, pct in uplifts.items()}
-            for reading, bv in readings.items()},
-        "note": "Primary sponsorship valuation (ADR-0043). The total-effect chain above is the attribution upper band over the full post period.",
+        "brand_value_usd_m": brand_value,
+        "incremental_brand_value_usd_m": {name: elasticity * pct / 100 * brand_value for name, pct in uplifts.items()},
+        "incremental_brand_value_brand_share_90pct_usd_m": [elasticity * uplifts["primary"] / 100 * bv_low,
+                                                            elasticity * uplifts["primary"] / 100 * bv_high],
+        "note": "Primary sponsorship valuation (ADR-0043, ADR-0044): FIFA-specific uplift x Lenovo-specific brand value.",
     }
 
     # 3. Stability: sample windows, leaving one control group out, alternative brand measures.
     stability = []
+
+    def row(check: str, frame: pd.DataFrame, g: dict[str, list[str]]) -> dict[str, Any]:
+        result = _shares(frame, outcome, g)
+        share = _lenovo_specific(result) if any(k != "market" and k != "brand" for k in g) else float("nan")
+        return {"check": check, "weeks": len(frame), "r2": result["r2"], "brand_share": share,
+                "brand_value_usd_m": money(share), "literal_share": result["signed_explained_share"].get("brand", 0.0)}
+
     for start, end in config["stability"]["sample_windows"]:
         sample = panel[(panel["week"] >= pd.Timestamp(start)) & (panel["week"] <= pd.Timestamp(end))]
-        result = _shares(sample, outcome, groups)
-        stability.append({"check": f"sample {start} to {end}", "weeks": len(sample), "r2": result["r2"],
-                          "brand_share_of_explained": result["signed_explained_share"].get("brand", 0.0),
-                          "brand_value_usd_m": money(result["signed_explained_share"].get("brand", 0.0))})
-    for dropped in [name for name in groups if name != "brand"]:
-        reduced = {name: cols for name, cols in groups.items() if name != dropped}
-        result = _shares(panel, outcome, reduced)
-        stability.append({"check": f"without {dropped}", "weeks": len(panel), "r2": result["r2"],
-                          "brand_share_of_explained": result["signed_explained_share"]["brand"],
-                          "brand_value_usd_m": money(result["signed_explained_share"]["brand"])})
+        stability.append(row(f"sample {start} to {end}", sample, groups))
+    for dropped in [name for name in groups if name not in ("brand", "market")]:
+        stability.append(row(f"without {dropped}", panel, {k: v for k, v in groups.items() if k != dropped}))
+    for name, cols in config["stability"].get("extra_lenovo_groups", {}).items():
+        sample = panel.dropna(subset=cols)
+        stability.append(row(f"with {name} as an extra Lenovo-specific group", sample, {**groups, name: cols}))
     for alternative in config["stability"].get("brand_measures", []):
-        alt_groups = {**groups, "brand": [alternative]}
         sample = panel.dropna(subset=[alternative])
-        result = _shares(sample, outcome, alt_groups)
-        stability.append({"check": f"brand measured as {alternative}", "weeks": len(sample), "r2": result["r2"],
-                          "brand_share_of_explained": result["signed_explained_share"]["brand"],
-                          "brand_value_usd_m": money(result["signed_explained_share"]["brand"])})
+        stability.append(row(f"brand measured as {alternative}", sample, {**groups, "brand": [alternative]}))
     stability = pd.DataFrame(stability)
-    stability["incremental_brand_value_usd_m"] = (
-        stability["brand_value_usd_m"] * elasticity * uplift)
-    shares = stability["brand_share_of_explained"]
+    stability["incremental_brand_value_usd_m"] = stability["brand_value_usd_m"] * elasticity * uplifts["primary"] / 100
+    shares = stability["brand_share"].dropna()
 
     weights = pd.DataFrame([
         {"model": "brand_full_sample", "group": name, "dominance_r2": value,
          "share_of_explained": brand["explained_share"][name],
+         "share_of_lenovo_specific": (value / sum(v for k, v in brand["weights"].items() if k != "market")
+                                      if name != "market" else None),
          "signed_share_of_explained": brand["signed_explained_share"].get(name)}
         for name, value in brand["weights"].items()
     ])
@@ -280,9 +320,9 @@ def build_brand_value_dominance(
         "experiment_id": config["experiment_id"],
         "status": config["status"],
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "method": ("brand value = signed group general-dominance share of weekly Lenovo returns x company value; "
-                   "incremental brand value = brand value x sponsorship brand-share uplift x elasticity"),
-        "decision": "ADR-0031, ADR-0032, ADR-0040 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
+        "method": ("brand value = signed general-dominance share of the Lenovo-specific explained weekly return movement "
+                   "(market factors set aside) x company value; incremental brand value = brand value x brand-share uplift x elasticity"),
+        "decision": "ADR-0031, ADR-0032, ADR-0040, ADR-0044 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
         "accepted_for_accounting_or_causal_claim": False,
         "coefficients": {"brand_full_sample": brand["coefficients"]},
         "samples": {"brand_weeks": len(panel), "brand_model_r2": brand["r2"]},
@@ -290,22 +330,20 @@ def build_brand_value_dominance(
         "fifa_specific_incremental_brand_value": fifa_specific,
         "index_scale": scale,
         "values": values,
+        "placebo": placebo,
         "bootstrap": {"spec": config["bootstrap"], "brand": boot_brand},
         "external_reference": config.get("external_reference"),
         "stability_summary": {
             "brand_share_min": float(shares.min()), "brand_share_max": float(shares.max()),
             "brand_value_min_usd_m": money(float(shares.min())),
             "brand_value_max_usd_m": money(float(shares.max())),
-            "incremental_brand_value_min_usd_m": money(float(shares.min())) * elasticity * uplift,
-            "incremental_brand_value_max_usd_m": money(float(shares.max())) * elasticity * uplift,
         },
         "caveats": [
-            "A share of explained return variance is not a share of value: a stable brand explains little variance yet can be worth much.",
+            "A share of explained return variance is not a share of value; the brand's role is read from price formation by assumption.",
+            "The Lenovo-specific drivers explain a small part of weekly returns, so the brand's share of them is imprecise: see the bootstrap band and the placebo test, where an unrelated series obtains a comparable share.",
+            "The measured Lenovo-specific drivers leave most Lenovo-specific movement unexplained; counting it in the denominator would shrink the share sharply.",
             "Dominance weights are sign-blind; shares are signed by the full-model coefficient so value-destroying co-movement is not counted as value.",
             "Brand value is assumed proportional to brand share of attention (elasticity 1) unless configured otherwise.",
-            "The brand-share uplift is the synthetic-control lift, whose attribution is not yet accepted.",
-            "The share depends on which other regressor groups are included; see stability.",
-            "The model explains a minority of weekly return variance, so the explained-share base is small and noisy.",
             "Values scale with the market-capitalisation base; the primary base is fixed by rule (mean post-announcement).",
         ],
         "inputs": {name: {"path": path, "sha256": _sha256(path)} for name, path in inputs.items()},

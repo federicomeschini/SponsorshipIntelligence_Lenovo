@@ -1,9 +1,9 @@
 {
   "experiment_id": "brand_value_dominance_v1",
   "status": "owner_selected_relative_importance_valuation_ADR_0031",
-  "generated_at_utc": "2026-10-07T10:57:42.151115+00:00",
-  "method": "brand value = signed group general-dominance share of weekly Lenovo returns x company value; incremental brand value = brand value x sponsorship brand-share uplift x elasticity",
-  "decision": "ADR-0031, ADR-0032, ADR-0040 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
+  "generated_at_utc": "2026-10-07T12:59:18.520213+00:00",
+  "method": "brand value = signed general-dominance share of the Lenovo-specific explained weekly return movement (market factors set aside) x company value; incremental brand value = brand value x brand-share uplift x elasticity",
+  "decision": "ADR-0031, ADR-0032, ADR-0040, ADR-0044 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
   "accepted_for_accounting_or_causal_claim": false,
   "coefficients": {
     "brand_full_sample": {
@@ -24,33 +24,34 @@
     "brand_model_r2": 0.17993145260718146
   },
   "primary_result": {
-    "brand_value_usd_m": 445.5381826908709,
+    "brand_value_usd_m": 5038.974935183301,
     "zero_index_level": 0.0,
     "counterfactual_index_level": 101.98428955915062,
     "sustained_lift_index_points": 7.478443898138875,
     "brand_share_uplift_pct": 7.332937191077256,
     "brand_value_elasticity_to_brand_share": 1.0,
-    "incremental_brand_value_usd_m": 32.6710350989886,
+    "incremental_brand_value_usd_m": 369.5048670711173,
     "incremental_brand_value_90pct_usd_m": [
-      -26.71853973228534,
-      269.0092990425995
+      -153.80296628494574,
+      1066.2709359438186
     ],
     "incremental_brand_value_donor_range_usd_m": [
-      30.544129036731295,
-      43.098475110250895
+      345.4498550573881,
+      487.4377646233225
     ],
-    "coefficient_usd_m_per_index_point": 4.368694282391994,
+    "coefficient_usd_m_per_index_point": 49.409325269268145,
     "coefficient_90pct_usd_m_per_point": [
-      -3.5727405455210617,
-      35.97129332073301
+      -20.566172372199244,
+      142.5792518426429
     ],
     "world_cup_incremental_lift_index_points": 0.5818560879534443,
-    "world_cup_incremental_brand_value_usd_m": 2.5419513646171854,
+    "world_cup_incremental_brand_value_usd_m": 28.749116709595626,
     "incremental_brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 26.861532072184744,
-      "latest_market_cap": 87.4661317350075,
-      "mean_post_announcement_market_cap": 32.6710350989886
-    }
+      "pre_announcement_market_cap": 303.800195114309,
+      "latest_market_cap": 989.229795812906,
+      "mean_post_announcement_market_cap": 369.5048670711173
+    },
+    "note": "Total-effect chain (upper attribution band); the primary sponsorship value is fifa_specific_incremental_brand_value."
   },
   "fifa_specific_incremental_brand_value": {
     "uplift_pct": {
@@ -71,21 +72,18 @@
       "2024-10-21",
       "2026-07-20"
     ],
+    "brand_value_usd_m": 5038.974935183301,
     "incremental_brand_value_usd_m": {
-      "literal": {
-        "primary": 19.299261598335608,
-        "statistical_band_95_low": 7.427948387075076,
-        "statistical_band_95_high": 31.17057480959614,
-        "attribution_band_upper": 30.673661338789934
-      },
-      "lenovo_specific": {
-        "primary": 218.27196689230325,
-        "statistical_band_95_low": 84.00906408570638,
-        "statistical_band_95_high": 352.53486969890014,
-        "attribution_band_upper": 346.9148473941346
-      }
+      "primary": 218.27196689230325,
+      "statistical_band_95_low": 84.00906408570638,
+      "statistical_band_95_high": 352.53486969890014,
+      "attribution_band_upper": 346.9148473941346
     },
-    "note": "Primary sponsorship valuation (ADR-0043). The total-effect chain above is the attribution upper band over the full post period."
+    "incremental_brand_value_brand_share_90pct_usd_m": [
+      -90.85367733038396,
+      629.8619454551334
+    ],
+    "note": "Primary sponsorship valuation (ADR-0043, ADR-0044): FIFA-specific uplift x Lenovo-specific brand value."
   },
   "index_scale": {
     "index_id": "brand_index_v5_factor",
@@ -94,24 +92,50 @@
     "reading": "100 = pre-announcement average; 110 = brand share of attention about 10% above it"
   },
   "values": {
-    "brand_share_of_price_formation": 0.021005999902154217,
-    "brand_share_of_total_variance": 0.00377964007586092,
-    "brand_value_usd_m": 445.5381826908709,
-    "brand_value_lower_bound_usd_m": 80.1663324035322,
+    "brand_share_definition": "share_of_lenovo_specific_explained_variance",
+    "brand_share": 0.23757493994372034,
+    "brand_value_usd_m": 5038.974935183301,
+    "brand_share_90pct": [
+      -0.09888836043742653,
+      0.6855640511003925
+    ],
     "brand_value_90pct_usd_m": [
-      -364.3634063141377,
-      3668.5067938387765
+      -2097.4264783297713,
+      14540.843705047153
     ],
     "market_cap_base": "mean_post_announcement_market_cap",
     "market_cap_usd_m": 21210.044023906707,
     "brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 366.31340719609534,
-      "latest_market_cap": 1192.7844117011748,
-      "mean_post_announcement_market_cap": 445.5381826908709
+      "pre_announcement_market_cap": 4142.953733245857,
+      "latest_market_cap": 13490.225949522714,
+      "mean_post_announcement_market_cap": 5038.974935183301
     },
-    "brand_share_of_lenovo_specific_formation": 0.23757493994372034,
-    "brand_value_lenovo_specific_usd_m": 5038.974935183301,
-    "incremental_brand_value_lenovo_specific_usd_m": 369.5048670711173
+    "literal_reading_reference": {
+      "definition": "share of all explained variance, market factors included (ADR-0031; secondary since ADR-0044)",
+      "brand_share": 0.021005999902154217,
+      "brand_value_usd_m": 445.5381826908709,
+      "brand_value_90pct_usd_m": [
+        -364.3634063141377,
+        3668.5067938387765
+      ]
+    }
+  },
+  "placebo": {
+    "actual_unsigned_share": 0.23757493994372034,
+    "random_series": {
+      "median": 0.2119732879867441,
+      "mean": 0.25985674084041344,
+      "p90": 0.561745851112028,
+      "probability_at_or_above_actual": 0.47,
+      "draws": 500
+    },
+    "time_shifted_brand": {
+      "median": 0.23325566966501357,
+      "mean": 0.27393627765920897,
+      "p90": 0.5738872044179868,
+      "probability_at_or_above_actual": 0.4966442953020134,
+      "draws": 149
+    }
   },
   "bootstrap": {
     "spec": {
@@ -130,28 +154,32 @@
         "p05": -0.003689225031758166,
         "p50": 0.0035636244967348213,
         "p95": 0.031253457345533496
+      },
+      "brand_lenovo_specific": {
+        "p05": -0.09888836043742653,
+        "p50": 0.11454143840824527,
+        "p95": 0.6855640511003925
       }
     }
   },
   "external_reference": {
     "brand_finance_2025_brand_value_usd_m": 5663,
-    "source": "https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf"
+    "source": "https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf",
+    "interbrand_2015_brand_value_usd_m": 4100,
+    "interbrand_source": "https://news.lenovo.com/?p=2553"
   },
   "stability_summary": {
-    "brand_share_min": 0.006615775137223811,
-    "brand_share_max": 0.2108773582949473,
-    "brand_value_min_usd_m": 140.32088191278447,
-    "brand_value_max_usd_m": 4472.71805308098,
-    "incremental_brand_value_min_usd_m": 10.289642136630171,
-    "incremental_brand_value_max_usd_m": 327.98160556640175
+    "brand_share_min": 0.03260088197549762,
+    "brand_share_max": 0.4152678385907988,
+    "brand_value_min_usd_m": 691.4661419184911,
+    "brand_value_max_usd_m": 8807.849138223426
   },
   "caveats": [
-    "A share of explained return variance is not a share of value: a stable brand explains little variance yet can be worth much.",
+    "A share of explained return variance is not a share of value; the brand's role is read from price formation by assumption.",
+    "The Lenovo-specific drivers explain a small part of weekly returns, so the brand's share of them is imprecise: see the bootstrap band and the placebo test, where an unrelated series obtains a comparable share.",
+    "The measured Lenovo-specific drivers leave most Lenovo-specific movement unexplained; counting it in the denominator would shrink the share sharply.",
     "Dominance weights are sign-blind; shares are signed by the full-model coefficient so value-destroying co-movement is not counted as value.",
     "Brand value is assumed proportional to brand share of attention (elasticity 1) unless configured otherwise.",
-    "The brand-share uplift is the synthetic-control lift, whose attribution is not yet accepted.",
-    "The share depends on which other regressor groups are included; see stability.",
-    "The model explains a minority of weekly return variance, so the explained-share base is small and noisy.",
     "Values scale with the market-capitalisation base; the primary base is fixed by rule (mean post-announcement)."
   ],
   "inputs": {

@@ -29,12 +29,20 @@ indirect_chain:
   provisional_trailing_weeks: 0   # already excluded by the total-effect experiment
   brand_value_elasticity_to_brand_share: 1.0   # proportional; explicit assumption
 
-brand_share_definition: share_of_explained_variance   # owner's reading: share of price formation
-lower_bound_definition: share_of_total_variance
+# ADR-0044 (owner decision): the brand's share of the Lenovo-specific explained movement
+# (market factors set aside) is the measure; the share of all explained variance
+# (ADR-0031 'literal' reading) is kept as a secondary reference only.
+brand_share_definition: share_of_lenovo_specific_explained_variance
 
 valuation_base:
   primary: mean_post_announcement_market_cap
   sensitivities: [latest_market_cap, pre_announcement_market_cap]
+
+# How much of the Lenovo-specific explained movement would an unrelated series obtain?
+placebo:
+  noise_draws: 500
+  minimum_shift_weeks: 8
+  seed: 20261007
 
 bootstrap:
   method: moving_block
@@ -44,6 +52,9 @@ bootstrap:
 
 stability:
   brand_measures: [delta_brand_index]
+  extra_lenovo_groups:
+    earnings_weeks: [earnings_control]
+    momentum: [lag_abnormal_return]
   sample_windows:
     - [2022-01-01, 2024-10-14]
     - [2024-10-15, 2026-12-31]
@@ -53,6 +64,8 @@ stability:
 external_reference:
   brand_finance_2025_brand_value_usd_m: 5663
   source: https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf
+  interbrand_2015_brand_value_usd_m: 4100   # more than US$4.1bn per the Lenovo release, rounded
+  interbrand_source: https://news.lenovo.com/?p=2553
 
 outputs:
   directory: data/curated/experimental/brand_value_dominance_v1

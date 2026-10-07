@@ -414,3 +414,23 @@ Append-only ADR log for choices not fixed by `ARCHITECTURE.md`.
   - **Inherited caveats.** The estimate inherits the total effect's borderline significance and the ADR-0042 assumptions: back-cast motorsport exposure, digital-only exposure, log adstock as the exposure measure.
   - **Selection after seeing results.** The primary specification was chosen after the decomposition was seen, so the specification table must accompany it.
   - **Unchanged.** The World Cup close-up (notebook 20) and the comparison routes still read the total effect.
+
+## ADR-0044 - Brand value from the Lenovo-specific share of price formation
+
+- **Context:** The dominance route (ADR-0031) read the brand's share of *all* explained weekly return movement as its share of company value: 2.1%, i.e. US$446M. Market factors (Hang Seng, Nasdaq) take 91% of the explained movement, so every company-specific asset looks small under that reading. The owner judged the literal value too low and asked for the Lenovo-specific reading (the brand's share of the movement explained by Lenovo's own drivers) to be stress-tested.
+  - **Arguments for:** brand value is a slice of what Lenovo's own business is worth, and market moves reflect rates and risk appetite rather than Lenovo's earning power. The point estimate is fairly steady: 20–28% in most checks (3% in the pre-announcement weeks alone, 42% with Lenovo events dropped). Independent valuations land close to it.
+  - **Arguments against:** the measured Lenovo-specific drivers explain about 1.6% of weekly return variance. A random series in the brand's place obtains a median 21% (probability 0.47 of reaching the brand's share), and the time-shifted brand series a median 23% (probability 0.50). The 90% bootstrap range of the share is −10% to +69%. The brand coefficient is not significant (t = 1.17).
+  - **Applies to both readings:** the same placebo logic applies to the literal reading, which is the same weight over a larger denominator. Neither reading is statistically identified.
+- **Decision (owner):**
+  - **Measure.** The brand's signed share of the Lenovo-specific explained movement is the measure of the brand's role (`brand_share_definition: share_of_lenovo_specific_explained_variance`). Brand value = that share × mean post-announcement market capitalisation. The incremental-value chain and the FIFA-specific incremental value (ADR-0043) use it.
+  - **Literal reading.** It is kept only as `values.literal_reading_reference` in the manifest and as a secondary line in notebook 40, and is not shown on the dashboard.
+  - **New diagnostics in `brand_value_dominance_v1`:** a block bootstrap of the Lenovo-specific share, a placebo test (500 random series; every time shift from 8 weeks), stability checks with extra Lenovo-specific groups (earnings weeks, momentum), and Interbrand 2015 added next to Brand Finance 2025 as external references (corroboration only).
+  - **Defence.** The level is defended by convergence with independent valuations, not by the regression alone.
+  - **Documentation.** Notebook 40 rewritten; the dashboard's Evaluation and Monetization chapters show the single measure with its placebo and corroboration panels.
+- **Result:**
+  - **Brand share:** **23.8%**, giving **Lenovo brand value US$5.04B** (90% range −US$2.1B to US$14.5B). Value per Brand Index point US$49M.
+  - **Corroboration:** Brand Finance 2025 US$5.66B; Interbrand 2015 about US$4.1B.
+  - **FIFA-added brand value (primary): US$218M.** 95% band US$84M to US$353M; ceiling US$347M; brand-share bootstrap alone −US$91M to US$630M.
+- **Consequences:**
+  - **Reporting.** Stakeholders see one brand value (about US$5B) and one FIFA-added value (about US$218M), each with its range. The statement that the market data alone cannot pin the brand's share must travel with them.
+  - **Stability of the figure.** The brand value is now sensitive to which Lenovo-specific drivers are measured. Adding or removing control groups changes it, so the control set is fixed in config.
