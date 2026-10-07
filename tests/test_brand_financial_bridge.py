@@ -16,7 +16,9 @@ def test_financial_bridge_uses_direct_profit_and_is_not_accepted():
     assert manifest["accepted_for_valuation"] is False
     assert manifest["canonical_contracts_replaced"] == []
     assert manifest["primary_profit_mapping"]["model"] == "margin_macro"
-    assert manifest["margin_model_sensitivity"]["all_signs_positive"] is False
+    # Not approved because controlled estimates are imprecise: every controlled 95% interval includes zero.
+    controlled = [m for m in manifest["margin_model_sensitivity"]["models"] if m["model"] != "margin_uncontrolled"]
+    assert all(m["lower_95"] < 0 < m["upper_95"] for m in controlled)
     assert "not profit" in manifest["stock_corroboration"]["interpretation"]
 
 

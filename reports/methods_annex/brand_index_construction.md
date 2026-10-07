@@ -1,5 +1,7 @@
 # Lenovo Brand Index construction and governance
 
+> **SUPERSEDED (2026-10-07, ADR-0040).** This document describes the proxy-led index, which is no longer the Brand Index. It is kept as the *search-salience* cross-check (`data/curated/index/search_salience_index_weekly.parquet`). The current Brand Index is documented in [`05_brand_index.ipynb`](05_brand_index.ipynb).
+
 > **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
 > - *Affected:* calibration slope and correlation, coverage end (now the week of 28 September 2026), method-comparison figures
 > - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session

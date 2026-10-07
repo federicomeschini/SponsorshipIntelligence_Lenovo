@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_monetization_v1",
   "status": "attribution_bridge_built_valuation_blocked",
-  "generated_at_utc": "2026-10-06T13:49:53.075046+00:00",
+  "generated_at_utc": "2026-10-07T09:51:20.149483+00:00",
   "canonical_contracts_replaced": [],
   "purpose": "Connect property exposure and observational funnel lift to an allocation scenario, then conditionally apply royalty relief.",
   "inputs": {
@@ -15,7 +15,7 @@
     },
     "brand_index": {
       "path": "data/curated/index/brand_index_weekly.parquet",
-      "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449"
+      "sha256": "3953e1796b0d3d817120ecfd991b4a492ed3f5d736d7c25b7e1cafbedee4d064"
     }
   },
   "outputs": {
@@ -55,10 +55,11 @@
     "rule": "No monetary values are emitted until all required inputs are explicit."
   },
   "counterfactual_gate": {
-    "status": "candidate_not_distinguishable",
-    "path": "data\\curated\\experimental\\sponsorship_counterfactual_v1\\counterfactual_manifest.json",
-    "candidate_delta_index_attrib": 0.7707148828420021,
-    "donor_placebo_p_value": 0.16666666666666666,
+    "status": "passes_primary_placebo_test",
+    "path": "data\\curated\\experimental\\sponsorship_total_effect_v1\\estimate_manifest.json",
+    "candidate_delta_index_attrib": 7.478443898138874,
+    "donor_placebo_p_value": 0.07142857142857142,
+    "use_counterfactual_candidate": false,
     "used_for_valuation": false
   },
   "royalty_schedule_gate": {
@@ -68,7 +69,7 @@
     "available_points": 0,
     "royalty_bps_per_index_point": null
   },
-  "assumptions_hash": "e589bc108785eb3ff8b857e408181189787533ef16d368dd35160f96452c3d94",
+  "assumptions_hash": "e7c202e7727855476a6af906ba61749a653357ecde3c1635d721acceca4e8f70",
   "caveats": [
     "Aware-minus-unaware lift is observational and affected by self-selection.",
     "Blinkfire covers confirmed impressions/views only; broadcast exposure is absent.",

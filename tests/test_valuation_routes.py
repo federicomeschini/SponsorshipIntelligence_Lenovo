@@ -84,48 +84,26 @@ def test_incremental_brand_value_follows_the_index_lift_chain():
     assert np.isclose(chain["brand_value_usd_m"], values["brand_share_of_price_formation"] * values["market_cap_usd_m"])
     sign = manifest["coefficients"]["brand_full_sample"]["brand"]["sign"]
     assert np.sign(values["brand_share_of_price_formation"]) in (0, sign)
-    # Step 2: the Index is affine in raw search interest, so the lift is a ratio-scale uplift.
-    assert manifest["salience_map"]["correlation"] > 0.999
-    headroom = chain["counterfactual_index_level"] - chain["zero_interest_index_level"]
-    assert headroom > 0
-    assert np.isclose(chain["salience_uplift_pct"], 100 * chain["sustained_lift_index_points"] / headroom)
+    # Step 2: the Brand Index is a ratio scale (ADR-0040), so the uplift is lift / counterfactual level.
+    assert manifest["index_scale"]["display_scale"] == "percent_of_base_share"
+    assert chain["zero_index_level"] == 0.0
+    assert np.isclose(chain["brand_share_uplift_pct"],
+                      100 * chain["sustained_lift_index_points"] / chain["counterfactual_index_level"])
     # Step 3: incremental brand value = BV x uplift x elasticity = coefficient x lift.
     assert np.isclose(chain["incremental_brand_value_usd_m"],
-                      chain["brand_value_usd_m"] * chain["salience_uplift_pct"] / 100
-                      * chain["brand_value_elasticity_to_salience"])
+                      chain["brand_value_usd_m"] * chain["brand_share_uplift_pct"] / 100
+                      * chain["brand_value_elasticity_to_brand_share"])
     assert np.isclose(chain["coefficient_usd_m_per_index_point"] * chain["sustained_lift_index_points"],
                       chain["incremental_brand_value_usd_m"])
     assert values["market_cap_base"] == "mean_post_announcement_market_cap"
     assert manifest["accepted_for_accounting_or_causal_claim"] is False
 
 
-DCF = ROOT / "data/curated/experimental/brand_value_dcf_v1"
-
-
-def test_brand_dcf_discounts_role_share_of_economic_profit():
-    manifest = _manifest(DCF / "brand_value_dcf_manifest.json")
-    forecast = pd.read_parquet(DCF / "economic_profit_forecast.parquet")
-    rate = manifest["discount_rate"]["wacc"]
-    role = manifest["primary_result"]["role_of_brand"]
-    # Economic profit = NOPAT - WACC x opening invested capital.
-    assert np.allclose(forecast["economic_profit_usd_m"],
-                       forecast["nopat_usd_m"] - rate * forecast["opening_invested_capital_usd_m"])
-    assert np.allclose(forecast["branded_earnings_usd_m"], role * forecast["economic_profit_usd_m"])
-    explicit = float((forecast["branded_earnings_usd_m"] * (1 + rate) ** -forecast["year"]).sum())
-    assert np.isclose(manifest["primary_result"]["explicit_pv_usd_m"], explicit)
-    assert np.isclose(manifest["primary_result"]["brand_value_usd_m"],
-                      manifest["primary_result"]["explicit_pv_usd_m"] + manifest["primary_result"]["terminal_pv_usd_m"])
-    # Growth fades linearly to the terminal rate and the WACC exceeds it.
-    assert np.isclose(forecast["revenue_growth"].iloc[-1], manifest["revenue_growth"]["terminal"])
-    assert rate > manifest["revenue_growth"]["terminal"]
-
-
-def test_brand_dcf_value_scales_with_role_and_feeds_the_sponsorship_chain():
-    manifest = _manifest(DCF / "brand_value_dcf_manifest.json")
-    by_role = manifest["by_role_definition"]
-    values = {name: row["brand_value_usd_m"] / row["role_of_brand"] for name, row in by_role.items()}
-    assert np.isclose(*values.values())  # same economic-profit PV under every role
-    primary = manifest["primary_result"]
-    assert np.isclose(primary["incremental_brand_value_usd_m"],
-                      primary["brand_value_usd_m"] * primary["salience_uplift_pct"] / 100
-                      * primary["elasticity_to_salience"])
+def test_fifa_specific_incremental_value_is_the_primary_uplift_times_brand_value():
+    manifest = _manifest(DOMINANCE / "brand_value_dominance_manifest.json")
+    fs = manifest["fifa_specific_incremental_brand_value"]
+    bv = manifest["values"]["brand_value_usd_m"]
+    elasticity = manifest["primary_result"]["brand_value_elasticity_to_brand_share"]
+    for name, pct in fs["uplift_pct"].items():
+        assert np.isclose(fs["incremental_brand_value_usd_m"]["literal"][name], elasticity * pct / 100 * bv)
+    assert fs["uplift_pct"]["statistical_band_95_low"] < fs["uplift_pct"]["primary"] <= fs["uplift_pct"]["attribution_band_upper"]

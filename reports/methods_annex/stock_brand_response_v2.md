@@ -1,5 +1,9 @@
 # Brand Index-to-stock response v2
 
+> **SUPERSEDED (2026-10-07).** The current review artifact for this experiment is [`35_financial_links.ipynb`](35_financial_links.ipynb), which reads the current outputs. This document is the July 2026 record; its figures are in the superseded search-salience index's units (ADR-0040) and must not be quoted.
+
+> **ALSO STALE FOR ADR-0040 (2026-10-07).** The experiment now uses the brand-level Brand Index (1 point ≈ 1% of brand share of attention), not the search-salience index this text describes; every coefficient below is in the old units. *Required action:* rewrite as a review notebook (README, open documentation actions).
+
 > **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
 > - *Affected:* every estimate: immediate response now +0.15 pp per unexpected BI point (p = 0.85; July +0.305), 13-week now -0.09 pp (July +9.4)
 > - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session

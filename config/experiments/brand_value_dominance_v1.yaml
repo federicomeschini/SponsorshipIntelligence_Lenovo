@@ -8,8 +8,8 @@ inputs:
   world_cup_estimate_manifest: data/curated/experimental/world_cup_impact_v1/estimate_manifest.json
   total_effect_weekly: data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet
   donor_sensitivity: data/curated/experimental/sponsorship_total_effect_v1/donor_sensitivity.parquet
-  brand_index_weekly: data/curated/index/brand_index_weekly.parquet
-  trends_weekly_averaged: data/curated/trends/trends_weekly_averaged.parquet
+  brand_index_manifest: data/curated/index/brand_index_manifest.json
+  fifa_specific_manifest: data/curated/experimental/sponsorship_exposure_timing_v1/exposure_timing_manifest.json   # ADR-0043
 
 # Outcome is the weekly Lenovo log return (P2: returns, never price levels).
 # Regressor groups are fixed by rule from stock_brand_response_v2; dominance
@@ -23,12 +23,11 @@ groups:
   brand: [brand_index_innovation]
 
 # ADR-0032: the sponsorship is valued through its Index lift, not a direct
-# sponsorship-to-returns link. The Index is affine in raw search interest, so
-# the lift converts to a ratio-scale salience uplift.
+# sponsorship-to-returns link. The Brand Index is proportional to Lenovo's brand
+# share of attention (ADR-0040), so lift / counterfactual level is a % uplift.
 indirect_chain:
-  index_query: brand_lenovo
   provisional_trailing_weeks: 0   # already excluded by the total-effect experiment
-  brand_value_elasticity_to_salience: 1.0   # proportional; explicit assumption
+  brand_value_elasticity_to_brand_share: 1.0   # proportional; explicit assumption
 
 brand_share_definition: share_of_explained_variance   # owner's reading: share of price formation
 lower_bound_definition: share_of_total_variance
@@ -49,6 +48,11 @@ stability:
     - [2022-01-01, 2024-10-14]
     - [2024-10-15, 2026-12-31]
     - [2022-01-01, 2025-12-31]
+
+# External reference only (borrowed; royalty-relief method, different construct). Never an input.
+external_reference:
+  brand_finance_2025_brand_value_usd_m: 5663
+  source: https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf
 
 outputs:
   directory: data/curated/experimental/brand_value_dominance_v1

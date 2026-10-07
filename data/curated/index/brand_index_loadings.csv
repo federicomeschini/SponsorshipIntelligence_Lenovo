@@ -1,0 +1,4 @@
+signal,pillar,frequency,members,loading,noise_variance,share_of_variance_explained,effective_weekly_weight,observations
+pillar_salience,salience,weekly,google_share_of_search,2.038321051234197,0.4476896341075151,0.902727812574442,1.0,248
+gwi_engagement,engagement,quarterly,gwi_engagement,0.7648512168410061,0.6655235485137019,0.46780295214455064,,17
+gwi_consideration,consideration_intent,quarterly,gwi_consideration,1.096879913154999,0.7244105916104798,0.6241818444239229,,17

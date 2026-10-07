@@ -409,11 +409,12 @@ def build_bridge(
         },
         "decision": (
             "No coefficient is approved for sponsorship monetization because the "
-            "quarterly sample has only 15 first differences, controlled estimates "
-            "are imprecise and model sensitivity changes sign."
+            f"quarterly sample has only {quarterly['delta_brand_index'].notna().sum()} first differences and the controlled estimates are imprecise "
+            "(every controlled 95% interval includes zero)"
+            + ("." if stable_positive else "; model sensitivity also changes sign.")
         ),
         "guardrails": [
-            "One Brand Index point is a scale point, not a percentage point.",
+            "One Brand Index point is about 1% of Lenovo's brand share of attention relative to its pre-announcement level (ADR-0040).",
             "Profit is measured directly from Lenovo adjusted quarterly net income; stock price is not used as a profit proxy.",
             "Stock prices are converted to returns and factor-adjusted against HSI and lagged Nasdaq-100 in HKD.",
             "All regressions use changes or returns, never levels-on-levels.",

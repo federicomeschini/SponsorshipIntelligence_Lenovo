@@ -9,7 +9,7 @@ series:
   - {factor_id: HSI, ticker: "^HSI", market: HKEX, currency: HKD}
   - {factor_id: NDX, ticker: "^NDX", market: NASDAQ, currency: USD}
   - {factor_id: USDHKD, ticker: "HKD=X", market: FX, currency: HKD}
-  # Discount-rate inputs for the brand DCF (ADR-0033): US 10-year Treasury
-  # yield in percent, and a global equity benchmark for Lenovo's USD beta.
+  # Pulled for the brand DCF (ADR-0033, retired by ADR-0040); kept so the staged
+  # market file stays comparable across pulls. No current experiment reads them.
   - {factor_id: UST10Y, ticker: "^TNX", market: RATES, currency: PCT}
   - {factor_id: ACWI, ticker: "ACWI", market: NASDAQ, currency: USD}

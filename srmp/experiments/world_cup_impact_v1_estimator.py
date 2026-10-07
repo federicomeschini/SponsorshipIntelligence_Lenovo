@@ -16,6 +16,8 @@ import numpy as np
 import pandas as pd
 import pyarrow as pa
 import pyarrow.csv as pacsv
+
+from srmp.index.brand_factor import donor_shares_of_search
 import pyarrow.parquet as pq
 
 from srmp.counterfactual import scm
@@ -70,6 +72,11 @@ def _panel(config: dict[str, Any]) -> tuple[pd.DataFrame, list[str], list[str]]:
     donors = trends[trends["query_id"].isin(base + sensitivity)].pivot(
         index="week", columns="query_id", values="interest_common_scale"
     )
+    share = config["estimation"].get("donor_share_of_search")
+    if share:
+        # Same basis as the Brand Index: each donor's share against the base rivals without itself (ADR-0040).
+        rivals = registry.loc[registry["inclusion_policy"].isin(share["denominator_policies"]), "query_id"]
+        donors = donor_shares_of_search(donors, [r for r in rivals if r in donors])
     panel = index.set_index("week").join(donors, how="inner").sort_index()
     # Google revises the trailing weeks of every pull; they never enter estimation.
     trailing = int(config["estimation"].get("provisional_trailing_weeks", 0))

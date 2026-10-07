@@ -3,7 +3,7 @@ status: experimental_not_canonical
 
 inputs:
   joint_donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
-  brand_index: data/curated/index/brand_index_weekly.parquet
+  brand_index: data/curated/index/search_salience_index_weekly.parquet
   adstock_exposure: data/curated/experimental/sponsorship_monetization_v1/exposure_adstock_weekly.parquet
   property_taxonomy: data/reference/property_taxonomy.csv
   donor_registry: data/reference/counterfactual_donor_registry.csv

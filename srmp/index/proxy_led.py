@@ -141,9 +141,11 @@ def build_proxy_led_index(
     composite_path: str = "data/curated/index/brand_index_composite_quarterly.parquet",
     output_dir: str = "data/curated/index",
 ) -> dict[str, Any]:
-    """Build the canonical current index from grouped Google Trends proxies.
+    """Build the search-salience index from grouped Google Trends proxies.
 
-    The result is a proxy-led Brand Index on the survey composite's 100/15
+    Superseded as the Brand Index by the brand-level factor index (ADR-0040,
+    ``srmp/index/brand_factor.py``); kept as the search-salience cross-check.
+    The result is a proxy-led salience index on the survey composite's 100/15
     display scale.  It must be described as a salience/portfolio-interest index,
     not as direct weekly survey measurement or causal sponsorship impact.
     """
@@ -171,8 +173,8 @@ def build_proxy_led_index(
     target = Path(output_dir)
     target.mkdir(parents=True, exist_ok=True)
     table = pa.Table.from_pylist(rows, schema=schema)
-    pq.write_table(table, target / "brand_index_weekly.parquet")
-    pacsv.write_csv(table, target / "brand_index_weekly.csv")
+    pq.write_table(table, target / "search_salience_index_weekly.parquet")
+    pacsv.write_csv(table, target / "search_salience_index_weekly.csv")
 
     component_rows = [{
         "week": week.date(),
@@ -186,8 +188,9 @@ def build_proxy_led_index(
     pacsv.write_csv(component_table, target / "brand_index_components_weekly.csv")
 
     manifest = {
-        "contract": "C-INDEX (proxy-led current version)",
+        "contract": "search-salience cross-check (C-INDEX until ADR-0040)",
         "status": "provisional_proxy_led_index_built",
+        "role": "cross-check only; the Brand Index is data/curated/index/brand_index_weekly.parquet (ADR-0040)",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_version": "v4_proxy_led_brand_calibrated",
         "construct": "Lenovo brand salience, proxy-led",
@@ -200,7 +203,7 @@ def build_proxy_led_index(
         "replaces": ["v1_chowlin_provisional", "v2_statespace_provisional", "v3_proxy_led_calibrated"],
         "caveat": "This is a proxy-led salience index, not direct weekly survey measurement, a complete brand-equity measure, or a causal sponsorship estimate.",
     }
-    (target / "index_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    (target / "search_salience_index_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     return manifest
 
 

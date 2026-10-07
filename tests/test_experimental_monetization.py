@@ -20,12 +20,16 @@ def test_experimental_bridge_is_isolated_and_truthfully_blocked():
     assert all(len(item["sha256"]) == 64 for item in manifest["inputs"].values())
     assert manifest["outputs"]["model_eligible_panel_rows"] == 5
     assert manifest["outputs"]["monetization_rows"] == 0
-    # The gate mirrors the current announcement counterfactual verdict.
-    counterfactual = json.loads((ROOT / "data/curated/experimental/sponsorship_counterfactual_v1/"
-                                 "counterfactual_manifest.json").read_text(encoding="utf-8"))
-    assert manifest["counterfactual_gate"]["status"] == counterfactual["status"]
-    assert manifest["counterfactual_gate"]["donor_placebo_p_value"] == counterfactual["diagnostics"]["donor_placebo_p_value"]
-    assert manifest["counterfactual_gate"]["used_for_valuation"] is False
+    # The gate mirrors the headline total effect (ADR-0041) and needs explicit owner approval to be used.
+    headline = json.loads((ROOT / "data/curated/experimental/sponsorship_total_effect_v1/"
+                           "estimate_manifest.json").read_text(encoding="utf-8"))
+    gate = manifest["counterfactual_gate"]
+    assert gate["candidate_delta_index_attrib"] == headline["total_effect"]["lift_index_points"]
+    assert gate["donor_placebo_p_value"] == headline["primary"]["p_value"]
+    assert gate["status"] == ("passes_primary_placebo_test" if headline["passes_primary_test"]
+                              else "does_not_pass_primary_placebo_test")
+    assert gate["used_for_valuation"] is (gate["status"] == "passes_primary_placebo_test" and gate["use_counterfactual_candidate"])
+    assert gate["used_for_valuation"] is False
     assert manifest["royalty_schedule_gate"]["status"] == "blocked_schedule_not_approved"
     assert set(manifest["valuation_gate"]["missing_inputs"]) == {
         "delta_index_attrib", "royalty_bps_per_index_point",

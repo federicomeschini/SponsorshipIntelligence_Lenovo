@@ -61,7 +61,7 @@ Every screen, table, and estimate in the platform maps to one arrow or one node 
 |---|-----------|-------------|
 | P1 | **Exposure is treatment intensity, never monetary value.** | Advertising Value Equivalency (AVE) and Blinkfire's `media_value` field are banned as monetary inputs to any model. They may appear as an "industry-claimed value" comparison line in the UI. *Amended by ADR-0028:* media value may also be used as a unitless relative exposure-intensity weight (its within-sample shape, rescaled to sum to one) in labelled sensitivity analyses; its amounts never enter attribution, valuation or ROI. |
 | P2 | **Stock prices are never regressed in levels.** | The financial layer operates exclusively on abnormal returns from a factor model (event-study framework). Any regression involving raw or log price levels is a defect. |
-| P3 | **Survey and proxy roles must be explicit.** | The current weekly index is proxy-led: the parent-brand proxy supplies weekly movement, while GWI supplies orientation and display-scale calibration. It must not be described as weekly survey measurement or as an interpolation that passes through survey values. Funnel-stage evidence remains at survey frequency. |
+| P3 | **Survey and proxy roles must be explicit.** | The current weekly index is proxy-led: the parent-brand proxy supplies weekly movement, while GWI supplies orientation and display-scale calibration. It must not be described as weekly survey measurement or as an interpolation that passes through survey values. Funnel-stage evidence remains at survey frequency. *Amended by ADR-0040:* the Brand Index is now a mixed-frequency factor model (`srmp/index/brand_factor.py`). Lenovo's weekly share of search against rival brands and the quarterly GWI engagement and consideration waves are both measurements of one latent brand factor; each GWI wave measures the factor's quarterly average and never pins or interpolates a week. Factor loadings, not fixed calibration, set the weights. The proxy-led series is kept as the search-salience cross-check. |
 | P4 | **Every proxy must pass the validation gate (§5.2) before entering the index.** | No proxy is admitted on plausibility alone. Quarterly correlation with the survey (composite AND stage-level) is a hard gate. |
 | P5 | **Causal claims require a counterfactual.** | "Index went up during the event" is descriptive. Causal language in outputs is permitted only for estimates backed by fixed-effects panel variation, event-study abnormal returns, or synthetic control. |
 | P6 | **Uncertainty is a first-class output.** | Every estimate ships with confidence/credible bands. The weekly index ships with smoother variance (tight at survey waves, fanning between them). Dashboards must render the bands. |
@@ -141,6 +141,16 @@ Notes for agents:
 - With n≈8–12 waves, do not report p-values as if asymptotics held; report correlations with bootstrap intervals and treat the gate as a screening device, not inference.
 
 ### L2 — Index construction (proxy-led, survey-calibrated)
+
+> **Amended by ADR-0039/ADR-0040.** The headline Brand Index is the brand-level
+> mixed-frequency factor index (`srmp/index/brand_factor.py`, `config/brand_index.yaml`):
+> weekly signals are Lenovo's share of attention against rival brands (log ratio, so
+> market-wide demand cancels), admitted only through the P4 sign-validity screen
+> against GWI; GWI engagement and consideration enter as quarterly-average
+> measurements; display is 100 = pre-announcement average on a ratio scale
+> (1 point ≈ 1% of brand share). Product and price searches are a descriptive demand
+> indicator outside the index. The proxy-led index below is retained, unchanged, as the
+> search-salience cross-check (`data/curated/index/search_salience_index_weekly.parquet`).
 
 **Quarterly calibration series.** Standardize the available GWI engagement and
 consideration series over their full 2017–2026 history and aggregate them with
@@ -234,7 +244,7 @@ srmp/
 ├── srmp/
 │   ├── ingest/              # one connector per source (L0)
 │   ├── validation/          # proxy gate (L1)
-│   ├── index/               # composite.py / proxy_led.py (L2)
+│   ├── index/               # brand_factor.py (Brand Index); composite.py / proxy_led.py (search-salience cross-check) (L2)
 │   ├── exposure/            # adstock, aggregation (L3)
 │   ├── counterfactual/      # scm.py: simplex SCM, ASCM, SDID, factor model (L6)
 │   ├── roi/                 # royalty_schedule.py (L7)
@@ -259,6 +269,13 @@ All curated artifacts are parquet with an accompanying `schema.yaml`. Core contr
 Invariant: weekly movement comes from the configured parent-brand Trends proxy;
 survey data calibrate orientation and scale but do not anchor individual weeks;
 survey convergence and leave-one-quarter sensitivity are documented.
+*Amended by ADR-0040:* `data/curated/index/brand_index_weekly.parquet` is the factor
+index: `week | index_level | index_se | factor | weekly_signals_observed |
+survey_quarter_end | signal_* | log_share_* | product_search_demand`, with the version
+(`index_id`), loadings, validity screen and display scale in `brand_index_manifest.json`.
+Invariant: `index_level` is proportional to Lenovo's brand share of attention
+(100 = pre-announcement average); GWI waves are quarterly-average measurements, never
+pinned weeks. The proxy-led contract above applies to `search_salience_index_weekly`.
 
 **C-EXPOSURE (L3 output)**
 `property_id | week | impressions | engagements | engagement_rate | posts | adstock_impressions | delta_used`

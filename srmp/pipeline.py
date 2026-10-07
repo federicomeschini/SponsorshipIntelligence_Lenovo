@@ -33,11 +33,16 @@ DERIVED: list[tuple[str, ...]] = [
     ("srmp.validation.proxy_gate",),
     ("srmp.index.composite",),
     ("srmp.index.proxy_led",),
-    ("srmp.index.multisignal_compare",),
+    ("srmp.index.brand_factor",),                                 # the Brand Index (ADR-0039/0040)
     ("srmp.index.figure",),
-    ("srmp.experiments.sponsorship_monetization_v1",),          # adstocked exposure
-    ("srmp.experiments.sponsorship_counterfactual_v1",),
     ("srmp.experiments.sponsorship_total_effect_v1",),            # headline estimate
+    ("srmp.experiments.sponsorship_total_effect_v1", "--config",
+     "config/experiments/sponsorship_total_effect_search_salience_v1.yaml"),  # cross-check, ADR-0040
+    ("srmp.experiments.sponsorship_total_effect_v1", "--config",
+     "config/experiments/sponsorship_total_effect_share_of_search_v1.yaml"),
+    ("srmp.experiments.sponsorship_exposure_timing_v1",),       # FIFA vs other sponsorships (ADR-0042)
+    ("srmp.experiments.sponsorship_monetization_v1",),          # adstocked exposure; gate reads the headline
+    ("srmp.experiments.sponsorship_counterfactual_v1",),         # original 2024 design; reads the adstock
     ("srmp.experiments.cobrand_placebo_v1",),
     ("srmp.experiments.world_cup_impact_v1",),
     ("srmp.experiments.stock_brand_response_v2",),
@@ -46,7 +51,6 @@ DERIVED: list[tuple[str, ...]] = [
     ("srmp.experiments.sponsorship_total_return_v3",),
     ("srmp.experiments.valuation_routes_v1",),
     ("srmp.experiments.brand_value_dominance_v1",),
-    ("srmp.experiments.brand_value_dcf_v1",),
 ]
 
 

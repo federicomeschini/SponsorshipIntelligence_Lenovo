@@ -28,11 +28,13 @@ import yaml
 from srmp.counterfactual import scm
 from srmp.experiments.sponsorship_counterfactual_v1 import _monday
 from srmp.experiments.world_cup_impact_v1_estimator import _fit_methods, _write
+from srmp.index.brand_factor import donor_shares_of_search
 
 
 def _load_panel(config: dict[str, Any]) -> tuple[pd.DataFrame, dict[str, list[str]]]:
     inputs = config["inputs"]
-    index = pd.read_parquet(inputs["brand_index"])[["week", "index_level"]]
+    outcome = config.get("outcome_column", "index_level")
+    index = pd.read_parquet(inputs["brand_index"])[["week", outcome]].rename(columns={outcome: "index_level"})
     index["week"] = pd.to_datetime(index["week"])
     trends = pd.read_parquet(inputs["jointly_scaled_donor_trends"])
     trends["week"] = _monday(trends["week"])
@@ -42,6 +44,10 @@ def _load_panel(config: dict[str, Any]) -> tuple[pd.DataFrame, dict[str, list[st
     candidates = registry.loc[registry["inclusion_policy"].eq("candidate_base"), "query_id"].tolist()
     donors = trends[trends["query_id"].isin(base + sensitivity + candidates)].pivot(
         index="week", columns="query_id", values="interest_common_scale")
+    share = config.get("donor_share_of_search")
+    if share:
+        rivals = registry.loc[registry["inclusion_policy"].isin(share["denominator_policies"]), "query_id"].tolist()
+        donors = donor_shares_of_search(donors, [r for r in rivals if r in donors])
     panel = index.set_index("week").join(donors, how="inner").sort_index()
     trailing = int(config["provisional_trailing_weeks"])
     if trailing:

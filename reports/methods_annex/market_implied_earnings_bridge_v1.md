@@ -1,5 +1,9 @@
 # Market-implied earnings bridge v1
 
+> **SUPERSEDED (2026-10-07).** The current review artifact for this experiment is [`35_financial_links.ipynb`](35_financial_links.ipynb), which reads the current outputs. This document is the July 2026 record; its figures are in the superseded search-salience index's units (ADR-0040) and must not be quoted.
+
+> **Units changed by ADR-0040 (2026-10-07).** Brand Index figures below are in the superseded search-salience index's points; the experiment now runs on the brand-level Brand Index (1 point ≈ 1% of brand share of attention).
+
 > **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
 > - *Affected:* per-BI-point mapping (now US$3.02m, July US$6.25m); the superseded-by reference (now `sponsorship_total_return_v3`); World Cup cases (now interim engine)
 > - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session

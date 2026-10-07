@@ -2,6 +2,8 @@
 
 > **Protocol current; implementation status updated (2026-10-06).** The frozen protocol below still governs the evaluation. Since it was written: tournament milestones were filled from the official FIFA calendar (ADR-0027), the estimator was implemented with a post-hoc factor-model robustness check (ADR-0029), and interim results are reviewed in [`20_world_cup_close_up.ipynb`](20_world_cup_close_up.ipynb). Statements below that dates are null or that only a skeleton exists describe July 2026.
 
+> **Protocol amendment (ADR-0040, 2026-10-07).** The owner replaced the outcome before the window closed: "Brand Index" below now means the brand-level factor index (brand share of attention against rivals, informed by GWI; 100 = pre-announcement average, 1 point ≈ 1% of brand share), and donor brands enter on the same share-of-search basis. Estimators, estimand, donors, gates and thresholds are unchanged. The amendment was made after interim tournament results on the previous index had been seen; both are reported in `20_world_cup_close_up.ipynb` and ADR-0040.
+
 ## Why this is the primary evaluation
 
 The largest effect of the Lenovo sponsorship may occur during the World Cup,

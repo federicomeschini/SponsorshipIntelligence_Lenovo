@@ -1,0 +1,65 @@
+version: 1
+# The Lenovo Brand Index (ADR-0039; main index since ADR-0040): weekly, mixed-frequency dynamic factor.
+# One latent weekly brand-strength factor drives the weekly signals; each GWI
+# quarterly reading measures the factor's average over its quarter (never a
+# single week). Loadings (the factor-analysis weights) are estimated by MLE.
+#
+# Brand level, not market level: every weekly signal is Lenovo's share of
+# attention against rival brands (log ratio), so PC-market demand cancels out.
+# Product and price searches are reported separately as demand, outside the index.
+index_id: brand_index_v5_factor
+sample_start: 2022-01-03          # 2017 start rejected: survey-only years flip the survey loadings (ADR-0039)
+standardisation_base: [2022-01-03, 2024-10-14]   # pre-announcement weeks with all weekly signals
+# Display: 100 = pre-announcement average; the factor is mapped into the log-share
+# units of the anchor pillar, so 110 means Lenovo's brand share of attention is
+# about 10% above its pre-announcement level.
+display_scale: {type: percent_of_base_share, anchor_pillar: pillar_salience}
+
+weekly_signals:                   # pillar -> signals; value = log(Lenovo) - log(sum of rivals)
+  salience:
+    - id: google_share_of_search
+      source: trends_share        # joint common-scale panel (one Lenovo anchor across all rivals)
+      numerator: [anchor_lenovo]
+      denominator_policies: [base]          # screened untreated rivals in the donor registry
+    - id: wikipedia_share_of_attention
+      source: wikipedia_share     # English Wikipedia page views, brand articles only
+      numerator: [lenovo_en]
+      denominator: [asus_en, dell_en, hp_inc_en]
+
+quarterly_signals:                # GWI population survey (non-canonical anchor, ADR-0011)
+  engagement:
+    - {id: gwi_engagement, column: engagement}
+  consideration_intent:
+    - {id: gwi_consideration, column: consideration}
+
+# Descriptive only, never in the index: Lenovo product and price search volume
+# (log, not normalised), the PC-market demand the index is built to exclude.
+product_demand_indicator:
+  query_ids: [category_lenovo_laptop, category_thinkpad, category_lenovo_legion,
+              category_lenovo_laptop_price, category_thinkpad_price]
+
+model:
+  factor_dynamics: ar1            # unit unconditional variance identifies the scale
+  idiosyncratic_errors: iid
+  noise_variance_floor: 0.05      # 5% of a standardised signal's variance (Heywood-case guard)
+  orientation_pillar: pillar_salience   # factor sign chosen so this loading is positive
+
+# Reported next to the headline index; never replace it.
+sensitivities:
+  - {id: all_weekly_signals_admitted, description: "every weekly signal enters, validity screen overridden", force_admit: all}
+  - {id: weekly_only_no_survey, description: "GWI removed: the weekly signals alone", drop_quarterly: true}
+
+inputs:
+  trends: data/curated/trends/trends_weekly_averaged.parquet
+  wikipedia: data/staged/wikipedia/wikipedia_pageviews_daily.parquet
+  survey: data/staged/survey/brand_index_wave_anchor_constructed.parquet
+  donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
+  donor_registry: data/reference/counterfactual_donor_registry.csv
+
+outputs:
+  directory: data/curated/index
+  weekly: brand_index_weekly
+  loadings: brand_index_loadings
+  screen: brand_index_validity_screen
+  sensitivities: brand_index_sensitivities
+  manifest: brand_index_manifest.json

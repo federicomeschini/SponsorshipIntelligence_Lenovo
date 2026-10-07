@@ -28,8 +28,10 @@ population brand-equity anchor.
 - Compare sponsorship-aware and unaware segments **within the same table and wave**.
 - Inspect source distributions and reported `T4B` / `NET` summaries.
 - Use Country by Wave only as unweighted sample-composition context.
-- Use the GWI engagement and consideration composite to orient and display-scale
-  the provisional proxy-led brand-salience index. It does not pin weekly values.
+- Use GWI engagement and consideration as quarterly-average measurements of the
+  Brand Index's latent brand factor (ADR-0040, `05_brand_index.ipynb`). They never pin
+  or interpolate a weekly value. (Until ADR-0040 they oriented and display-scaled the
+  proxy-led index, now the search-salience cross-check.)
 
 ## Do not do this
 

@@ -302,14 +302,16 @@ def build_experiment(
         "used_for_valuation": False,
     }
     if counterfactual is not None:
-        candidate = counterfactual["candidate_attribution"]["exposure_weighted_delta_index"]
-        accepted = counterfactual["status"] == "candidate_passes_experimental_screen"
+        # Headline total sponsorship effect on the Brand Index (ADR-0038, ADR-0040).
+        candidate = counterfactual["total_effect"]["lift_index_points"]
+        accepted = bool(counterfactual["passes_primary_test"])
         use_candidate = bool(valuation.get("use_counterfactual_candidate"))
         counterfactual_gate = {
-            "status": counterfactual["status"],
+            "status": "passes_primary_placebo_test" if accepted else "does_not_pass_primary_placebo_test",
             "path": str(counterfactual_path),
             "candidate_delta_index_attrib": candidate,
-            "donor_placebo_p_value": counterfactual["diagnostics"]["donor_placebo_p_value"],
+            "donor_placebo_p_value": counterfactual["primary"]["p_value"],
+            "use_counterfactual_candidate": use_candidate,
             "used_for_valuation": bool(accepted and use_candidate),
         }
         if accepted and use_candidate and valuation.get("delta_index_attrib") is None:
@@ -317,7 +319,7 @@ def build_experiment(
 
     reference_index = valuation.get("royalty_reference_index")
     if reference_index is None and counterfactual is not None:
-        reference_index = counterfactual["candidate_attribution"]["post_counterfactual_mean_index"]
+        reference_index = counterfactual["total_effect"]["synthetic_post_mean_index"]
     royalty_resolution = resolve_royalty_schedule(
         valuation["royalty_schedule_path"], reference_index
     )

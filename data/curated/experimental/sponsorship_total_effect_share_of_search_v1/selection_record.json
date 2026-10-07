@@ -1,0 +1,105 @@
+{
+  "experiment_id": "sponsorship_total_effect_share_of_search_v1",
+  "phase": "A_design_selection",
+  "generated_at_utc": "2026-10-07T09:03:12.349635+00:00",
+  "config_sha256": "54f877adadd4c782089efe238ea3fbf2389ab783e594519610c22d1154c96465",
+  "data_weeks_seen": [
+    "2022-01-03",
+    "2024-10-14"
+  ],
+  "post_period_outcomes_accessed": false,
+  "criterion": "lowest root-mean-square out-of-sample error across folds (Index points)",
+  "selected_method": "simplex_scm",
+  "selected_pool": "expanded",
+  "selected_donors": [
+    "donor_dell",
+    "donor_asus",
+    "donor_acer",
+    "donor_hp",
+    "donor_microsoft_surface",
+    "donor_razer",
+    "donor_logitech",
+    "donor_macbook",
+    "donor_corsair",
+    "donor_steelseries",
+    "donor_benq",
+    "donor_intel",
+    "donor_amd",
+    "donor_kingston",
+    "donor_sony",
+    "donor_xiaomi",
+    "donor_tp_link",
+    "donor_seagate",
+    "donor_alienware",
+    "donor_chromebook",
+    "donor_ipad",
+    "donor_synology",
+    "donor_epson",
+    "donor_canon",
+    "donor_philips",
+    "donor_nintendo"
+  ],
+  "rolling_origins": [
+    82,
+    98,
+    114,
+    130
+  ],
+  "parallel_trend_screen": [
+    {
+      "query_id": "donor_dell",
+      "pre_gap_trend_hac_t": 2.6721461993003532,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_asus",
+      "pre_gap_trend_hac_t": 7.892852887659199,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_acer",
+      "pre_gap_trend_hac_t": 6.62043076017274,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_hp",
+      "pre_gap_trend_hac_t": 3.4307877834759815,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_microsoft_surface",
+      "pre_gap_trend_hac_t": 4.436497688521376,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_razer",
+      "pre_gap_trend_hac_t": 5.910098083085428,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_logitech",
+      "pre_gap_trend_hac_t": 2.068019102101116,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_macbook",
+      "pre_gap_trend_hac_t": -1.7563972967864598,
+      "parallel": true
+    },
+    {
+      "query_id": "donor_corsair",
+      "pre_gap_trend_hac_t": 7.502233664963316,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_steelseries",
+      "pre_gap_trend_hac_t": 2.839086261938977,
+      "parallel": false
+    },
+    {
+      "query_id": "donor_benq",
+      "pre_gap_trend_hac_t": 1.082611014720308,
+      "parallel": true
+    }
+  ]
+}

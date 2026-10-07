@@ -16,7 +16,7 @@ def _cells(notebook: Path) -> list[dict]:
 
 def test_review_notebooks_exist():
     assert {path.name for path in NOTEBOOKS} >= {
-        "00_data_inputs.ipynb", "10_total_sponsorship_effect.ipynb", "20_world_cup_close_up.ipynb",
+        "00_data_inputs.ipynb", "05_brand_index.ipynb", "10_total_sponsorship_effect.ipynb", "15_exposure_and_survey_lift.ipynb", "35_financial_links.ipynb", "20_world_cup_close_up.ipynb",
         "30_cobrand_association.ipynb", "40_brand_value.ipynb",
     }
 

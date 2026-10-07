@@ -1,0 +1,207 @@
+{
+  "experiment_id": "sponsorship_exposure_timing_v1",
+  "status": "fifa_specific_effect_primary_ADR_0043",
+  "generated_at_utc": "2026-10-07T10:57:13.286850+00:00",
+  "headline_lift_index_points": 7.478443898138874,
+  "samples": {
+    "pre_weeks": 146,
+    "post_weeks_with_exposure": 92,
+    "exposure_coverage_end": "2026-07-20",
+    "backcast_weeks": 143
+  },
+  "nonfifa_backcast": [
+    {
+      "property_id": "ducati",
+      "active_from": "2018-01-01",
+      "upgraded_from": "None",
+      "scale_2022": 0.4276920421557839,
+      "scale_2023": 0.534734276669399,
+      "scale_2024": 0.8075181041853982,
+      "pre_fifa_mean_scale": 0.5899814743368603,
+      "observed_post_impressions_m": 460.136492,
+      "baseline_post_impressions_m": 231.7381713752462,
+      "observed_over_baseline": 1.9855878264220688
+    },
+    {
+      "property_id": "motogp",
+      "active_from": "2019-05-30",
+      "upgraded_from": "None",
+      "scale_2022": 0.8125062046618793,
+      "scale_2023": 0.8730164853927213,
+      "scale_2024": 1.0192252577847358,
+      "pre_fifa_mean_scale": 0.9015826492797787,
+      "observed_post_impressions_m": 7779.577485,
+      "baseline_post_impressions_m": 7026.695849683422,
+      "observed_over_baseline": 1.1071458977907087
+    },
+    {
+      "property_id": "f1",
+      "active_from": "2022-03-10",
+      "upgraded_from": "2025-01-01",
+      "scale_2022": 0.9031764517368794,
+      "scale_2023": 0.9470991576962001,
+      "scale_2024": 0.8864711044858345,
+      "pre_fifa_mean_scale": 0.9122489046396379,
+      "observed_post_impressions_m": 4699.705372,
+      "baseline_post_impressions_m": 3335.429543225279,
+      "observed_over_baseline": 1.4090255276252965
+    }
+  ],
+  "post_collinearity": {
+    "fifa_log_adstock_vs_time": 0.7789566653961559,
+    "nonfifa_incremental_vs_time": 0.5333377715075689
+  },
+  "summary": {
+    "pre_period_nonfifa:levels_without_trend": {
+      "nonfifa_log_adstock": {
+        "points_per_sd": 0.6441826416164479,
+        "hac_se": 0.25654393628690914,
+        "p": 0.012038861010285715
+      }
+    },
+    "pre_period_nonfifa:levels_with_trend": {
+      "nonfifa_log_adstock": {
+        "points_per_sd": -0.011860749395958178,
+        "hac_se": 0.3035297487639807,
+        "p": 0.968829740591874
+      }
+    },
+    "pre_period_nonfifa:first_differences": {
+      "nonfifa_log_adstock": {
+        "points_per_sd": 0.04273030979850536,
+        "hac_se": 0.08673578723705656,
+        "p": 0.6222605298842125
+      }
+    },
+    "post_period_incremental:levels_without_trend": {
+      "fifa_log_adstock": {
+        "points_per_sd": 3.0993476345420485,
+        "hac_se": 0.712329457299541,
+        "p": 1.3551617287799216e-05
+      },
+      "nonfifa_incremental_log_adstock": {
+        "points_per_sd": 0.38719046460232204,
+        "hac_se": 1.0104243033331761,
+        "p": 0.7015745072767265
+      }
+    },
+    "post_period_incremental:levels_with_trend": {
+      "fifa_log_adstock": {
+        "points_per_sd": -1.2635878734884618,
+        "hac_se": 1.6788902360835316,
+        "p": 0.4516705967331467
+      },
+      "nonfifa_incremental_log_adstock": {
+        "points_per_sd": -2.0423875711708135,
+        "hac_se": 0.7305264306193261,
+        "p": 0.005177542350316854
+      }
+    },
+    "post_period_incremental:first_differences": {
+      "fifa_log_adstock": {
+        "points_per_sd": -0.013239971213989503,
+        "hac_se": 0.22705493265097093,
+        "p": 0.9535003056819479
+      },
+      "nonfifa_incremental_log_adstock": {
+        "points_per_sd": -0.35056319956557214,
+        "hac_se": 0.26883759142601654,
+        "p": 0.19223487556567187
+      }
+    },
+    "full_sample:levels_without_trend": {
+      "fifa_log_adstock": {
+        "points_per_sd": 4.7538799571523205,
+        "hac_se": 0.6198030541858842,
+        "p": 1.720168358245956e-14
+      },
+      "nonfifa_log_adstock": {
+        "points_per_sd": 0.6961574283534842,
+        "hac_se": 0.2645736331504372,
+        "p": 0.00850732702821099
+      }
+    },
+    "full_sample:levels_with_trend": {
+      "fifa_log_adstock": {
+        "points_per_sd": 2.1985354161469934,
+        "hac_se": 0.6899783523900556,
+        "p": 0.001440636545298741
+      },
+      "nonfifa_log_adstock": {
+        "points_per_sd": 0.059880787827534955,
+        "hac_se": 0.34624983584174723,
+        "p": 0.8626978152615677
+      }
+    },
+    "full_sample:first_differences": {
+      "fifa_log_adstock": {
+        "points_per_sd": 0.12423031499352415,
+        "hac_se": 0.09629712877418518,
+        "p": 0.19702535235730034
+      },
+      "nonfifa_log_adstock": {
+        "points_per_sd": -0.07237480495224505,
+        "hac_se": 0.10727865754731027,
+        "p": 0.4999025498393148
+      }
+    },
+    "full_sample:levels_with_trend_and_post_step": {
+      "fifa_log_adstock": {
+        "points_per_sd": 6.28864996768859,
+        "hac_se": 1.9292658149109987,
+        "p": 0.0011156635956502585
+      },
+      "nonfifa_log_adstock": {
+        "points_per_sd": -0.09589180951000169,
+        "hac_se": 0.32433617582438445,
+        "p": 0.7674931013504582
+      },
+      "post_step": {
+        "points_per_sd": -8.702734150419253,
+        "hac_se": 3.5940016884172516,
+        "p": 0.015458268796736415
+      }
+    }
+  },
+  "fifa_specific_effect": {
+    "definition": "FIFA-exposure coefficient x mean post-period FIFA log adstock (standardised, relative to zero exposure), in the full-sample regression with a linear trend, other sponsorships (relative to their pre-FIFA baseline) and Lenovo event controls.",
+    "primary_specification": "full_sample:levels_with_trend",
+    "period": [
+      "2024-10-21",
+      "2026-07-20"
+    ],
+    "weeks": 92,
+    "primary_index_points": 4.419188945836233,
+    "primary_uplift_pct": 4.331673995206393,
+    "statistical_band_95_index_points": [
+      1.7008685661442695,
+      7.137509325528196
+    ],
+    "statistical_band_95_uplift_pct": [
+      1.6671855916395906,
+      6.996162398773197
+    ],
+    "attribution_band_upper_index_points": 7.023724945434955,
+    "attribution_band_upper_uplift_pct": 6.884631335867421,
+    "attribution_band_upper_definition": "whole gap over the same weeks: the unexplained residual also credited to FIFA",
+    "counterfactual_index_level": 102.02034942441851,
+    "decomposition_index_points": {
+      "fifa": 4.419188945836233,
+      "other_sponsorships": 0.01915936029627718,
+      "events": -0.19079776304471238,
+      "residual": 2.776174402347157,
+      "total_gap": 7.023724945434955
+    },
+    "specification_range_fifa_index_points": [
+      -7.668968608090379,
+      18.810563328090677
+    ]
+  },
+  "assumptions": [
+    "Back-cast exposure repeats each property's first observed Blinkfire year week by week, scaled by its co-brand search level per year; it is constructed, not observed.",
+    "Co-brand search after June 2025 is not used for scaling because low-volume Lenovo queries step up in 2025Q3 (Google data change, ADR-0039).",
+    "Exposure is digital and social only (Blinkfire); broadcast is not measured.",
+    "Weeks after the last Blinkfire week are excluded, not treated as zero."
+  ],
+  "interpretation_rule": "Non-FIFA exposure is 'absorbed in the pre-trend' if the pre-period coefficient is near zero; FIFA is supported as the incremental driver only if its post-period coefficient is positive in a specification that also controls for a trend or uses weekly changes."
+}

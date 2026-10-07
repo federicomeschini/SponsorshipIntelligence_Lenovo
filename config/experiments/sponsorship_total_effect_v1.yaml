@@ -1,10 +1,18 @@
 experiment_id: sponsorship_total_effect_v1
-status: headline_total_sponsorship_effect_ADR_0038
+status: headline_total_sponsorship_effect_ADR_0040
+# Outcome: the Lenovo Brand Index (brand share of attention + GWI, ADR-0039/0040).
+# Rivals carry only the search component (no rival survey), so the comparison is on search share.
 
 inputs:
   brand_index: data/curated/index/brand_index_weekly.parquet
   jointly_scaled_donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
   donor_registry: data/reference/counterfactual_donor_registry.csv
+outcome_column: index_level
+
+# Donors on the same basis as Lenovo: log(donor) - log(sum of base rivals without
+# that donor). Lenovo is in no denominator (ADR-0039).
+donor_share_of_search:
+  denominator_policies: [base]
 
 treatment:
   first_full_post_week: 2024-10-21

@@ -1,16 +1,20 @@
 """Brand value from relative importance in price formation, and the sponsorship's
-incremental brand value through its lift of the Brand Index (ADR-0031, ADR-0032).
+incremental brand value through its lift of the Brand Index (ADR-0031, ADR-0032, ADR-0040).
 
 Owner-selected chain:
 1. Brand value (BV) = the brand's signed general-dominance share of explained
    weekly return variance x company value (the general effect of the Brand
    Index on price formation).
-2. The sponsorship's sustained Index lift is converted to a percentage of brand
-   salience: the Index is exactly linear in Lenovo's raw search interest, which
-   has a true zero, so lift / (counterfactual level - zero-interest level) is a
-   ratio-scale uplift.
-3. Incremental BV = BV x salience uplift x the elasticity of brand value to
-   salience (1 = proportional, an explicit assumption).
+2. The sponsorship's sustained Index lift is converted to a percentage uplift in
+   brand share of attention. The Brand Index is a ratio scale (proportional to
+   Lenovo's brand share, true zero at 0; ADR-0040), so the uplift is
+   lift / counterfactual index level.
+3. Incremental BV = BV x brand-share uplift x the elasticity of brand value to
+   brand share (1 = proportional, an explicit assumption).
+
+The sponsorship's primary uplift is the FIFA-specific effect (ADR-0043): the part of
+the gap explained by accumulated FIFA exposure. Its 95% interval and the whole gap
+(residual also credited to FIFA) are reported as bands.
 """
 
 from __future__ import annotations
@@ -120,20 +124,14 @@ def _block_bootstrap(
                    "p95": float(np.quantile(values, 0.95))} for name, values in draws.items()}
 
 
-def _salience_map(index_path: str, trends_path: str, query: str) -> dict[str, float]:
-    """Exact affine map from raw search interest to Index points."""
-    index = pd.read_parquet(index_path)[["week", "index_level"]]
-    index["week"] = pd.to_datetime(index["week"])
-    trends = pd.read_parquet(trends_path)
-    trends = trends[trends["query_id"].eq(query)].copy()
-    trends["week"] = pd.to_datetime(trends["week"]) + pd.Timedelta(days=1)  # W-SUN to W-MON
-    joined = index.merge(trends[["week", "interest_mean"]], on="week")
-    slope, intercept = np.polyfit(joined["interest_mean"], joined["index_level"], 1)
-    correlation = float(np.corrcoef(joined["interest_mean"], joined["index_level"])[0, 1])
-    if correlation < 0.999:
-        raise ValueError("Brand Index is no longer an affine map of the headline query; salience map invalid.")
-    return {"index_points_per_interest_unit": float(slope),
-            "zero_interest_index_level": float(intercept), "correlation": correlation}
+def _ratio_scale(manifest_path: str) -> dict[str, Any]:
+    """Confirm the Brand Index is the ratio-scale share index the chain assumes (ADR-0040)."""
+    manifest = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    scale = manifest["display_scale"]
+    if scale["type"] != "percent_of_base_share":
+        raise ValueError("Brand Index is not a ratio-scale share index; the uplift chain is invalid.")
+    return {"index_id": manifest["index_id"], "display_scale": scale["type"], "zero_index_level": 0.0,
+            "reading": scale["reading"]}
 
 
 def build_brand_value_dominance(
@@ -171,17 +169,20 @@ def build_brand_value_dominance(
         return share * base
 
     x = brand["signed_explained_share"]["brand"]
+    # Alternative reading: the brand's share of the Lenovo-specific drivers only (market factors excluded).
+    specific = {k: v for k, v in brand["weights"].items() if k != "market"}
+    x_specific = (brand["weights"]["brand"] / sum(specific.values()) * np.sign(x)) if sum(specific.values()) > 0 else 0.0
 
-    # Indirect chain: Index lift -> % brand salience -> incremental brand value.
+    # Indirect chain: Index lift -> % brand share of attention -> incremental brand value.
     chain = config["indirect_chain"]
-    salience = _salience_map(inputs["brand_index_weekly"], inputs["trends_weekly_averaged"], chain["index_query"])
+    scale = _ratio_scale(inputs["brand_index_manifest"])
     counterfactual = pd.read_parquet(inputs["total_effect_weekly"])
     post_cf = counterfactual[counterfactual["period"].eq("post")].sort_values("week")
     trailing = int(chain["provisional_trailing_weeks"])
     post_cf = post_cf.iloc[:-trailing] if trailing else post_cf
     counterfactual_level = float(post_cf["synthetic_index"].mean())
-    headroom = counterfactual_level - salience["zero_interest_index_level"]
-    elasticity = float(chain["brand_value_elasticity_to_salience"])
+    headroom = counterfactual_level - scale["zero_index_level"]
+    elasticity = float(chain["brand_value_elasticity_to_brand_share"])
     brand_value = money(x)
     uplift = level / headroom
     coefficient = elasticity * brand_value / headroom
@@ -189,13 +190,11 @@ def build_brand_value_dominance(
     bv_low, bv_high = money(boot_brand["brand_explained"]["p05"]), money(boot_brand["brand_explained"]["p95"])
     indirect = {
         "brand_value_usd_m": brand_value,
-        "zero_interest_index_level": salience["zero_interest_index_level"],
-        "index_points_per_search_interest_unit": salience["index_points_per_interest_unit"],
+        "zero_index_level": scale["zero_index_level"],
         "counterfactual_index_level": counterfactual_level,
-        "counterfactual_search_interest": headroom / salience["index_points_per_interest_unit"],
         "sustained_lift_index_points": level,
-        "salience_uplift_pct": 100 * uplift,
-        "brand_value_elasticity_to_salience": elasticity,
+        "brand_share_uplift_pct": 100 * uplift,
+        "brand_value_elasticity_to_brand_share": elasticity,
         "incremental_brand_value_usd_m": elasticity * uplift * brand_value,
         "incremental_brand_value_90pct_usd_m": [elasticity * uplift * bv_low, elasticity * uplift * bv_high],
         "incremental_brand_value_donor_range_usd_m": [
@@ -218,6 +217,28 @@ def build_brand_value_dominance(
         "market_cap_base": config["valuation_base"]["primary"],
         "market_cap_usd_m": cap,
         "brand_value_by_cap_base_usd_m": {name: money(x, float(value)) for name, value in caps.items()},
+        "brand_share_of_lenovo_specific_formation": x_specific,
+        "brand_value_lenovo_specific_usd_m": money(x_specific),
+        "incremental_brand_value_lenovo_specific_usd_m": elasticity * uplift * money(x_specific),
+    }
+
+    # FIFA-specific incremental brand value (ADR-0043): primary uplift with statistical and attribution bands.
+    fifa = json.loads(Path(inputs["fifa_specific_manifest"]).read_text(encoding="utf-8"))["fifa_specific_effect"]
+    readings = {"literal": values["brand_value_usd_m"], "lenovo_specific": values["brand_value_lenovo_specific_usd_m"]}
+    uplifts = {"primary": fifa["primary_uplift_pct"],
+               "statistical_band_95_low": fifa["statistical_band_95_uplift_pct"][0],
+               "statistical_band_95_high": fifa["statistical_band_95_uplift_pct"][1],
+               "attribution_band_upper": fifa["attribution_band_upper_uplift_pct"]}
+    fifa_specific = {
+        "uplift_pct": uplifts,
+        "index_points": {"primary": fifa["primary_index_points"],
+                         "statistical_band_95": fifa["statistical_band_95_index_points"],
+                         "attribution_band_upper": fifa["attribution_band_upper_index_points"]},
+        "period": fifa["period"],
+        "incremental_brand_value_usd_m": {
+            reading: {name: elasticity * pct / 100 * bv for name, pct in uplifts.items()}
+            for reading, bv in readings.items()},
+        "note": "Primary sponsorship valuation (ADR-0043). The total-effect chain above is the attribution upper band over the full post period.",
     }
 
     # 3. Stability: sample windows, leaving one control group out, alternative brand measures.
@@ -260,15 +281,17 @@ def build_brand_value_dominance(
         "status": config["status"],
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "method": ("brand value = signed group general-dominance share of weekly Lenovo returns x company value; "
-                   "incremental brand value = brand value x sponsorship salience uplift x elasticity"),
-        "decision": "ADR-0031, ADR-0032 (owner-selected; variance share read as value share and value proportional to salience by assumption)",
+                   "incremental brand value = brand value x sponsorship brand-share uplift x elasticity"),
+        "decision": "ADR-0031, ADR-0032, ADR-0040 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
         "accepted_for_accounting_or_causal_claim": False,
         "coefficients": {"brand_full_sample": brand["coefficients"]},
         "samples": {"brand_weeks": len(panel), "brand_model_r2": brand["r2"]},
         "primary_result": indirect,
-        "salience_map": salience,
+        "fifa_specific_incremental_brand_value": fifa_specific,
+        "index_scale": scale,
         "values": values,
         "bootstrap": {"spec": config["bootstrap"], "brand": boot_brand},
+        "external_reference": config.get("external_reference"),
         "stability_summary": {
             "brand_share_min": float(shares.min()), "brand_share_max": float(shares.max()),
             "brand_value_min_usd_m": money(float(shares.min())),
@@ -279,8 +302,8 @@ def build_brand_value_dominance(
         "caveats": [
             "A share of explained return variance is not a share of value: a stable brand explains little variance yet can be worth much.",
             "Dominance weights are sign-blind; shares are signed by the full-model coefficient so value-destroying co-movement is not counted as value.",
-            "Brand value is assumed proportional to search salience (elasticity 1) unless configured otherwise.",
-            "The salience uplift is the synthetic-control lift, whose attribution is not yet accepted.",
+            "Brand value is assumed proportional to brand share of attention (elasticity 1) unless configured otherwise.",
+            "The brand-share uplift is the synthetic-control lift, whose attribution is not yet accepted.",
             "The share depends on which other regressor groups are included; see stability.",
             "The model explains a minority of weekly return variance, so the explained-share base is small and noisy.",
             "Values scale with the market-capitalisation base; the primary base is fixed by rule (mean post-announcement).",

@@ -485,7 +485,7 @@ def build_stock_response(
             "Every factor forecast and Brand Index prediction uses prior data only.",
             "The four horizons are frozen and evaluated as one Holm-adjusted family.",
             "Earnings announcement weeks and two following weeks are controlled.",
-            "The Brand Index is a calibrated Lenovo search-salience index, so the shock is unexpected salience, not complete brand equity.",
+            "The Brand Index is Lenovo's brand share of attention against rivals (ADR-0040), so the shock is an unexpected brand-share movement, not complete brand equity.",
             "No stock coefficient is accepted as a profit or causal sponsorship conversion.",
         ],
     }

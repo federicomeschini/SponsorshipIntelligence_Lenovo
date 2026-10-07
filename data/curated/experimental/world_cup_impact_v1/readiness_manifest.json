@@ -1,19 +1,19 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "status": "waiting_for_world_cup_data",
-  "generated_at_utc": "2026-10-06T13:52:56.617127+00:00",
+  "generated_at_utc": "2026-10-07T09:06:52.467073+00:00",
   "role": "primary sponsorship impact evaluation; earlier announcement/FCWC SCM remains interim",
   "canonical_contracts_replaced": [],
   "config": {
     "path": "config\\experiments\\world_cup_impact_v1.yaml",
-    "sha256": "3f4452d5cdcf106c99ccf2f98b91170df166b73c572dde0df0ce4779e791c4b4"
+    "sha256": "cbcbd572961dea424ba48088e305d1de5cc224a1ebc697937b0e817014ec39c3"
   },
   "data_contract": {
     "path": "data\\reference\\world_cup_impact_data_contract.yaml",
     "sha256": "1d6dc41963c274d7106a2f2edc2d312fecde8a058162b42b56a81f4554e03e0b",
     "id": "EXP-WC-IMPACT-V1"
   },
-  "protocol_hash": "bee13e0bad0a89d81d21b5ce1105719c935677fe824bc893b36d16f1eb2b44e4",
+  "protocol_hash": "d3b80d9f89354050f31447159ba4515e909cf16258a746ca4209532131b10245",
   "missing_milestone_dates": [
     "activation_start"
   ],
@@ -26,7 +26,7 @@
       "source": "brand_index",
       "status": "available_coverage_incomplete",
       "path": "data\\curated\\index\\brand_index_weekly.parquet",
-      "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449",
+      "sha256": "3953e1796b0d3d817120ecfd991b4a492ed3f5d736d7c25b7e1cafbedee4d064",
       "required_for_estimation": true,
       "note": null,
       "rows": 248,
@@ -34,10 +34,14 @@
         "week",
         "index_level",
         "index_se",
-        "proxy_z",
-        "calendar_quarter",
-        "source_version",
-        "anchored"
+        "factor",
+        "weekly_signals_observed",
+        "survey_quarter_end",
+        "log_share_google_share_of_search",
+        "signal_google_share_of_search",
+        "log_share_wikipedia_share_of_attention",
+        "signal_wikipedia_share_of_attention",
+        "product_search_demand"
       ],
       "coverage_end": "2026-09-28",
       "required_coverage_through": "2026-10-18"

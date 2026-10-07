@@ -25,8 +25,8 @@ alignment:
 # until every value is explicitly approved or independently estimated.
 valuation:
   scenario_id: experimental_base
-  counterfactual_manifest: data/curated/experimental/sponsorship_counterfactual_v1/counterfactual_manifest.json
-  use_counterfactual_candidate: false
+  counterfactual_manifest: data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json   # headline (ADR-0041)
+  use_counterfactual_candidate: false   # owner approval required, even when the placebo test passes
   delta_index_attrib: null
   royalty_schedule_path: config/royalty_schedule.yaml
   royalty_reference_index: null

@@ -23,7 +23,7 @@ def test_tier_a_composite_is_single_pca_index():
 
 
 def test_proxy_led_index_uses_validated_brand_trend_and_not_survey_pinning():
-    manifest = json.loads((ROOT / "data/curated/index/index_manifest.json").read_text(encoding="utf-8"))
+    manifest = json.loads((ROOT / "data/curated/index/search_salience_index_manifest.json").read_text(encoding="utf-8"))
     assert manifest["status"] == "provisional_proxy_led_index_built"
     assert manifest["weekly_movement"].startswith("100% from the validated Lenovo")
     assert manifest["calibration"]["slope"] > 0
@@ -31,7 +31,7 @@ def test_proxy_led_index_uses_validated_brand_trend_and_not_survey_pinning():
     assert manifest["retained_inputs"]["headline_query"] == "brand_lenovo"
     assert manifest["calibration"]["correlation"] > 0
     assert "price_queries" in manifest["excluded_from_core_index"]
-    rows = pq.read_table(ROOT / "data/curated/index/brand_index_weekly.parquet").to_pylist()
+    rows = pq.read_table(ROOT / "data/curated/index/search_salience_index_weekly.parquet").to_pylist()
     assert len(rows) == 248
     assert str(rows[0]["week"]) == "2022-01-03"
     assert str(rows[-1]["week"]) == "2026-09-28"
@@ -48,36 +48,6 @@ def test_proxy_led_index_uses_validated_brand_trend_and_not_survey_pinning():
 
 
 def test_proxy_led_index_has_mapping_uncertainty():
-    rows = pq.read_table(ROOT / "data/curated/index/brand_index_weekly.parquet").to_pylist()
+    rows = pq.read_table(ROOT / "data/curated/index/search_salience_index_weekly.parquet").to_pylist()
     assert min(row["index_se"] for row in rows) > 0
     assert max(row["index_level"] for row in rows) > min(row["index_level"] for row in rows)
-
-
-def test_multisignal_method_comparison_is_lenovo_only_and_complete():
-    manifest = json.loads(
-        (ROOT / "data/curated/index/brand_index_method_comparison_manifest.json").read_text(
-            encoding="utf-8"
-        )
-    )
-    assert manifest["status"] == "experimental_comparison_built"
-    assert "relative_peer_position" in manifest["excluded_from_components"]
-    assert set(manifest["methods"]) == {"evidence_weighted", "pca", "entropy"}
-    for method in manifest["methods"].values():
-        stability = method["leave_one_quarter_stability"]
-        assert stability["review"] == "leave_one_quarter_out"
-        assert stability["n_refits"] == 17
-        assert set(stability["weight_ranges"]) == {
-            "brand_salience_proxy_z", "product_portfolio_proxy_z",
-            "commercial_intent_proxy_z", "earned_news_tone_z",
-        }
-    table = pq.read_table(
-        ROOT / "data/curated/index/brand_index_method_comparison_weekly.parquet"
-    )
-    assert table.num_rows == 248
-    assert set(table.column_names) == {
-        "week",
-        "evidence_weighted_index_level", "evidence_weighted_index_se",
-        "pca_index_level", "pca_index_se",
-        "entropy_index_level", "entropy_index_se",
-    }
-    assert not table.to_pandas().isna().any().any()

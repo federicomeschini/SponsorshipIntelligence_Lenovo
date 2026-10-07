@@ -1,0 +1,237 @@
+{
+  "experiment_id": "sponsorship_total_effect_search_salience_v1",
+  "status": "search_salience_cross_check_ADR_0040",
+  "generated_at_utc": "2026-10-07T09:02:47.425679+00:00",
+  "selection": {
+    "selected_method": "simplex_scm",
+    "selected_pool": "expanded",
+    "selected_donors": [
+      "donor_dell",
+      "donor_asus",
+      "donor_acer",
+      "donor_hp",
+      "donor_microsoft_surface",
+      "donor_razer",
+      "donor_logitech",
+      "donor_macbook",
+      "donor_corsair",
+      "donor_steelseries",
+      "donor_benq",
+      "donor_intel",
+      "donor_amd",
+      "donor_kingston",
+      "donor_sony",
+      "donor_xiaomi",
+      "donor_tp_link",
+      "donor_seagate",
+      "donor_alienware",
+      "donor_chromebook",
+      "donor_ipad",
+      "donor_synology",
+      "donor_epson",
+      "donor_canon",
+      "donor_philips",
+      "donor_nintendo"
+    ],
+    "post_period_outcomes_accessed": false,
+    "data_weeks_seen": [
+      "2022-01-03",
+      "2024-10-14"
+    ]
+  },
+  "total_effect": {
+    "lift_index_points": 0.9085406801857857,
+    "first_post_week": "2024-10-21",
+    "last_week": "2026-09-14",
+    "post_weeks": 100,
+    "synthetic_post_mean_index": 90.06675131981422,
+    "leave_one_donor_out_range": [
+      0.8775733586845057,
+      1.191623343435176
+    ]
+  },
+  "primary": {
+    "donor_pool": "expanded",
+    "method": "simplex_scm",
+    "window": "all_post",
+    "placebo_filter": "none",
+    "statistic": "rmspe_ratio",
+    "lift_index_points": 0.9085406801857857,
+    "pre_rmspe_index_points": 0.24919380172976627,
+    "treated_statistic": 5.793435736544503,
+    "placebos_kept": 26,
+    "p_value": 0.1111111111111111,
+    "selected_design": true,
+    "is_primary": true,
+    "placebos": [
+      {
+        "placebo_unit": "donor_dell",
+        "pre_rmspe_z": 0.5321467902906415,
+        "rmspe_ratio": 2.8610692801938287,
+        "mean_gap_over_pre_rmspe": 0.6897233462412647
+      },
+      {
+        "placebo_unit": "donor_asus",
+        "pre_rmspe_z": 0.48613993151339463,
+        "rmspe_ratio": 4.420583378031858,
+        "mean_gap_over_pre_rmspe": 2.8292013480901104
+      },
+      {
+        "placebo_unit": "donor_acer",
+        "pre_rmspe_z": 0.4671061237908874,
+        "rmspe_ratio": 2.39482122962851,
+        "mean_gap_over_pre_rmspe": 0.03884430944628534
+      },
+      {
+        "placebo_unit": "donor_hp",
+        "pre_rmspe_z": 0.6822143877471717,
+        "rmspe_ratio": 2.2320008404123155,
+        "mean_gap_over_pre_rmspe": -1.1259344494282948
+      },
+      {
+        "placebo_unit": "donor_microsoft_surface",
+        "pre_rmspe_z": 0.6883449772639804,
+        "rmspe_ratio": 2.0004833475590513,
+        "mean_gap_over_pre_rmspe": -1.0541204388750036
+      },
+      {
+        "placebo_unit": "donor_razer",
+        "pre_rmspe_z": 0.44619218593689436,
+        "rmspe_ratio": 3.314260128304321,
+        "mean_gap_over_pre_rmspe": -2.7589050084043425
+      },
+      {
+        "placebo_unit": "donor_logitech",
+        "pre_rmspe_z": 0.5599265209005088,
+        "rmspe_ratio": 1.6215929306664394,
+        "mean_gap_over_pre_rmspe": -0.5242935594357339
+      },
+      {
+        "placebo_unit": "donor_macbook",
+        "pre_rmspe_z": 0.6195692629138612,
+        "rmspe_ratio": 4.927095502117186,
+        "mean_gap_over_pre_rmspe": 2.313479735544964
+      },
+      {
+        "placebo_unit": "donor_corsair",
+        "pre_rmspe_z": 0.4447432842307377,
+        "rmspe_ratio": 2.9325389956490215,
+        "mean_gap_over_pre_rmspe": 1.9880390088608437
+      },
+      {
+        "placebo_unit": "donor_steelseries",
+        "pre_rmspe_z": 0.6191850500389816,
+        "rmspe_ratio": 2.179284724291923,
+        "mean_gap_over_pre_rmspe": -1.5532023302402582
+      },
+      {
+        "placebo_unit": "donor_benq",
+        "pre_rmspe_z": 0.8768415349949606,
+        "rmspe_ratio": 5.748794017328912,
+        "mean_gap_over_pre_rmspe": 2.885968655889668
+      },
+      {
+        "placebo_unit": "donor_intel",
+        "pre_rmspe_z": 0.5841032094817696,
+        "rmspe_ratio": 2.690874010426606,
+        "mean_gap_over_pre_rmspe": 0.6256493757014324
+      },
+      {
+        "placebo_unit": "donor_amd",
+        "pre_rmspe_z": 0.5628840212932653,
+        "rmspe_ratio": 4.7052036816647815,
+        "mean_gap_over_pre_rmspe": 3.496368389417769
+      },
+      {
+        "placebo_unit": "donor_kingston",
+        "pre_rmspe_z": 1.034859157609636,
+        "rmspe_ratio": 2.490843000005498,
+        "mean_gap_over_pre_rmspe": -1.8841522099236092
+      },
+      {
+        "placebo_unit": "donor_sony",
+        "pre_rmspe_z": 0.45068416430436037,
+        "rmspe_ratio": 4.295547786733351,
+        "mean_gap_over_pre_rmspe": 1.7874260293094326
+      },
+      {
+        "placebo_unit": "donor_xiaomi",
+        "pre_rmspe_z": 0.6052401885733831,
+        "rmspe_ratio": 3.5985423876963027,
+        "mean_gap_over_pre_rmspe": -2.984970569031077
+      },
+      {
+        "placebo_unit": "donor_tp_link",
+        "pre_rmspe_z": 0.6313805564114011,
+        "rmspe_ratio": 3.1006524045181054,
+        "mean_gap_over_pre_rmspe": 0.8271228829519089
+      },
+      {
+        "placebo_unit": "donor_seagate",
+        "pre_rmspe_z": 0.908664612902796,
+        "rmspe_ratio": 1.493666564642184,
+        "mean_gap_over_pre_rmspe": 0.030046388614128575
+      },
+      {
+        "placebo_unit": "donor_alienware",
+        "pre_rmspe_z": 0.8571162993347391,
+        "rmspe_ratio": 2.4613498549100976,
+        "mean_gap_over_pre_rmspe": -1.2264850244141752
+      },
+      {
+        "placebo_unit": "donor_chromebook",
+        "pre_rmspe_z": 0.850355118134256,
+        "rmspe_ratio": 2.1067011153995487,
+        "mean_gap_over_pre_rmspe": -1.3788922059687254
+      },
+      {
+        "placebo_unit": "donor_ipad",
+        "pre_rmspe_z": 0.6210470528592527,
+        "rmspe_ratio": 2.9738909490877505,
+        "mean_gap_over_pre_rmspe": -0.45605287844991066
+      },
+      {
+        "placebo_unit": "donor_synology",
+        "pre_rmspe_z": 0.7036120356072197,
+        "rmspe_ratio": 6.030634892590588,
+        "mean_gap_over_pre_rmspe": -4.387306932042062
+      },
+      {
+        "placebo_unit": "donor_epson",
+        "pre_rmspe_z": 0.6300806887672376,
+        "rmspe_ratio": 2.8165433170938146,
+        "mean_gap_over_pre_rmspe": -1.2689317302511838
+      },
+      {
+        "placebo_unit": "donor_canon",
+        "pre_rmspe_z": 0.6804146713971702,
+        "rmspe_ratio": 6.083373841196913,
+        "mean_gap_over_pre_rmspe": 4.534905860283336
+      },
+      {
+        "placebo_unit": "donor_philips",
+        "pre_rmspe_z": 0.504846723714521,
+        "rmspe_ratio": 2.6688685564966406,
+        "mean_gap_over_pre_rmspe": 0.7068191111790842
+      },
+      {
+        "placebo_unit": "donor_nintendo",
+        "pre_rmspe_z": 0.6088911820148082,
+        "rmspe_ratio": 2.9416677558751085,
+        "mean_gap_over_pre_rmspe": -1.4019845163543054
+      }
+    ]
+  },
+  "passes_primary_test": false,
+  "specification_curve_summary": {
+    "specifications": 432,
+    "share_lift_positive": 1.0,
+    "share_p_at_or_below_alpha": 0.1111111111111111,
+    "selected_design_share_p_at_or_below_alpha": 0.16666666666666666,
+    "lift_range_index_points": [
+      0.2031364482002418,
+      1.8165051341926564
+    ]
+  },
+  "note": "Headline total sponsorship effect. Primary inference is unchanged from sponsorship_counterfactual_v1; the design is selected on pre-announcement evidence only."
+}

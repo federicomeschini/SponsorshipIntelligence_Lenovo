@@ -1,12 +1,12 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "role": "primary_sponsorship_impact_evaluation",
-  "protocol_hash": "bee13e0bad0a89d81d21b5ce1105719c935677fe824bc893b36d16f1eb2b44e4",
+  "protocol_hash": "d3b80d9f89354050f31447159ba4515e909cf16258a746ca4209532131b10245",
   "frozen_estimands": {
     "primary": {
       "name": "sustained_world_cup_brand_index_uplift",
       "formula": "exposure_weighted_mean_actual_minus_counterfactual_index",
-      "interpretation": "average incremental Brand Index points during the registered World Cup exposure window"
+      "interpretation": "average incremental Brand Index points during the registered World Cup exposure window (ADR-0040 Brand Index; 1 point = about 1% of brand share of attention)"
     },
     "secondary": [
       "all_post_mean_actual_minus_counterfactual_index",

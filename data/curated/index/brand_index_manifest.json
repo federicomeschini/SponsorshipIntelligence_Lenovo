@@ -1,0 +1,118 @@
+{
+  "index_id": "brand_index_v5_factor",
+  "generated_at_utc": "2026-10-07T08:54:28.600102+00:00",
+  "config_path": "config\\brand_index.yaml",
+  "config_sha256": "0ba6cd744abcb7c7e6588aac5b2d94e3ee3feb6e0a664f68f15138343474ba87",
+  "method": "mixed-frequency dynamic factor model (weekly AR(1) factor; GWI as quarterly-average measurements), MLE + Kalman smoother",
+  "sample": [
+    "2022-01-03",
+    "2026-09-28"
+  ],
+  "weeks": 248,
+  "converged": true,
+  "log_likelihood": -421.1272227908704,
+  "phi": 0.9408049890358308,
+  "display_scale": {
+    "type": "percent_of_base_share",
+    "anchor_pillar": "pillar_salience",
+    "log_points_per_factor_sd": 0.07060932676429695,
+    "reading": "100 = pre-announcement average; 110 = brand share of attention about 10% above it"
+  },
+  "standardisation_base": [
+    "2022-01-03",
+    "2024-10-14"
+  ],
+  "moments": {
+    "google_share_of_search": [
+      -1.6873698202184535,
+      0.03464092505032179
+    ],
+    "wikipedia_share_of_attention": [
+      -0.6508155836332469,
+      0.10613280224985895
+    ],
+    "gwi_engagement": [
+      0.15836363636363635,
+      0.006136329966237594
+    ],
+    "gwi_consideration": [
+      0.10563636363636363,
+      0.003981776670601385
+    ]
+  },
+  "survey_fit": {
+    "gwi_engagement": {
+      "quarters": 17,
+      "correlation": 0.47509647265344684,
+      "change_correlation": 0.32734316363969884
+    },
+    "gwi_consideration": {
+      "quarters": 17,
+      "correlation": 0.5940045398026802,
+      "change_correlation": 0.2882685529225834
+    }
+  },
+  "validity_screen": {
+    "rule": "admit a weekly signal only if its quarterly mean correlates positively with every GWI series in levels and in quarter-on-quarter changes over the overlap (P4)",
+    "admitted": [
+      "google_share_of_search"
+    ],
+    "excluded": [
+      "wikipedia_share_of_attention"
+    ]
+  },
+  "sensitivities": [
+    {
+      "id": "all_weekly_signals_admitted",
+      "description": "every weekly signal enters, validity screen overridden",
+      "weekly_signals": [
+        "google_share_of_search",
+        "wikipedia_share_of_attention"
+      ],
+      "survey_used": true,
+      "correlation_with_headline": 0.9271800835333782,
+      "post_announcement_mean": 115.4429463719548,
+      "survey_fit": {
+        "gwi_engagement": {
+          "quarters": 17,
+          "correlation": 0.4481747540286458,
+          "change_correlation": 0.2188611509027044
+        },
+        "gwi_consideration": {
+          "quarters": 17,
+          "correlation": 0.5667838939296835,
+          "change_correlation": 0.12803863386857697
+        }
+      }
+    },
+    {
+      "id": "weekly_only_no_survey",
+      "description": "GWI removed: the weekly signals alone",
+      "weekly_signals": [
+        "google_share_of_search"
+      ],
+      "survey_used": false,
+      "correlation_with_headline": 0.9998613484416908,
+      "post_announcement_mean": 109.3364672348375,
+      "survey_fit": {
+        "gwi_engagement": {
+          "quarters": 17,
+          "correlation": 0.4552318667607068,
+          "change_correlation": 0.2999375378974666
+        },
+        "gwi_consideration": {
+          "quarters": 17,
+          "correlation": 0.5752293978398061,
+          "change_correlation": 0.26000759040716226
+        }
+      }
+    }
+  ],
+  "caveats": [
+    "Weekly signals are shares of attention against rival brands; a shock that moves Lenovo's rivals moves the index in the opposite direction.",
+    "One common factor: dimensions that do not co-move with the others receive small loadings rather than their own pillar weight.",
+    "GWI engagement/consideration are a non-canonical anchor (ADR-0011); the survey ends at 2026Q1, so later weeks rest on the weekly signals alone.",
+    "Idiosyncratic errors are i.i.d.; persistent signal-specific movements may be partly absorbed by the factor.",
+    "Product and price search volume is reported as a demand indicator and is not part of the index."
+  ]
+}

@@ -1,5 +1,7 @@
 # Lenovo-only multi-signal index comparison
 
+> **RETIRED (ADR-0041, 2026-10-07).** `srmp/index/multisignal_compare.py` and its outputs were removed; they compared Lenovo-only variants of the superseded search-salience index and nothing downstream read them. The Brand Index is the brand-level factor index (ADR-0040, [`05_brand_index.ipynb`](05_brand_index.ipynb)), which selects signals by factor loadings and the P4 validity screen. This document is a historical record; the code remains in git history.
+
 > **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
 > - *Affected:* all comparison statistics (now include GDELT and Trends through early October 2026)
 > - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session

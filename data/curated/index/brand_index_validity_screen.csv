@@ -1,0 +1,3 @@
+signal,gwi_engagement_level_corr,gwi_engagement_change_corr,overlap_quarters,gwi_consideration_level_corr,gwi_consideration_change_corr,admitted
+google_share_of_search,0.4453183853194615,0.2879814323655465,17,0.5698099885662843,0.26435392239377664,True
+wikipedia_share_of_attention,0.30011819337703555,0.027085417506820655,17,0.37459134882109263,-0.1587115460303407,False

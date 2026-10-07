@@ -1,87 +1,87 @@
 {
   "experiment_id": "brand_financial_bridge_v1",
   "status": "exploratory_no_approved_monetization_coefficient",
-  "generated_at_utc": "2026-10-06T13:53:18.502745+00:00",
+  "generated_at_utc": "2026-10-07T09:10:08.158664+00:00",
   "canonical_contracts_replaced": [],
   "accepted_for_valuation": false,
   "primary_profit_mapping": {
     "model": "margin_macro",
     "unit": "adjusted_net_income_margin_percentage_points_per_one_Brand_Index_point",
-    "estimate": -0.2707264888995826,
-    "robust_se": 0.6456806791231499,
-    "lower_95": -1.5362606199809563,
-    "upper_95": 0.9948076421817911,
-    "p_value_normal_approx": 0.6750052939129458,
+    "estimate": 0.009002464329887366,
+    "robust_se": 0.06072804956504689,
+    "lower_95": -0.11002451281760453,
+    "upper_95": 0.12802944147737927,
+    "p_value_normal_approx": 0.8821515683643675,
     "equivalent_at_latest_quarter": {
-      "estimate_usd_m_per_quarter": -72.94183790421455,
-      "lower_95_usd_m_per_quarter": -413.9146988414691,
-      "upper_95_usd_m_per_quarter": 268.03102303303996,
+      "estimate_usd_m_per_quarter": 2.425533964401553,
+      "lower_95_usd_m_per_quarter": -29.643904488447188,
+      "upper_95_usd_m_per_quarter": 34.494972417250295,
       "reference_quarter": "2026Q2",
       "reference_revenue_usd_m": 26943.0
     }
   },
   "controlled_profit_growth_sensitivity": {
     "unit": "approximate_percent_adjusted_net_income_per_one_Brand_Index_point",
-    "log_coefficient": 0.17674258677919158,
-    "approximate_percent": 19.33238762455398,
-    "lower_95_percent": -32.122497850484756,
-    "upper_95_percent": 109.79291054066138,
-    "p_value_normal_approx": 0.5392250745969313
+    "log_coefficient": 0.028128115470670324,
+    "approximate_percent": 2.8527446258754807,
+    "lower_95_percent": -4.064935187029295,
+    "upper_95_percent": 10.269244073573457,
+    "p_value_normal_approx": 0.428471874848529
   },
   "margin_model_sensitivity": {
-    "minimum_coefficient": -0.2707264888995826,
-    "maximum_coefficient": 0.2803681501070078,
-    "all_signs_positive": false,
+    "minimum_coefficient": 0.006978796443747458,
+    "maximum_coefficient": 0.08522186883635856,
+    "all_signs_positive": true,
     "models": [
       {
         "model": "margin_uncontrolled",
-        "estimate": 0.2803681501070078,
-        "robust_se": 0.12763893404096607,
-        "lower_95": 0.030195839386714274,
-        "upper_95": 0.5305404608273012,
-        "p_value_normal_approx": 0.02805100454402042
+        "estimate": 0.08522186883635856,
+        "robust_se": 0.038488914475312413,
+        "lower_95": 0.009783596464746233,
+        "upper_95": 0.1606601412079709,
+        "p_value_normal_approx": 0.026815534092692307
       },
       {
         "model": "margin_category",
-        "estimate": -0.048479060495258575,
-        "robust_se": 0.4167785319641781,
-        "lower_95": -0.8653649831450476,
-        "upper_95": 0.7684068621545304,
-        "p_value_normal_approx": 0.9074001112755511
+        "estimate": 0.006978796443747458,
+        "robust_se": 0.052558072382632035,
+        "lower_95": -0.09603502542621134,
+        "upper_95": 0.10999261831370624,
+        "p_value_normal_approx": 0.894365331607968
       },
       {
         "model": "margin_macro",
-        "estimate": -0.2707264888995826,
-        "robust_se": 0.6456806791231499,
-        "lower_95": -1.5362606199809563,
-        "upper_95": 0.9948076421817911,
-        "p_value_normal_approx": 0.6750052939129458
+        "estimate": 0.009002464329887366,
+        "robust_se": 0.06072804956504689,
+        "lower_95": -0.11002451281760453,
+        "upper_95": 0.12802944147737927,
+        "p_value_normal_approx": 0.8821515683643675
       },
       {
         "model": "margin_seasonality",
-        "estimate": -0.09847493070009583,
-        "robust_se": 0.5589981602022556,
-        "lower_95": -1.1941113246965167,
-        "upper_95": 0.997161463296325,
-        "p_value_normal_approx": 0.8601656942106454
+        "estimate": 0.01000840089055944,
+        "robust_se": 0.07897581777434605,
+        "lower_95": -0.14478420194715882,
+        "upper_95": 0.1648010037282777,
+        "p_value_normal_approx": 0.8991561501813115
       },
       {
         "model": "margin_all_controls",
-        "estimate": -0.17310090149435697,
-        "robust_se": 0.7542929610920877,
-        "lower_95": -1.6515151052348487,
-        "upper_95": 1.3053133022461347,
-        "p_value_normal_approx": 0.8184899364887375
+        "estimate": 0.017808993423652213,
+        "robust_se": 0.08882938333979287,
+        "lower_95": -0.1562965979223418,
+        "upper_95": 0.19191458476964623,
+        "p_value_normal_approx": 0.8411009843567665
       }
     ]
   },
   "stock_corroboration": {
     "unit": "weekly_abnormal_return_percentage_points_per_one_Brand_Index_point",
-    "estimate": -0.5215786762891924,
-    "robust_se": 0.6596563960145957,
-    "lower_95": -1.8145052124777998,
-    "upper_95": 0.771347859899415,
-    "p_value_normal_approx": 0.429129372085574,
+    "estimate": -0.40428918694946525,
+    "robust_se": 0.31006772463038595,
+    "lower_95": -1.0120219272250217,
+    "upper_95": 0.2034435533260912,
+    "p_value_normal_approx": 0.19227660963249815,
     "interpretation": "Market corroboration only; abnormal returns are not profit."
   },
   "illustrative_monetization": {
@@ -93,44 +93,44 @@
         "case": "one_brand_index_point",
         "delta_brand_index": 1.0,
         "role": "unit_mapping",
-        "delta_adjusted_net_margin_pp_central": -0.2707264888995826,
-        "quarterly_adjusted_profit_usd_m_central": -72.94183790421455,
-        "quarterly_adjusted_profit_usd_m_lower_95": -413.9146988414691,
-        "quarterly_adjusted_profit_usd_m_upper_95": 268.03102303303996,
-        "annualized_run_rate_usd_m_central": -291.7673516168582,
+        "delta_adjusted_net_margin_pp_central": 0.009002464329887366,
+        "quarterly_adjusted_profit_usd_m_central": 2.425533964401553,
+        "quarterly_adjusted_profit_usd_m_lower_95": -29.643904488447188,
+        "quarterly_adjusted_profit_usd_m_upper_95": 34.494972417250295,
+        "annualized_run_rate_usd_m_central": 9.702135857606212,
         "accepted_for_valuation": false
       },
       {
         "case": "total_sponsorship_effect",
-        "delta_brand_index": 0.9085406801857857,
+        "delta_brand_index": 7.478443898138874,
         "role": "headline_total_effect_not_accepted",
-        "delta_adjusted_net_margin_pp_central": -0.24596602836913636,
-        "quarterly_adjusted_profit_usd_m_central": -66.27062702349642,
-        "quarterly_adjusted_profit_usd_m_lower_95": -376.058342024323,
-        "quarterly_adjusted_profit_usd_m_upper_95": 243.5170879773301,
-        "annualized_run_rate_usd_m_central": -265.08250809398567,
+        "delta_adjusted_net_margin_pp_central": 0.06732442443605903,
+        "quarterly_adjusted_profit_usd_m_central": 18.139219675807386,
+        "quarterly_adjusted_profit_usd_m_lower_95": -221.69027663863943,
+        "quarterly_adjusted_profit_usd_m_upper_95": 257.9687159902542,
+        "annualized_run_rate_usd_m_central": 72.55687870322954,
         "accepted_for_valuation": false
       },
       {
         "case": "world_cup_total_sponsorship_path_interim",
-        "delta_brand_index": 0.7317529294505829,
+        "delta_brand_index": 7.138431879050592,
         "role": "interim_not_pure_World_Cup_effect",
-        "delta_adjusted_net_margin_pp_central": -0.1981049013321403,
-        "quarterly_adjusted_profit_usd_m_central": -53.37540356591857,
-        "quarterly_adjusted_profit_usd_m_lower_95": -302.8832934199008,
-        "quarterly_adjusted_profit_usd_m_upper_95": 196.13248628806366,
-        "annualized_run_rate_usd_m_central": -213.50161426367427,
+        "delta_adjusted_net_margin_pp_central": 0.06426347836248379,
+        "quarterly_adjusted_profit_usd_m_central": 17.31450897520401,
+        "quarterly_adjusted_profit_usd_m_lower_95": -211.61099281986233,
+        "quarterly_adjusted_profit_usd_m_upper_95": 246.24001077027037,
+        "annualized_run_rate_usd_m_central": 69.25803590081604,
         "accepted_for_valuation": false
       },
       {
         "case": "world_cup_incremental_tournament_interim",
-        "delta_brand_index": 0.25186771110776685,
+        "delta_brand_index": 0.5818560879534443,
         "role": "interim_incremental_tournament_lift",
-        "delta_adjusted_net_margin_pp_central": -0.06818726109538012,
-        "quarterly_adjusted_profit_usd_m_central": -18.37169375692827,
-        "quarterly_adjusted_profit_usd_m_lower_95": -104.25174779106145,
-        "quarterly_adjusted_profit_usd_m_upper_95": 67.50836027720491,
-        "annualized_run_rate_usd_m_central": -73.48677502771308,
+        "delta_adjusted_net_margin_pp_central": 0.005238138676928688,
+        "quarterly_adjusted_profit_usd_m_central": 1.4113117037248966,
+        "quarterly_adjusted_profit_usd_m_lower_95": -17.24848629731343,
+        "quarterly_adjusted_profit_usd_m_upper_95": 20.071109704763224,
+        "annualized_run_rate_usd_m_central": 5.645246814899586,
         "accepted_for_valuation": false
       }
     ]
@@ -145,7 +145,7 @@
         ],
         "observations": 16,
         "parameters": 2,
-        "r_squared": 0.44707294407291875,
+        "r_squared": 0.3793637539531177,
         "covariance": "HC3",
         "hac_lags": null
       },
@@ -158,7 +158,7 @@
         ],
         "observations": 16,
         "parameters": 3,
-        "r_squared": 0.4707390664320501,
+        "r_squared": 0.4708095089999139,
         "covariance": "HC3",
         "hac_lags": null
       },
@@ -173,7 +173,7 @@
         ],
         "observations": 16,
         "parameters": 5,
-        "r_squared": 0.54105055191858,
+        "r_squared": 0.529329721432398,
         "covariance": "HC3",
         "hac_lags": null
       },
@@ -189,7 +189,7 @@
         ],
         "observations": 16,
         "parameters": 6,
-        "r_squared": 0.6817727600458636,
+        "r_squared": 0.6817113895653888,
         "covariance": "HC3",
         "hac_lags": null
       },
@@ -207,7 +207,7 @@
         ],
         "observations": 16,
         "parameters": 8,
-        "r_squared": 0.7073751717054901,
+        "r_squared": 0.7087583268779549,
         "covariance": "HC3",
         "hac_lags": null
       },
@@ -223,7 +223,7 @@
         ],
         "observations": 16,
         "parameters": 6,
-        "r_squared": 0.8761519133624582,
+        "r_squared": 0.8878066911766462,
         "covariance": "HC3",
         "hac_lags": null
       }
@@ -254,7 +254,7 @@
         ],
         "observations": 247,
         "parameters": 6,
-        "r_squared": 0.010265004463883898,
+        "r_squared": 0.02160243643946469,
         "covariance": "HAC",
         "hac_lags": 4
       }
@@ -267,7 +267,7 @@
     },
     "brand_index": {
       "path": "data/curated/index/brand_index_weekly.parquet",
-      "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449"
+      "sha256": "3953e1796b0d3d817120ecfd991b4a492ed3f5d736d7c25b7e1cafbedee4d064"
     },
     "joint_donor_trends": {
       "path": "data/curated/trends/jointly_scaled_donor_trends.parquet",
@@ -283,20 +283,20 @@
     },
     "total_effect_manifest": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json",
-      "sha256": "798737ff83795928207546fcf54eefbab5b710ef2ae222e66aae31b321f99233"
+      "sha256": "c53e26e0df0df32993f57915ce9f062c133421ce1c779d0e2cde33cc11259b4b"
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "ecde7b7dc63fedf7ffd39055a31e22ec97aa18e9167ec4d336c72b430d511a7c"
+      "sha256": "f1087a40380df5b2ac43d17a3d9b1c3e130b9e296c61bedb364c70bf251f7266"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
-      "sha256": "245d6afb3d33d31b448f4dd3f4ce6478db7115adb988794ef3c684adb17d68a5"
+      "sha256": "b0a197a9767b800af4cfb0570c84c9f5c0cb7a7227bf236322ee18b2c77d3caf"
     }
   },
-  "decision": "No coefficient is approved for sponsorship monetization because the quarterly sample has only 15 first differences, controlled estimates are imprecise and model sensitivity changes sign.",
+  "decision": "No coefficient is approved for sponsorship monetization because the quarterly sample has only 16 first differences and the controlled estimates are imprecise (every controlled 95% interval includes zero).",
   "guardrails": [
-    "One Brand Index point is a scale point, not a percentage point.",
+    "One Brand Index point is about 1% of Lenovo's brand share of attention relative to its pre-announcement level (ADR-0040).",
     "Profit is measured directly from Lenovo adjusted quarterly net income; stock price is not used as a profit proxy.",
     "Stock prices are converted to returns and factor-adjusted against HSI and lagged Nasdaq-100 in HKD.",
     "All regressions use changes or returns, never levels-on-levels.",

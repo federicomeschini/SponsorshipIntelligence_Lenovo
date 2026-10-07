@@ -1,5 +1,9 @@
 # Brand Index-to-financial bridge v1
 
+> **SUPERSEDED (2026-10-07).** The current review artifact for this experiment is [`35_financial_links.ipynb`](35_financial_links.ipynb), which reads the current outputs. This document is the July 2026 record; its figures are in the superseded search-salience index's units (ADR-0040) and must not be quoted.
+
+> **Units changed by ADR-0040 (2026-10-07).** Brand Index figures below are in the superseded search-salience index's points; the experiment now runs on the brand-level Brand Index (1 point ≈ 1% of brand share of attention).
+
 > **STALE: not synchronized with the October 2026 production state (labelled 2026-10-06).**
 > - *Affected:* sample size and coefficients (now 17 quarters including FY26/27 Q1); the World Cup cases, which now use the interim engine (ADR-0036)
 > - *Why not updated yet:* the October 2026 refresh (ADR-0027) re-ran this experiment; the narrative was not rewritten in the same session

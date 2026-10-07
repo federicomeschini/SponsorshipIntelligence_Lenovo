@@ -1,7 +1,7 @@
 {
   "contract": "C-INDEX (Tier A quarterly composite)",
   "status": "provisional_composite_built",
-  "generated_at_utc": "2026-10-06T13:49:46.665041+00:00",
+  "generated_at_utc": "2026-10-07T08:54:22.833123+00:00",
   "method": "PCA(PC1) of standardized funnel stages, mean-100/sd-15 scale",
   "stages_used": [
     "engagement",

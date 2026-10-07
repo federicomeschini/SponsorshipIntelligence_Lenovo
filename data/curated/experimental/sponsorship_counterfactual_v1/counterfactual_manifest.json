@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_counterfactual_v1",
   "status": "candidate_not_distinguishable",
-  "generated_at_utc": "2026-10-06T13:50:03.714777+00:00",
+  "generated_at_utc": "2026-10-07T09:51:32.298959+00:00",
   "canonical_contracts_replaced": [],
   "treatment": {
     "event_id": "fifa_partner_announcement_2024",
@@ -14,7 +14,7 @@
       "sha256": "d03dea0cf14b0af202f704502829d0801ba2763df187b0be17881f1309aaf4a7"
     },
     "brand_index": {
-      "path": "data/curated/index/brand_index_weekly.parquet",
+      "path": "data/curated/index/search_salience_index_weekly.parquet",
       "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449"
     },
     "adstock_exposure": {

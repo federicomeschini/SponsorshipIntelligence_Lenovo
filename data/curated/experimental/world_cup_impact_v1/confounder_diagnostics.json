@@ -1,41 +1,41 @@
 {
   "role": "diagnostic_only_does_not_change_preregistered_estimate",
   "pre_trend": {
-    "last_8_pre_weeks_mean_gap": 0.02826273957191089,
-    "last_8_pre_weeks_slope_per_week": -0.11963471486291181
+    "last_8_pre_weeks_mean_gap": 5.585702093357695,
+    "last_8_pre_weeks_slope_per_week": -1.4764776016477583
   },
   "seasonal_same_window_prior_years": [
     {
       "window_start": "2025-06-09",
-      "lenovo_minus_weighted_donors_index_points": 0.16020088378925873
+      "lenovo_minus_weighted_donors_index_points": 4.65785450682541
     },
     {
       "window_start": "2024-06-10",
-      "lenovo_minus_weighted_donors_index_points": 0.002851150101351559
+      "lenovo_minus_weighted_donors_index_points": 0.22821491069452807
     },
     {
       "window_start": "2023-06-12",
-      "lenovo_minus_weighted_donors_index_points": -0.06910543473674469
+      "lenovo_minus_weighted_donors_index_points": 0.9856847920211265
     },
     {
       "window_start": "2022-06-13",
-      "lenovo_minus_weighted_donors_index_points": -0.01948165359755968
+      "lenovo_minus_weighted_donors_index_points": -2.2175351039969904
     }
   ],
-  "current_window_same_construction_index_points": 0.32193509333194487,
-  "median_donor_shift_in_window_pre_sd": 0.9669996316001835,
+  "current_window_same_construction_index_points": -2.9170076419441693,
+  "median_donor_shift_in_window_pre_sd": -0.3397191115037544,
   "leave_one_donor_out_mean_gap": {
-    "donor_dell": 0.27638552668147204,
-    "donor_asus": 0.4233899635600824,
-    "donor_acer": 0.34522600630206396,
-    "donor_hp": 0.3884184101606342,
-    "donor_microsoft_surface": 0.34418502029098763,
-    "donor_razer": 0.4147245083172139,
-    "donor_logitech": 0.1715797295855371,
-    "donor_macbook": 0.5919383287554788,
-    "donor_corsair": 0.35291880522486874,
-    "donor_steelseries": 0.36744278251121804,
-    "donor_benq": 0.3293291573371455
+    "donor_dell": 2.707777723829395,
+    "donor_asus": 3.138728879282781,
+    "donor_acer": 2.534568358097692,
+    "donor_hp": 2.818001583437379,
+    "donor_microsoft_surface": 2.8515100680369647,
+    "donor_razer": 2.504528197737025,
+    "donor_logitech": 2.3919197309717024,
+    "donor_macbook": 4.0850967261683655,
+    "donor_corsair": 3.2335370947051287,
+    "donor_steelseries": 3.3163676517605514,
+    "donor_benq": 2.665016567059044
   },
   "category_shock_loading": {
     "status": "computed",

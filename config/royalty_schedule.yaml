@@ -3,7 +3,7 @@
 version: 1
 status: pending_client_calibration
 # When approved, each row must contain:
-#   - index_level: Brand Index point on the documented 100/15 scale
+#   - index_level: Brand Index point (ADR-0040 scale: 100 = pre-announcement average, 1 point ≈ 1% of brand share)
 #   - royalty_rate: decimal rate, e.g. 0.025 means 2.5%
 # At least two increasing points are required. The engine interpolates locally
 # and refuses to extrapolate outside the approved Index range.

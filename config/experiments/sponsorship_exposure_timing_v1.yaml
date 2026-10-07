@@ -1,0 +1,63 @@
+experiment_id: sponsorship_exposure_timing_v1
+status: fifa_specific_effect_primary_ADR_0043   # exposure-timing diagnostic (ADR-0042) + FIFA-specific estimate
+# Does the headline gap (Lenovo Brand Index minus its synthetic twin) move with FIFA
+# exposure or with Lenovo's other sponsorships? Sponsorships active before the sample
+# starts are back-cast at their pre-FIFA intensity, so only exposure *above* that
+# baseline (plus all FIFA exposure) counts as incremental.
+
+inputs:
+  total_effect_weekly: data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet
+  total_effect_manifest: data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json
+  exposure: data/staged/blinkfire/blinkfire_exposure_weekly.parquet
+  property_taxonomy: data/reference/property_taxonomy.csv
+  trends: data/curated/trends/trends_weekly_averaged.parquet
+  product_campaign_events: data/reference/lenovo_product_campaign_events.csv
+
+treatment_property_group: fifa
+adstock_delta: 0.80              # same fixed scenario as sponsorship_monetization_v1
+
+# Non-FIFA sponsorships already running before the sample start (2022-01-03): back-cast
+# from their first observed Blinkfire year, scaled year by year by their own co-brand
+# Google search interest (observed). Sources are public announcements.
+pre_existing:
+  ducati:
+    cobrand_query: cobrand_ducati
+    active_from: 2018-01-01
+    source: "Lenovo technology partner of Ducati MotoGP team from 2018; title partner (Ducati Lenovo Team) from 2021"
+  motogp:
+    cobrand_query: cobrand_motogp
+    active_from: 2019-05-30
+    source: "Dorna: Lenovo announced as MotoGP Technical Partner, 30 May 2019"
+  f1:
+    cobrand_query: cobrand_f1
+    active_from: 2022-03-10
+    upgraded_from: 2025-01-01
+    source: "F1 Official Partner from the 2022 season (10 Mar 2022); Global Partner from 2025 with two title races (announced 5 Sep 2024)"
+
+# Started with or after the FIFA announcement, or activation unknown: no back-cast,
+# all of their exposure counts as incremental non-FIFA exposure.
+new_or_unknown:
+  carolina_hurricanes: "Lenovo Center arena naming, announced September 2024"
+  montreal_canadiens: "activation date not found; negligible exposure"
+  ny_yankees: "activation date not found; negligible exposure"
+
+backcast:
+  profile_window: [2024-09-30, 2025-09-28]        # first full observed year: one value per ISO week
+  cobrand_reference_window: [2024-09-30, 2025-06-29]  # co-brand level of the profile year, before the 2025Q3 Google change
+  pre_fifa_years: [2022, 2023, 2024]              # baseline intensity = mean of these years' scale factors
+
+# ADR-0043 (owner decision): the FIFA-specific effect is the primary sponsorship estimate.
+# It is the part of the post-announcement gap explained by accumulated FIFA exposure,
+# beyond the pre-period trend, after Lenovo's other sponsorships and events.
+fifa_specific_effect:
+  primary_specification: full_sample:levels_with_trend
+  definition: >-
+    FIFA-exposure coefficient x mean post-period FIFA log adstock (standardised, relative
+    to zero exposure), in the full-sample regression with a linear trend, other sponsorships
+    (relative to their pre-FIFA baseline) and Lenovo event controls.
+
+event_carryover_weeks: 1
+hac_lags: 4
+
+outputs:
+  directory: data/curated/experimental/sponsorship_exposure_timing_v1

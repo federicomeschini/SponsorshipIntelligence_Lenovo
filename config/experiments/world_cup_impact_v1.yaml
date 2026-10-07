@@ -17,7 +17,7 @@ estimands:
   primary:
     name: sustained_world_cup_brand_index_uplift
     formula: exposure_weighted_mean_actual_minus_counterfactual_index
-    interpretation: average incremental Brand Index points during the registered World Cup exposure window
+    interpretation: average incremental Brand Index points during the registered World Cup exposure window (ADR-0040 Brand Index; 1 point = about 1% of brand share of attention)
   secondary:
     - all_post_mean_actual_minus_counterfactual_index
     - peak_four_week_mean_index_gap
@@ -42,6 +42,10 @@ counterfactual:
 estimation:
   donor_pool: registry_inclusion_policy_base
   outcome_column: index_level
+  # ADR-0040 amendment (owner decision, before the primary window closes): the outcome is
+  # the brand-level Brand Index and donors are on the same share-of-search basis.
+  donor_share_of_search:
+    denominator_policies: [base]
   pre_window: all_weeks_before_treatment
   provisional_treatment_rule: monday_of_tournament_start_week_until_activation_start_is_approved
   ascm:
@@ -70,7 +74,7 @@ estimation:
   vintage_alignment:
     max_days_between_pulls: 7
     manifests:
-      brand_index_trends_pull: data/raw/trends/pull_manifest.json
+      brand_index_trends_pull: data/staged/trends_joint_donors/pull_manifest.json   # Brand Index search share comes from the joint panel (ADR-0040)
       donor_trends_pull: data/staged/trends_joint_donors/pull_manifest.json
   cobrand_query: cobrand_fifa
   cobrand_baseline_weeks: 52

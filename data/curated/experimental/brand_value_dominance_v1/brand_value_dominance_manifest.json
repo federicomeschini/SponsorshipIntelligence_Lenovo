@@ -1,80 +1,117 @@
 {
   "experiment_id": "brand_value_dominance_v1",
   "status": "owner_selected_relative_importance_valuation_ADR_0031",
-  "generated_at_utc": "2026-10-06T13:53:31.391070+00:00",
-  "method": "brand value = signed group general-dominance share of weekly Lenovo returns x company value; incremental brand value = brand value x sponsorship salience uplift x elasticity",
-  "decision": "ADR-0031, ADR-0032 (owner-selected; variance share read as value share and value proportional to salience by assumption)",
+  "generated_at_utc": "2026-10-07T10:57:42.151115+00:00",
+  "method": "brand value = signed group general-dominance share of weekly Lenovo returns x company value; incremental brand value = brand value x sponsorship brand-share uplift x elasticity",
+  "decision": "ADR-0031, ADR-0032, ADR-0040 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
   "accepted_for_accounting_or_causal_claim": false,
   "coefficients": {
     "brand_full_sample": {
       "category_demand": {
-        "coefficient": -0.06523945408070632,
-        "robust_se": 0.09027227650441394,
+        "coefficient": -0.06670700155518439,
+        "robust_se": 0.08682644085171991,
         "sign": -1.0
       },
       "brand": {
-        "coefficient": 0.004636452631995358,
-        "robust_se": 0.008470363296313779,
+        "coefficient": 0.0029777630272791594,
+        "robust_se": 0.0025497106699938427,
         "sign": 1.0
       }
     }
   },
   "samples": {
     "brand_weeks": 164,
-    "brand_model_r2": 0.1751424345697108
+    "brand_model_r2": 0.17993145260718146
   },
   "primary_result": {
-    "brand_value_usd_m": 90.12531439644003,
-    "zero_interest_index_level": 80.61388839616578,
-    "index_points_per_search_interest_unit": 0.20338631887586073,
-    "counterfactual_index_level": 90.06675131981422,
-    "counterfactual_search_interest": 46.47737849770567,
-    "sustained_lift_index_points": 0.9085406801857857,
-    "salience_uplift_pct": 9.611275309122162,
-    "brand_value_elasticity_to_salience": 1.0,
-    "incremental_brand_value_usd_m": 8.662192089853761,
+    "brand_value_usd_m": 445.5381826908709,
+    "zero_index_level": 0.0,
+    "counterfactual_index_level": 101.98428955915062,
+    "sustained_lift_index_points": 7.478443898138875,
+    "brand_share_uplift_pct": 7.332937191077256,
+    "brand_value_elasticity_to_brand_share": 1.0,
+    "incremental_brand_value_usd_m": 32.6710350989886,
     "incremental_brand_value_90pct_usd_m": [
-      -106.1574104829244,
-      208.69208651328114
+      -26.71853973228534,
+      269.0092990425995
     ],
     "incremental_brand_value_donor_range_usd_m": [
-      8.366944014338317,
-      11.36115368821849
+      30.544129036731295,
+      43.098475110250895
     ],
-    "coefficient_usd_m_per_index_point": 9.534181879541649,
+    "coefficient_usd_m_per_index_point": 4.368694282391994,
     "coefficient_90pct_usd_m_per_point": [
-      -116.84387149424778,
-      229.70032169677432
+      -3.5727405455210617,
+      35.97129332073301
     ],
-    "world_cup_incremental_lift_index_points": 0.25186771110776685,
-    "world_cup_incremental_brand_value_usd_m": 2.4013525672853016,
+    "world_cup_incremental_lift_index_points": 0.5818560879534443,
+    "world_cup_incremental_brand_value_usd_m": 2.5419513646171854,
     "incremental_brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 7.121897115657498,
-      "latest_market_cap": 23.19021825141205,
-      "mean_post_announcement_market_cap": 8.662192089853761
+      "pre_announcement_market_cap": 26.861532072184744,
+      "latest_market_cap": 87.4661317350075,
+      "mean_post_announcement_market_cap": 32.6710350989886
     }
   },
-  "salience_map": {
-    "index_points_per_interest_unit": 0.20338631887586073,
-    "zero_interest_index_level": 80.61388839616578,
-    "correlation": 0.9999999999285869
+  "fifa_specific_incremental_brand_value": {
+    "uplift_pct": {
+      "primary": 4.331673995206393,
+      "statistical_band_95_low": 1.6671855916395906,
+      "statistical_band_95_high": 6.996162398773197,
+      "attribution_band_upper": 6.884631335867421
+    },
+    "index_points": {
+      "primary": 4.419188945836233,
+      "statistical_band_95": [
+        1.7008685661442695,
+        7.137509325528196
+      ],
+      "attribution_band_upper": 7.023724945434955
+    },
+    "period": [
+      "2024-10-21",
+      "2026-07-20"
+    ],
+    "incremental_brand_value_usd_m": {
+      "literal": {
+        "primary": 19.299261598335608,
+        "statistical_band_95_low": 7.427948387075076,
+        "statistical_band_95_high": 31.17057480959614,
+        "attribution_band_upper": 30.673661338789934
+      },
+      "lenovo_specific": {
+        "primary": 218.27196689230325,
+        "statistical_band_95_low": 84.00906408570638,
+        "statistical_band_95_high": 352.53486969890014,
+        "attribution_band_upper": 346.9148473941346
+      }
+    },
+    "note": "Primary sponsorship valuation (ADR-0043). The total-effect chain above is the attribution upper band over the full post period."
+  },
+  "index_scale": {
+    "index_id": "brand_index_v5_factor",
+    "display_scale": "percent_of_base_share",
+    "zero_index_level": 0.0,
+    "reading": "100 = pre-announcement average; 110 = brand share of attention about 10% above it"
   },
   "values": {
-    "brand_share_of_price_formation": 0.004249180920834305,
-    "brand_share_of_total_variance": 0.0007442118914020857,
-    "brand_value_usd_m": 90.12531439644003,
-    "brand_value_lower_bound_usd_m": 15.784766979753114,
+    "brand_share_of_price_formation": 0.021005999902154217,
+    "brand_share_of_total_variance": 0.00377964007586092,
+    "brand_value_usd_m": 445.5381826908709,
+    "brand_value_lower_bound_usd_m": 80.1663324035322,
     "brand_value_90pct_usd_m": [
-      -1104.5091007035176,
-      2171.3256545175573
+      -364.3634063141377,
+      3668.5067938387765
     ],
     "market_cap_base": "mean_post_announcement_market_cap",
     "market_cap_usd_m": 21210.044023906707,
     "brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 74.09939770321668,
-      "latest_market_cap": 241.28138572205887,
-      "mean_post_announcement_market_cap": 90.12531439644003
-    }
+      "pre_announcement_market_cap": 366.31340719609534,
+      "latest_market_cap": 1192.7844117011748,
+      "mean_post_announcement_market_cap": 445.5381826908709
+    },
+    "brand_share_of_lenovo_specific_formation": 0.23757493994372034,
+    "brand_value_lenovo_specific_usd_m": 5038.974935183301,
+    "incremental_brand_value_lenovo_specific_usd_m": 369.5048670711173
   },
   "bootstrap": {
     "spec": {
@@ -85,30 +122,34 @@
     },
     "brand": {
       "brand_explained": {
-        "p05": -0.05207481415213378,
-        "p50": 0.005295441401501868,
-        "p95": 0.10237251992830224
+        "p05": -0.017178814240246216,
+        "p50": 0.016565447239919075,
+        "p95": 0.17296082882731656
       },
       "brand_total": {
-        "p05": -0.011584694512033207,
-        "p50": 0.0010862958599614455,
-        "p95": 0.018267446855076575
+        "p05": -0.003689225031758166,
+        "p50": 0.0035636244967348213,
+        "p95": 0.031253457345533496
       }
     }
   },
+  "external_reference": {
+    "brand_finance_2025_brand_value_usd_m": 5663,
+    "source": "https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf"
+  },
   "stability_summary": {
-    "brand_share_min": 0.0019013833190443122,
-    "brand_share_max": 0.033282293746051864,
-    "brand_value_min_usd_m": 40.32842390325171,
-    "brand_value_max_usd_m": 705.9189155703549,
-    "incremental_brand_value_min_usd_m": 3.876075849171351,
-    "incremental_brand_value_max_usd_m": 67.84781043463643
+    "brand_share_min": 0.006615775137223811,
+    "brand_share_max": 0.2108773582949473,
+    "brand_value_min_usd_m": 140.32088191278447,
+    "brand_value_max_usd_m": 4472.71805308098,
+    "incremental_brand_value_min_usd_m": 10.289642136630171,
+    "incremental_brand_value_max_usd_m": 327.98160556640175
   },
   "caveats": [
     "A share of explained return variance is not a share of value: a stable brand explains little variance yet can be worth much.",
     "Dominance weights are sign-blind; shares are signed by the full-model coefficient so value-destroying co-movement is not counted as value.",
-    "Brand value is assumed proportional to search salience (elasticity 1) unless configured otherwise.",
-    "The salience uplift is the synthetic-control lift, whose attribution is not yet accepted.",
+    "Brand value is assumed proportional to brand share of attention (elasticity 1) unless configured otherwise.",
+    "The brand-share uplift is the synthetic-control lift, whose attribution is not yet accepted.",
     "The share depends on which other regressor groups are included; see stability.",
     "The model explains a minority of weekly return variance, so the explained-share base is small and noisy.",
     "Values scale with the market-capitalisation base; the primary base is fixed by rule (mean post-announcement)."
@@ -116,7 +157,7 @@
   "inputs": {
     "stock_response_weekly": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet",
-      "sha256": "0e9930abe84cde2d4b668da89d14a9606bb3aba4af9f40dc4e9baf64da828147"
+      "sha256": "236cc6b8bde9a60eedfa5e81e5e905f7fbd1c5dea8e698b26a56881c68670cab"
     },
     "rolling_abnormal_returns_daily": {
       "path": "data/curated/experimental/stock_brand_response_v2/rolling_abnormal_returns_daily.parquet",
@@ -124,27 +165,27 @@
     },
     "total_return_v3_manifest": {
       "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json",
-      "sha256": "6871bd2f317171907061ecf2272a6e965893ce83b07e6684a05c9d8dae71a6a3"
+      "sha256": "63773875b75e20dcdb276e47b108864e488cb46c5eac98648d3eebb813bb7e06"
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "ecde7b7dc63fedf7ffd39055a31e22ec97aa18e9167ec4d336c72b430d511a7c"
+      "sha256": "f1087a40380df5b2ac43d17a3d9b1c3e130b9e296c61bedb364c70bf251f7266"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
-      "sha256": "245d6afb3d33d31b448f4dd3f4ce6478db7115adb988794ef3c684adb17d68a5"
+      "sha256": "b0a197a9767b800af4cfb0570c84c9f5c0cb7a7227bf236322ee18b2c77d3caf"
     },
     "donor_sensitivity": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/donor_sensitivity.parquet",
-      "sha256": "f7e492fbee54e7b19a251c7f9dc36e8dc6a60fb12ee1faef98bb6c7b859719e3"
+      "sha256": "cd10ce4285562b5aa1459b09e2a5c2d75094108ef5743928e2a67f926cc98646"
     },
-    "brand_index_weekly": {
-      "path": "data/curated/index/brand_index_weekly.parquet",
-      "sha256": "5acb22608f2dbbd19acd50d3f1378dd7f3f92e957dcb282c2e729c5fe5ee4449"
+    "brand_index_manifest": {
+      "path": "data/curated/index/brand_index_manifest.json",
+      "sha256": "12be1714c2a695eadcadb1e07424f16310009041aaf0cdd1c0cf8a7f3f00a575"
     },
-    "trends_weekly_averaged": {
-      "path": "data/curated/trends/trends_weekly_averaged.parquet",
-      "sha256": "6b114d3b23ba37aa4cbacb6e8e7ba21cf469f73537454ece108ae10690b37134"
+    "fifa_specific_manifest": {
+      "path": "data/curated/experimental/sponsorship_exposure_timing_v1/exposure_timing_manifest.json",
+      "sha256": "04660957976077bfe917fa8de9529cc199b7fccace717012735de03da199f165"
     }
   }
 }

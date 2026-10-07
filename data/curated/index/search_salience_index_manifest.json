@@ -1,7 +1,8 @@
 {
-  "contract": "C-INDEX (proxy-led current version)",
+  "contract": "search-salience cross-check (C-INDEX until ADR-0040)",
   "status": "provisional_proxy_led_index_built",
-  "generated_at_utc": "2026-10-06T13:49:47.573871+00:00",
+  "role": "cross-check only; the Brand Index is data/curated/index/brand_index_weekly.parquet (ADR-0040)",
+  "generated_at_utc": "2026-10-07T08:54:23.844395+00:00",
   "source_version": "v4_proxy_led_brand_calibrated",
   "construct": "Lenovo brand salience, proxy-led",
   "weekly_movement": "100% from the validated Lenovo parent-brand Google Trends proxy; survey values do not pin individual weeks",
