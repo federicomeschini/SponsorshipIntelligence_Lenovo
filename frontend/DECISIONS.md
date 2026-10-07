@@ -168,3 +168,9 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Context:** FE-009 showed two brand-value readings with a switch. The owner chose the Lenovo-specific share of price formation as the measure (ADR-0044) and asked that the literal reading not appear on the dashboard.
 - **Decision:** The dashboard shows one brand value (Lenovo-specific) and one FIFA-added value per scenario; the reading switch, the reading row of the sensitivity chart and every mention of the literal reading are removed (`tests/test_frontend_data.py` checks this). Evaluation adds a "how firm is the share?" panel (placebo: a random or time-shifted series obtains a similar share) and a corroboration panel (Brand Finance 2025, Interbrand 2015), so the limit of the evidence travels with the figure.
 - **Consequences:** The literal reading survives only in the analytical record (manifest reference, notebook 40).
+
+## FE-011 — Every money figure from the income split (ADR-0045)
+
+- **Context:** The owner made the ISO 10668 income split the primary brand valuation and asked that the dashboard show no value from any other route.
+- **Decision:** Step 02 Evaluation is rebuilt around the income split (brand contribution factor × discounted economic profit): forecast table, cost-of-capital build-up, factor × WACC grid, and the factor's evidence and placebo. Monetization's scenarios, value bridge and sensitivity come from the income split; the cross-checks panel (market-implied routes, royalty breakeven) is replaced by FIFA's share of branded earnings year by year. Brand Finance, Interbrand, the share × market-cap value and the comparison routes are removed; `tests/test_frontend_data.py` checks that none of them appears.
+- **Consequences:** The cross-checks live only in notebook 40.

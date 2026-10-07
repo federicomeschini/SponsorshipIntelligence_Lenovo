@@ -51,6 +51,7 @@ DERIVED: list[tuple[str, ...]] = [
     ("srmp.experiments.sponsorship_total_return_v3",),
     ("srmp.experiments.valuation_routes_v1",),
     ("srmp.experiments.brand_value_dominance_v1",),
+    ("srmp.experiments.brand_value_dcf_v2",),                    # primary brand value: income split (ADR-0045)
 ]
 
 

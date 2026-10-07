@@ -189,7 +189,12 @@ def build_exposure(events: list[dict]) -> dict:
 
 # ------------------------------------------------------------------ evaluation
 def build_evaluation() -> dict:
+    """Step 02: the brand contribution factor (share-price evidence) and the income-split brand value.
+
+    Every money figure comes from brand_value_dcf_v2 (ADR-0045); the share-price analysis
+    supplies only the factor and its diagnostics (shares, not values)."""
     dom = j(E / "brand_value_dominance_v1/brand_value_dominance_manifest.json")
+    dcf = j(E / "brand_value_dcf_v2/brand_value_dcf_manifest.json")
     stock = j(E / "stock_brand_response_v2/stock_response_manifest.json")
     daily = pd.read_parquet(E / "stock_brand_response_v2/rolling_abnormal_returns_daily.parquet")
     daily["date"] = pd.to_datetime(daily["date"])
@@ -208,11 +213,19 @@ def build_evaluation() -> dict:
     xs = resp["brand_index_innovation"]
     fit = [{"x": r(xs.min(), 3), "y": r(h0["abnormal_return_percentage_points_per_BI_innovation_point"] / 100 * xs.min(), 5)},
            {"x": r(xs.max(), 3), "y": r(h0["abnormal_return_percentage_points_per_BI_innovation_point"] / 100 * xs.max(), 5)}]
-
     weights = pd.read_parquet(E / "brand_value_dominance_v1/dominance_weights.parquet")
     stab = dom["stability_summary"]
-    values, chain = dom["values"], dom["primary_result"]
-    cf = chain["counterfactual_index_level"]
+
+    # Income split (ADR-0045).
+    prim, rate, base = dcf["primary_result"], dcf["discount_rate"], dcf["base_year"]
+    forecast = pd.read_parquet(E / "brand_value_dcf_v2/economic_profit_forecast.parquet")
+    grid = pd.read_parquet(E / "brand_value_dcf_v2/sensitivity_grid.parquet")
+    own = grid[grid["role_of_brand"].eq("brand_contribution_factor")]
+    g0, w0 = dcf["revenue_growth"]["terminal"], rate["wacc"]
+    wacc_only = own[np.isclose(own["terminal_growth"], g0)]["brand_value_usd_m"]
+    growth_only = own[np.isclose(own["wacc"], w0)]["brand_value_usd_m"]
+    heat = grid[grid["role_of_brand"].str.startswith("grid") & np.isclose(grid["terminal_growth"], g0)]
+    by_role = dcf["by_role_definition"]
     return {
         "ticker": "0992.HK", "weeks": iso(wk.index), "annIdx": ann_idx,
         "actualPath": series(actual, 2), "expectedPath": series(expected, 2), "carPath": series(car, 2), "betas": betas,
@@ -227,39 +240,54 @@ def build_evaluation() -> dict:
                       for g in weights.itertuples()],
         "r2": r(dom["samples"]["brand_model_r2"], 3), "weeksN": dom["samples"]["brand_weeks"],
         "brandCoef": {k: r(v, 5) for k, v in dom["coefficients"]["brand_full_sample"]["brand"].items()},
-        "marketCap": r(values["market_cap_usd_m"] * 1e6, 0), "capBase": values["market_cap_base"],
-        # ADR-0044: one measure, the brand's share of the Lenovo-specific explained movement.
-        "brand": {"share": r(values["brand_share"], 5), "share90": [r(v, 4) for v in values["brand_share_90pct"]],
-                  "brandValue": r(values["brand_value_usd_m"] * 1e6, 0),
-                  "band90": [r(v * 1e6, 0) for v in values["brand_value_90pct_usd_m"]],
-                  "valuePerPoint": r(values["brand_value_usd_m"] * 1e6 / cf, 0)},
+        "factor": {"share": r(dom["values"]["brand_share"], 5), "share90": [r(v, 4) for v in dom["values"]["brand_share_90pct"]],
+                   "stabilityRange": [r(stab["brand_share_min"], 4), r(stab["brand_share_max"], 4)]},
         "placebo": {"actual": r(dom["placebo"]["actual_unsigned_share"], 4),
                     "noiseMedian": r(dom["placebo"]["random_series"]["median"], 4),
                     "noiseP": r(dom["placebo"]["random_series"]["probability_at_or_above_actual"], 3),
                     "shiftMedian": r(dom["placebo"]["time_shifted_brand"]["median"], 4),
                     "shiftP": r(dom["placebo"]["time_shifted_brand"]["probability_at_or_above_actual"], 3)},
-        "stabilityShareRange": [r(stab["brand_share_min"], 4), r(stab["brand_share_max"], 4)],
-        "stability": [{"check": s.check, "share": r(s.brand_share, 4), "value": r(s.brand_value_usd_m * 1e6, 0)}
-                      for s in pd.read_parquet(E / "brand_value_dominance_v1/stability.parquet").itertuples()],
-        "brandFinance": r(dom["external_reference"]["brand_finance_2025_brand_value_usd_m"] * 1e6, 0),
-        "interbrand2015": r(dom["external_reference"]["interbrand_2015_brand_value_usd_m"] * 1e6, 0),
-        "counterfactualLevel": r(cf, 2),
+        "dcf": {
+            "baseYear": base["fiscal_year"], "valuationDate": dcf["valuation_date"],
+            "revenue": r(base["revenue"] * 1e6, 0), "operatingMargin": r(base["operating_margin"], 4),
+            "taxRate": r(base["tax_rate"], 4), "investedCapital": r(base["invested_capital"] * 1e6, 0),
+            "roic": r(base["return_on_invested_capital"], 4),
+            "growthStart": r(dcf["revenue_growth"]["start"], 4), "growthTerminal": r(g0, 4),
+            "wacc": {"wacc": r(w0, 4), "riskFree": r(rate["risk_free"], 4), "beta": r(rate["beta"], 3),
+                     "erp": r(rate["equity_risk_premium"], 3), "costOfEquity": r(rate["cost_of_equity"], 4),
+                     "costOfDebt": r(rate["after_tax_cost_of_debt"], 4), "weightDebt": r(rate["weight_debt"], 4)},
+            "forecast": [{"year": int(f.year), "revenue": r(f.revenue_usd_m * 1e6, 0), "nopat": r(f.nopat_usd_m * 1e6, 0),
+                          "charge": r(f.capital_charge_usd_m * 1e6, 0), "ep": r(f.economic_profit_usd_m * 1e6, 0),
+                          "branded": r(f.branded_earnings_usd_m * 1e6, 0)} for f in forecast.itertuples()],
+            "epPv": r(dcf["economic_profit_pv_usd_m"] * 1e6, 0),
+            "brandValue": r(prim["brand_value_usd_m"] * 1e6, 0),
+            "explicitPv": r(prim["explicit_pv_usd_m"] * 1e6, 0), "terminalPv": r(prim["terminal_pv_usd_m"] * 1e6, 0),
+            "terminalShare": r(prim["terminal_share_of_value"], 3),
+            "valuePerPoint": r(prim["value_per_brand_index_point_usd_m"] * 1e6, 0),
+            "factorBand": [r(by_role["factor_bootstrap_p05"]["brand_value_usd_m"] * 1e6, 0),
+                           r(by_role["factor_bootstrap_p95"]["brand_value_usd_m"] * 1e6, 0)],
+            "waccRange": [r(wacc_only.min() * 1e6, 0), r(wacc_only.max() * 1e6, 0)],
+            "growthRange": [r(growth_only.min() * 1e6, 0), r(growth_only.max() * 1e6, 0)],
+            "heat": {"roles": sorted({r(v, 3) for v in heat["role_value"]}), "waccs": sorted({r(v, 4) for v in heat["wacc"]}),
+                     "values": [{"role": r(h.role_value, 3), "wacc": r(h.wacc, 4), "value": r(h.brand_value_usd_m * 1e6, 0)}
+                                for h in heat.itertuples()]},
+        },
     }
 
 
 # ---------------------------------------------------------------- monetization
 def build_monetization(exposure: dict, evaluation: dict) -> dict:
-    dom = j(E / "brand_value_dominance_v1/brand_value_dominance_manifest.json")
-    fsv = dom["fifa_specific_incremental_brand_value"]
+    dcf = j(E / "brand_value_dcf_v2/brand_value_dcf_manifest.json")
+    added = dcf["primary_result"]["fifa_added_brand_value_usd_m"]
+    uplift = dcf["primary_result"]["fifa_specific_uplift_pct"]
+    elasticity = dcf["primary_result"]["elasticity_to_brand_share"]
     fs = exposure["fifaSpecific"]
-    bv = evaluation["brand"]["brandValue"]
+    bv = evaluation["dcf"]["brandValue"]
     keys = {"conservative": "statistical_band_95_low", "base": "primary", "ambitious": "attribution_band_upper"}
     points = {"conservative": fs["statistical_band_95_index_points"][0], "base": fs["primary_index_points"],
               "ambitious": fs["attribution_band_upper_index_points"]}
-    scenarios = {}
-    for name, key in keys.items():
-        scenarios[name] = {"upliftPct": r(fsv["uplift_pct"][key], 3), "indexPoints": r(points[name], 3),
-                           "value": r(fsv["incremental_brand_value_usd_m"][key] * 1e6, 0)}
+    scenarios = {name: {"upliftPct": r(uplift[key], 3), "indexPoints": r(points[name], 3), "value": r(added[key] * 1e6, 0)}
+                 for name, key in keys.items()}
     # Bridge: whole gap (same weeks) -> less residual -> less other sponsorships and events -> FIFA-specific.
     d, cf = fs["decomposition_index_points"], fs["counterfactual_index_level"]
     bridge = [
@@ -269,46 +297,29 @@ def build_monetization(exposure: dict, evaluation: dict) -> dict:
          "value": r(-(d["other_sponsorships"] + d["events"]) / cf * bv, 0)},
         {"label": "FIFA-specific value", "points": r(d["fifa"], 3), "value": r(d["fifa"] / cf * bv, 0), "total": True},
     ]
-
-    # Sensitivity of the base-case increment: one input moved at a time.
-    base_pct = scenarios["base"]["upliftPct"] / 100
-    caps = dom["values"]["brand_value_by_cap_base_usd_m"]
-    stab = evaluation["stability"]
+    # Sensitivity of the base-case FIFA-added value, one income-split input at a time.
+    base_pct = elasticity * uplift["primary"] / 100
+    D = evaluation["dcf"]
     tornado = [
-        {"label": "FIFA-specific uplift (95% band to whole gap)", "lo": r(scenarios["conservative"]["upliftPct"] / 100 * bv, 0),
-         "hi": r(scenarios["ambitious"]["upliftPct"] / 100 * bv, 0)},
-        {"label": "Brand share of Lenovo-specific drivers (bootstrap 90%)", "lo": r(base_pct * evaluation["brand"]["band90"][0], 0),
-         "hi": r(base_pct * evaluation["brand"]["band90"][1], 0)},
-        {"label": "Brand share across samples and controls (stability checks)", "lo": r(base_pct * min(s["value"] for s in stab), 0),
-         "hi": r(base_pct * max(s["value"] for s in stab), 0)},
-        {"label": "Market-cap base (pre-announcement to latest)", "lo": r(base_pct * min(caps.values()) * 1e6, 0),
-         "hi": r(base_pct * max(caps.values()) * 1e6, 0)},
-        {"label": "Elasticity of brand value to brand share (0.5 to 1.5, assumed)", "lo": r(0.5 * base_pct * bv, 0),
-         "hi": r(1.5 * base_pct * bv, 0)},
+        {"label": "FIFA-specific uplift (95% band to whole gap)", "lo": r(scenarios["conservative"]["value"], 0), "hi": r(scenarios["ambitious"]["value"], 0)},
+        {"label": "Brand contribution factor (bootstrap 90%)", "lo": r(base_pct * D["factorBand"][0], 0), "hi": r(base_pct * D["factorBand"][1], 0)},
+        {"label": "Cost of capital (WACC ±1 point)", "lo": r(base_pct * D["waccRange"][0], 0), "hi": r(base_pct * D["waccRange"][1], 0)},
+        {"label": "Terminal growth (±0.5 point)", "lo": r(base_pct * D["growthRange"][0], 0), "hi": r(base_pct * D["growthRange"][1], 0)},
+        {"label": "Elasticity of brand value to brand share (0.5 to 1.5, assumed)", "lo": r(0.5 * base_pct * bv, 0), "hi": r(1.5 * base_pct * bv, 0)},
     ]
-    tornado.sort(key=lambda t: abs(t["hi"] - t["lo"]), reverse=True)
+    tornado.sort(key=lambda x: abs(x["hi"] - x["lo"]), reverse=True)
 
     # Is the lift holding? Quarterly mean gap of the total path.
     w = pd.read_parquet(E / "sponsorship_total_effect_v1/total_effect_weekly.parquet")
     w["week"] = pd.to_datetime(w["week"])
     q = w[w["period"] == "post"].groupby(w["week"].dt.to_period("Q"))["index_gap"].mean()
-
-    routes = pd.read_parquet(E / "valuation_routes_v1/valuation_routes.parquet")
-    be = pd.read_parquet(E / "valuation_routes_v1/breakeven.parquet")
-    royalty = be[be["route"].eq("relief_from_royalty")]
-    mie = j(E / "market_implied_earnings_bridge_v1/market_implied_earnings_bridge_manifest.json")
-    mon = j(E / "sponsorship_monetization_v1/experiment_manifest.json")
-    return {
-        "scenarios": scenarios, "bridge": bridge, "tornado": tornado,
-        "quarterlyGap": [{"q": str(k), "gap": r(v, 2)} for k, v in q.items()],
-        "routes": [{"route": t.route, "identified": bool(t.link_identified), "unit": t.value_unit,
-                    "value": r(t.value_at_measured_level, 1)} for t in routes.itertuples()],
-        "royaltyBreakeven": [{"costUsdM": r(t.cost_usd_m, 0), "bp": r(t.required_royalty_uplift_basis_points, 1)} for t in royalty.itertuples()],
-        "earningsPerPoint": {"central": r(mie["operational_unit_mapping"]["annual_adjusted_earnings_usd_m_per_BI_point"] * 1e6, 0),
-                             "planning": [r(mie["operational_unit_mapping"]["planning_lower_usd_m_per_BI_point"] * 1e6, 0),
-                                          r(mie["operational_unit_mapping"]["planning_upper_usd_m_per_BI_point"] * 1e6, 0)]},
-        "valuationGate": {"missing": mon["valuation_gate"]["missing_inputs"], "fee": None},
-    }
+    # The same value as a flow: FIFA's share of each forecast year's branded earnings (base case).
+    rate = dcf["discount_rate"]["wacc"]
+    flow = [{"year": f["year"], "value": r(base_pct * f["branded"], 0), "pv": r(base_pct * f["branded"] / (1 + rate) ** f["year"], 0)}
+            for f in D["forecast"]]
+    return {"scenarios": scenarios, "bridge": bridge, "tornado": tornado, "fifaBrandedEarnings": flow,
+            "fifaExplicitShare": r(sum(x["pv"] for x in flow) / scenarios["base"]["value"], 3),
+            "quarterlyGap": [{"q": str(k), "gap": r(v, 2)} for k, v in q.items()]}
 
 
 def main() -> None:
@@ -321,7 +332,7 @@ def main() -> None:
         "meta": {"product": "EROI · Event Return on Investment", "brand": "Lenovo", "event": "FIFA",
                  "caseLabel": "FIFA × Lenovo", "built": date.today().isoformat(), "dataThrough": bi["sample"][1],
                  "announce": ANNOUNCE_EVENT, "firstPostWeek": exposure["total"]["from"],
-                 "decisions": "ADR-0038 to ADR-0043", "notebooks": "reports/methods_annex/10_total_sponsorship_effect.ipynb, 40_brand_value.ipynb"},
+                 "decisions": "ADR-0038 to ADR-0045", "notebooks": "reports/methods_annex/10_total_sponsorship_effect.ipynb, 40_brand_value.ipynb"},
         "events": events, "exposure": exposure, "evaluation": evaluation, "monetization": monetization,
     }
     OUT.write_text("/* Generated by frontend/scripts/build_eroi_data.py from production outputs. Do not edit by hand. */\n"

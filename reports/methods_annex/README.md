@@ -22,7 +22,7 @@ Each notebook records the hash of every production file it read; `tests/test_rev
 | [`20_world_cup_close_up.ipynb`](20_world_cup_close_up.ipynb) | Close-up: the World Cup within the total effect, and its incremental effect (interim) | `sponsorship_total_effect_v1`, `world_cup_impact_v1` |
 | [`30_cobrand_association.ipynb`](30_cobrand_association.ipynb) | Do people link Lenovo with FIFA more than other brands? | `cobrand_placebo_v1` |
 | [`35_financial_links.ipynb`](35_financial_links.ipynb) | Do Brand Index moves show up in share-price returns or profit margins, and what per-point earnings coefficient is used for planning? | `stock_brand_response_v2`, `brand_financial_bridge_v1`, `market_implied_earnings_bridge_v1` |
-| [`40_brand_value.ipynb`](40_brand_value.ipynb) | What is the brand worth, and what does the total lift add? | `brand_value_dominance_v1`, `sponsorship_total_return_v3`, `valuation_routes_v1` (the DCF `brand_value_dcf_v1` was retired by ADR-0040) |
+| [`40_brand_value.ipynb`](40_brand_value.ipynb) | What is the brand worth (income split), and what did FIFA add? | `brand_value_dcf_v2` (primary, ADR-0045), `brand_value_dominance_v1` (brand contribution factor), cross-checks from `sponsorship_total_return_v3`, `valuation_routes_v1` |
 
 ## Markdown annexes
 

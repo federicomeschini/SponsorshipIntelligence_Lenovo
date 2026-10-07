@@ -39,10 +39,11 @@ def test_dashboard_shows_the_current_fifa_specific_estimate_and_total_effect():
 
 def test_dashboard_brand_values_match_the_valuation_manifest():
     d = _eroi()
-    dom = _manifest(E / "brand_value_dominance_v1/brand_value_dominance_manifest.json")
-    assert np.isclose(d["evaluation"]["brand"]["brandValue"], dom["values"]["brand_value_usd_m"] * 1e6, rtol=1e-6)
-    fsv = dom["fifa_specific_incremental_brand_value"]["incremental_brand_value_usd_m"]
-    assert np.isclose(d["monetization"]["scenarios"]["base"]["value"], fsv["primary"] * 1e6, rtol=1e-6)
+    # ADR-0045: every money figure on the dashboard comes from the income split (brand_value_dcf_v2).
+    dcf = _manifest(E / "brand_value_dcf_v2/brand_value_dcf_manifest.json")["primary_result"]
+    assert np.isclose(d["evaluation"]["dcf"]["brandValue"], dcf["brand_value_usd_m"] * 1e6, rtol=1e-6)
+    for case, key in {"conservative": "statistical_band_95_low", "base": "primary", "ambitious": "attribution_band_upper"}.items():
+        assert np.isclose(d["monetization"]["scenarios"][case]["value"], dcf["fifa_added_brand_value_usd_m"][key] * 1e6, rtol=1e-6)
     # The value bridge ends at the FIFA-specific value and starts from the whole gap.
     bridge = d["monetization"]["bridge"]
     assert np.isclose(sum(step["value"] for step in bridge[1:3]) + bridge[0]["value"], bridge[3]["value"], rtol=1e-4)
@@ -57,3 +58,8 @@ def test_dashboard_uses_no_simulated_data_or_monetary_media_value():
     # ADR-0044: the dashboard shows only the Lenovo-specific brand measure.
     data = (ROOT / "frontend/data/eroi-data.js").read_text(encoding="utf-8")
     assert "literal" not in js.lower() and "literal" not in data.lower()
+    # ADR-0045: no value from another route (market-cap reading, external valuations, comparison routes).
+    for word in ("brand finance", "interbrand", "brandfinance", "marketcap", "royalty", "routes", "earningsperpoint"):
+        assert word not in js.lower() and word not in data.lower(), word
+    d = _eroi()
+    assert "dcf" in d["evaluation"] and "brand" not in d["evaluation"]

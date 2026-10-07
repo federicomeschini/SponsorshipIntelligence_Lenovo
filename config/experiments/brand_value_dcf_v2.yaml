@@ -1,0 +1,57 @@
+experiment_id: brand_value_dcf_v2
+status: iso10668_income_approach_brand_earnings_split_ADR_0045
+
+inputs:
+  annual_financials: data/reference/lenovo_annual_financials.csv
+  quarterly_financials: data/reference/lenovo_quarterly_financials.csv
+  market_prices: data/staged/market/market_prices_daily.parquet
+  market_valuation_reference: data/reference/lenovo_market_valuation_reference.csv
+  dominance_manifest: data/curated/experimental/brand_value_dominance_v1/brand_value_dominance_manifest.json
+
+valuation_date: 2026-03-31          # latest audited fiscal year end
+base_fiscal_year: FY25/26
+forecast_years: 5
+
+# Role of brand (ADR-0045): the brand contribution factor, i.e. the brand's share of
+# the Lenovo-specific explained share-price movement (ADR-0044), read from
+# brand_value_dominance_v1 together with its bootstrap band.
+role_of_brand:
+  source: dominance_manifest.values.brand_share
+  sensitivity_grid: [0.10, 0.15, 0.20, 0.25, 0.30, 0.35]
+
+revenue:
+  # Year-1 growth = trailing three-fiscal-year revenue CAGR from quarterly
+  # results, fading linearly to terminal growth by the final forecast year.
+  start_growth_rule: trailing_three_fiscal_year_cagr
+  terminal_growth: 0.03
+operating_margin_rule: base_year_reported        # FY25/26 operating profit / revenue
+tax_rate_rule: base_year_effective                 # FY25/26 taxation / profit before tax
+invested_capital:
+  definition: total equity + total debt - cash - short-term investments
+  growth: proportional_to_revenue                  # constant capital turnover
+
+discount_rate:
+  method: capm_wacc_usd
+  risk_free: latest_ust10y
+  equity_risk_premium: 0.050          # mature-market ERP assumption; sensitivity +/-1pp
+  beta_benchmark: ACWI
+  beta_window_weeks: 104
+  beta_adjustment: blume              # 0.67 * raw + 0.33
+  pre_tax_debt_spread: 0.015          # over the risk-free rate
+  weights: market_cap_latest_and_book_debt
+  brand_specific_premium: 0.0
+sensitivity:
+  wacc_shift: [-0.01, 0.0, 0.01]
+  terminal_growth_shift: [-0.005, 0.0, 0.005]
+
+sponsorship:
+  source: dominance_manifest.fifa_specific_incremental_brand_value   # FIFA-specific uplift (ADR-0043)
+
+cross_check:
+  brand_finance_2025_brand_value_usd_m: 5663
+  brand_finance_source: https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf
+  interbrand_2015_brand_value_usd_m: 4100   # more than US$4.1bn per the Lenovo release, rounded
+  interbrand_source: https://news.lenovo.com/?p=2553
+
+outputs:
+  directory: data/curated/experimental/brand_value_dcf_v2

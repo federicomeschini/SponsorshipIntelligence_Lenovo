@@ -44,7 +44,7 @@ lenovo.html + js/eroi.js     (formats and draws; estimates nothing)
 | Chapter | Question | Output it hands on |
 |---|---|---|
 | 01 Exposure | How much more did Lenovo stand out than rivals, and how much of that is FIFA? | FIFA-specific effect (ADR-0043), with its 95% band and the whole gap as ceiling |
-| 02 Evaluation | What is the Lenovo brand worth, from what moves its share price? | Brand value from the brand's share of Lenovo-specific price drivers, corroborated by independent valuations (ADR-0044) |
+| 02 Evaluation | What is the Lenovo brand worth? | Brand value by income split: brand contribution factor × discounted economic profit (ISO 10668; ADR-0044, ADR-0045) |
 | 03 Monetization | What did FIFA add to that value, and what cost would it cover? | FIFA-added brand value per scenario; break-even programme cost |
 
 ## Layout

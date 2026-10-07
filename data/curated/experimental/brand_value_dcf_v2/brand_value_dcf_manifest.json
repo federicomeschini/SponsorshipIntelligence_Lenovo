@@ -1,0 +1,234 @@
+{
+  "experiment_id": "brand_value_dcf_v2",
+  "status": "iso10668_income_approach_brand_earnings_split_ADR_0045",
+  "generated_at_utc": "2026-10-07T13:58:21.699185+00:00",
+  "standard": "ISO 10668 income approach, brand earnings split on economic profit",
+  "valuation_date": "2026-03-31",
+  "base_year": {
+    "fiscal_year": "FY25/26",
+    "revenue": 83075.0,
+    "operating_margin": 0.03926572374360517,
+    "tax_rate": 0.19101123595505617,
+    "invested_capital": 8660.56,
+    "return_on_invested_capital": 0.30470562507673943
+  },
+  "revenue_growth": {
+    "start": 0.10275561425784985,
+    "terminal": 0.03,
+    "rule": "trailing_three_fiscal_year_cagr"
+  },
+  "discount_rate": {
+    "risk_free": 0.05302999973297119,
+    "risk_free_date": "2026-10-05",
+    "raw_beta": 1.0497018239320242,
+    "beta": 1.0333002220344563,
+    "beta_benchmark": "ACWI",
+    "beta_adjustment": "blume",
+    "pre_tax_debt_spread": 0.015,
+    "tax_rate_used": 0.19101123595505617,
+    "equity_value_date": "2026-10-05",
+    "share_price_hkd": 35.91999816894531,
+    "usd_hkd": 7.846980094909668,
+    "shares": 12404659302,
+    "equity_risk_premium": 0.05,
+    "cost_of_equity": 0.10469501083469401,
+    "after_tax_cost_of_debt": 0.05503550540195422,
+    "equity_value_usd_m": 56783.03424055771,
+    "debt_usd_m": 5156.0,
+    "weight_debt": 0.08324314486362865,
+    "wacc": 0.10056119743010031,
+    "beta_weeks": 104
+  },
+  "role_of_brand": {
+    "definition": "brand contribution factor: brand share of the Lenovo-specific explained share-price movement (ADR-0044)",
+    "values": {
+      "brand_contribution_factor": 0.23757493994372034,
+      "factor_bootstrap_p05": -0.09888836043742653,
+      "factor_bootstrap_p95": 0.6855640511003925
+    }
+  },
+  "economic_profit_pv_usd_m": 30911.19698918641,
+  "inputs_used": {
+    "annual_financials": {
+      "FY24/25": {
+        "period_end": "2025-03-31",
+        "revenue_usd_m": 69077.0,
+        "operating_profit_usd_m": 2164.0,
+        "profit_before_tax_usd_m": 1481.0,
+        "taxation_usd_m": 19.0,
+        "total_equity_usd_m": 6660.0,
+        "minority_interest_usd_m": 1138.0,
+        "total_debt_usd_m": 5733.0,
+        "cash_usd_m": 4728.0,
+        "short_term_investments_usd_m": 58.24,
+        "pl_source_url": "https://investor.lenovo.com/en/financial/results/press_2526_q4.pdf",
+        "balance_sheet_source_url": "https://stockanalysis.com/quote/hkg/0992/financials/balance-sheet/"
+      },
+      "FY25/26": {
+        "period_end": "2026-03-31",
+        "revenue_usd_m": 83075.0,
+        "operating_profit_usd_m": 3262.0,
+        "profit_before_tax_usd_m": 2670.0,
+        "taxation_usd_m": 510.0,
+        "total_equity_usd_m": 8444.0,
+        "minority_interest_usd_m": 1356.0,
+        "total_debt_usd_m": 5156.0,
+        "cash_usd_m": 4887.0,
+        "short_term_investments_usd_m": 52.44,
+        "pl_source_url": "https://investor.lenovo.com/en/financial/results/press_2526_q4.pdf",
+        "balance_sheet_source_url": "https://stockanalysis.com/quote/hkg/0992/financials/balance-sheet/"
+      }
+    },
+    "invested_capital_components_usd_m": {
+      "total_equity": 8444.0,
+      "total_debt": 5156.0,
+      "less_cash": 4887.0,
+      "less_short_term_investments": 52.44
+    },
+    "fiscal_year_revenue_usd_m": {
+      "FY22/23": 61948.0,
+      "FY23/24": 56864.0,
+      "FY24/25": 69077.0,
+      "FY25/26": 83074.0
+    },
+    "start_growth_years": [
+      "FY22/23",
+      "FY25/26"
+    ]
+  },
+  "primary_result": {
+    "role_of_brand": 0.23757493994372034,
+    "explicit_pv_usd_m": 2039.834247996475,
+    "terminal_pv_usd_m": 5303.891520297995,
+    "brand_value_usd_m": 7343.72576829447,
+    "terminal_share_of_value": 0.7222344199175874,
+    "fifa_added_brand_value_usd_m": {
+      "primary": 318.1062593844825,
+      "statistical_band_95_low": 122.43353789852924,
+      "statistical_band_95_high": 513.7789808704358,
+      "attribution_band_upper": 505.58844546417157
+    },
+    "value_per_brand_index_point_usd_m": 72.00840247100146,
+    "fifa_specific_uplift_pct": {
+      "primary": 4.331673995206393,
+      "statistical_band_95_low": 1.6671855916395906,
+      "statistical_band_95_high": 6.996162398773197,
+      "attribution_band_upper": 6.884631335867421
+    },
+    "elasticity_to_brand_share": 1.0
+  },
+  "by_role_definition": {
+    "brand_contribution_factor": {
+      "role_of_brand": 0.23757493994372034,
+      "brand_value_usd_m": 7343.72576829447,
+      "fifa_added_brand_value_usd_m": {
+        "primary": 318.1062593844825,
+        "statistical_band_95_low": 122.43353789852924,
+        "statistical_band_95_high": 513.7789808704358,
+        "attribution_band_upper": 505.58844546417157
+      },
+      "value_per_brand_index_point_usd_m": 72.00840247100146
+    },
+    "factor_bootstrap_p05": {
+      "role_of_brand": -0.09888836043742653,
+      "brand_value_usd_m": -3056.75758941896,
+      "fifa_added_brand_value_usd_m": {
+        "primary": -132.4087735973589,
+        "statistical_band_95_low": -50.96182210214258,
+        "statistical_band_95_high": -213.85572509257526,
+        "attribution_band_upper": -210.44649086264332
+      },
+      "value_per_brand_index_point_usd_m": -29.97282819375869
+    },
+    "factor_bootstrap_p95": {
+      "role_of_brand": 0.6855640511003925,
+      "brand_value_usd_m": 21191.60543226889,
+      "fifa_added_brand_value_usd_m": {
+        "primary": 917.9512616763369,
+        "statistical_band_95_low": 353.30339240389975,
+        "statistical_band_95_high": 1482.5991309487742,
+        "attribution_band_upper": 1458.9639081633666
+      },
+      "value_per_brand_index_point_usd_m": 207.7928426414915
+    }
+  },
+  "sensitivity_range_usd_m": {
+    "brand_contribution_factor": [
+      5795.907829447218,
+      9720.255070427058
+    ],
+    "factor_bootstrap_p05": [
+      -4045.9658210408024,
+      -2412.4927597003843
+    ],
+    "factor_bootstrap_p95": [
+      16725.105990983735,
+      28049.49648893827
+    ],
+    "grid_0.1": [
+      2439.6124569452586,
+      4091.4479754176564
+    ],
+    "grid_0.15": [
+      3659.418685417888,
+      6137.171963126484
+    ],
+    "grid_0.2": [
+      4879.224913890517,
+      8182.895950835313
+    ],
+    "grid_0.25": [
+      6099.0311423631465,
+      10228.61993854414
+    ],
+    "grid_0.3": [
+      7318.837370835776,
+      12274.343926252968
+    ],
+    "grid_0.35": [
+      8538.643599308405,
+      14320.067913961795
+    ]
+  },
+  "cross_check": {
+    "market_cap_route_usd_m": 5038.974935183301,
+    "brand_finance_2025_usd_m": 5663.0,
+    "interbrand_2015_usd_m": 4100.0,
+    "role_of_brand_implied": {
+      "market_cap_route_usd_m": 0.16301455220081168,
+      "brand_finance_2025_usd_m": 0.18320222287027815,
+      "interbrand_2015_usd_m": 0.132638021149239
+    },
+    "sources": {
+      "brand_finance": "https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf",
+      "interbrand": "https://news.lenovo.com/?p=2553"
+    }
+  },
+  "disclosures": [
+    "Role of brand is the brand contribution factor (ADR-0044): the brand's share of the Lenovo-specific share-price drivers stands in for ISO 10668's behavioural analysis of the brand's contribution to demand. The market data alone do not identify it (placebo, brand_value_dominance_v1).",
+    "Economic profit uses FY25/26 reported operating margin and effective tax rate, constant capital turnover and a linear growth fade.",
+    "FIFA-added value assumes brand value proportional to brand share of attention (elasticity 1) and the FIFA-specific uplift (ADR-0043)."
+  ],
+  "inputs": {
+    "annual_financials": {
+      "path": "data/reference/lenovo_annual_financials.csv",
+      "sha256": "f8f58adc1d053fded7398b23d1041c6ffb52cb9b2bac06bdd6829a6d21f69bee"
+    },
+    "quarterly_financials": {
+      "path": "data/reference/lenovo_quarterly_financials.csv",
+      "sha256": "e418999c1ccf5806c79b09a2b7819069636b3a83e2949a259c84a66b52e4b1ab"
+    },
+    "market_prices": {
+      "path": "data/staged/market/market_prices_daily.parquet",
+      "sha256": "ef3564d75cbc2bdfccac96ca8a150dee3a15da80ee218841f6c4fc2cf99e47c1"
+    },
+    "market_valuation_reference": {
+      "path": "data/reference/lenovo_market_valuation_reference.csv",
+      "sha256": "c117f44cb4bf68fadfe1809a7d86fb14e96d012d4f7828bdaf6ee1e8b088a6f5"
+    },
+    "dominance_manifest": {
+      "path": "data/curated/experimental/brand_value_dominance_v1/brand_value_dominance_manifest.json",
+      "sha256": "32be5708e7704bc97bae24d7999877c1a4117894a59578ec08561543af01051c"
+    }
+  }
+}

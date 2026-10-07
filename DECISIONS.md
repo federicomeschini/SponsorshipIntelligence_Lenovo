@@ -434,3 +434,31 @@ Append-only ADR log for choices not fixed by `ARCHITECTURE.md`.
 - **Consequences:**
   - **Reporting.** Stakeholders see one brand value (about US$5B) and one FIFA-added value (about US$218M), each with its range. The statement that the market data alone cannot pin the brand's share must travel with them.
   - **Stability of the figure.** The brand value is now sensitive to which Lenovo-specific drivers are measured. Adding or removing control groups changes it, so the control set is fixed in config.
+
+## ADR-0045 - Brand value by income split (ISO 10668), with the brand contribution factor as role of brand
+
+- **Context:** ADR-0044 made the brand's share of the Lenovo-specific share-price movement (23.8%) the brand measure, applied to market capitalisation (US$5.04B). The owner preferred an income split, since the analysis provides a brand contribution factor. This is the ISO 10668 income approach: the brand's share of economic profit, discounted. ADR-0040 had retired the earlier economic-profit DCF (ADR-0033); it is reinstated here as `brand_value_dcf_v2`, with the role of brand set to the brand contribution factor.
+- **Decision:**
+  - **Primary brand value.** `brand_value_dcf_v2` provides the primary brand value and the primary FIFA-added brand value.
+  - **Base year and forecast.**
+    - *Base year FY25/26:* revenue, operating margin, effective tax rate, and invested capital = equity + debt − cash − short-term investments. Sources: Lenovo results release; balance sheet via stockanalysis.com.
+    - *Forecast:* five years, with revenue growth fading linearly from the trailing three-fiscal-year CAGR to 3%, constant margin and capital turnover.
+    - *Economic profit:* NOPAT − WACC × opening invested capital.
+  - **Discount rate:** CAPM WACC with the latest US 10-year yield, a Blume-adjusted beta against ACWI (104 weeks), a 5% equity risk premium (assumed), a 1.5-point debt spread (assumed), and market-value weights.
+  - **Brand value:** branded earnings = factor × economic profit, discounted with a Gordon terminal value.
+  - **FIFA-added value:** FIFA-specific uplift (ADR-0043) × brand value (elasticity 1), also shown as a yearly flow (the uplift's share of each year's branded earnings).
+  - **What happens to the market-cap route:** `brand_value_dominance_v1` keeps providing the factor, its bootstrap and its placebo test. Its share × market-cap value, Brand Finance, Interbrand and the comparison routes become review-only cross-checks in notebook 40.
+  - **Dashboard rule:** the dashboard shows no money figure that does not come from the income split (FE-011, test-enforced).
+  - **Documentation:** notebook 40 documents the balance-sheet and P&L data, each derivation and each assumption.
+- **Result** (FY25/26 base; market data 5 Oct 2026):
+  - **Base year.** Revenue US$83.1B, operating margin 3.93%, tax rate 19.1%, invested capital US$8.66B (after-tax ROIC 30.5%).
+  - **Growth.** 10.3% fading to 3%.
+  - **Cost of capital.** WACC 10.06%: risk-free 5.30%, beta 1.03, cost of equity 10.47%, debt weight 8.3%.
+  - **Economic profit.** US$2.04B in year 1; discounted US$30.9B.
+  - **Brand value: US$7.34B.** WACC ±1pp and growth ±0.5pp give US$5.8B–9.7B. 72% of the value is terminal. The factor's bootstrap range gives −US$3.1B to US$21.2B.
+  - **FIFA-added brand value: US$318M.** 95% band US$122M–514M; ceiling US$506M. As a flow, about US$21–25M of branded earnings a year.
+  - **Cross-checks.** Factor × market cap US$5.04B; Brand Finance US$5.66B; Interbrand 2015 about US$4.1B. These imply a brand share of discounted economic profit of 13–18%, against the factor's 23.8%.
+- **Consequences:**
+  - **Reporting.** Stakeholders see one brand value (US$7.3B) and one FIFA-added value (US$318M), each with its range.
+  - **What it depends on.** The value now depends on the FY25/26 accounts and market rates. It must be refreshed when new annual results are filed.
+  - **The weakest input** remains the brand contribution factor, which the market data alone do not identify. A behavioural role-of-brand estimate from a survey would replace it.

@@ -391,7 +391,8 @@
   let scenarioKey = "base";
   let programmeCost = null;
   const LAB = { conservative: "Conservative", base: "Base", ambitious: "Ambitious" };
-  const B = V.brand;
+  const D = V.dcf, FAC = V.factor;               // ADR-0045: every money figure comes from the income split
+  const B = { brandValue: D.brandValue, valuePerPoint: D.valuePerPoint };
   const S = () => M.scenarios[scenarioKey];
 
   /* ============================================================ VIEW 1 === */
@@ -584,53 +585,114 @@
   /* ============================================================ VIEW 2 === */
   function viewEvaluation(root) {
     const dom = Object.fromEntries(V.dominance.map((g) => [g.group, g]));
-    const h0 = V.stockResponse[0], P = V.placebo;
+    const h0 = V.stockResponse[0], P = V.placebo, W = D.wacc;
 
     head(root, {
       kicker: "Step 02 · Evaluation",
       title: "What is the Lenovo brand worth?",
-      lead: "Lenovo is listed, so the market prices it every day. The share price is first stripped of what the Hong Kong market and the global technology cycle explain: those moves reflect interest rates and risk appetite, not Lenovo's earning power. Of the movement driven by Lenovo's own factors, the analysis measures how much comes from the brand, against PC category demand and Lenovo's own news, and reads that share as the brand's share of the company's value.",
+      lead: `The brand is valued with the income approach of ISO 10668. Lenovo's economic profit, what its operations earn above the cost of the capital they use, is forecast from the ${D.baseYear} accounts and discounted. The brand's share of it, the brand contribution factor, is read from the share price: of the movement driven by Lenovo's own factors, how much comes from the brand.`,
     });
 
     flow(root, [
-      { k: "Input", v: "Weekly Brand Index moves", d: "Unexpected changes, predicted from prior weeks only" },
-      { k: "Brand share of Lenovo-specific drivers", v: F.pct(B.share, 1), d: "Dominance analysis of weekly abnormal returns, market factors set aside", cls: "flow-cell--mid" },
-      { k: "Output → Monetization", v: F.usd(B.brandValue) + " brand value", d: `${F.usd(B.valuePerPoint)} per Brand Index point`, cls: "flow-cell--out" },
+      { k: "Brand contribution factor", v: F.pct(FAC.share, 1), d: "Brand share of the Lenovo-specific share-price drivers" },
+      { k: "Economic profit, discounted", v: F.usd(D.epPv), d: `${D.baseYear} base, WACC ${F.pct(W.wacc, 1)}, growth fading to ${F.pct(D.growthTerminal, 0)}`, cls: "flow-cell--mid" },
+      { k: "Output → Monetization", v: F.usd(D.brandValue) + " brand value", d: `Factor × discounted economic profit · ${F.usd(D.valuePerPoint)} per Brand Index point`, cls: "flow-cell--out" },
     ]);
 
     kpiRow(root, [
-      { v: V.ticker, k: "Listed brand under study", n: "The market price is the measuring instrument; only listed brands can be valued this way." },
-      { v: F.pct(B.share, 1), k: "Brand share of Lenovo-specific drivers", n: "The brand against PC category demand and Lenovo events, in what moves the share price." },
-      { v: F.usd(B.brandValue), k: "Lenovo brand value", n: "Brand share × market capitalisation." },
-      { v: F.usd(V.marketCap), k: "Market capitalisation", n: "Mean over the weeks since the announcement (rule-based valuation base)." },
+      { v: F.pct(FAC.share, 1), k: "Brand contribution factor", n: "The brand against PC category demand and Lenovo events, in what moves the share price." },
+      { v: F.usd(D.forecast[0].ep), k: "Economic profit, year 1", n: `NOPAT ${F.usd(D.forecast[0].nopat)} less a ${F.usd(D.forecast[0].charge)} charge for the capital employed.` },
+      { v: F.pct(W.wacc, 1), k: "Cost of capital (WACC)", n: `Cost of equity ${F.pct(W.costOfEquity, 1)}, after-tax cost of debt ${F.pct(W.costOfDebt, 1)}, debt weight ${F.pct(W.weightDebt, 0)}.` },
+      { v: F.usd(D.brandValue), k: "Lenovo brand value", n: `Present value of branded earnings; ${F.pct(D.terminalShare, 0)} of it from beyond year 5.` },
     ]);
 
     const g0 = grid(root);
-    const pW = panel(col(g0, 12), { cls: "panel--tint", label: "The instrument", title: "Why the share price, and what it can and cannot say", sub: "The valuation rests on one reading of market data. It is stated in full, with the points at which it strains." });
+    const pW = panel(col(g0, 12), { cls: "panel--tint", label: "The method", title: "Income split: the brand's share of what Lenovo earns above its cost of capital", sub: "ISO 10668 income approach, earnings split. The assumptions are stated in full, with the points at which they strain." });
     const cols = el("div", "cols2");
     const left = el("div", "assump");
     left.append(el("div", "assump-h", "The reasoning"));
-    left.append(el("p", null, "A share price aggregates investors' expectations of future profit. Weekly abnormal returns are decomposed with a general-dominance analysis: each group of Lenovo-specific drivers (PC category demand, Lenovo events, the brand) receives its average contribution to the explained movement over every order in which the groups can be added. Market-wide moves are set aside, because brand value is a slice of what Lenovo's own business is worth."));
-    left.append(el("p", null, `The direct route was tried first and is shown below: regressing abnormal returns on unexpected Brand Index moves gives <b>${F.pp(h0.est)}</b> per point with p = ${h0.p.toFixed(2)}; no horizon survives the multiple-testing correction. The market does not reveal a clean per-point price, so the brand's role in price formation is used instead.`));
+    left.append(el("p", null, `Economic profit is NOPAT less a charge for the capital employed: ${D.baseYear} revenue of ${F.usd(D.revenue)} at a ${F.pct(D.operatingMargin, 1)} operating margin and ${F.pct(D.taxRate, 0)} tax, on ${F.usd(D.investedCapital)} of invested capital (a ${F.pct(D.roic, 0)} after-tax return). Revenue grows ${F.pct(D.growthStart, 1)} (the three-year trend) fading to ${F.pct(D.growthTerminal, 0)}, with margin and capital turnover held.`));
+    left.append(el("p", null, `The brand's share of economic profit is the brand contribution factor, read from the share price with a dominance analysis of weekly abnormal returns: market-wide moves are set aside, and the brand takes <b>${F.pct(FAC.share, 1)}</b> of what Lenovo's own drivers explain. Branded earnings are discounted at ${F.pct(W.wacc, 1)} with a terminal value growing at ${F.pct(D.growthTerminal, 0)}.`));
     cols.append(left);
     const right = el("div", "assump");
     right.append(el("div", "assump-h", "What has to be true — and where it strains"));
     const ul = el("ul");
     [
-      ["Variance share is read as value share.", "A brand's share of what moves the price is taken as its share of what the company is worth. That is a judgement, not a measurement."],
-      ["The base is thin.", `Lenovo-specific drivers explain a small part of weekly returns, so the brand's share of them is imprecise: 90% bootstrap range ${F.pct(B.share90[0], 0)} to ${F.pct(B.share90[1], 0)}.`],
-      ["An unrelated series gets a similar share.", `Put a random series in the brand's place and it takes a median ${F.pct(P.noiseMedian, 0)}; the brand's ${F.pct(P.actual, 1)} is not distinguishable from that (p = ${P.noiseP.toFixed(2)}). The market data alone cannot pin the brand's share down.`],
-      ["Unexplained Lenovo news is left out.", `The share is of the measured drivers only; across samples and control sets it ranges from ${F.pct(V.stabilityShareRange[0], 0)} to ${F.pct(V.stabilityShareRange[1], 0)}.`],
+      ["The share-price factor stands for the brand's role in profit.", "ISO 10668 expects behavioural evidence on demand; here the brand's role in price formation stands in for it."],
+      ["The factor is not pinned down by the data.", `A random series in the brand's place takes a median ${F.pct(P.noiseMedian, 0)} (p = ${P.noiseP.toFixed(2)}); the factor's 90% bootstrap range is ${F.pct(FAC.share90[0], 0)} to ${F.pct(FAC.share90[1], 0)}.`],
+      ["Most of the value is long-run.", `${F.pct(D.terminalShare, 0)} of brand value comes after year 5; WACC ±1 point moves it between ${F.usd(D.waccRange[0])} and ${F.usd(D.waccRange[1])}.`],
+      ["Margins and capital intensity hold.", `The ${D.baseYear} operating margin and tax rate, and constant capital turnover, are assumed for the whole forecast.`],
     ].forEach(([h, tx]) => ul.append(el("li", null, "<b>" + h + "</b> " + tx)));
     right.append(ul);
     cols.append(right);
     pW.append(cols);
-    pW.append(el("div", "verdict-line", `The honest summary: the share-price evidence gives a brand worth <b>${F.usd(B.brandValue)}</b> but cannot by itself pin the brand's share down. The level is credible because independent valuations with different methods land close to it: <b>${F.usd(V.brandFinance)}</b> (Brand Finance 2025, royalty relief) and about <b>${F.usd(V.interbrand2015)}</b> (Interbrand 2015).`));
+    pW.append(el("div", "verdict-line", `The honest summary: Lenovo earns about <b>${F.usd(D.forecast[0].ep)}</b> a year above its cost of capital; if the brand accounts for ${F.pct(FAC.share, 1)} of that, it is worth <b>${F.usd(D.brandValue)}</b>. The forecast is mechanical and transparent; the weakest link is the factor, which the share-price data support but cannot prove.`));
 
     const g1 = grid(root);
-    const pA = panel(col(g1, 7), { label: "Isolating what the market cannot explain", title: "Observed share price vs the path explained by market factors", sub: "A rolling market model, re-estimated each day on the prior 120 trading days only, prices 0992.HK against the Hang Seng and the previous Nasdaq-100 session in HKD." });
-    const cvA = chartIn(pA, 320);
-    lineChart(cvA, {
+    const pA = panel(col(g1, 7), { label: "Economic profit", title: "What Lenovo earns above its cost of capital, and the brand's share", sub: `Forecast from the ${D.baseYear} accounts, US$ per year. Branded earnings = brand contribution factor × economic profit.` });
+    const cvA = chartIn(pA, 300);
+    make(cvA, {
+      type: "bar",
+      data: {
+        labels: D.forecast.map((f) => "Year " + f.year),
+        datasets: [
+          { label: "Economic profit", data: D.forecast.map((f) => f.ep), backgroundColor: T.peer, borderWidth: 0, barPercentage: 0.7 },
+          { label: "Branded earnings", data: D.forecast.map((f) => f.branded), backgroundColor: T.brand, borderWidth: 0, barPercentage: 0.7 },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: { x: { grid: { display: false }, border: { display: false } },
+                  y: { grid: { color: T.grid }, border: { display: false }, beginAtZero: true, ticks: { callback: (v) => F.usd(v) } } },
+        plugins: { tooltip: { callbacks: { label: (c) => c.dataset.label + "  " + F.usd(c.parsed.y) } } },
+      },
+    });
+    legend(pA, [{ color: T.peer, label: "Economic profit", square: true }, { color: T.brand, label: "Branded earnings (brand's share)", square: true }]);
+    table(pA, [{ t: "Year" }, { t: "Revenue", num: true }, { t: "NOPAT", num: true }, { t: "Capital charge", num: true }, { t: "Economic profit", num: true }, { t: "Branded earnings", num: true }],
+      D.forecast.map((f) => [f.year, F.usd(f.revenue), F.usd(f.nopat), "−" + F.usd(f.charge), F.usd(f.ep), F.usd(f.branded)]));
+    note(pA, `Discounted, five years of branded earnings are worth ${F.usd(D.explicitPv)} and the years after ${F.usd(D.terminalPv)}: brand value ${F.usd(D.brandValue)}.`);
+    src(pA, `Source: Lenovo ${D.baseYear} results and balance sheet · Valuation: OpenEconomics (brand_value_dcf_v2, ADR-0045)`);
+
+    const pB = panel(col(g1, 5), { label: "Discount rate", title: "Cost of capital", sub: "CAPM cost of equity, after-tax cost of debt, market-value weights." });
+    readout(pB, [
+      ["Risk-free rate (US 10-year)", F.pct(W.riskFree, 2)],
+      ["Equity beta (adjusted)", W.beta.toFixed(2)],
+      ["Equity risk premium", F.pct(W.erp, 1)],
+      ["Cost of equity", F.pct(W.costOfEquity, 2)],
+      ["After-tax cost of debt", F.pct(W.costOfDebt, 2)],
+      ["Debt weight", F.pct(W.weightDebt, 1)],
+      ["WACC", F.pct(W.wacc, 2)],
+    ]);
+    pB.append(el("div", "panel-label spaced", "Brand value by contribution factor and WACC"));
+    const H = D.heat;
+    table(pB, [{ t: "Factor" }, ...H.waccs.map((w) => ({ t: "WACC " + F.pct(w, 1), num: true }))],
+      H.roles.map((role) => [F.pct(role, 0), ...H.waccs.map((w) => F.usd(H.values.find((v) => v.role === role && v.wacc === w).value))]));
+    note(pB, "Brand value scales one-for-one with the contribution factor; the cost of capital matters far less.");
+
+    const g2 = grid(root);
+    const pC = panel(col(g2, 7), { label: "Where the factor comes from", title: "What drives Lenovo's own share-price movement", sub: `Share of the movement explained by Lenovo-specific drivers (general dominance of weekly abnormal returns, ${V.weeksN} weeks), market factors set aside.` });
+    const cvC = chartIn(pC, 200);
+    const NAMES = { category_demand: "PC category demand", lenovo_events: "Lenovo events", brand: "Brand (Brand Index)" };
+    const own = V.dominance.filter((g) => g.group !== "market");
+    barsH(cvC, {
+      labels: own.map((g) => NAMES[g.group] || g.group), values: own.map((g) => g.shareOfLenovoSpecific * 100),
+      colors: own.map((g) => (g.group === "brand" ? T.brand : T.peer)), xFmt: (v) => v.toFixed(0) + "%",
+    });
+    note(pC, `The brand accounts for <b>${F.pct(FAC.share, 1)}</b> of the movement Lenovo's own drivers explain; its coefficient is positive (t = ${(V.brandCoef.coefficient / V.brandCoef.robust_se).toFixed(2)}). Market factors, set aside, explain ${F.pct(dom.market.share, 0)} of all explained weekly movement.`);
+    src(pC, "Source: market data (0992.HK, Hang Seng, Nasdaq-100 in HKD) · Elaboration: OpenEconomics (stock_brand_response_v2, brand_value_dominance_v1)");
+
+    const pD = panel(col(g2, 5), { label: "How firm is the factor?", title: "The brand against a meaningless stand-in", sub: "The same analysis with a random series, and with the real Brand Index series shifted out of step with the share price, in the brand's place." });
+    const cvD = chartIn(pD, 200);
+    barsH(cvD, {
+      labels: ["Brand (actual)", "Random series (median)", "Time-shifted brand (median)"],
+      values: [P.actual * 100, P.noiseMedian * 100, P.shiftMedian * 100], colors: [T.brand, T.peer, T.peer], xFmt: (v) => v.toFixed(0) + "%",
+    });
+    note(pD, `A stand-in with no connection to Lenovo takes a similar share (p = ${P.noiseP.toFixed(2)} and ${P.shiftP.toFixed(2)}). The direct test of abnormal returns on unexpected Brand Index moves gives ${F.pp(h0.est)} per point (p = ${h0.p.toFixed(2)}). The factor is a reading of the market data, not a proof.`);
+
+    const g3 = grid(root);
+    const pE = panel(col(g3, 7), { label: "The factor's source data", title: "Observed share price vs the path explained by market factors", sub: "A rolling market model, re-estimated each day on the prior 120 trading days only. The residual is what Lenovo's own drivers, the brand among them, have to explain." });
+    const cvE = chartIn(pE, 280);
+    lineChart(cvE, {
       weeks: V.weeks,
       series: [
         { label: "Explained by market factors", data: V.expectedPath, color: T.counterfactual, width: 2, dash: [6, 4], order: 2 },
@@ -640,61 +702,17 @@
       yTitle: "Price index · 100 = start of sample",
       tip: (v) => (v == null ? "—" : v.toFixed(1)),
     });
-    legend(pA, [{ color: T.brand, label: "Observed share price" }, { color: T.counterfactual, label: "Path explained by market factors", dash: true }]);
-    pA.append(el("div", "panel-label spaced", "Residual · cumulative abnormal return"));
-    const cvA2 = chartIn(pA, 130);
-    lineChart(cvA2, {
-      weeks: V.weeks,
-      series: [{ label: "Cumulative abnormal return", data: V.carPath, color: T.brandDeep, width: 2, fill: "origin", fillColor: "rgba(68,0,179,.13)" }],
-      milestones: marksFor(V.weeks, ["fifa_partner_announcement_2024", "wc_opening_2026"]),
-      yFmt: (v) => v.toFixed(0) + "%", tip: (v) => (v == null ? "—" : F.pctv(v)),
-    });
-    const carAt = V.carPath[V.annIdx], carNow = V.carPath[V.carPath.length - 1];
-    note(pA, `At the announcement the share stood ${F.pctv(carAt)} against what market factors implied; it now stands <b>${F.pctv(carNow)}</b>. That residual is what Lenovo's own drivers, the brand among them, have to explain.`);
-    src(pA, `Source: market data (0992.HK, Hang Seng, Nasdaq-100 in HKD) · average loadings: Hang Seng ${V.betas.hsi}, Nasdaq-100 ${V.betas.ndx}`);
-
-    const pB = panel(col(g1, 5), { label: "Relative importance", title: "What drives Lenovo's own share-price movement", sub: `Share of the movement explained by Lenovo-specific drivers (general dominance, ${V.weeksN} weeks), market factors set aside.` });
-    const cvB = chartIn(pB, 210);
-    const NAMES = { category_demand: "PC category demand", lenovo_events: "Lenovo events", brand: "Brand (Brand Index)" };
-    const own = V.dominance.filter((g) => g.group !== "market");
-    barsH(cvB, {
-      labels: own.map((g) => NAMES[g.group] || g.group), values: own.map((g) => g.shareOfLenovoSpecific * 100),
-      colors: own.map((g) => (g.group === "brand" ? T.brand : T.peer)), xFmt: (v) => v.toFixed(0) + "%",
-    });
-    note(pB, `The brand accounts for <b>${F.pct(B.share, 1)}</b> of the movement Lenovo's own drivers explain; its coefficient is positive (t = ${(V.brandCoef.coefficient / V.brandCoef.robust_se).toFixed(2)}), so the share counts as value. Market factors, set aside here, explain ${F.pct(dom.market.share, 0)} of all explained weekly movement.`);
-    src(pB, "Elaboration: OpenEconomics · stock_brand_response_v2, brand_value_dominance_v1 (ADR-0044)");
-
-    const g2 = grid(root);
-    const pC = panel(col(g2, 7), { label: "How firm is the share?", title: "The brand against a meaningless stand-in", sub: "The same analysis with a random series, and with the real Brand Index series shifted out of step with the share price, in the brand's place." });
-    const cvC = chartIn(pC, 230);
-    barsH(cvC, {
-      labels: ["Brand (actual)", "Random series (median of 500)", "Brand series shifted in time (median)"],
-      values: [P.actual * 100, P.noiseMedian * 100, P.shiftMedian * 100],
-      colors: [T.brand, T.peer, T.peer], xFmt: (v) => v.toFixed(0) + "%",
-    });
-    note(pC, `A stand-in with no connection to Lenovo takes a similar share (random series: p = ${P.noiseP.toFixed(2)}; time-shifted: p = ${P.shiftP.toFixed(2)}). Lenovo's own drivers explain so little of weekly returns that the split among them is not identified by the data. The brand value therefore rests on the reading, corroborated by independent valuations, not on statistical proof.`);
-    const pD = panel(col(g2, 5), { label: "The direct test", title: "Cumulative abnormal return per unexpected point", sub: "Four horizons frozen in advance and tested as one family (Holm correction)." });
-    table(pD, [{ t: "Horizon" }, { t: "Estimate", num: true }, { t: "95% interval", num: true }, { t: "Holm p", num: true }],
-      V.stockResponse.map((h) => [h.h + (h.h === 1 ? " week" : " weeks"), F.pp(h.est), `${F.pp(h.lo)} to ${F.pp(h.hi)}`, `<span class="nsig">${h.pHolm.toFixed(2)}</span>`]));
-    note(pD, "No horizon is distinguishable from zero, which is why the valuation uses relative importance rather than a per-point coefficient.");
-
-    const g3 = grid(root);
-    const pE = panel(col(g3, 7), { label: "Corroboration", title: "Independent valuations of the Lenovo brand", sub: "This study's value next to published brand valuations that use different methods and data." });
-    const cvE = chartIn(pE, 220);
-    barsH(cvE, {
-      labels: ["This study (2026, share-price evidence)", "Brand Finance 2025 (royalty relief)", "Interbrand 2015 (Best Global Brands)"],
-      values: [B.brandValue, V.brandFinance, V.interbrand2015], colors: [T.brand, T.peer, T.peer], xFmt: (v) => F.usd(v),
-    });
-    note(pE, `Three methods, about a decade apart, land between ${F.usd(Math.min(B.brandValue, V.brandFinance, V.interbrand2015))} and ${F.usd(Math.max(B.brandValue, V.brandFinance, V.interbrand2015))}. The study's 90% bootstrap range (${F.usd(B.band90[0])} to ${F.usd(B.band90[1])}) is wide; the convergence is what makes the level credible.`);
-    src(pE, "Elaboration: OpenEconomics · Brand Finance China 500 2025 · Interbrand Best Global Brands 2015 (as reported by Lenovo)");
+    legend(pE, [{ color: T.brand, label: "Observed share price" }, { color: T.counterfactual, label: "Path explained by market factors", dash: true }]);
+    src(pE, `Source: market data · average loadings: Hang Seng ${V.betas.hsi}, Nasdaq-100 ${V.betas.ndx}`);
     const pF = panel(col(g3, 5), { cls: "panel--dark", label: "Output of step 02" });
-    pF.append(el("div", "figure-v lime", F.usd(B.brandValue)));
-    pF.append(el("div", "figure-k", "Lenovo brand value"));
+    pF.append(el("div", "figure-v lime", F.usd(D.brandValue)));
+    pF.append(el("div", "figure-k", "Lenovo brand value · income split"));
     readout(pF, [
-      ["Brand share of Lenovo-specific drivers", F.pct(B.share, 1)],
-      ["Market capitalisation", F.usd(V.marketCap)],
-      ["Value per Brand Index point", F.usd(B.valuePerPoint)],
-      ["Brand Finance 2025, for reference", F.usd(V.brandFinance)],
+      ["Brand contribution factor", F.pct(FAC.share, 1)],
+      ["Discounted economic profit", F.usd(D.epPv)],
+      ["Value from beyond year 5", F.pct(D.terminalShare, 0)],
+      ["WACC ±1 point", `${F.usd(D.waccRange[0])} – ${F.usd(D.waccRange[1])}`],
+      ["Value per Brand Index point", F.usd(D.valuePerPoint)],
     ]);
     note(pF, "Because the Brand Index is proportional to brand share, a lift of x% is worth x% of this brand value. Step 03 applies the FIFA-specific uplift.");
 
@@ -747,7 +765,7 @@
       fmt: (v) => F.usd(v),
     });
     note(pA, `<b>How to read it.</b> Credited in full, Lenovo's whole gap to its rivals would be worth ${F.usd(br[0].value)}. ${F.usd(-br[1].value)} of it is not explained by any measured exposure and is not credited to FIFA; other sponsorships and events net to ${F.usd(br[2].value)}. What FIFA exposure explains is <b>${F.usd(br[3].value)}</b>.`);
-    src(pA, "Elaboration: OpenEconomics · brand_value_dominance_v1, sponsorship_exposure_timing_v1 (ADR-0043)");
+    src(pA, "Elaboration: OpenEconomics · brand_value_dcf_v2, sponsorship_exposure_timing_v1 (ADR-0043, ADR-0045)");
 
     const pB = panel(col(g1, 4), { cls: "panel--dark", label: "Decision signal" });
     pB.append(el("div", "figure-v lime", F.usd(value)));
@@ -779,7 +797,7 @@
     kpiRow(root, [
       { v: F.usd(value), k: "FIFA-added brand value", n: `${LAB[scenarioKey]} case.` },
       { v: F.pctv(s.upliftPct, 2), k: "Uplift in brand share", n: `${s.indexPoints.toFixed(2)} Brand Index points over a no-sponsorship level of ${FS.counterfactual_index_level.toFixed(1)}.` },
-      { v: F.usd(B.brandValue), k: "Lenovo brand value", n: "From the share-price evidence (step 02)." },
+      { v: F.usd(B.brandValue), k: "Lenovo brand value", n: "Income split of economic profit (step 02)." },
       { v: F.usd(M.scenarios.ambitious.value), k: "Ceiling: whole gap credited to FIFA", n: `${F.pctv(M.scenarios.ambitious.upliftPct, 2)} brand share, residual included.` },
     ]);
 
@@ -819,19 +837,14 @@
         plugins: { tooltip: { callbacks: { label: (c) => F.usd(c.raw[0]) + " to " + F.usd(c.raw[1]) } } },
       },
     });
-    note(pC, "The brand's measured share of Lenovo's own price drivers dominates: what the brand is worth is far less certain than how much FIFA lifted it.");
+    note(pC, "The brand contribution factor dominates: how much of Lenovo's profit the brand accounts for is far less certain than how much FIFA lifted the brand.");
 
-    const pD = panel(col(g3, 6), { label: "Cross-checks", title: "Other routes to a money figure", sub: "Independent valuation routes, each with its own link from brand to money. None is statistically identified; they bracket the answer, they do not confirm it." });
-    const ROUTE = {
-      market_implied_equity_v3: "Market-implied equity value (total effect)",
-      market_implied_annual_earnings: "Market-implied annual earnings (total effect)",
-      direct_profit_margin: "Direct profit-margin link (total effect)",
-      announcement_event_study: "Announcement event study",
-    };
-    table(pD, [{ t: "Route" }, { t: "Value", num: true }, { t: "Link identified" }],
-      M.routes.filter((x) => ROUTE[x.route]).map((x) => [ROUTE[x.route], x.value == null ? "—" : F.usd(x.value * 1e6), `<span class="tag tag--no">${x.identified ? "yes" : "no"}</span>`]));
-    note(pD, `Royalty relief: covering a US$100M programme would need the brand's royalty rate to rise by about ${M.royaltyBreakeven.find((b) => b.costUsdM === 100).bp} basis points. Market-implied earnings: ${F.usd(M.earningsPerPoint.central)} a year per Brand Index point (planning range ${F.usd(M.earningsPerPoint.planning[0])}–${F.usd(M.earningsPerPoint.planning[1])}). Media value is never used as money.`);
-    src(pD, "Elaboration: OpenEconomics · valuation_routes_v1, market_implied_earnings_bridge_v1");
+    const pD = panel(col(g3, 6), { label: "The same value as a flow", title: "FIFA's share of branded earnings, year by year", sub: "Base case: the FIFA-specific uplift applied to each forecast year's branded earnings. Discounted and continued beyond year 5, these flows make up the FIFA-added brand value." });
+    const fl = M.fifaBrandedEarnings;
+    const cvD = chartIn(pD, 230);
+    barsV(cvD, { labels: fl.map((f) => "Year " + f.year), values: fl.map((f) => f.value), colors: T.limeInk, yFmt: (v) => F.usd(v) });
+    note(pD, `FIFA's contribution is worth about <b>${F.usd(fl[0].value)}</b> of branded earnings in year 1, rising to ${F.usd(fl[fl.length - 1].value)} in year 5. The five forecast years account for ${F.pct(M.fifaExplicitShare, 0)} of the ${F.usd(M.scenarios.base.value)}; the rest assumes the uplift and Lenovo's economic profit continue beyond them.`);
+    src(pD, "Elaboration: OpenEconomics · brand_value_dcf_v2 (ADR-0045)");
 
     pager(root, "evaluation", "method");
   }
@@ -845,7 +858,7 @@
     });
     flow(root, [
       { k: "Step 01 · Exposure", v: F.pts(FS.primary_index_points) + " FIFA-specific", d: `Brand Index (share of attention against rivals, with the GWI survey) against a synthetic no-sponsorship Lenovo from ${X.design.donors.length} rival brands; the gap split between FIFA exposure, other sponsorships, events and a residual.` },
-      { k: "Step 02 · Evaluation", v: F.usd(B.brandValue) + " brand value", cls: "flow-cell--mid", d: "The brand's share of what Lenovo's own drivers move in its share price (dominance analysis) × market capitalisation; corroborated by Brand Finance and Interbrand." },
+      { k: "Step 02 · Evaluation", v: F.usd(B.brandValue) + " brand value", cls: "flow-cell--mid", d: `ISO 10668 income split: the brand contribution factor (${F.pct(FAC.share, 1)}, from the share price) × Lenovo's discounted economic profit (${F.usd(D.epPv)}).` },
       { k: "Step 03 · Monetization", v: F.usd(M.scenarios.base.value) + " added by FIFA", cls: "flow-cell--out", d: "FIFA-specific uplift × brand value, with the 95% band and the whole-gap ceiling as scenarios." },
     ], { tall: true });
 
@@ -856,7 +869,8 @@
       ["<b>GWI Core</b>", "Quarterly engagement and consideration of Lenovo (2022–2026Q1) in the Brand Index"],
       ["<b>Blinkfire Analytics</b>", "Weekly digital and social impressions by sponsored property"],
       ["<b>Market data</b>", "0992.HK, Hang Seng, Nasdaq-100, USD/HKD daily closes"],
-      ["<b>Lenovo</b>", "Results, events, financials"],
+      ["<b>Lenovo annual results</b>", `${D.baseYear} revenue, operating profit, tax, equity, debt and cash (income split)`],
+      ["<b>Lenovo</b>", "Results and event calendar"],
       ["<b>FIFA</b>", "Official 2026 match calendar; partnership announcements"],
     ]);
     const p2 = panel(col(g, 6), { label: "Status of the figures", title: "Observed, constructed, estimated, assumed" });
@@ -864,7 +878,7 @@
       ["<b>Observed</b>", "Search volumes, survey waves, digital impressions, share prices"],
       ["<b>Constructed</b>", "Brand Index, rival share-of-search series, motorsport exposure before September 2024 (back-cast)"],
       ["<b>Estimated</b>", "Synthetic control, FIFA-specific decomposition, dominance shares, brand value"],
-      ["<b>Assumed</b>", "Brand value moves one-for-one with brand share; the uplift persists; exposure carries over at 80% a week"],
+      ["<b>Assumed</b>", "Equity risk premium, debt spread, growth fade and terminal growth; brand value moves one-for-one with brand share; the uplift persists; exposure carries over at 80% a week"],
     ]);
 
     const g2 = grid(root);
@@ -875,7 +889,8 @@
       "The FIFA-specific split is a regression decomposition, not an experiment; its specification was fixed after it was seen, so the alternatives are shown in step 01.",
       "Exposure is digital and social only; broadcast audiences are not measured.",
       "The Brand Index is redesigned brand share of attention (October 2026); earlier figures on the former search-salience scale are not comparable.",
-      "Brand value rests on share-price relative importance, a proxy for the behavioural evidence ISO 10668 expects. The market data alone cannot pin the brand's share (an unrelated series obtains a similar share); the level is corroborated by Brand Finance and Interbrand, not proven.",
+      "The brand contribution factor comes from share-price relative importance, a proxy for the behavioural evidence ISO 10668 expects; the market data alone cannot pin it down (an unrelated series obtains a similar share).",
+      `Brand value assumes Lenovo's ${D.baseYear} margin, tax rate and capital turnover hold, and ${F.pct(D.terminalShare, 0)} of it comes from beyond year 5.`,
       "The rights fee and activation spend are not in the data, so no return on investment is claimed.",
       "The World Cup evaluation window closes on 18 October 2026; tournament figures are interim.",
     ].forEach((t) => ul.append(el("li", null, t)));
@@ -1005,8 +1020,8 @@
     { id: "exposure", n: "01", name: "Exposure", q: "How much more did Lenovo stand out than rival brands the FIFA deal never touched, and how much of that is FIFA?",
       chev: `Against ${X.design.donors.length} rival brands`, metric: () => F.pts(FS.primary_index_points) + " FIFA-specific", out: () => F.pctv(FS.primary_uplift_pct),
       spark: () => ({ data: X.core.gap, color: T.brand, fill: "rgba(89,2,238,.12)" }) },
-    { id: "evaluation", n: "02", name: "Evaluation", q: "What is the Lenovo brand worth, read from what moves its share price?",
-      chev: "Brand share of Lenovo's own price drivers", metric: () => F.usd(B.brandValue) + " brand value", out: () => F.usd(B.brandValue),
+    { id: "evaluation", n: "02", name: "Evaluation", q: "What is the Lenovo brand worth: its share of what Lenovo earns above its cost of capital?",
+      chev: "Income split of economic profit", metric: () => F.usd(B.brandValue) + " brand value", out: () => F.usd(B.brandValue),
       spark: () => ({ data: V.actualPath, color: T.brandDeep, fill: "rgba(68,0,179,.12)" }) },
     { id: "monetization", n: "03", name: "Monetization", q: "What did FIFA add to that brand value, and what programme cost would it cover?",
       chev: "FIFA uplift × brand value", metric: () => F.usd(M.scenarios.base.value) + " added by FIFA", out: () => F.usd(M.scenarios.base.value),

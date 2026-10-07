@@ -118,3 +118,38 @@ def test_brand_share_placebo_is_reported_with_the_measure():
     assert np.isclose(placebo["actual_unsigned_share"], abs(manifest["values"]["brand_share"]))
     for key in ("random_series", "time_shifted_brand"):
         assert 0 <= placebo[key]["probability_at_or_above_actual"] <= 1 and placebo[key]["draws"] > 100
+
+
+DCF = ROOT / "data/curated/experimental/brand_value_dcf_v2"
+
+
+def test_income_split_discounts_the_factor_share_of_economic_profit():
+    manifest = _manifest(DCF / "brand_value_dcf_manifest.json")
+    forecast = pd.read_parquet(DCF / "economic_profit_forecast.parquet")
+    rate = manifest["discount_rate"]["wacc"]
+    role = manifest["primary_result"]["role_of_brand"]
+    dominance = _manifest(DOMINANCE / "brand_value_dominance_manifest.json")
+    # Role of brand is the brand contribution factor (ADR-0044/0045).
+    assert np.isclose(role, dominance["values"]["brand_share"])
+    # Economic profit = NOPAT - WACC x opening invested capital; branded earnings = role x EP.
+    assert np.allclose(forecast["economic_profit_usd_m"],
+                       forecast["nopat_usd_m"] - rate * forecast["opening_invested_capital_usd_m"])
+    assert np.allclose(forecast["branded_earnings_usd_m"], role * forecast["economic_profit_usd_m"])
+    explicit = float((forecast["branded_earnings_usd_m"] * (1 + rate) ** -forecast["year"]).sum())
+    primary = manifest["primary_result"]
+    assert np.isclose(primary["explicit_pv_usd_m"], explicit)
+    assert np.isclose(primary["brand_value_usd_m"], primary["explicit_pv_usd_m"] + primary["terminal_pv_usd_m"])
+    assert np.isclose(forecast["revenue_growth"].iloc[-1], manifest["revenue_growth"]["terminal"])
+    assert rate > manifest["revenue_growth"]["terminal"]
+
+
+def test_income_split_fifa_added_value_is_the_fifa_uplift_times_brand_value():
+    manifest = _manifest(DCF / "brand_value_dcf_manifest.json")
+    primary = manifest["primary_result"]
+    for name, pct in primary["fifa_specific_uplift_pct"].items():
+        assert np.isclose(primary["fifa_added_brand_value_usd_m"][name],
+                          primary["elasticity_to_brand_share"] * pct / 100 * primary["brand_value_usd_m"])
+    # Same economic-profit present value under every role of brand.
+    by_role = manifest["by_role_definition"]
+    pv = {k: v["brand_value_usd_m"] / v["role_of_brand"] for k, v in by_role.items()}
+    assert np.allclose(list(pv.values()), manifest["economic_profit_pv_usd_m"])
