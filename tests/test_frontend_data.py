@@ -64,3 +64,13 @@ def test_dashboard_uses_no_simulated_data_or_monetary_media_value():
         assert word not in js.lower() and word not in data.lower(), word
     d = _eroi()
     assert "dcf" in d["evaluation"] and "brand" not in d["evaluation"]
+
+
+def test_method_pages_show_the_current_brand_index_and_design_choice():
+    # FE-016: the in-depth Method pages read the Brand Index model and the twin's design selection.
+    m = _eroi()["method"]
+    bi = _manifest(ROOT / "data/curated/index/brand_index_manifest.json")
+    assert np.isclose(m["brandIndex"]["phi"], bi["phi"], atol=1e-3)
+    assert [s["admitted"] for s in m["brandIndex"]["screen"]].count(True) == len(bi["validity_screen"]["admitted"])
+    selected = [d for d in m["designs"] if d["selected"]]
+    assert len(selected) == 1 and selected[0]["oosRmspe"] == min(d["oosRmspe"] for d in m["designs"])

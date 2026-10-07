@@ -220,3 +220,24 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **Layout:** "FIFA's share of branded earnings, year by year" now spans the full row.
   - **Wording:** the Method step 01 card no longer itemises other sponsorships and events (FE-014).
 - **Consequences:** The input-by-input sensitivity of the brand value stays in notebook 40 (tornado and factor × WACC grid). On the dashboard, the Evaluation grid and the scenario ladder still show the main ranges.
+
+## FE-016 — Method & evidence as an index of in-depth topic pages
+
+- **Context:** The owner wanted the Method & evidence page to be more substantial, with clickable sections leading to in-depth parts.
+- **Decision:**
+  - **Index page:** Method & evidence becomes an index with one clickable card per topic, grouped by step:
+    - Step 01: FIFA exposure, Brand Index, no-sponsorship twin, FIFA-specific effect;
+    - Step 02: brand contribution factor, income split, cost of capital;
+    - Step 03: FIFA-added brand value;
+    - Foundations: data and traceability.
+  - **Topic pages:** each card opens a deep-linkable page (`#/method/<topic>`). Every page has:
+    - the question and key figures;
+    - the central formulas, each with a plain-language reading and its symbols defined;
+    - an inputs table tagged observed, constructed, estimated or assumed;
+    - one result chart or table;
+    - a link to the dashboard step it feeds;
+    - previous/next topic navigation.
+  - **Data and traceability page:** links the production modules and review notebooks on GitHub.
+  - **New data:** the builder adds a `method` block (Brand Index loadings, validity screen and variants; the twin's design competition; the specification range; the exposure carryover). A test checks it against the manifests.
+  - **Unchanged:** FE-011, FE-012 and FE-014 still apply. No money figure outside the income split; results and assumptions rather than weaknesses; other sponsorships not itemised.
+- **Consequences:** The dashboard carries the method in readable form; the full diagnostics stay in notebooks 05–40.
