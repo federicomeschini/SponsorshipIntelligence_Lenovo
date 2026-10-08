@@ -402,7 +402,7 @@ def main() -> None:
     monetization = build_monetization(exposure, evaluation)
     bi = j(ROOT / "data/curated/index/brand_index_manifest.json")
     data = {
-        "meta": {"product": "EROI · Event Return on Investment", "brand": "Lenovo", "event": "FIFA",
+        "meta": {"brand": "Lenovo", "event": "FIFA",
                  "caseLabel": "FIFA × Lenovo", "built": date.today().isoformat(), "dataThrough": bi["sample"][1],
                  "announce": ANNOUNCE_EVENT, "firstPostWeek": exposure["total"]["from"],
                  "decisions": "ADR-0038 to ADR-0045", "notebooks": "reports/methods_annex/10_total_sponsorship_effect.ipynb, 40_brand_value.ipynb"},

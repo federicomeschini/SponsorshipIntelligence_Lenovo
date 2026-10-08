@@ -1,5 +1,5 @@
 /* Landing page: platform title and the FIFA partner programmes (FE-009).
-   Only the Lenovo programme is live; it opens the EROI case dashboard
+   Only the Lenovo programme is live; it opens the case dashboard
    (lenovo.html). The others are shaded. Self-contained: no data files. */
 (function () {
   const el = (tag, cls, html) => {

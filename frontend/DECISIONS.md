@@ -292,3 +292,9 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 
   The lead, the callout and the test notes drop "no effect of its own" and "adds nothing".
 - **Consequences:** Wording only; the figures are unchanged.
+
+## FE-022 — "EROI · Event Return on Investment" name removed
+
+- **Context:** The product name came from the owner's design reference. It misdescribes the dashboard: the dashboard covers a multi-year partnership rather than one event, it computes ROI only from a user-entered cost, and "EROI" usually means energy return on investment. The owner asked to remove it for now.
+- **Decision:** The masthead shows the OpenEconomics logo and the case label ("FIFA × Lenovo") only. The page and tab titles drop "EROI", and the builder no longer writes `meta.product`. File names (`eroi.js`, `eroi.css`, `eroi-data.js`) are internal and unchanged.
+- **Consequences:** No product name is shown until one is chosen.

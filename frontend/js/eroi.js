@@ -1516,7 +1516,7 @@
     });
     document.getElementById("method-link").classList.toggle("is-active", view === "method");
     const topic = view === "method" && TOPICS.find((x) => x.id === sub);
-    document.title = (topic ? topic.name + " · " : "") + (VIEWS[view].n ? "Step " + VIEWS[view].n + " · " : "") + VIEWS[view].label + " — EROI · " + E.meta.caseLabel + " · OpenEconomics";
+    document.title = (topic ? topic.name + " · " : "") + (VIEWS[view].n ? "Step " + VIEWS[view].n + " · " : "") + VIEWS[view].label + " — " + E.meta.caseLabel + " · OpenEconomics";
     killAll();
     const root = document.getElementById("view");
     root.innerHTML = "";

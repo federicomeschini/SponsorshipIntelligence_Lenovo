@@ -61,7 +61,7 @@ a { color: var(--bl700); }
   text-transform: uppercase; color: var(--g600);
   padding-left: 14px; border-left: var(--line);
 }
-.brandbar-case { font-size: 19px; font-weight: 700; letter-spacing: -.015em; }
+.brandbar-case { font-size: 19px; font-weight: 700; letter-spacing: -.015em; padding-left: 14px; border-left: var(--line); }
 .brandbar-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
 /* --- the process arrow --------------------------------------------------- */
