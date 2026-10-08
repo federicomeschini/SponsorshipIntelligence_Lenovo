@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_counterfactual_v1",
   "status": "candidate_not_distinguishable",
-  "generated_at_utc": "2026-10-07T09:51:32.298959+00:00",
+  "generated_at_utc": "2026-10-08T08:34:58.168624+00:00",
   "canonical_contracts_replaced": [],
   "treatment": {
     "event_id": "fifa_partner_announcement_2024",

@@ -271,3 +271,12 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
     - a four-point conclusion.
   - **Data:** everything comes from `tv_exposure_check_v1` through `method.tv` in the builder, in relative units only (P1). A test checks it against the manifest.
 - **Consequences:** The dashboard explains the television omission in results-first terms. The full method, calibration and limits are in notebook 10, §5.9.
+
+## FE-020 — Brand Index described as built on GWI and Nielsen (ADR-0047)
+
+- **Context:** ADR-0047 adds the Nielsen (FIFA consumer research) waves to the Brand Index.
+- **Decision:**
+  - **Wording:** dashboard text that described the index as anchored to the GWI survey now names GWI and Nielsen: the Exposure synthetic-control subtitle, the Method overview flow and scope, and the Brand Index method page (lead, formula reading and inputs).
+  - **Sources:** chart source lines list Nielsen, and the Data sources page has a Nielsen row.
+  - **Tables:** the loadings table shows the Nielsen series, and the variants table adds "GWI only, without Nielsen".
+- **Consequences:** Figures are rebuilt from the pipeline; every change is a few hundredths (ADR-0047).

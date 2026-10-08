@@ -1,5 +1,5 @@
 case,role,delta_brand_index_points,annual_adjusted_earnings_percent_equivalent,annual_adjusted_earnings_usd_m_central,annual_adjusted_earnings_usd_m_planning_lower,annual_adjusted_earnings_usd_m_planning_upper,calibration_accepted_for_planning,attribution_accepted,accepted_for_accounting_or_causal_claim
-one_brand_index_point,unit_mapping,1.0,0.24338699876442071,4.986999604682981,0.0,15.482579626644682,True,True,False
-total_sponsorship_effect,attribution_not_accepted,7.478443898138874,1.8201560157961156,37.29499676366241,0.0,115.78560313633017,True,False,False
-world_cup_total_path_interim,interim_not_accepted,7.138431879050592,1.7374015109263878,35.599356958881685,0.0,110.5213399767796,True,False,False
-world_cup_incremental_interim,interim_not_accepted,0.5818560879534443,0.14161620695979563,2.9017160806062128,0.0,9.008633212987174,True,False,False
+one_brand_index_point,unit_mapping,1.0,0.24356820384019467,4.990712496685589,0.0,15.495991309228707,True,True,False
+total_sponsorship_effect,attribution_not_accepted,7.480614485015264,1.8220398337361106,37.33359619325291,0.0,115.9195370474869,True,False,False
+world_cup_total_path_interim,interim_not_accepted,7.14244904948132,1.739673486002271,35.64590972818653,0.0,110.67932839737138,True,False,False
+world_cup_incremental_interim,interim_not_accepted,0.5800243201738167,0.14127548184836652,2.8947346230730298,0.0,8.988051824554752,True,False,False

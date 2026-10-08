@@ -1,87 +1,87 @@
 {
   "experiment_id": "brand_value_dominance_v1",
   "status": "owner_selected_relative_importance_valuation_ADR_0031",
-  "generated_at_utc": "2026-10-07T12:59:18.520213+00:00",
+  "generated_at_utc": "2026-10-08T08:36:16.495787+00:00",
   "method": "brand value = signed general-dominance share of the Lenovo-specific explained weekly return movement (market factors set aside) x company value; incremental brand value = brand value x brand-share uplift x elasticity",
   "decision": "ADR-0031, ADR-0032, ADR-0040, ADR-0044 (owner-selected; variance share read as value share and value proportional to brand share by assumption)",
   "accepted_for_accounting_or_causal_claim": false,
   "coefficients": {
     "brand_full_sample": {
       "category_demand": {
-        "coefficient": -0.06670700155518439,
-        "robust_se": 0.08682644085171991,
+        "coefficient": -0.06669829980766728,
+        "robust_se": 0.0868261858182461,
         "sign": -1.0
       },
       "brand": {
-        "coefficient": 0.0029777630272791594,
-        "robust_se": 0.0025497106699938427,
+        "coefficient": 0.0029803555667025916,
+        "robust_se": 0.002552671531648727,
         "sign": 1.0
       }
     }
   },
   "samples": {
     "brand_weeks": 164,
-    "brand_model_r2": 0.17993145260718146
+    "brand_model_r2": 0.17992840327401072
   },
   "primary_result": {
-    "brand_value_usd_m": 5038.974935183301,
+    "brand_value_usd_m": 5035.757948362126,
     "zero_index_level": 0.0,
-    "counterfactual_index_level": 101.98428955915062,
-    "sustained_lift_index_points": 7.478443898138875,
-    "brand_share_uplift_pct": 7.332937191077256,
+    "counterfactual_index_level": 101.98291113800242,
+    "sustained_lift_index_points": 7.480614485015265,
+    "brand_share_uplift_pct": 7.335164687437251,
     "brand_value_elasticity_to_brand_share": 1.0,
-    "incremental_brand_value_usd_m": 369.5048670711173,
+    "incremental_brand_value_usd_m": 369.38113877307325,
     "incremental_brand_value_90pct_usd_m": [
-      -153.80296628494574,
-      1066.2709359438186
+      -153.8700000710176,
+      1066.2780097397044
     ],
     "incremental_brand_value_donor_range_usd_m": [
-      345.4498550573881,
-      487.4377646233225
+      345.3371083497499,
+      487.16105832482685
     ],
-    "coefficient_usd_m_per_index_point": 49.409325269268145,
+    "coefficient_usd_m_per_index_point": 49.3784487240983,
     "coefficient_90pct_usd_m_per_point": [
-      -20.566172372199244,
-      142.5792518426429
+      -20.56916585920062,
+      142.53882643940696
     ],
-    "world_cup_incremental_lift_index_points": 0.5818560879534443,
-    "world_cup_incremental_brand_value_usd_m": 28.749116709595626,
+    "world_cup_incremental_lift_index_points": 0.5800243201738167,
+    "world_cup_incremental_brand_value_usd_m": 28.64070115243278,
     "incremental_brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 303.800195114309,
-      "latest_market_cap": 989.229795812906,
-      "mean_post_announcement_market_cap": 369.5048670711173
+      "pre_announcement_market_cap": 303.6984679533521,
+      "latest_market_cap": 988.8985533045717,
+      "mean_post_announcement_market_cap": 369.38113877307325
     },
     "note": "Total-effect chain (upper attribution band); the primary sponsorship value is fifa_specific_incremental_brand_value."
   },
   "fifa_specific_incremental_brand_value": {
     "uplift_pct": {
-      "primary": 4.331673995206393,
-      "statistical_band_95_low": 1.6671855916395906,
-      "statistical_band_95_high": 6.996162398773197,
-      "attribution_band_upper": 6.884631335867421
+      "primary": 4.329645875590221,
+      "statistical_band_95_low": 1.6661217352120496,
+      "statistical_band_95_high": 6.993170015968393,
+      "attribution_band_upper": 6.886973853007169
     },
     "index_points": {
-      "primary": 4.419188945836233,
+      "primary": 4.417059381118002,
       "statistical_band_95": [
-        1.7008685661442695,
-        7.137509325528196
+        1.6997599462103246,
+        7.13435881602568
       ],
-      "attribution_band_upper": 7.023724945434955
+      "attribution_band_upper": 7.026018602686023
     },
     "period": [
       "2024-10-21",
       "2026-07-20"
     ],
-    "brand_value_usd_m": 5038.974935183301,
+    "brand_value_usd_m": 5035.757948362126,
     "incremental_brand_value_usd_m": {
-      "primary": 218.27196689230325,
-      "statistical_band_95_low": 84.00906408570638,
-      "statistical_band_95_high": 352.53486969890014,
-      "attribution_band_upper": 346.9148473941346
+      "primary": 218.03048631596752,
+      "statistical_band_95_low": 83.90185771032975,
+      "statistical_band_95_high": 352.1591149216053,
+      "attribution_band_upper": 346.8113332044299
     },
     "incremental_brand_value_brand_share_90pct_usd_m": [
-      -90.85367733038396,
-      629.8619454551334
+      -90.82312934643943,
+      629.3800321905253
     ],
     "note": "Primary sponsorship valuation (ADR-0043, ADR-0044): FIFA-specific uplift x Lenovo-specific brand value."
   },
@@ -93,35 +93,35 @@
   },
   "values": {
     "brand_share_definition": "share_of_lenovo_specific_explained_variance",
-    "brand_share": 0.23757493994372034,
-    "brand_value_usd_m": 5038.974935183301,
+    "brand_share": 0.23742326714108267,
+    "brand_value_usd_m": 5035.757948362126,
     "brand_share_90pct": [
-      -0.09888836043742653,
-      0.6855640511003925
+      -0.09890141725482902,
+      0.6853604101010107
     ],
     "brand_value_90pct_usd_m": [
-      -2097.4264783297713,
-      14540.843705047153
+      -2097.70341400169,
+      14536.52447048519
     ],
     "market_cap_base": "mean_post_announcement_market_cap",
     "market_cap_usd_m": 21210.044023906707,
     "brand_value_by_cap_base_usd_m": {
-      "pre_announcement_market_cap": 4142.953733245857,
-      "latest_market_cap": 13490.225949522714,
-      "mean_post_announcement_market_cap": 5038.974935183301
+      "pre_announcement_market_cap": 4140.30878507048,
+      "latest_market_cap": 13481.613507577178,
+      "mean_post_announcement_market_cap": 5035.757948362126
     },
     "literal_reading_reference": {
       "definition": "share of all explained variance, market factors included (ADR-0031; secondary since ADR-0044)",
-      "brand_share": 0.021005999902154217,
-      "brand_value_usd_m": 445.5381826908709,
+      "brand_share": 0.02098776191306988,
+      "brand_value_usd_m": 445.1513541394846,
       "brand_value_90pct_usd_m": [
-        -364.3634063141377,
-        3668.5067938387765
+        -364.90054916486383,
+        3668.246928387797
       ]
     }
   },
   "placebo": {
-    "actual_unsigned_share": 0.23757493994372034,
+    "actual_unsigned_share": 0.23742326714108267,
     "random_series": {
       "median": 0.2119732879867441,
       "mean": 0.25985674084041344,
@@ -130,9 +130,9 @@
       "draws": 500
     },
     "time_shifted_brand": {
-      "median": 0.23325566966501357,
-      "mean": 0.27393627765920897,
-      "p90": 0.5738872044179868,
+      "median": 0.2328159583266159,
+      "mean": 0.2739461296265097,
+      "p90": 0.5737842244547078,
       "probability_at_or_above_actual": 0.4966442953020134,
       "draws": 149
     }
@@ -146,19 +146,19 @@
     },
     "brand": {
       "brand_explained": {
-        "p05": -0.017178814240246216,
-        "p50": 0.016565447239919075,
-        "p95": 0.17296082882731656
+        "p05": -0.017204139168856488,
+        "p50": 0.016564475198146123,
+        "p95": 0.17294857682771267
       },
       "brand_total": {
-        "p05": -0.003689225031758166,
-        "p50": 0.0035636244967348213,
-        "p95": 0.031253457345533496
+        "p05": -0.0036919527732733764,
+        "p50": 0.0035625117401618064,
+        "p95": 0.0312501032225393
       },
       "brand_lenovo_specific": {
-        "p05": -0.09888836043742653,
-        "p50": 0.11454143840824527,
-        "p95": 0.6855640511003925
+        "p05": -0.09890141725482902,
+        "p50": 0.11444478560711249,
+        "p95": 0.6853604101010107
       }
     }
   },
@@ -169,10 +169,10 @@
     "interbrand_source": "https://news.lenovo.com/?p=2553"
   },
   "stability_summary": {
-    "brand_share_min": 0.03260088197549762,
-    "brand_share_max": 0.4152678385907988,
-    "brand_value_min_usd_m": 691.4661419184911,
-    "brand_value_max_usd_m": 8807.849138223426
+    "brand_share_min": 0.03264401025665419,
+    "brand_share_max": 0.4150017177718292,
+    "brand_value_min_usd_m": 692.3808946604975,
+    "brand_value_max_usd_m": 8802.204703937403
   },
   "caveats": [
     "A share of explained return variance is not a share of value; the brand's role is read from price formation by assumption.",
@@ -185,7 +185,7 @@
   "inputs": {
     "stock_response_weekly": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet",
-      "sha256": "236cc6b8bde9a60eedfa5e81e5e905f7fbd1c5dea8e698b26a56881c68670cab"
+      "sha256": "d301c98c626ab50d93bc1c9ea8b04bedbd8e11e5a91e4bfb740a4c652a0935e7"
     },
     "rolling_abnormal_returns_daily": {
       "path": "data/curated/experimental/stock_brand_response_v2/rolling_abnormal_returns_daily.parquet",
@@ -193,27 +193,27 @@
     },
     "total_return_v3_manifest": {
       "path": "data/curated/experimental/sponsorship_total_return_v3/total_return_v3_manifest.json",
-      "sha256": "63773875b75e20dcdb276e47b108864e488cb46c5eac98648d3eebb813bb7e06"
+      "sha256": "a29631e8a18b39edb2482c8483e30943f8c0a23b4b8da9e974e93b8bfaf7eb4f"
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "f1087a40380df5b2ac43d17a3d9b1c3e130b9e296c61bedb364c70bf251f7266"
+      "sha256": "94f661563a81f9d87b7bd72e3ef3a1c33ea8da9724783042c7f5d2ee39e4a442"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
-      "sha256": "b0a197a9767b800af4cfb0570c84c9f5c0cb7a7227bf236322ee18b2c77d3caf"
+      "sha256": "6cbb71b4f5557eea51e122e4b19bf3efb645686a8dad9986d0366f4043ae26fa"
     },
     "donor_sensitivity": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/donor_sensitivity.parquet",
-      "sha256": "cd10ce4285562b5aa1459b09e2a5c2d75094108ef5743928e2a67f926cc98646"
+      "sha256": "5e315f2c58cb656d2780ae7dd1a3f1c129057e104c6dfd2e1342b85a03070112"
     },
     "brand_index_manifest": {
       "path": "data/curated/index/brand_index_manifest.json",
-      "sha256": "12be1714c2a695eadcadb1e07424f16310009041aaf0cdd1c0cf8a7f3f00a575"
+      "sha256": "945179270d3e21a7cb7e650a56f4b7c12b9b3b91eb2505b7ef3beb473e6a0562"
     },
     "fifa_specific_manifest": {
       "path": "data/curated/experimental/sponsorship_exposure_timing_v1/exposure_timing_manifest.json",
-      "sha256": "04660957976077bfe917fa8de9529cc199b7fccace717012735de03da199f165"
+      "sha256": "2c9b0b67249e941ce7f995e13df712f19af88747fee5927dbad9f40926853489"
     }
   }
 }

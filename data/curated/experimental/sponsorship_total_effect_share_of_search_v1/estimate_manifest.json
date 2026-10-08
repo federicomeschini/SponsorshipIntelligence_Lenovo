@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_total_effect_share_of_search_v1",
   "status": "search_component_check_ADR_0040",
-  "generated_at_utc": "2026-10-07T09:06:48.387639+00:00",
+  "generated_at_utc": "2026-10-08T08:34:22.304686+00:00",
   "selection": {
     "selected_method": "simplex_scm",
     "selected_pool": "expanded",

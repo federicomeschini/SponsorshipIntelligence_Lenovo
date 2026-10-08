@@ -53,7 +53,9 @@ def test_published_index_passes_its_own_gates():
     assert manifest["converged"]
     assert (loadings["loading"] > 0).all(), "every signal, survey included, must load positively"
     assert set(manifest["validity_screen"]["admitted"]) == set(screen.loc[screen["admitted"], "signal"])
-    assert all(fit["correlation"] > 0 for fit in manifest["survey_fit"].values())
+    # Anchor surveys (GWI) must agree with the index; the Nielsen waves are reported, not gated (ADR-0047).
+    assert all(manifest["survey_fit"][s]["correlation"] > 0 for s in manifest["survey_sources"]["gwi"])
+    assert all(s in manifest["survey_fit"] for s in manifest["survey_sources"]["nielsen"])
     base = pd.to_datetime(weekly["week"]).between(*pd.to_datetime(manifest["standardisation_base"]))
     assert np.isclose(np.log(weekly.loc[base, "index_level"]).mean(), np.log(100), atol=1e-6)
     assert "product_search_demand" in weekly and "product" not in " ".join(manifest["validity_screen"]["admitted"])

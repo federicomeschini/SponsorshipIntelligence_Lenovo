@@ -1,7 +1,7 @@
 {
   "source": "https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=285023&from=2026-06-01T00%3A00%3A00Z&to=2026-07-31T23%3A59%3A59Z&language=en&count=200",
   "source_page": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums",
-  "generated_at_utc": "2026-10-07T08:54:20.539525+00:00",
+  "generated_at_utc": "2026-10-08T08:19:28.919700+00:00",
   "raw_snapshot": "data\\raw\\fifa_calendar\\fwc26_official_api_snapshot.json",
   "raw_sha256": "0e7ea552aa97de4059e6960c94562aed5339ec5dddd8dfa3b1bc94603806b6c4",
   "matches": 104,

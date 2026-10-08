@@ -469,7 +469,7 @@
     const pD = panel(col(g3, 7), {
       label: "From relative attention to a measurable increment",
       title: "The Brand Index against its no-sponsorship twin",
-      sub: "Brand Index: Lenovo's weekly share of attention against rival brands, informed by the quarterly GWI survey (100 = pre-announcement average). The twin is a weighted mix of rival brands that reproduces Lenovo before the deal; the shaded distance afterwards is the gap.",
+      sub: "Brand Index: Lenovo's weekly share of attention against rival brands, informed by the GWI and Nielsen surveys (100 = pre-announcement average). The twin is a weighted mix of rival brands that reproduces Lenovo before the deal; the shaded distance afterwards is the gap.",
     });
     const cvD = chartIn(pD, 330);
     lineChart(cvD, {
@@ -488,7 +488,7 @@
       { color: T.lime, label: "Gap", square: true },
     ]);
     note(pD, `Before the announcement the two lines track each other within <b>${D.preRmspe.toFixed(1)} points</b> (root-mean-square). The design (${D.method.replace(/_/g, " ")}, ${D.donors.length} rivals) was chosen on how well it predicted Lenovo before the deal, never on the result.`);
-    src(pD, "Sources: Google Trends · GWI Core · Elaboration: OpenEconomics");
+    src(pD, "Sources: Google Trends · GWI Core · Nielsen · Elaboration: OpenEconomics");
 
     const pE = panel(col(g3, 5), { cls: "panel--dark", label: "Total gap · the ceiling" });
     pE.append(el("div", "figure-v lime", F.pts(X.total.lift)));
@@ -856,7 +856,7 @@
     { id: "television", step: "01", parent: "exposure", hidden: true, name: "Television exposure", q: "Why is there no television exposure?",
       d: "", key: () => "", view: "exposure", render: topicTelevision },
     { id: "brand-index", step: "01", name: "Brand Index", q: "How is the Lenovo brand measured?",
-      d: "A dynamic factor model of Lenovo's share of attention against rivals, anchored to the GWI survey.",
+      d: "A dynamic factor model of Lenovo's share of attention against rivals, anchored to the GWI and Nielsen surveys.",
       key: () => "100 → " + X.brandIndex.postMean.toFixed(1), view: "exposure", render: topicBrandIndex },
     { id: "twin", step: "01", name: "No-sponsorship twin", q: "What would Lenovo look like without FIFA?",
       d: `A synthetic Lenovo from ${X.design.donors.length} rival brands, chosen on pre-announcement data only.`,
@@ -897,7 +897,7 @@
       lead: "Three steps, each producing one number the next consumes. Open any topic below for the formulas, inputs and diagnostics behind it.",
     });
     flow(root, [
-      { k: "Step 01 · Exposure", v: F.pts(FS.primary_index_points) + " FIFA-specific", d: `Brand Index (share of attention against rivals, with the GWI survey) against a synthetic no-sponsorship Lenovo from ${X.design.donors.length} rival brands; the part of the gap explained by FIFA exposure isolated.` },
+      { k: "Step 01 · Exposure", v: F.pts(FS.primary_index_points) + " FIFA-specific", d: `Brand Index (share of attention against rivals, with the GWI and Nielsen surveys) against a synthetic no-sponsorship Lenovo from ${X.design.donors.length} rival brands; the part of the gap explained by FIFA exposure isolated.` },
       { k: "Step 02 · Evaluation", v: F.usd(B.brandValue) + " brand value", cls: "flow-cell--mid", d: `ISO 10668 income split: the brand contribution factor (${F.pct(FAC.share, 1)}, from the share price) × Lenovo's discounted economic profit (${F.usd(D.epPv)}).` },
       { k: "Step 03 · Monetization", v: F.usd(M.scenarios.base.value) + " added by FIFA", cls: "flow-cell--out", d: "FIFA-specific uplift × brand value, with the 95% band and the whole-gap ceiling as scenarios." },
     ], { tall: true });
@@ -922,7 +922,7 @@
     const ul = el("ul", "caveats");
     [
       "Exposure: FIFA social media impressions measured by Blinkfire.",
-      "Brand Index: Lenovo's weekly share of attention against rival brands, informed by the quarterly GWI survey (100 = before the announcement).",
+      "Brand Index: Lenovo's weekly share of attention against rival brands, informed by the GWI and Nielsen surveys (100 = before the announcement).",
       "FIFA-specific effect: the part of Lenovo's gap to its no-sponsorship twin explained by accumulated FIFA exposure.",
       `Brand value: ISO 10668 income split on Lenovo's ${D.baseYear} accounts, discounted at market rates of ${F.day(E.meta.dataThrough)}.`,
       "Return on investment: computed from the programme cost entered by the viewer.",
@@ -1069,7 +1069,7 @@
   function topicBrandIndex(root) {
     const BI = MT.brandIndex;
     head(root, { kicker: "Method · Step 01", title: "How is the Lenovo brand measured?",
-      lead: "The Brand Index tracks Lenovo's share of attention against its rivals rather than raw search volume, so a market-wide wave in PC demand does not register as brand strength. A dynamic factor model combines the weekly signal with the quarterly GWI survey into one weekly index." });
+      lead: "The Brand Index tracks Lenovo's share of attention against its rivals rather than raw search volume, so a market-wide wave in PC demand does not register as brand strength. A dynamic factor model combines the weekly signal with two consumer surveys, GWI and Nielsen, into one weekly index." });
     kpiRow(root, [
       { v: "100", k: "Pre-announcement level", n: `Average ${F.day(BI.base[0])} to ${F.day(BI.base[1])}` },
       { v: X.brandIndex.postMean.toFixed(1), k: "Average since the announcement", n: "Brand share of attention, % of the base" },
@@ -1082,8 +1082,8 @@
       "The weekly signal is Lenovo's search interest relative to the sum of its rivals', in logs. It rises only when Lenovo gains attention relative to the market.",
       [["L<sub>t</sub>", "Google search interest for Lenovo in week t"], ["R<sub>j,t</sub>", "search interest for rival brand j, from the same jointly scaled panel"]]);
     formula(p1, `y<sub>i,t</sub> = λ<sub>i</sub> f<sub>t</sub> + ε<sub>i,t</sub>  ,   f<sub>t</sub> = φ f<sub>t−1</sub> + η<sub>t</sub>`,
-      "Each measurement is a noisy reading of one underlying brand factor, which moves smoothly from week to week. GWI engagement and consideration enter as quarterly averages of the weekly factor: the survey anchors the level, search gives the weekly detail.",
-      [["y<sub>i,t</sub>", "standardised measurement i (weekly share of search; quarterly GWI engagement and consideration)"], ["f<sub>t</sub>", "the brand factor"],
+      "Each measurement is a noisy reading of one underlying brand factor, which moves smoothly from week to week. The surveys enter as averages of the weekly factor over their quarter (GWI engagement and consideration every quarter; Nielsen awareness in each FIFA research wave): the surveys anchor the brand's level, search gives the weekly detail.",
+      [["y<sub>i,t</sub>", "standardised measurement i (weekly share of search; GWI engagement and consideration; Nielsen awareness)"], ["f<sub>t</sub>", "the brand factor"],
        ["λ<sub>i</sub>", "loading: how strongly measurement i reflects the factor"], ["φ", `weekly persistence, estimated at ${BI.phi.toFixed(3)}`]]);
     formula(p1, `BI<sub>t</sub> = 100 · exp( κ · (f<sub>t</sub> − f̄<sub>base</sub>) )`,
       "The factor is put on a readable scale: 100 is the pre-announcement average, and 110 means Lenovo's share of attention is about 10% above it.",
@@ -1092,6 +1092,7 @@
     inputs(p2, [
       ["Weekly search interest, Lenovo and rivals", "Google Trends, jointly scaled panels", "Observed"],
       ["Quarterly engagement and consideration", `GWI Core, ${BI.surveyQuarters} quarters`, "Observed"],
+      ["Lenovo awareness by wave", `Nielsen, FIFA consumer research, ${BI.nielsenWaves} waves`, "Observed"],
       ["Share of attention", "Lenovo ÷ rivals, in logs", "Constructed"],
       ["Brand factor and loadings", "Maximum likelihood, Kalman smoother", "Estimated"],
     ]);
@@ -1099,7 +1100,7 @@
     const p3 = panel(col(g2, 6), { label: "Diagnostics", title: "How each measurement loads on the brand factor" });
     table(p3, [{ t: "Measurement" }, { t: "Frequency" }, { t: "Loading", num: true }, { t: "Explained", num: true }, { t: "Obs.", num: true }],
       BI.loadings.map((l) => [l.signal, l.frequency, l.loading.toFixed(2), F.pct(l.explained, 0), String(l.n)]));
-    note(p3, "All three measurements load positively: search and the survey describe the same underlying brand movement.");
+    note(p3, "Every measurement loads positively on the brand factor. Search carries the weekly detail; the surveys tie it to how consumers rate the brand.");
     const p4 = panel(col(g2, 6), { label: "Diagnostics", title: "Validity screen: which weekly signals enter", sub: "Correlation of each signal's quarterly average with the GWI series." });
     table(p4, [{ t: "Signal" }, { t: "Engagement", num: true }, { t: "Δ", num: true }, { t: "Consideration", num: true }, { t: "Δ", num: true }, { t: "Status" }],
       BI.screen.map((x) => [x.signal, x.engagement.toFixed(2), x.engagementChange.toFixed(2), x.consideration.toFixed(2), x.considerationChange.toFixed(2),
@@ -1111,7 +1112,7 @@
       yTitle: "Brand Index (100 = pre-announcement)", tip: (v) => v.toFixed(1), milestones: marksFor(X.brandIndex.weeks, KEY_MARKS) });
     table(p5, [{ t: "Variant" }, { t: "Correlation with the headline", num: true }, { t: "Average since the announcement", num: true }],
       [["Headline", "1.000", X.brandIndex.postMean.toFixed(1)], ...BI.sensitivities.map((s) => [s.label, s.corr.toFixed(3), s.postMean.toFixed(1)])], { primary: 0 });
-    src(p5, "Sources: Google Trends, GWI Core · Elaboration: OpenEconomics");
+    src(p5, "Sources: Google Trends, GWI Core, Nielsen · Elaboration: OpenEconomics");
   }
 
   function topicTwin(root) {
@@ -1159,7 +1160,7 @@
       { label: "No-sponsorship twin", data: X.core.synthetic, color: T.counterfactual, dash: [5, 4] }],
       yTitle: "Brand Index (100 = pre-announcement)", tip: (v) => v.toFixed(1), milestones: marksFor(X.core.weeks, KEY_MARKS) });
     legend(p5, [{ color: T.brandDeep, label: "Lenovo — actual Brand Index" }, { color: T.counterfactual, label: "No-sponsorship twin", dash: true }]);
-    src(p5, "Sources: Google Trends, GWI Core · Elaboration: OpenEconomics");
+    src(p5, "Sources: Google Trends, GWI Core, Nielsen · Elaboration: OpenEconomics");
   }
 
   function topicFifaSpecific(root) {
@@ -1342,6 +1343,7 @@
     table(p1, [{ t: "Source" }, { t: "Contribution" }], [
       ["<b>Google Trends</b>", "Weekly search interest for Lenovo and rival brands in jointly scaled panels"],
       ["<b>GWI Core</b>", "Quarterly engagement and consideration of Lenovo (2022–2026Q1)"],
+      ["<b>Nielsen</b>", `FIFA consumer research: Lenovo awareness in ${MT.brandIndex.nielsenWaves} national-sample waves (June 2024 – April 2026)`],
       ["<b>Blinkfire Analytics</b>", "Weekly impressions and video views on FIFA social media"],
       ["<b>Market data</b>", "0992.HK, Hang Seng, Nasdaq-100, world equities, USD/HKD, US Treasury"],
       ["<b>Lenovo annual results</b>", `${D.baseYear} revenue, operating profit, tax, equity, debt and cash`],
@@ -1350,7 +1352,7 @@
     ]);
     const p2 = panel(col(g, 6), { label: "Status of the figures", title: "Observed, constructed, estimated, assumed" });
     table(p2, [{ t: "Status" }, { t: "Applies to" }], [
-      [status("Observed"), "Search volumes, survey waves, impressions, share prices, financial statements"],
+      [status("Observed"), "Search volumes, GWI and Nielsen survey waves, impressions, share prices, financial statements"],
       [status("Constructed"), "Brand Index, share of attention, accumulated exposure"],
       [status("Estimated"), "No-sponsorship twin, FIFA-specific effect, brand contribution factor, brand value"],
       [status("Assumed"), "Equity risk premium, debt spread, growth path, weekly carryover, elasticity of 1"],

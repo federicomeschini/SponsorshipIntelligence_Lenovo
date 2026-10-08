@@ -4,7 +4,7 @@
   "role": "sensitivity_only_relative_exposure_intensity",
   "decision": "ADR-0046",
   "monetary_totals_used": false,
-  "generated_at_utc": "2026-10-08T07:59:51.268824+00:00",
+  "generated_at_utc": "2026-10-08T08:34:30.363402+00:00",
   "tv_coverage": {
     "from": "2025-04-28",
     "to": "2026-03-30",
@@ -13,56 +13,56 @@
       "2026 Men's World Cup (June - July 2026)"
     ]
   },
-  "primary_fifa_specific_index_points": 4.419188945836233,
+  "primary_fifa_specific_index_points": 4.417059381118002,
   "primary_band_95_index_points": [
-    1.7008685661442695,
-    7.137509325528196
+    1.6997599462103246,
+    7.13435881602568
   ],
   "overlap": {
     "weeks": 49,
     "weeks_with_tv_value": 29,
     "corr_tv_vs_social_weekly": 0.6095802344625442,
     "corr_tv_vs_social_adstock_log": 0.5621178542991292,
-    "corr_tv_vs_gap": 0.20586206600823165,
-    "corr_social_vs_gap": 0.51745405135965
+    "corr_tv_vs_gap": 0.2050093515400111,
+    "corr_social_vs_gap": 0.5177198522711893
   },
   "observed_window": {
     "to": "2026-03-30",
     "social_only": {
       "weeks": 222,
       "post_weeks": 76,
-      "r_squared": 0.6787320567300512,
-      "mean_gap": 5.427941039485657,
-      "fifa_total": 4.9605347126994035,
-      "social_part": 4.9605347126994035,
+      "r_squared": 0.6789799824965348,
+      "mean_gap": 5.430035160817997,
+      "fifa_total": 4.958206769381334,
+      "social_part": 4.958206769381334,
       "tv_part": null,
-      "not_attributed": 0.4674063267862536,
-      "p_social": 0.000192332420410501,
+      "not_attributed": 0.471828391436663,
+      "p_social": 0.00019170189784178802,
       "p_tv": null
     },
     "social_and_tv": {
       "weeks": 222,
       "post_weeks": 76,
-      "r_squared": 0.702553910613477,
-      "mean_gap": 5.427941039485657,
-      "fifa_total": 4.226621375273212,
-      "social_part": 3.0878114145548023,
-      "tv_part": 1.1388099607184101,
-      "not_attributed": 1.2013196642124448,
-      "p_social": 0.03478356468946639,
-      "p_tv": 0.09330397348007503
+      "r_squared": 0.7027234626306991,
+      "mean_gap": 5.430035160817997,
+      "fifa_total": 4.225612449953267,
+      "social_part": 3.088849203414892,
+      "tv_part": 1.1367632465383746,
+      "not_attributed": 1.2044227108647307,
+      "p_social": 0.03469371571550586,
+      "p_tv": 0.09362802101284297
     },
     "tv_only": {
       "weeks": 222,
       "post_weeks": 76,
-      "r_squared": 0.6848881343203703,
-      "mean_gap": 5.427941039485657,
-      "fifa_total": 1.651000169799491,
+      "r_squared": 0.6850404650108284,
+      "mean_gap": 5.430035160817997,
+      "fifa_total": 1.6491255986754483,
       "social_part": null,
-      "tv_part": 1.651000169799491,
-      "not_attributed": 3.7769408696861664,
+      "tv_part": 1.6491255986754483,
+      "not_attributed": 3.780909562142549,
       "p_social": null,
-      "p_tv": 0.013894291429704133
+      "p_tv": 0.013922226061076258
     }
   },
   "calibration": {
@@ -130,76 +130,76 @@
       "scenario": "same_per_match",
       "label": "Same value per match as the Club World Cup",
       "world_cup_vs_club_world_cup": 1.7170174249717027,
-      "fifa_total_with_tv": 4.6917086940939905,
-      "social_part": 5.06453014025031,
-      "tv_part": -0.3728214461563194,
-      "p_tv": 0.612703317192958,
-      "not_attributed_with_tv": 2.3320162513409644,
-      "fifa_total_tv_only": 0.3283982331239377,
-      "p_tv_only": 0.618441802981842,
-      "change_vs_primary": 0.27251974825775793,
-      "model_error_slope_per_sd": -1.130478483993376,
-      "model_error_p": 0.10878505094380896
+      "fifa_total_with_tv": 4.69031802769441,
+      "social_part": 5.0641503258769855,
+      "tv_part": -0.3738322981825754,
+      "p_tv": 0.6116012601548093,
+      "not_attributed_with_tv": 2.3357005749916135,
+      "fifa_total_tv_only": 0.32733479313677055,
+      "p_tv_only": 0.619372472638586,
+      "change_vs_primary": 0.27325864657640775,
+      "model_error_slope_per_sd": -1.1316022947521907,
+      "model_error_p": 0.10823055852205819
     },
     {
       "scenario": "audience_x3",
       "label": "Three times the Club World Cup audience (assumed)",
       "world_cup_vs_club_world_cup": 5.1510522749151075,
-      "fifa_total_with_tv": 4.742118991636742,
-      "social_part": 5.212604790959296,
-      "tv_part": -0.470485799322554,
-      "p_tv": 0.4076915264378448,
-      "not_attributed_with_tv": 2.2816059537982127,
-      "fifa_total_tv_only": 0.09387215078083154,
-      "p_tv_only": 0.8657573167981675,
-      "change_vs_primary": 0.32293004580050955,
-      "model_error_slope_per_sd": -1.1144055207946648,
-      "model_error_p": 0.055178535527627484
+      "fifa_total_with_tv": 4.7403199954373525,
+      "social_part": 5.211287409263855,
+      "tv_part": -0.4709674138265028,
+      "p_tv": 0.4070199728076218,
+      "not_attributed_with_tv": 2.285698607248671,
+      "fifa_total_tv_only": 0.09324790608277485,
+      "p_tv_only": 0.866558210252399,
+      "change_vs_primary": 0.3232606143193504,
+      "model_error_slope_per_sd": -1.1150449217545726,
+      "model_error_p": 0.05492921832159256
     },
     {
       "scenario": "blinkfire_per_match",
       "label": "Scaled by Blinkfire impressions per match",
       "world_cup_vs_club_world_cup": 18.357635661141607,
-      "fifa_total_with_tv": 4.7209280283966235,
-      "social_part": 5.1902983815151815,
-      "tv_part": -0.4693703531185578,
-      "p_tv": 0.27347006671082685,
-      "not_attributed_with_tv": 2.3027969170383313,
-      "fifa_total_tv_only": -0.04486082187933894,
-      "p_tv_only": 0.9178014583927119,
-      "change_vs_primary": 0.30173908256039095,
-      "model_error_slope_per_sd": -1.0521420951079332,
-      "model_error_p": 0.03171765197865836
+      "fifa_total_with_tv": 4.718907413511935,
+      "social_part": 5.188447243588556,
+      "tv_part": -0.46953983007662115,
+      "p_tv": 0.27311413938800544,
+      "not_attributed_with_tv": 2.3071111891740888,
+      "fifa_total_tv_only": -0.04518170163464582,
+      "p_tv_only": 0.9171677723983538,
+      "change_vs_primary": 0.30184803239393254,
+      "model_error_slope_per_sd": -1.0524585015936567,
+      "model_error_p": 0.03160127670274826
     },
     {
       "scenario": "blinkfire_linked",
       "label": "Proportional to weekly Blinkfire FIFA impressions",
       "world_cup_vs_club_world_cup": 18.961192346179395,
-      "fifa_total_with_tv": 4.714759802041453,
-      "social_part": 5.162694900975418,
-      "tv_part": -0.4479350989339651,
-      "p_tv": 0.30787472172706665,
-      "not_attributed_with_tv": 2.308965143393502,
-      "fifa_total_tv_only": -0.01576659871450168,
-      "p_tv_only": 0.9714099229709318,
-      "change_vs_primary": 0.29557085620522017,
-      "model_error_slope_per_sd": -1.031185586424879,
-      "model_error_p": 0.04321669349753635
+      "fifa_total_with_tv": 4.712780569881696,
+      "social_part": 5.160943496519369,
+      "tv_part": -0.44816292663767354,
+      "p_tv": 0.30745467761419965,
+      "not_attributed_with_tv": 2.3132380328043274,
+      "fifa_total_tv_only": -0.016141036251168764,
+      "p_tv_only": 0.9707142314982897,
+      "change_vs_primary": 0.2957211887636939,
+      "model_error_slope_per_sd": -1.031567703056295,
+      "model_error_p": 0.04306893997766473
     }
   ],
   "summary": {
-    "max_change_vs_primary_index_points": 0.32293004580050955,
+    "max_change_vs_primary_index_points": 0.3232606143193504,
     "fifa_total_with_tv_range": [
-      4.6917086940939905,
-      4.742118991636742
+      4.69031802769441,
+      4.7403199954373525
     ],
     "tv_part_range": [
-      -0.470485799322554,
-      -0.3728214461563194
+      -0.4709674138265028,
+      -0.3738322981825754
     ],
     "tv_p_range": [
-      0.27347006671082685,
-      0.612703317192958
+      0.27311413938800544,
+      0.6116012601548093
     ],
     "within_primary_band": true
   },

@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_total_return_v3",
   "status": "prototype_sustained_level_planning_valuation",
-  "generated_at_utc": "2026-10-07T09:07:23.995586+00:00",
+  "generated_at_utc": "2026-10-08T08:35:48.916741+00:00",
   "accepted_for_planning": false,
   "accepted_for_accounting_or_causal_claim": false,
   "evidence": {
@@ -9,20 +9,20 @@
     "total_effect_p_value": 0.07142857142857142,
     "attribution_accepted": true,
     "base_13_week_response": {
-      "estimate": 0.01019399292539624,
-      "lower_95": -0.005924982761608006,
-      "upper_95": 0.026312968612400484
+      "estimate": 0.010199693836005039,
+      "lower_95": -0.0059365570108702755,
+      "upper_95": 0.026335944682880353
     },
     "response_identified": false
   },
   "sustained_levels_index_points": {
-    "all_post_mean": 7.478443898138875,
-    "pre_tournament_post_mean": 6.964418575664478,
-    "trailing_26_week_mean": 13.841534809989081
+    "all_post_mean": 7.480614485015265,
+    "pre_tournament_post_mean": 6.9666091132952355,
+    "trailing_26_week_mean": 13.844703325240763
   },
   "innovation_conversion": {
-    "mean_lag_coefficient": 0.09789044596637256,
-    "factor": 0.9021095540336275
+    "mean_lag_coefficient": 0.09832579820982121,
+    "factor": 0.9016742017901788
   },
   "market_cap_usd_m": {
     "pre_announcement_market_cap": 17438.513229666776,
@@ -32,23 +32,23 @@
   "valuation_base": "mean_post_announcement_market_cap",
   "primary_result": {
     "level_definition": "all_post_mean",
-    "sustained_gap_index_points": 7.478443898138875,
-    "observed_value_usd_m": 1409.640091070376,
-    "full_contract_value_usd_m": 2078.928680609062,
+    "sustained_gap_index_points": 7.480614485015265,
+    "observed_value_usd_m": 1410.1393561567315,
+    "full_contract_value_usd_m": 2079.6522596160444,
     "empirical_95_full_contract_usd_m": {
-      "lower": -1310.6153808389563,
-      "upper": 4958.318543726791
+      "lower": -1312.9928451121311,
+      "upper": 4961.263223008313
     },
     "donor_leave_one_out_full_contract_usd_m": {
-      "min_level": 6.991592238403885,
-      "max_level": 9.865298948465938,
-      "min_value_usd_m": 1950.017398749364,
-      "max_value_usd_m": 2698.5570999004067
+      "min_level": 6.993680791377597,
+      "max_level": 9.865863973306158,
+      "min_value_usd_m": 1950.7141793700853,
+      "max_value_usd_m": 2698.8937931678993
     },
     "market_cap_base_sensitivity_full_contract_usd_m": {
-      "pre_announcement_market_cap": 1709.2574282010971,
-      "latest_market_cap": 5565.65928489565,
-      "mean_post_announcement_market_cap": 2078.928680609062
+      "pre_announcement_market_cap": 1709.8523417275258,
+      "latest_market_cap": 5567.5964337050955,
+      "mean_post_announcement_market_cap": 2079.6522596160444
     }
   },
   "event_triangulation": [
@@ -93,27 +93,27 @@
   "inputs": {
     "stock_response_weekly": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_brand_response_weekly.parquet",
-      "sha256": "236cc6b8bde9a60eedfa5e81e5e905f7fbd1c5dea8e698b26a56881c68670cab"
+      "sha256": "d301c98c626ab50d93bc1c9ea8b04bedbd8e11e5a91e4bfb740a4c652a0935e7"
     },
     "stock_response_coefficients": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_response_coefficients.parquet",
-      "sha256": "370ae165ee3bb5a9375b632cd7ed0733ce779a6aee3f11346255741e3f4946e8"
+      "sha256": "1ac24ff0f82f04295d5834864926be1de8580c3b48df0a1740a95df9006b529d"
     },
     "endpoint_stability": {
       "path": "data/curated/experimental/stock_brand_response_v2/endpoint_stability.parquet",
-      "sha256": "feeca64ab314423af13a4ed9a5b8c4c6ea6bb4a60cfe96e17f13db9e5a478fdd"
+      "sha256": "60b7c71009429cb8fe5cfcbd02d783ff822ea41ac9adf0e4ce904e27fad0b7dc"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
-      "sha256": "b0a197a9767b800af4cfb0570c84c9f5c0cb7a7227bf236322ee18b2c77d3caf"
+      "sha256": "6cbb71b4f5557eea51e122e4b19bf3efb645686a8dad9986d0366f4043ae26fa"
     },
     "total_effect_manifest": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json",
-      "sha256": "c53e26e0df0df32993f57915ce9f062c133421ce1c779d0e2cde33cc11259b4b"
+      "sha256": "278a900565489c2b7b0b6201b56594b17997c3d769c1fea70897f57e57f3cd65"
     },
     "donor_sensitivity": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/donor_sensitivity.parquet",
-      "sha256": "cd10ce4285562b5aa1459b09e2a5c2d75094108ef5743928e2a67f926cc98646"
+      "sha256": "5e315f2c58cb656d2780ae7dd1a3f1c129057e104c6dfd2e1342b85a03070112"
     },
     "market_prices": {
       "path": "data/staged/market/market_prices_daily.parquet",

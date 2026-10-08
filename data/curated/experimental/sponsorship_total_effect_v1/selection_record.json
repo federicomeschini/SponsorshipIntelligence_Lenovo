@@ -1,8 +1,8 @@
 {
   "experiment_id": "sponsorship_total_effect_v1",
   "phase": "A_design_selection",
-  "generated_at_utc": "2026-10-07T10:07:48.380764+00:00",
-  "config_sha256": "0d99a48d241fe7cdffc67e4199b0e2c483f33aa2dd18888b750fd3f3bb136c2d",
+  "generated_at_utc": "2026-10-08T08:20:03.653397+00:00",
+  "config_sha256": "fc1abc37730e4c64cb776f7fc268f53dd404e1d34b68bafcd99bccd6f063b293",
   "data_weeks_seen": [
     "2022-01-03",
     "2024-10-14"
@@ -35,57 +35,57 @@
   "parallel_trend_screen": [
     {
       "query_id": "donor_dell",
-      "pre_gap_trend_hac_t": 3.082733373266543,
+      "pre_gap_trend_hac_t": 3.0825803110180545,
       "parallel": false
     },
     {
       "query_id": "donor_asus",
-      "pre_gap_trend_hac_t": 9.262025200047876,
+      "pre_gap_trend_hac_t": 9.26157555962957,
       "parallel": false
     },
     {
       "query_id": "donor_acer",
-      "pre_gap_trend_hac_t": 6.844700170657964,
+      "pre_gap_trend_hac_t": 6.844405162042473,
       "parallel": false
     },
     {
       "query_id": "donor_hp",
-      "pre_gap_trend_hac_t": 4.120898053938148,
+      "pre_gap_trend_hac_t": 4.121214461991187,
       "parallel": false
     },
     {
       "query_id": "donor_microsoft_surface",
-      "pre_gap_trend_hac_t": 5.060314001821187,
+      "pre_gap_trend_hac_t": 5.060530550516934,
       "parallel": false
     },
     {
       "query_id": "donor_razer",
-      "pre_gap_trend_hac_t": 6.2296995506981965,
+      "pre_gap_trend_hac_t": 6.2294877707365135,
       "parallel": false
     },
     {
       "query_id": "donor_logitech",
-      "pre_gap_trend_hac_t": 2.657257895029002,
+      "pre_gap_trend_hac_t": 2.657158953701974,
       "parallel": false
     },
     {
       "query_id": "donor_macbook",
-      "pre_gap_trend_hac_t": -0.8746345722273385,
+      "pre_gap_trend_hac_t": -0.8743766366785598,
       "parallel": true
     },
     {
       "query_id": "donor_corsair",
-      "pre_gap_trend_hac_t": 7.732930804730985,
+      "pre_gap_trend_hac_t": 7.732616865436054,
       "parallel": false
     },
     {
       "query_id": "donor_steelseries",
-      "pre_gap_trend_hac_t": 3.3181370793815503,
+      "pre_gap_trend_hac_t": 3.318333652641459,
       "parallel": false
     },
     {
       "query_id": "donor_benq",
-      "pre_gap_trend_hac_t": 1.6178291183876605,
+      "pre_gap_trend_hac_t": 1.6177504150805495,
       "parallel": true
     }
   ]

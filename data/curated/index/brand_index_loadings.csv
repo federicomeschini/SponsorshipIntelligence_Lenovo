@@ -1,4 +1,5 @@
 signal,pillar,frequency,members,loading,noise_variance,share_of_variance_explained,effective_weekly_weight,observations
-pillar_salience,salience,weekly,google_share_of_search,2.038321051234197,0.4476896341075151,0.902727812574442,1.0,248
-gwi_engagement,engagement,quarterly,gwi_engagement,0.7648512168410061,0.6655235485137019,0.46780295214455064,,17
-gwi_consideration,consideration_intent,quarterly,gwi_consideration,1.096879913154999,0.7244105916104798,0.6241818444239229,,17
+pillar_salience,salience,weekly,google_share_of_search,2.038182777959405,0.4481337137085237,0.9026287946231396,1.0,248
+gwi_engagement,engagement,quarterly,gwi_engagement,0.7650927545988545,0.6652851437230779,0.4680493789196345,,17
+gwi_consideration,consideration_intent,quarterly,gwi_consideration,1.0972632728549614,0.7240529136606966,0.624461597001252,,17
+nielsen_awareness,awareness,survey wave,nielsen_awareness,0.1254205375920465,0.7788735197433805,0.019796420098069485,,4

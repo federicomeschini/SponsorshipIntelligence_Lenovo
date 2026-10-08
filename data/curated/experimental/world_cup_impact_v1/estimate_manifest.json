@@ -1,7 +1,7 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "status": "interim_estimate_gates_not_met",
-  "generated_at_utc": "2026-10-07T09:07:13.240596+00:00",
+  "generated_at_utc": "2026-10-08T08:35:34.951701+00:00",
   "protocol_hash": "d3b80d9f89354050f31447159ba4515e909cf16258a746ca4209532131b10245",
   "accepted_attribution_rows": 0,
   "treatment_week": "2026-06-08",
@@ -41,14 +41,14 @@
   "primary": {
     "method": "augmented_scm",
     "role": "primary",
-    "pre_rmspe_index_points": 3.627944795807855,
-    "holdout_rmspe_index_points": 9.784349476503323,
-    "primary_exposure_weighted_gap": 0.5818560879534443,
-    "primary_event_weeks_excluded": 0.5818560879534443,
-    "all_post_mean_gap": 2.6686944514135265,
-    "tournament_mean_gap": -1.4714629909373464,
-    "peak_four_week_mean_gap": 9.048128151599936,
-    "post_event_persistence_mean_gap": 5.428799412980775
+    "pre_rmspe_index_points": 3.627289590893306,
+    "holdout_rmspe_index_points": 9.786988574847474,
+    "primary_exposure_weighted_gap": 0.5800243201738167,
+    "primary_event_weeks_excluded": 0.5800243201738167,
+    "all_post_mean_gap": 2.6663670547721825,
+    "tournament_mean_gap": -1.4722580672772072,
+    "peak_four_week_mean_gap": 9.043293314887283,
+    "post_event_persistence_mean_gap": 5.425450469471776
   },
   "vintages": {
     "pulls": {
@@ -64,34 +64,34 @@
     "estimates": {
       "method": "generalized_scm_factor",
       "role": "robustness_category_shock_added_after_partial_outcome_ADR_0029",
-      "pre_rmspe_index_points": 4.4914931074007685,
-      "holdout_rmspe_index_points": 11.832758959267208,
-      "primary_exposure_weighted_gap": 0.9775218086824174,
-      "primary_event_weeks_excluded": 0.9775218086824174,
-      "all_post_mean_gap": 4.241537077907187,
-      "tournament_mean_gap": -0.21804604572577033,
-      "peak_four_week_mean_gap": 10.709758211684061,
-      "post_event_persistence_mean_gap": 7.214592493662492
+      "pre_rmspe_index_points": 4.490728325215985,
+      "holdout_rmspe_index_points": 11.83278171650918,
+      "primary_exposure_weighted_gap": 0.9759439192002601,
+      "primary_event_weeks_excluded": 0.9759439192002601,
+      "all_post_mean_gap": 4.239384153517772,
+      "tournament_mean_gap": -0.21793684213618203,
+      "peak_four_week_mean_gap": 10.704959038585638,
+      "post_event_persistence_mean_gap": 7.2109314839537415
     },
     "placebo": {
-      "post_pre_rmspe_ratio": 1.6847359597956932,
+      "post_pre_rmspe_ratio": 1.6843231759972401,
       "p_value": 0.3333333333333333,
       "factor_count": 3
     },
     "status": "robustness_only_added_after_partial_outcome_never_a_valuation_input"
   },
   "placebo": {
-    "post_pre_rmspe_ratio": 1.7310599021088258,
+    "post_pre_rmspe_ratio": 1.7305637934559557,
     "p_value": 0.16666666666666666,
     "primary_estimand_p_value": 1.0,
-    "interval_half_width_index_points": 8.149221911220366
+    "interval_half_width_index_points": 8.148335677696366
   },
   "time_placebos": [
     {
       "fake_treatment_week": "2023-06-05",
       "window_weeks": 15,
-      "mean_gap_index_points": 0.49632743329320217,
-      "post_pre_rmspe_ratio": 1.5853262167094642
+      "mean_gap_index_points": 0.4963045618380672,
+      "post_pre_rmspe_ratio": 1.5854006539533336
     }
   ],
   "confounder_diagnostics": {
@@ -109,8 +109,8 @@
       "category_yoy_peak_pct": 78.27593392496325
     },
     "pre_trend": {
-      "last_8_pre_weeks_mean_gap": 5.585702093357695,
-      "last_8_pre_weeks_slope_per_week": -1.4764776016477583
+      "last_8_pre_weeks_mean_gap": 5.587531416535386,
+      "last_8_pre_weeks_slope_per_week": -1.4761301410159802
     }
   },
   "media_value_intensity_sensitivity": {

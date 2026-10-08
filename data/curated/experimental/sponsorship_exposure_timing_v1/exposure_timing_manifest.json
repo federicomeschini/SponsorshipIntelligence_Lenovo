@@ -1,8 +1,8 @@
 {
   "experiment_id": "sponsorship_exposure_timing_v1",
   "status": "fifa_specific_effect_primary_ADR_0043",
-  "generated_at_utc": "2026-10-07T10:57:13.286850+00:00",
-  "headline_lift_index_points": 7.478443898138874,
+  "generated_at_utc": "2026-10-08T08:34:26.602205+00:00",
+  "headline_lift_index_points": 7.480614485015264,
   "samples": {
     "pre_weeks": 146,
     "post_weeks_with_exposure": 92,
@@ -54,112 +54,112 @@
   "summary": {
     "pre_period_nonfifa:levels_without_trend": {
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.6441826416164479,
-        "hac_se": 0.25654393628690914,
-        "p": 0.012038861010285715
+        "points_per_sd": 0.6441036716382239,
+        "hac_se": 0.2565065177881401,
+        "p": 0.0120368684561551
       }
     },
     "pre_period_nonfifa:levels_with_trend": {
       "nonfifa_log_adstock": {
-        "points_per_sd": -0.011860749395958178,
-        "hac_se": 0.3035297487639807,
-        "p": 0.968829740591874
+        "points_per_sd": -0.011823744119075913,
+        "hac_se": 0.3034810513372813,
+        "p": 0.9689219583089449
       }
     },
     "pre_period_nonfifa:first_differences": {
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.04273030979850536,
-        "hac_se": 0.08673578723705656,
-        "p": 0.6222605298842125
+        "points_per_sd": 0.04258950710987474,
+        "hac_se": 0.08667487377099016,
+        "p": 0.6231641716838395
       }
     },
     "post_period_incremental:levels_without_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": 3.0993476345420485,
-        "hac_se": 0.712329457299541,
-        "p": 1.3551617287799216e-05
+        "points_per_sd": 3.0987637510735824,
+        "hac_se": 0.712136917291908,
+        "p": 1.3529599787043274e-05
       },
       "nonfifa_incremental_log_adstock": {
-        "points_per_sd": 0.38719046460232204,
-        "hac_se": 1.0104243033331761,
-        "p": 0.7015745072767265
+        "points_per_sd": 0.3897645714823128,
+        "hac_se": 1.009737432274717,
+        "p": 0.699492324791007
       }
     },
     "post_period_incremental:levels_with_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": -1.2635878734884618,
-        "hac_se": 1.6788902360835316,
-        "p": 0.4516705967331467
+        "points_per_sd": -1.2670348439541912,
+        "hac_se": 1.6780380442341136,
+        "p": 0.4502074622844491
       },
       "nonfifa_incremental_log_adstock": {
-        "points_per_sd": -2.0423875711708135,
-        "hac_se": 0.7305264306193261,
-        "p": 0.005177542350316854
+        "points_per_sd": -2.041407825076182,
+        "hac_se": 0.7300482001650526,
+        "p": 0.005169708091225294
       }
     },
     "post_period_incremental:first_differences": {
       "fifa_log_adstock": {
-        "points_per_sd": -0.013239971213989503,
-        "hac_se": 0.22705493265097093,
-        "p": 0.9535003056819479
+        "points_per_sd": -0.013336033600685207,
+        "hac_se": 0.22690621929747326,
+        "p": 0.95313265307873
       },
       "nonfifa_incremental_log_adstock": {
-        "points_per_sd": -0.35056319956557214,
-        "hac_se": 0.26883759142601654,
-        "p": 0.19223487556567187
+        "points_per_sd": -0.35020362734523286,
+        "hac_se": 0.2684917882514909,
+        "p": 0.19211889082291578
       }
     },
     "full_sample:levels_without_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": 4.7538799571523205,
-        "hac_se": 0.6198030541858842,
-        "p": 1.720168358245956e-14
+        "points_per_sd": 4.75418803541761,
+        "hac_se": 0.6197410735854951,
+        "p": 1.7032964206556287e-14
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.6961574283534842,
-        "hac_se": 0.2645736331504372,
-        "p": 0.00850732702821099
+        "points_per_sd": 0.6954094099047772,
+        "hac_se": 0.26452516897824496,
+        "p": 0.00856623148749071
       }
     },
     "full_sample:levels_with_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": 2.1985354161469934,
-        "hac_se": 0.6899783523900556,
-        "p": 0.001440636545298741
+        "points_per_sd": 2.1974759630411427,
+        "hac_se": 0.6897192108240338,
+        "p": 0.0014423250811117748
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.059880787827534955,
-        "hac_se": 0.34624983584174723,
-        "p": 0.8626978152615677
+        "points_per_sd": 0.058792256288447975,
+        "hac_se": 0.34612618391818023,
+        "p": 0.865121914580458
       }
     },
     "full_sample:first_differences": {
       "fifa_log_adstock": {
-        "points_per_sd": 0.12423031499352415,
-        "hac_se": 0.09629712877418518,
-        "p": 0.19702535235730034
+        "points_per_sd": 0.12392183524296357,
+        "hac_se": 0.0962709719652124,
+        "p": 0.19801792687396558
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": -0.07237480495224505,
-        "hac_se": 0.10727865754731027,
-        "p": 0.4999025498393148
+        "points_per_sd": -0.07252294025110752,
+        "hac_se": 0.10721040241544659,
+        "p": 0.4987522368616575
       }
     },
     "full_sample:levels_with_trend_and_post_step": {
       "fifa_log_adstock": {
-        "points_per_sd": 6.28864996768859,
-        "hac_se": 1.9292658149109987,
-        "p": 0.0011156635956502585
+        "points_per_sd": 6.286948817521115,
+        "hac_se": 1.928720065167203,
+        "p": 0.0011155049926910628
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": -0.09589180951000169,
-        "hac_se": 0.32433617582438445,
-        "p": 0.7674931013504582
+        "points_per_sd": -0.09695590192477248,
+        "hac_se": 0.32424272534257587,
+        "p": 0.7649228036914245
       },
       "post_step": {
-        "points_per_sd": -8.702734150419253,
-        "hac_se": 3.5940016884172516,
-        "p": 0.015458268796736415
+        "points_per_sd": -8.701368780608203,
+        "hac_se": 3.5935133382321554,
+        "p": 0.015460433026062493
       }
     }
   },
@@ -171,30 +171,30 @@
       "2026-07-20"
     ],
     "weeks": 92,
-    "primary_index_points": 4.419188945836233,
-    "primary_uplift_pct": 4.331673995206393,
+    "primary_index_points": 4.417059381118002,
+    "primary_uplift_pct": 4.329645875590221,
     "statistical_band_95_index_points": [
-      1.7008685661442695,
-      7.137509325528196
+      1.6997599462103246,
+      7.13435881602568
     ],
     "statistical_band_95_uplift_pct": [
-      1.6671855916395906,
-      6.996162398773197
+      1.6661217352120496,
+      6.993170015968393
     ],
-    "attribution_band_upper_index_points": 7.023724945434955,
-    "attribution_band_upper_uplift_pct": 6.884631335867421,
+    "attribution_band_upper_index_points": 7.026018602686023,
+    "attribution_band_upper_uplift_pct": 6.886973853007169,
     "attribution_band_upper_definition": "whole gap over the same weeks: the unexplained residual also credited to FIFA",
-    "counterfactual_index_level": 102.02034942441851,
+    "counterfactual_index_level": 102.01895277441979,
     "decomposition_index_points": {
-      "fifa": 4.419188945836233,
-      "other_sponsorships": 0.01915936029627718,
-      "events": -0.19079776304471238,
-      "residual": 2.776174402347157,
-      "total_gap": 7.023724945434955
+      "fifa": 4.417059381118002,
+      "other_sponsorships": 0.018811075500637958,
+      "events": -0.1905369510901717,
+      "residual": 2.780685097157555,
+      "total_gap": 7.026018602686023
     },
     "specification_range_fifa_index_points": [
-      -7.668968608090379,
-      18.810563328090677
+      -7.689888964204365,
+      18.807019622041896
     ]
   },
   "assumptions": [

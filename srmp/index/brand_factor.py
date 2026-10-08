@@ -5,7 +5,9 @@ every weekly signal: x_it = lambda_i f_t + e_it. Each GWI quarterly reading is
 a noisy measurement of the factor's *average over its quarter*:
 y_q = lambda_q * (1/n_q) * sum_{t in q} f_t + u_q. The state carries the
 factor and a running within-quarter sum, so the survey informs the weekly path
-without being interpolated or pinned to any single week. Loadings and noise
+without being interpolated or pinned to any single week. The FIFA consumer-research
+(Nielsen) waves enter the same way: whole-sample Lenovo awareness per wave, each panel
+measured against its own mean across waves (ADR-0047). Loadings and noise
 variances are estimated by maximum likelihood; the Kalman smoother gives the
 weekly index and its standard error.
 
@@ -110,6 +112,45 @@ def _quarterly_signals(config: dict[str, Any], weeks: pd.DatetimeIndex) -> tuple
             pillar_of[spec["id"]] = pillar
     n_per_week = pd.Series(np.asarray(n_weeks.reindex(quarter_of_week)), index=weeks)
     return frame, pillar_of, n_per_week
+
+
+def _wave_signals(config: dict[str, Any], weeks: pd.DatetimeIndex) -> tuple[pd.DataFrame, dict[str, str], pd.DataFrame]:
+    """FIFA consumer-research (Nielsen) waves as quarter-average measurements (ADR-0047).
+
+    Each wave's whole-sample share is the base-weighted mean of its sponsorship-aware and
+    -unaware columns. Panels are different samples, so each is measured against its own mean
+    across waves (a single-wave panel carries no change and is dropped); panels in the same
+    quarter are averaged; the series is standardised over its observed quarters and placed on
+    the last week of the quarter, like GWI."""
+    spec = config.get("wave_signals") or {}
+    if not spec:
+        return pd.DataFrame(index=weeks), {}, pd.DataFrame()
+    metrics = pd.read_parquet(config["inputs"]["wave_metrics"])
+    crosstabs = pd.read_parquet(config["inputs"]["wave_crosstabs"])
+    bases = (crosstabs[crosstabs["statistic"].eq("Column n")].assign(value=lambda d: pd.to_numeric(d["value"]))
+             .groupby(["table_id", "segment"])["value"].first())
+    metrics["n"] = [bases.get((t, s), np.nan) for t, s in zip(metrics["source_table_id"], metrics["segment"])]
+    quarter_of_week = pd.PeriodIndex(weeks, freq="Q")
+    last_week = pd.Series(weeks, index=weeks).groupby(quarter_of_week).max()
+    frame, pillar_of, waves = pd.DataFrame(index=weeks), {}, []
+    for pillar, signals in spec.items():
+        for s in signals:
+            rows = metrics[metrics["metric"].eq(s["metric"])]
+            total = (rows.groupby(["reported_period", "property_id"])
+                     .apply(lambda g: pd.Series({"share": np.average(g["positive_share"], weights=g["n"]), "n": g["n"].sum()}))
+                     .reset_index())
+            total["quarter"] = pd.PeriodIndex(total["reported_period"], freq="M").asfreq("Q")
+            total = total[total.groupby("property_id")["share"].transform("size") > 1].copy()
+            total["deviation"] = total["share"] - total.groupby("property_id")["share"].transform("mean")
+            by_quarter = total.groupby("quarter")["deviation"].mean()
+            values = pd.Series(np.nan, index=weeks)
+            for quarter, value in by_quarter.items():
+                if quarter in last_week.index:
+                    values.loc[last_week[quarter]] = value
+            frame[s["id"]] = values / values.std()
+            pillar_of[s["id"]] = pillar
+            waves.append(total.assign(signal=s["id"], quarter=total["quarter"].astype(str)))
+    return frame, pillar_of, pd.concat(waves, ignore_index=True)
 
 
 def _validity_screen(weekly: pd.DataFrame, quarterly: pd.DataFrame, quarter_of_week: pd.PeriodIndex) -> pd.DataFrame:
@@ -281,7 +322,13 @@ def build_brand_factor_index(config_path: str = "config/brand_index.yaml") -> di
         moments[column] = (mean, sd)
 
     quarter_of_week = pd.PeriodIndex(weeks, freq="Q")
-    screen = _validity_screen(weekly, quarterly, quarter_of_week)
+    screen = _validity_screen(weekly, quarterly, quarter_of_week)     # P4 screen against GWI only
+    gwi_columns = list(quarterly.columns)
+    waves, wave_pillars, wave_table = _wave_signals(config, weeks)
+    quarterly = pd.concat([quarterly, waves], axis=1)
+    quarterly_pillars = {**quarterly_pillars, **wave_pillars}
+    for column in waves:
+        moments[column] = (0.0, 1.0)   # panel-demeaned and standardised in _wave_signals
     admitted = screen.loc[screen["admitted"], "signal"].tolist()
     if not admitted:
         raise ValueError("P4 validity screen admitted no weekly signal; the index cannot be built.")
@@ -298,7 +345,7 @@ def build_brand_factor_index(config_path: str = "config/brand_index.yaml") -> di
     weekly_mask = np.array([n in pillar_names for n in names])
     loading_table = pd.DataFrame({
         "signal": names, "pillar": [pillar_of[n] for n in names],
-        "frequency": ["weekly" if n in pillar_names else "quarterly" for n in names],
+        "frequency": ["weekly" if n in pillar_names else "survey wave" if n in wave_pillars else "quarterly" for n in names],
         "members": [", ".join(s for s in admitted if signal_pillars[s] == pillar_names[n]) if n in pillar_names else n
                     for n in names],
         "loading": loadings, "noise_variance": sigma2,
@@ -311,7 +358,7 @@ def build_brand_factor_index(config_path: str = "config/brand_index.yaml") -> di
     sensitivity_rows, sensitivity_summary = [], []
     for spec in config.get("sensitivities", []):
         keep = list(weekly.columns) if spec.get("force_admit") == "all" else admitted
-        q = quarterly.iloc[:, :0] if spec.get("drop_quarterly") else quarterly
+        q = quarterly.iloc[:, :0] if spec.get("drop_quarterly") else quarterly[gwi_columns] if spec.get("drop_waves") else quarterly
         alt = _fit(_pillars(weekly, signal_pillars, keep, base), q, n_per_week, base, config,
                    _anchor_log_sd(raw_weekly, signal_pillars, keep, anchor, base))
         sensitivity_rows.append(pd.DataFrame({"week": weeks.date, "sensitivity": spec["id"],
@@ -337,6 +384,9 @@ def build_brand_factor_index(config_path: str = "config/brand_index.yaml") -> di
 
     target = Path(config["outputs"]["directory"])
     target.mkdir(parents=True, exist_ok=True)
+    if not wave_table.empty:
+        wave_table.to_parquet(target / "brand_index_survey_waves.parquet", index=False)
+        wave_table.to_csv(target / "brand_index_survey_waves.csv", index=False)
     tables = {"weekly": weekly_out, "loadings": loading_table, "screen": screen,
               "sensitivities": pd.concat(sensitivity_rows, ignore_index=True) if sensitivity_rows else pd.DataFrame()}
     for key, frame in tables.items():
@@ -346,7 +396,8 @@ def build_brand_factor_index(config_path: str = "config/brand_index.yaml") -> di
     manifest = {
         "index_id": config["index_id"], "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "config_path": str(config_file), "config_sha256": hashlib.sha256(config_file.read_bytes()).hexdigest(),
-        "method": "mixed-frequency dynamic factor model (weekly AR(1) factor; GWI as quarterly-average measurements), MLE + Kalman smoother",
+        "method": "mixed-frequency dynamic factor model (weekly AR(1) factor; GWI and Nielsen survey waves as quarter-average measurements), MLE + Kalman smoother",
+        "survey_sources": {"gwi": gwi_columns, "nielsen": list(waves.columns)},
         "sample": [str(weeks.min().date()), str(weeks.max().date())], "weeks": len(weeks),
         "converged": fit["converged"], "log_likelihood": fit["llf"], "phi": fit["phi"],
         "display_scale": {**config["display_scale"], "log_points_per_factor_sd": fit["log_points_per_factor_sd"],
@@ -359,7 +410,8 @@ def build_brand_factor_index(config_path: str = "config/brand_index.yaml") -> di
         "caveats": [
             "Weekly signals are shares of attention against rival brands; a shock that moves Lenovo's rivals moves the index in the opposite direction.",
             "One common factor: dimensions that do not co-move with the others receive small loadings rather than their own pillar weight.",
-            "GWI engagement/consideration are a non-canonical anchor (ADR-0011); the survey ends at 2026Q1, so later weeks rest on the weekly signals alone.",
+            "GWI engagement/consideration are a non-canonical anchor (ADR-0011); GWI ends at 2026Q1.",
+            "Nielsen (FIFA consumer research) enters as awareness only, the one question asked the same way in every wave; appeal and purchase intent changed scale between 2024 and 2025 and are not used (ADR-0047). Its panels are measured against their own means, so the waves inform changes, not levels.",
             "Idiosyncratic errors are i.i.d.; persistent signal-specific movements may be partly absorbed by the factor.",
             "Product and price search volume is reported as a demand indicator and is not part of the index.",
         ],

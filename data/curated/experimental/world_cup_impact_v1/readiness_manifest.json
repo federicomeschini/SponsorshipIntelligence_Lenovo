@@ -1,7 +1,7 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "status": "waiting_for_world_cup_data",
-  "generated_at_utc": "2026-10-07T09:06:52.467073+00:00",
+  "generated_at_utc": "2026-10-08T08:35:03.356268+00:00",
   "role": "primary sponsorship impact evaluation; earlier announcement/FCWC SCM remains interim",
   "canonical_contracts_replaced": [],
   "config": {
@@ -26,7 +26,7 @@
       "source": "brand_index",
       "status": "available_coverage_incomplete",
       "path": "data\\curated\\index\\brand_index_weekly.parquet",
-      "sha256": "3953e1796b0d3d817120ecfd991b4a492ed3f5d736d7c25b7e1cafbedee4d064",
+      "sha256": "b8599ec9976546d21f2298a5de21c25869eb565e41319e67d69ffae7d2182b7d",
       "required_for_estimation": true,
       "note": null,
       "rows": 248,

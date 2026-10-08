@@ -146,8 +146,8 @@ Notes for agents:
 > mixed-frequency factor index (`srmp/index/brand_factor.py`, `config/brand_index.yaml`):
 > weekly signals are Lenovo's share of attention against rival brands (log ratio, so
 > market-wide demand cancels), admitted only through the P4 sign-validity screen
-> against GWI; GWI engagement and consideration enter as quarterly-average
-> measurements; display is 100 = pre-announcement average on a ratio scale
+> against GWI; GWI engagement and consideration, and Nielsen awareness from the FIFA
+> consumer-research waves (ADR-0047), enter as quarter-average measurements; display is 100 = pre-announcement average on a ratio scale
 > (1 point ≈ 1% of brand share). Product and price searches are a descriptive demand
 > indicator outside the index. The proxy-led index below is retained, unchanged, as the
 > search-salience cross-check (`data/curated/index/search_salience_index_weekly.parquet`).
@@ -274,7 +274,7 @@ index: `week | index_level | index_se | factor | weekly_signals_observed |
 survey_quarter_end | signal_* | log_share_* | product_search_demand`, with the version
 (`index_id`), loadings, validity screen and display scale in `brand_index_manifest.json`.
 Invariant: `index_level` is proportional to Lenovo's brand share of attention
-(100 = pre-announcement average); GWI waves are quarterly-average measurements, never
+(100 = pre-announcement average); GWI and Nielsen waves are quarter-average measurements, never
 pinned weeks. The proxy-led contract above applies to `search_salience_index_weekly`.
 
 **C-EXPOSURE (L3 output)**

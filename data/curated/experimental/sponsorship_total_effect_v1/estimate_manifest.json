@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_total_effect_v1",
   "status": "headline_total_sponsorship_effect_ADR_0040",
-  "generated_at_utc": "2026-10-07T08:58:19.003613+00:00",
+  "generated_at_utc": "2026-10-08T08:23:28.450960+00:00",
   "selection": {
     "selected_method": "synthetic_did",
     "selected_pool": "base_plus_sensitivity",
@@ -27,14 +27,14 @@
     ]
   },
   "total_effect": {
-    "lift_index_points": 7.478443898138874,
+    "lift_index_points": 7.480614485015264,
     "first_post_week": "2024-10-21",
     "last_week": "2026-09-14",
     "post_weeks": 100,
-    "synthetic_post_mean_index": 101.98428955915062,
+    "synthetic_post_mean_index": 101.98291113800242,
     "leave_one_donor_out_range": [
-      6.991592238403885,
-      9.865298948465938
+      6.993680791377597,
+      9.865863973306158
     ]
   },
   "primary": {
@@ -43,9 +43,9 @@
     "window": "all_post",
     "placebo_filter": "none",
     "statistic": "rmspe_ratio",
-    "lift_index_points": 7.478443898138874,
-    "pre_rmspe_index_points": 3.3950716482034333,
-    "treated_statistic": 2.893144925217174,
+    "lift_index_points": 7.480614485015264,
+    "pre_rmspe_index_points": 3.3937158510333916,
+    "treated_statistic": 2.894483994661198,
     "placebos_kept": 13,
     "p_value": 0.07142857142857142,
     "selected_design": true,
@@ -138,8 +138,8 @@
     "share_p_at_or_below_alpha": 0.7333333333333333,
     "selected_design_share_p_at_or_below_alpha": 1.0,
     "lift_range_index_points": [
-      3.8986926083992564,
-      8.041487693312227
+      3.899404130712179,
+      8.042474569945359
     ]
   },
   "note": "Headline total sponsorship effect. Primary inference is unchanged from sponsorship_counterfactual_v1; the design is selected on pre-announcement evidence only."

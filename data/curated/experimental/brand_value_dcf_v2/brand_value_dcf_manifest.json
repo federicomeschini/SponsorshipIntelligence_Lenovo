@@ -1,7 +1,7 @@
 {
   "experiment_id": "brand_value_dcf_v2",
   "status": "iso10668_income_approach_brand_earnings_split_ADR_0045",
-  "generated_at_utc": "2026-10-07T13:58:21.699185+00:00",
+  "generated_at_utc": "2026-10-08T08:36:18.945921+00:00",
   "standard": "ISO 10668 income approach, brand earnings split on economic profit",
   "valuation_date": "2026-03-31",
   "base_year": {
@@ -42,12 +42,12 @@
   "role_of_brand": {
     "definition": "brand contribution factor: brand share of the Lenovo-specific explained share-price movement (ADR-0044)",
     "values": {
-      "brand_contribution_factor": 0.23757493994372034,
-      "factor_bootstrap_p05": -0.09888836043742653,
-      "factor_bootstrap_p95": 0.6855640511003925
+      "brand_contribution_factor": 0.23742326714108267,
+      "factor_bootstrap_p05": -0.09890141725482902,
+      "factor_bootstrap_p95": 0.6853604101010107
     }
   },
-  "economic_profit_pv_usd_m": 30911.19698918641,
+  "economic_profit_pv_usd_m": 30911.196989186414,
   "inputs_used": {
     "annual_financials": {
       "FY24/25": {
@@ -97,73 +97,73 @@
     ]
   },
   "primary_result": {
-    "role_of_brand": 0.23757493994372034,
-    "explicit_pv_usd_m": 2039.834247996475,
-    "terminal_pv_usd_m": 5303.891520297995,
-    "brand_value_usd_m": 7343.72576829447,
+    "role_of_brand": 0.23742326714108267,
+    "explicit_pv_usd_m": 2038.5319752172702,
+    "terminal_pv_usd_m": 5300.505405196966,
+    "brand_value_usd_m": 7339.037380414236,
     "terminal_share_of_value": 0.7222344199175874,
     "fifa_added_brand_value_usd_m": {
-      "primary": 318.1062593844825,
-      "statistical_band_95_low": 122.43353789852924,
-      "statistical_band_95_high": 513.7789808704358,
-      "attribution_band_upper": 505.58844546417157
+      "primary": 317.75432924912957,
+      "statistical_band_95_low": 122.27729695041862,
+      "statistical_band_95_high": 513.2313615478406,
+      "attribution_band_upper": 505.4375854515508
     },
-    "value_per_brand_index_point_usd_m": 72.00840247100146,
+    "value_per_brand_index_point_usd_m": 71.96340346161635,
     "fifa_specific_uplift_pct": {
-      "primary": 4.331673995206393,
-      "statistical_band_95_low": 1.6671855916395906,
-      "statistical_band_95_high": 6.996162398773197,
-      "attribution_band_upper": 6.884631335867421
+      "primary": 4.329645875590221,
+      "statistical_band_95_low": 1.6661217352120496,
+      "statistical_band_95_high": 6.993170015968393,
+      "attribution_band_upper": 6.886973853007169
     },
     "elasticity_to_brand_share": 1.0
   },
   "by_role_definition": {
     "brand_contribution_factor": {
-      "role_of_brand": 0.23757493994372034,
-      "brand_value_usd_m": 7343.72576829447,
+      "role_of_brand": 0.23742326714108267,
+      "brand_value_usd_m": 7339.037380414236,
       "fifa_added_brand_value_usd_m": {
-        "primary": 318.1062593844825,
-        "statistical_band_95_low": 122.43353789852924,
-        "statistical_band_95_high": 513.7789808704358,
-        "attribution_band_upper": 505.58844546417157
+        "primary": 317.75432924912957,
+        "statistical_band_95_low": 122.27729695041862,
+        "statistical_band_95_high": 513.2313615478406,
+        "attribution_band_upper": 505.4375854515508
       },
-      "value_per_brand_index_point_usd_m": 72.00840247100146
+      "value_per_brand_index_point_usd_m": 71.96340346161635
     },
     "factor_bootstrap_p05": {
-      "role_of_brand": -0.09888836043742653,
-      "brand_value_usd_m": -3056.75758941896,
+      "role_of_brand": -0.09890141725482902,
+      "brand_value_usd_m": -3057.16119127374,
       "fifa_added_brand_value_usd_m": {
-        "primary": -132.4087735973589,
-        "statistical_band_95_low": -50.96182210214258,
-        "statistical_band_95_high": -213.85572509257526,
-        "attribution_band_upper": -210.44649086264332
+        "primary": -132.36425342812836,
+        "statistical_band_95_low": -50.936027088279396,
+        "statistical_band_95_high": -213.7924797679773,
+        "attribution_band_upper": -210.54589188730498
       },
-      "value_per_brand_index_point_usd_m": -29.97282819375869
+      "value_per_brand_index_point_usd_m": -29.977190856385878
     },
     "factor_bootstrap_p95": {
-      "role_of_brand": 0.6855640511003925,
-      "brand_value_usd_m": 21191.60543226889,
+      "role_of_brand": 0.6853604101010107,
+      "brand_value_usd_m": 21185.310645221925,
       "fifa_added_brand_value_usd_m": {
-        "primary": 917.9512616763369,
-        "statistical_band_95_low": 353.30339240389975,
-        "statistical_band_95_high": 1482.5991309487742,
-        "attribution_band_upper": 1458.9639081633666
+        "primary": 917.2489285818272,
+        "statistical_band_95_low": 352.97306533223457,
+        "statistical_band_95_high": 1481.5247918314199,
+        "attribution_band_upper": 1459.0268048147784
       },
-      "value_per_brand_index_point_usd_m": 207.7928426414915
+      "value_per_brand_index_point_usd_m": 207.73392727095367
     }
   },
   "sensitivity_range_usd_m": {
     "brand_contribution_factor": [
-      5795.907829447218,
-      9720.255070427058
+      5792.207600860272,
+      9714.049456614279
     ],
     "factor_bootstrap_p05": [
-      -4045.9658210408024,
-      -2412.4927597003843
+      -4046.50003393207,
+      -2412.8112954442163
     ],
     "factor_bootstrap_p95": [
-      16725.105990983735,
-      28049.49648893827
+      16720.137939795368,
+      28041.164623391942
     ],
     "grid_0.1": [
       2439.6124569452586,
@@ -191,13 +191,13 @@
     ]
   },
   "cross_check": {
-    "market_cap_route_usd_m": 5038.974935183301,
+    "market_cap_route_usd_m": 5035.757948362126,
     "brand_finance_2025_usd_m": 5663.0,
     "interbrand_2015_usd_m": 4100.0,
     "role_of_brand_implied": {
-      "market_cap_route_usd_m": 0.16301455220081168,
+      "market_cap_route_usd_m": 0.1629104803066595,
       "brand_finance_2025_usd_m": 0.18320222287027815,
-      "interbrand_2015_usd_m": 0.132638021149239
+      "interbrand_2015_usd_m": 0.13263802114923898
     },
     "sources": {
       "brand_finance": "https://static.brandirectory.com/reports/brand-finance-china-500-2025-preview.pdf",
@@ -228,7 +228,7 @@
     },
     "dominance_manifest": {
       "path": "data/curated/experimental/brand_value_dominance_v1/brand_value_dominance_manifest.json",
-      "sha256": "32be5708e7704bc97bae24d7999877c1a4117894a59578ec08561543af01051c"
+      "sha256": "0f128e7f5f48f6bc529088d5007b47cf36856acabb52bf3b5ec8e4e7eebc1884"
     }
   }
 }

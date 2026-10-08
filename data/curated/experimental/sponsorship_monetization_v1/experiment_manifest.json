@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_monetization_v1",
   "status": "attribution_bridge_built_valuation_blocked",
-  "generated_at_utc": "2026-10-07T09:51:20.149483+00:00",
+  "generated_at_utc": "2026-10-08T08:34:32.107030+00:00",
   "canonical_contracts_replaced": [],
   "purpose": "Connect property exposure and observational funnel lift to an allocation scenario, then conditionally apply royalty relief.",
   "inputs": {
@@ -15,7 +15,7 @@
     },
     "brand_index": {
       "path": "data/curated/index/brand_index_weekly.parquet",
-      "sha256": "3953e1796b0d3d817120ecfd991b4a492ed3f5d736d7c25b7e1cafbedee4d064"
+      "sha256": "b8599ec9976546d21f2298a5de21c25869eb565e41319e67d69ffae7d2182b7d"
     }
   },
   "outputs": {
@@ -57,7 +57,7 @@
   "counterfactual_gate": {
     "status": "passes_primary_placebo_test",
     "path": "data\\curated\\experimental\\sponsorship_total_effect_v1\\estimate_manifest.json",
-    "candidate_delta_index_attrib": 7.478443898138874,
+    "candidate_delta_index_attrib": 7.480614485015264,
     "donor_placebo_p_value": 0.07142857142857142,
     "use_counterfactual_candidate": false,
     "used_for_valuation": false

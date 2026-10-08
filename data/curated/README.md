@@ -6,7 +6,8 @@ Analysis-ready contract artifacts belong here. Curated outputs must satisfy the 
 
 `index/brand_index_weekly.parquet` is the Lenovo Brand Index: a weekly mixed-frequency
 dynamic factor of Lenovo's Google share of search against rival brands, with GWI
-engagement and consideration entering as quarterly-average measurements
+engagement and consideration and Nielsen awareness (FIFA consumer research, ADR-0047)
+entering as quarter-average measurements
 (`srmp/index/brand_factor.py`, `config/brand_index.yaml`). 100 = pre-announcement
 average; 1 point is about 1% of Lenovo's brand share of attention (ratio scale).
 Companion files: `brand_index_loadings`, `brand_index_validity_screen`,

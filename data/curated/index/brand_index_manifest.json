@@ -1,21 +1,30 @@
 {
   "index_id": "brand_index_v5_factor",
-  "generated_at_utc": "2026-10-07T08:54:28.600102+00:00",
+  "generated_at_utc": "2026-10-08T08:19:34.982209+00:00",
   "config_path": "config\\brand_index.yaml",
-  "config_sha256": "0ba6cd744abcb7c7e6588aac5b2d94e3ee3feb6e0a664f68f15138343474ba87",
-  "method": "mixed-frequency dynamic factor model (weekly AR(1) factor; GWI as quarterly-average measurements), MLE + Kalman smoother",
+  "config_sha256": "51d0fa4b522985ebc883a720f2c61be776c611ac40024776169370c525ffa4f6",
+  "method": "mixed-frequency dynamic factor model (weekly AR(1) factor; GWI and Nielsen survey waves as quarter-average measurements), MLE + Kalman smoother",
+  "survey_sources": {
+    "gwi": [
+      "gwi_engagement",
+      "gwi_consideration"
+    ],
+    "nielsen": [
+      "nielsen_awareness"
+    ]
+  },
   "sample": [
     "2022-01-03",
     "2026-09-28"
   ],
   "weeks": 248,
   "converged": true,
-  "log_likelihood": -421.1272227908704,
-  "phi": 0.9408049890358308,
+  "log_likelihood": -426.30379127821675,
+  "phi": 0.9408620001233079,
   "display_scale": {
     "type": "percent_of_base_share",
     "anchor_pillar": "pillar_salience",
-    "log_points_per_factor_sd": 0.07060932676429695,
+    "log_points_per_factor_sd": 0.0706045368501484,
     "reading": "100 = pre-announcement average; 110 = brand share of attention about 10% above it"
   },
   "standardisation_base": [
@@ -38,18 +47,27 @@
     "gwi_consideration": [
       0.10563636363636363,
       0.003981776670601385
+    ],
+    "nielsen_awareness": [
+      0.0,
+      1.0
     ]
   },
   "survey_fit": {
     "gwi_engagement": {
       "quarters": 17,
-      "correlation": 0.47509647265344684,
-      "change_correlation": 0.32734316363969884
+      "correlation": 0.47525917348829266,
+      "change_correlation": 0.3275532713796676
     },
     "gwi_consideration": {
       "quarters": 17,
-      "correlation": 0.5940045398026802,
-      "change_correlation": 0.2882685529225834
+      "correlation": 0.594234290297905,
+      "change_correlation": 0.28844787078324324
+    },
+    "nielsen_awareness": {
+      "quarters": 4,
+      "correlation": -0.0263250648264653,
+      "change_correlation": -0.9485345691240445
     }
   },
   "validity_screen": {
@@ -70,29 +88,34 @@
         "wikipedia_share_of_attention"
       ],
       "survey_used": true,
-      "correlation_with_headline": 0.9271800835333782,
-      "post_announcement_mean": 115.4429463719548,
+      "correlation_with_headline": 0.9271503433673517,
+      "post_announcement_mean": 115.44431336756837,
       "survey_fit": {
         "gwi_engagement": {
           "quarters": 17,
-          "correlation": 0.4481747540286458,
-          "change_correlation": 0.2188611509027044
+          "correlation": 0.4483816387986203,
+          "change_correlation": 0.21882081191028935
         },
         "gwi_consideration": {
           "quarters": 17,
-          "correlation": 0.5667838939296835,
-          "change_correlation": 0.12803863386857697
+          "correlation": 0.567139198272824,
+          "change_correlation": 0.12793427797508847
+        },
+        "nielsen_awareness": {
+          "quarters": 4,
+          "correlation": 0.09335289845469187,
+          "change_correlation": -0.8847957560052381
         }
       }
     },
     {
       "id": "weekly_only_no_survey",
-      "description": "GWI removed: the weekly signals alone",
+      "description": "GWI and Nielsen removed: the weekly signals alone",
       "weekly_signals": [
         "google_share_of_search"
       ],
       "survey_used": false,
-      "correlation_with_headline": 0.9998613484416908,
+      "correlation_with_headline": 0.9998574559964434,
       "post_announcement_mean": 109.3364672348375,
       "survey_fit": {
         "gwi_engagement": {
@@ -104,6 +127,38 @@
           "quarters": 17,
           "correlation": 0.5752293978398061,
           "change_correlation": 0.26000759040716226
+        },
+        "nielsen_awareness": {
+          "quarters": 4,
+          "correlation": -0.03482892105090539,
+          "change_correlation": -0.9496600196457654
+        }
+      }
+    },
+    {
+      "id": "gwi_only",
+      "description": "Nielsen waves removed: GWI only (the index before ADR-0047)",
+      "weekly_signals": [
+        "google_share_of_search"
+      ],
+      "survey_used": true,
+      "correlation_with_headline": 0.9999998029194075,
+      "post_announcement_mean": 109.35299618462372,
+      "survey_fit": {
+        "gwi_engagement": {
+          "quarters": 17,
+          "correlation": 0.47509647265344684,
+          "change_correlation": 0.32734316363969884
+        },
+        "gwi_consideration": {
+          "quarters": 17,
+          "correlation": 0.5940045398026802,
+          "change_correlation": 0.2882685529225834
+        },
+        "nielsen_awareness": {
+          "quarters": 4,
+          "correlation": -0.027508796979383913,
+          "change_correlation": -0.9486719429220312
         }
       }
     }
@@ -111,7 +166,8 @@
   "caveats": [
     "Weekly signals are shares of attention against rival brands; a shock that moves Lenovo's rivals moves the index in the opposite direction.",
     "One common factor: dimensions that do not co-move with the others receive small loadings rather than their own pillar weight.",
-    "GWI engagement/consideration are a non-canonical anchor (ADR-0011); the survey ends at 2026Q1, so later weeks rest on the weekly signals alone.",
+    "GWI engagement/consideration are a non-canonical anchor (ADR-0011); GWI ends at 2026Q1.",
+    "Nielsen (FIFA consumer research) enters as awareness only, the one question asked the same way in every wave; appeal and purchase intent changed scale between 2024 and 2025 and are not used (ADR-0047). Its panels are measured against their own means, so the waves inform changes, not levels.",
     "Idiosyncratic errors are i.i.d.; persistent signal-specific movements may be partly absorbed by the factor.",
     "Product and price search volume is reported as a demand indicator and is not part of the index."
   ]

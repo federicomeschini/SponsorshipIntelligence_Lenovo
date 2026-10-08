@@ -1,30 +1,30 @@
 {
   "experiment_id": "market_implied_earnings_bridge_v1",
   "status": "operational_positive_planning_calibration",
-  "generated_at_utc": "2026-10-07T09:07:21.838738+00:00",
+  "generated_at_utc": "2026-10-08T08:35:46.694964+00:00",
   "accepted_for_planning": true,
   "accepted_for_total_sponsorship_valuation": false,
   "superseded_for_total_return_by": "sponsorship_total_return_v3",
   "accepted_for_accounting_or_causal_claim": false,
   "selected_stock_response": {
     "horizon_weeks": 0,
-    "empirical_return_percent_per_BI_point": 0.24338699876442071,
-    "planning_return_percent_per_BI_point": 0.24338699876442071,
-    "empirical_lower_95_percent": -0.26884238249286097,
-    "empirical_upper_95_percent": 0.7556163800217024,
+    "empirical_return_percent_per_BI_point": 0.24356820384019467,
+    "planning_return_percent_per_BI_point": 0.24356820384019467,
+    "empirical_lower_95_percent": -0.2691345200516119,
+    "empirical_upper_95_percent": 0.7562709277320013,
     "planning_lower_percent": 0.0,
-    "planning_upper_percent": 0.7556163800217024,
-    "p_value_normal_approx": 0.3516991139178136,
+    "planning_upper_percent": 0.7562709277320013,
+    "p_value_normal_approx": 0.3517855226925093,
     "p_value_holm": 1.0,
     "monotonicity_rule": "Coefficient is floored at zero for commercial planning; the empirical estimate and interval remain reported."
   },
   "operational_unit_mapping": {
-    "statement": "One BI point maps to a 0.243% increase in market-implied annual adjusted earnings under a constant earnings multiple.",
+    "statement": "One BI point maps to a 0.244% increase in market-implied annual adjusted earnings under a constant earnings multiple.",
     "annual_adjusted_earnings_base_usd_m": 2049.0,
     "fiscal_year": "FY25/26",
-    "annual_adjusted_earnings_usd_m_per_BI_point": 4.98699960468298,
+    "annual_adjusted_earnings_usd_m_per_BI_point": 4.990712496685588,
     "planning_lower_usd_m_per_BI_point": 0.0,
-    "planning_upper_usd_m_per_BI_point": 15.482579626644682
+    "planning_upper_usd_m_per_BI_point": 15.495991309228707
   },
   "market_value_cross_check": {
     "reference_date": "2026-03-31",
@@ -32,14 +32,14 @@
     "official_market_cap_usd_m": 14500.0,
     "official_market_cap_hkd_m": 113500.0,
     "adjusted_earnings_multiple": 7.076622742801367,
-    "equity_value_usd_m_per_BI_point": 35.291114820841,
-    "equity_value_divided_by_multiple_usd_m": 4.98699960468298
+    "equity_value_usd_m_per_BI_point": 35.317389556828225,
+    "equity_value_divided_by_multiple_usd_m": 4.990712496685588
   },
   "scenarios_artifact": "market_implied_earnings_scenarios.parquet",
   "inputs": {
     "stock_response_manifest": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json",
-      "sha256": "1fad0f0ce114220452e0fb20905dde9c0b2049df5440c7e9762080b768f7e747"
+      "sha256": "75098739bed7f9769f02a42991146fe7c49aeff156e30637e0672a8ff9301460"
     },
     "quarterly_financials": {
       "path": "data/reference/lenovo_quarterly_financials.csv",
@@ -51,15 +51,15 @@
     },
     "total_effect_manifest": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/estimate_manifest.json",
-      "sha256": "c53e26e0df0df32993f57915ce9f062c133421ce1c779d0e2cde33cc11259b4b"
+      "sha256": "278a900565489c2b7b0b6201b56594b17997c3d769c1fea70897f57e57f3cd65"
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "f1087a40380df5b2ac43d17a3d9b1c3e130b9e296c61bedb364c70bf251f7266"
+      "sha256": "94f661563a81f9d87b7bd72e3ef3a1c33ea8da9724783042c7f5d2ee39e4a442"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",
-      "sha256": "b0a197a9767b800af4cfb0570c84c9f5c0cb7a7227bf236322ee18b2c77d3caf"
+      "sha256": "6cbb71b4f5557eea51e122e4b19bf3efb645686a8dad9986d0366f4043ae26fa"
     }
   },
   "guardrails": [

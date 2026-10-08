@@ -484,3 +484,35 @@ Append-only ADR log for choices not fixed by `ARCHITECTURE.md`.
   - **Ceiling.** The whole gap, the attribution ceiling, does not use exposure data, so it already contains any television effect.
   - **Dashboard.** The Method page for FIFA exposure links to an explanation of this check.
   - **Open item.** The World Cup weeks are simulated, and the simulated series overlaps social media by construction. The World Cup media-value rows (June–July 2026) would settle it and should be requested from the client or Blinkfire.
+
+## ADR-0047 - Nielsen waves in the Brand Index
+
+- **Context:** Besides GWI, the raw survey data include the FIFA consumer-research waves, a client export that the owner identifies as Nielsen. There are seven national samples of about 20,000 people each: World Cup panel June 2024, July 2025 and February 2026; Women's World Cup panel June 2024, July 2025 and April 2026; one Club World Cup wave in August 2025. Each reports Lenovo awareness, appeal and purchase intent for sponsorship-aware and -unaware respondents, with bases. A read-only trial showed that adding them leaves the index unchanged. The owner asked to include them, so that the Brand Index is built on both GWI and Nielsen.
+- **Decision:** `brand_factor` adds the Nielsen waves as a survey measurement (`_wave_signals`, `wave_signals` in `config/brand_index.yaml`).
+  - **Whole-sample awareness per wave:** the base-weighted mean of the aware and unaware columns.
+  - **Panels compared only with themselves:** each panel is measured against its own mean across waves, because the panels are different samples. The single Club World Cup wave carries no change and is dropped.
+  - **Placement:** panels in the same quarter are averaged; the series is standardised and enters, like GWI, as the factor's average over the wave's quarter.
+  - **Awareness only.** Appeal and purchase intent changed from a 0–10 scale (2024) to categorical (2025 on), and the only pre-announcement waves are from June 2024.
+  - **Validity screen:** it stays on GWI.
+  - **Index gate:** the test that every survey series must correlate positively with the index now applies to GWI, the anchor surveys. Nielsen's agreement is reported, not gated.
+  - **Sensitivity:** a new "GWI only" variant reproduces the index before this decision.
+- **Result:**
+  - **Weight.** Nielsen awareness loads 0.13; the factor explains 2% of its variance, against 47% and 62% of GWI engagement and consideration.
+  - **Agreement.** Its agreement with the index is nil over its 4 quarters: correlation −0.03 in levels and −0.95 in changes. The World Cup panel rises (70.8% → 74.6%) while the Women's World Cup panel falls (64.8% → 63.7%).
+  - **Index.** Unchanged to within 0.05 points in any week; the average since the announcement is 109.4.
+  - **Downstream:** full pipeline re-run, compared with the run before this decision:
+
+    | Result | GWI only (before) | GWI and Nielsen (now) |
+    |---|---|---|
+    | Brand Index, average since the announcement | 109.41 | 109.41 |
+    | Total effect (Brand Index points) | 7.478 | 7.481 |
+    | Significance against rival brands (p) | 0.071 | 0.071 |
+    | FIFA-specific effect (points) | 4.419 | 4.417 |
+    | FIFA-specific uplift (% brand share) | 4.332% | 4.330% |
+    | 95% band (points) | 1.70 to 7.14 | 1.70 to 7.13 |
+    | Brand contribution factor | 23.76% | 23.74% |
+    | Brand value (US$M) | 7,344 | 7,339 |
+    | FIFA-added brand value (US$M) | 318.1 | 317.8 |
+
+  - **Unchanged:** the selected design (synthetic difference-in-differences, 13 rivals).
+- **Consequences:** The Brand Index is described as built on Google share of search with the GWI and Nielsen surveys. Notebook 05 (§5.5b) documents the Nielsen waves, their weak agreement and the question change. Further Nielsen waves (post-World Cup) enter automatically when staged.

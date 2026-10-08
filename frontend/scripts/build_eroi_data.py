@@ -320,7 +320,7 @@ METHOD_LABELS = {"synthetic_did": "Synthetic difference-in-differences", "genera
                  "base_plus_sensitivity": "13 core rivals", "expanded": "26 rivals", "expanded_plus_sensitivity": "28 rivals",
                  "google_share_of_search": "Google share of search", "wikipedia_share_of_attention": "Wikipedia share of attention",
                  "pillar_salience": "Weekly attention (Google share of search)", "gwi_engagement": "GWI engagement",
-                 "gwi_consideration": "GWI consideration"}
+                 "gwi_consideration": "GWI consideration", "nielsen_awareness": "Nielsen awareness"}
 
 
 def build_method() -> dict:
@@ -345,8 +345,10 @@ def build_method() -> dict:
                         "consideration": r(x.gwi_consideration_level_corr, 2), "considerationChange": r(x.gwi_consideration_change_corr, 2),
                         "admitted": bool(x.admitted)} for x in screen.itertuples()],
             "surveyQuarters": bi["survey_fit"]["gwi_engagement"]["quarters"],
+            "nielsenWaves": int(len(pd.read_parquet(ROOT / "data/curated/index/brand_index_survey_waves.parquet"))),
             "sensitivities": [{"label": {"all_weekly_signals_admitted": "Every weekly signal admitted",
-                                         "weekly_only_no_survey": "Weekly signals only, no survey"}.get(x["id"], x["id"]),
+                                         "weekly_only_no_survey": "Weekly signals only, no survey",
+                                         "gwi_only": "GWI only, without Nielsen"}.get(x["id"], x["id"]),
                                "corr": r(x["correlation_with_headline"], 3), "postMean": r(x["post_announcement_mean"], 1)}
                               for x in bi["sensitivities"]],
         },

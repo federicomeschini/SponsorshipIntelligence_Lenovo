@@ -32,6 +32,13 @@ quarterly_signals:                # GWI population survey (non-canonical anchor,
   consideration_intent:
     - {id: gwi_consideration, column: consideration}
 
+# FIFA consumer research waves (Nielsen; FWC, FWWC and CWC panels, national samples), ADR-0047.
+# Awareness only: the one Lenovo question asked the same way in every wave (2024 appeal and
+# purchase intent use a different scale). Not part of the P4 validity screen, which stays on GWI.
+wave_signals:
+  awareness:
+    - {id: nielsen_awareness, metric: brand_awareness}
+
 # Descriptive only, never in the index: Lenovo product and price search volume
 # (log, not normalised), the PC-market demand the index is built to exclude.
 product_demand_indicator:
@@ -47,12 +54,15 @@ model:
 # Reported next to the headline index; never replace it.
 sensitivities:
   - {id: all_weekly_signals_admitted, description: "every weekly signal enters, validity screen overridden", force_admit: all}
-  - {id: weekly_only_no_survey, description: "GWI removed: the weekly signals alone", drop_quarterly: true}
+  - {id: weekly_only_no_survey, description: "GWI and Nielsen removed: the weekly signals alone", drop_quarterly: true}
+  - {id: gwi_only, description: "Nielsen waves removed: GWI only (the index before ADR-0047)", drop_waves: true}
 
 inputs:
   trends: data/curated/trends/trends_weekly_averaged.parquet
   wikipedia: data/staged/wikipedia/wikipedia_pageviews_daily.parquet
   survey: data/staged/survey/brand_index_wave_anchor_constructed.parquet
+  wave_metrics: data/staged/survey/segmented_perception_wave_metrics.parquet
+  wave_crosstabs: data/staged/survey/consumer_research_crosstabs.parquet
   donor_trends: data/curated/trends/jointly_scaled_donor_trends.parquet
   donor_registry: data/reference/counterfactual_donor_registry.csv
 
