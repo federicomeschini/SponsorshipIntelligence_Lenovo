@@ -280,3 +280,15 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **Sources:** chart source lines list Nielsen, and the Data sources page has a Nielsen row.
   - **Tables:** the loadings table shows the Nielsen series, and the variants table adds "GWI only, without Nielsen".
 - **Consequences:** Figures are rebuilt from the pipeline; every change is a few hundredths (ADR-0047).
+
+## FE-021 — Television page conclusion reworded
+
+- **Context:** The owner found the television page's conclusion misleading and defensive. It said television "adds nothing of its own" and that "no effect is being left out". On the observed weeks, however, television's part is +1.1 points, and with the World Cup simulated the total rises from 4.42 to about 4.7.
+- **Decision:** The conclusion becomes "What the test shows", in four factual points with the numbers from `method.tv`:
+  - television and social media move together;
+  - adding television keeps the result within its band;
+  - the split between the two series is not stable, while the total barely moves;
+  - why television is not in the headline, with the ceiling and a re-run when World Cup television data arrive.
+
+  The lead, the callout and the test notes drop "no effect of its own" and "adds nothing".
+- **Consequences:** Wording only; the figures are unchanged.

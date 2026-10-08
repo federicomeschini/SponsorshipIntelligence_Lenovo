@@ -997,7 +997,7 @@
     const call = el("a", "topic-callout reveal");
     call.href = "#/method/television";
     call.innerHTML = `<div><div class="topic-callout-k">In depth</div><div class="topic-callout-t">Why is there no television exposure?</div>
-      <p>Exposure is measured on social media. We tested adding television, observed and simulated through the World Cup: it has no effect of its own on the result.</p></div>
+      <p>Exposure is measured on social media. We tested adding television, observed and simulated through the World Cup: the FIFA-specific effect stays within its band.</p></div>
       <span class="bar-btn">Read →</span>`;
     root.append(call);
   }
@@ -1005,7 +1005,7 @@
   function topicTelevision(root) {
     const TV = MT.tv, S = TV.series;
     head(root, { kicker: "Method · Step 01 · FIFA exposure", title: "Why is there no television exposure?",
-      lead: "The exposure measure counts FIFA social media impressions. No television measure covers the whole partnership, so television is not part of the primary estimate. We tested adding it: television shows no effect of its own, because it rises and falls in the same weeks as social media." });
+      lead: "The exposure measure counts FIFA social media impressions. No television measure covers the whole partnership, so television is not part of the primary estimate. We tested adding it: the FIFA-specific effect stays within its band, because television rises and falls in the same weeks as social media." });
     kpiRow(root, [
       { v: `${F.month(TV.coverage[0])} – ${F.month(TV.coverage[1])}`, k: "Television data available", n: "Not the announcement months, not the 2026 World Cup" },
       { v: TV.corrWeekly.toFixed(2), k: "Television vs social media", n: "Week-by-week correlation: both peak in match weeks" },
@@ -1045,23 +1045,21 @@
       ["Social media + television", `${F.pts(TV.observed.withTv)}`],
       ["of which television", F.pts(TV.observed.tvPart)],
     ], { primary: 0 });
-    note(p2, `Television takes over part of what social media already explains, and the total falls by ${(TV.observed.socialOnly - TV.observed.withTv).toFixed(1)} points: it adds no explanatory power of its own.`);
+    note(p2, `Television takes over part of what social media already explains, and the total falls by ${(TV.observed.socialOnly - TV.observed.withTv).toFixed(1)} points.`);
     const p3 = panel(right, { label: "Test 2", title: "Simulating television through the World Cup",
       sub: `Value per match by stage from the ${TV.calibrationMatches}-match Club World Cup (knockout ${TV.perMatch.knockout.toFixed(1)}×, semi-final and final ${TV.perMatch.late.toFixed(1)}× a group match), applied to the ${TV.worldCupMatches} World Cup matches.` });
     const sgn = (v) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2);
     table(p3, [{ t: "World Cup audience scenario" }, { t: "Size", num: true }, { t: "Social", num: true }, { t: "TV", num: true }],
       TV.scenarios.map((x) => [x.label, x.scale.toFixed(1) + "×", sgn(x.socialPart), sgn(x.tvPart)]));
-    note(p3, `Full sample to July 2026, Brand Index points. Television's part is slightly negative and not significant in every scenario: it adds nothing. Because the two series move together, social media's part shifts when television is added; the total (${F.pts(TV.range[0])} to ${F.pts(TV.range[1])}) stays inside the band of the ${F.pts(TV.primary)} estimate.`);
+    note(p3, `Full sample to July 2026, Brand Index points. Television's part is slightly negative and not significant in every scenario. Because the two series move together, social media's part shifts when television is added; the total (${F.pts(TV.range[0])} to ${F.pts(TV.range[1])}) stays inside the band of the ${F.pts(TV.primary)} estimate.`);
 
-    const p4 = panel(col(pairGrid(root), 12), { label: "Conclusion", title: "Why social media exposure is enough" });
+    const p4 = panel(col(pairGrid(root), 12), { label: "Conclusion", title: "What the test shows" });
     const ul = el("ul", "caveats");
     [
-      "<b>Same timing.</b> Television and social media peak in the same match weeks. The FIFA-specific effect is read from the timing of exposure, which social media already captures.",
-      "<b>Television adds nothing of its own.</b> On the observed weeks it takes over part of social media's share and the total falls; with the World Cup simulated, its contribution is slightly negative and not significant under every audience size. There is no effect being left out.",
-      `<b>Small shifts are noise.</b> Two series that peak together split the same effect differently when both are included. The total moves by at most ${TV.maxChange.toFixed(1)} points, well inside the estimate's 95% band, and not because of television.`,
-      "<b>Simulated data stay out of the headline.</b> Television data cover 11 months and miss the World Cup, which would have to be simulated. Including it would add assumptions to the primary estimate without adding information.",
-      "<b>Already in the ceiling.</b> The whole gap to the no-sponsorship twin does not use exposure data, so any television effect is already part of it.",
-      "<b>Next data.</b> When television data for the World Cup weeks become available, the check is re-run on observed figures.",
+      "<b>Television and social media move together.</b> Both peak in the same match weeks, so social media already tracks when FIFA exposure happens, which is what the FIFA-specific effect is estimated from.",
+      `<b>Adding television keeps the result within its band.</b> On the weeks with television data, the FIFA effect is ${F.pts(TV.observed.withTv)} with television against ${F.pts(TV.observed.socialOnly)} without. Through the World Cup, with television simulated, it is ${F.pts(TV.range[0])} to ${F.pts(TV.range[1])} against ${F.pts(TV.primary)}, inside the 95% band (${F.pts(TV.band[0])} to ${F.pts(TV.band[1])}).`,
+      `<b>The split between the two is not stable.</b> Because they peak together, the model divides the effect between them differently depending on the weeks: television's part is ${F.pts(TV.observed.tvPart)} on the observed weeks and ${F.pts(TV.tvPartRange[1])} to ${F.pts(TV.tvPartRange[0])} with the World Cup simulated, while the total barely moves.`,
+      `<b>Why television is not in the headline.</b> Its data cover ${F.month(TV.coverage[0])} to ${F.month(TV.coverage[1])} only, so the World Cup weeks would have to be simulated. The whole gap to the no-sponsorship twin (${F.pts(FS.attribution_band_upper_index_points)}, the ceiling) does not depend on exposure data, so any television effect is already inside it. The check will be re-run when World Cup television data arrive.`,
     ].forEach((x) => ul.append(el("li", null, x)));
     p4.append(ul);
   }
