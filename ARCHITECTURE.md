@@ -358,7 +358,7 @@ banned_features: [blinkfire.media_value]
 | W-05 | **Spurious regression risk on trending series** | Index and adstock enter regressions in differences or with deterministic trend controls; unit-root screening (ADF/KPSS) logged per series; never regress two levels series without cointegration justification (which is out of scope → so never). |
 | W-06 | **Broadcast/earned exposure not in Blinkfire** (biggest World Cup exposure component missing) | Declared blind spot: caveat CV-01/CV-02 on affected views. Elasticities are labelled "per owned/social impression, upward-biased if broadcast co-moves". `[OPEN]` optional extension: ingest GRP/broadcast audience data if client provides; schema slot reserved in C-EXPOSURE (`channel` column). |
 | W-07 | **HKEX timezone/calendar vs. event timestamps** | All D7 timestamps stored in UTC + local tz; mapping rule: event → first HKEX trading session with a close AFTER the event moment. Half-day sessions and HK holidays from exchange calendar package. Unit-tested. |
-| W-08 | **Blinkfire media_value contamination** | Column ingested but registered in `banned_features`. CI test fails the build if media value is read anywhere except its ingest and the ADR-0028 relative-intensity sensitivity, or if that sensitivity uses monetary totals. Monetary amounts appear only in the V0 comparison view. |
+| W-08 | **Blinkfire media_value contamination** | Column ingested but registered in `banned_features`. CI test fails the build if media value is read anywhere except its ingest, the ADR-0028 relative-intensity sensitivity and the ADR-0046 television check, or if either uses monetary totals. Monetary amounts appear only in the V0 comparison view. |
 | W-09 | **Trends geo/language composition drift** | Query families defined per geo in `queries_trends.yaml` (incl. "联想" for CN where Google coverage is unreliable → flag CN as low-quality geo; prefer Wikipedia zh pageviews for CN salience). Composition fixed by config version; changes require a DECISIONS.md entry. |
 | W-10 | **Proxy structural breaks** (Wikipedia redesigns, GDELT ingest changes, Trends rebasing) | Break detection (Bai–Perron or simple CUSUM) on every proxy at refresh; detected break → proxy auto-moved to `watchlist`, index re-estimated without it, alert emitted. |
 | W-11 | **Endogenous exposure timing** (posts spike when brand news is good) | GDELT tone as control in L4a; week FE in L4b absorb brand-wide shocks; robustness: re-estimate excluding product-launch weeks. Documented residual risk. |
@@ -405,7 +405,7 @@ Once a layer's output is validated by a human, freeze key numbers (e.g., δ̂, �
 ## 11. Agent guardrails — hard constraints
 
 **MUST NOT**
-1. Use `blinkfire.media_value` (or any AVE-style monetary exposure valuation) as a monetary model input; the only permitted model use is the unitless relative-intensity sensitivity of ADR-0028. (P1, W-08)
+1. Use `blinkfire.media_value` (or any AVE-style monetary exposure valuation) as a monetary model input; the only permitted model uses are the unitless relative-intensity sensitivity of ADR-0028 and the television check of ADR-0046. (P1, W-08)
 2. Regress stock prices in levels, or include stock returns/prices as an input to the Brand Index. (P2; circularity)
 3. Interpolate the survey linearly or describe GWI calibration points as weekly anchors. (P3)
 4. Admit a proxy into L2 that has not passed the L1 gate, or keep one that a structural-break check has quarantined. (P4, W-10)

@@ -1,0 +1,51 @@
+experiment_id: tv_exposure_check_v1
+status: sensitivity_ADR_0046   # does leaving television out of the exposure measure bias the FIFA-specific effect?
+# Blinkfire measures FIFA social media impressions only. The only broadcast-inclusive measure is the
+# client's media-value export (May 2025 - March 2026, no World Cup). Media value enters only as a
+# unitless relative intensity (ADR-0028); no monetary amount is used or reported (P1).
+
+inputs:
+  exposure_timing_weekly: data/curated/experimental/sponsorship_exposure_timing_v1/exposure_timing_weekly.parquet
+  exposure_timing_manifest: data/curated/experimental/sponsorship_exposure_timing_v1/exposure_timing_manifest.json
+  media_values: data/staged/media_values/media_values_daily.parquet
+  blinkfire: data/staged/blinkfire/blinkfire_exposure_weekly.parquet
+  fifa_calendar: data/staged/fifa_calendar/official_fifa_calendar.parquet
+  property_taxonomy: data/reference/property_taxonomy.csv
+
+measure: media_value_qi        # quality-adjusted; only its weekly shape is used
+adstock_delta: 0.80            # same carryover as the Blinkfire exposure
+hac_lags: 4
+
+# Calibration tournament: FIFA Club World Cup 2025, the only senior FIFA tournament the export covers.
+# Matches per day by stage, from FIFA's official schedule (14 Jun - 13 Jul 2025, 63 matches).
+calibration:
+  competition: FIFA Club World Cup
+  source: "FIFA, Club World Cup 2025 match schedule (fifa.com)"
+  matches_per_day:
+    group:    {"2025-06-14": 1, "2025-06-15": 4, "2025-06-16": 3, "2025-06-17": 4, "2025-06-18": 4, "2025-06-19": 4,
+               "2025-06-20": 4, "2025-06-21": 4, "2025-06-22": 4, "2025-06-23": 4, "2025-06-24": 4, "2025-06-25": 4,
+               "2025-06-26": 4}
+    knockout: {"2025-06-28": 2, "2025-06-29": 2, "2025-06-30": 2, "2025-07-01": 2, "2025-07-04": 2, "2025-07-05": 2}
+    late:     {"2025-07-08": 1, "2025-07-09": 1, "2025-07-13": 1}
+  tail_week_after_final: "2025-07-14"
+
+# World Cup 2026 stages (official FIFA calendar) mapped to the calibration stages.
+stage_map:
+  First Stage: group
+  Round of 32: knockout
+  Round of 16: knockout
+  Quarter-final: knockout
+  Semi-final: late
+  Bronze final: late
+  Final: late
+match_timezone: America/New_York
+
+# Forward scenarios for April - July 2026 (no FIFA tournament before 11 June 2026).
+scenarios:
+  - {id: same_per_match, label: "Same value per match as the Club World Cup", scale: 1.0}
+  - {id: audience_x3, label: "Three times the Club World Cup audience (assumed)", scale: 3.0}
+  - {id: blinkfire_per_match, label: "Scaled by Blinkfire impressions per match", scale: blinkfire_per_match}
+  - {id: blinkfire_linked, label: "Proportional to weekly Blinkfire FIFA impressions", scale: blinkfire_weekly}
+
+outputs:
+  directory: data/curated/experimental/tv_exposure_check_v1

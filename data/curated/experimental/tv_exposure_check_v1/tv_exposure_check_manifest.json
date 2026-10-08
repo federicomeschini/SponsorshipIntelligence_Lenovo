@@ -1,0 +1,212 @@
+{
+  "experiment_id": "tv_exposure_check_v1",
+  "status": "sensitivity_ADR_0046",
+  "role": "sensitivity_only_relative_exposure_intensity",
+  "decision": "ADR-0046",
+  "monetary_totals_used": false,
+  "generated_at_utc": "2026-10-08T07:59:51.268824+00:00",
+  "tv_coverage": {
+    "from": "2025-04-28",
+    "to": "2026-03-30",
+    "misses": [
+      "October 2024 - April 2025 (announcement months)",
+      "2026 Men's World Cup (June - July 2026)"
+    ]
+  },
+  "primary_fifa_specific_index_points": 4.419188945836233,
+  "primary_band_95_index_points": [
+    1.7008685661442695,
+    7.137509325528196
+  ],
+  "overlap": {
+    "weeks": 49,
+    "weeks_with_tv_value": 29,
+    "corr_tv_vs_social_weekly": 0.6095802344625442,
+    "corr_tv_vs_social_adstock_log": 0.5621178542991292,
+    "corr_tv_vs_gap": 0.20586206600823165,
+    "corr_social_vs_gap": 0.51745405135965
+  },
+  "observed_window": {
+    "to": "2026-03-30",
+    "social_only": {
+      "weeks": 222,
+      "post_weeks": 76,
+      "r_squared": 0.6787320567300512,
+      "mean_gap": 5.427941039485657,
+      "fifa_total": 4.9605347126994035,
+      "social_part": 4.9605347126994035,
+      "tv_part": null,
+      "not_attributed": 0.4674063267862536,
+      "p_social": 0.000192332420410501,
+      "p_tv": null
+    },
+    "social_and_tv": {
+      "weeks": 222,
+      "post_weeks": 76,
+      "r_squared": 0.702553910613477,
+      "mean_gap": 5.427941039485657,
+      "fifa_total": 4.226621375273212,
+      "social_part": 3.0878114145548023,
+      "tv_part": 1.1388099607184101,
+      "not_attributed": 1.2013196642124448,
+      "p_social": 0.03478356468946639,
+      "p_tv": 0.09330397348007503
+    },
+    "tv_only": {
+      "weeks": 222,
+      "post_weeks": 76,
+      "r_squared": 0.6848881343203703,
+      "mean_gap": 5.427941039485657,
+      "fifa_total": 1.651000169799491,
+      "social_part": null,
+      "tv_part": 1.651000169799491,
+      "not_attributed": 3.7769408696861664,
+      "p_social": null,
+      "p_tv": 0.013894291429704133
+    }
+  },
+  "calibration": {
+    "competition": "FIFA Club World Cup",
+    "matches": 63,
+    "source": "FIFA, Club World Cup 2025 match schedule (fifa.com)",
+    "value_per_match_relative_to_group": {
+      "group": 1.0,
+      "knockout": 1.7429381716680408,
+      "late": 2.544256923438942
+    },
+    "fit_weekly_correlation": 0.999588889378059,
+    "tail_share_week_after_final": 0.0481903094230303,
+    "weekly": [
+      {
+        "week": "2025-06-09",
+        "group": 5,
+        "knockout": 0,
+        "late": 0,
+        "observed_share": 0.06625851226199557,
+        "fitted_share": 0.0653008649577499
+      },
+      {
+        "week": "2025-06-16",
+        "group": 27,
+        "knockout": 0,
+        "late": 0,
+        "observed_share": 0.34917818373655113,
+        "fitted_share": 0.3526246707718494
+      },
+      {
+        "week": "2025-06-23",
+        "group": 16,
+        "knockout": 4,
+        "late": 0,
+        "observed_share": 0.3055317460965303,
+        "fitted_share": 0.3000150640070414
+      },
+      {
+        "week": "2025-06-30",
+        "group": 0,
+        "knockout": 8,
+        "late": 0,
+        "observed_share": 0.17934625123973907,
+        "fitted_share": 0.18210459228448356
+      },
+      {
+        "week": "2025-07-07",
+        "group": 0,
+        "knockout": 0,
+        "late": 3,
+        "observed_share": 0.09968530666518394,
+        "fitted_share": 0.09968530666518394
+      }
+    ]
+  },
+  "world_cup_matches": 104,
+  "social_impressions_per_match": {
+    "club_world_cup": 5872226.095238095,
+    "world_cup": 62783397.307692304
+  },
+  "blinkfire_scale": 10.691583786020196,
+  "scenarios": [
+    {
+      "scenario": "same_per_match",
+      "label": "Same value per match as the Club World Cup",
+      "world_cup_vs_club_world_cup": 1.7170174249717027,
+      "fifa_total_with_tv": 4.6917086940939905,
+      "social_part": 5.06453014025031,
+      "tv_part": -0.3728214461563194,
+      "p_tv": 0.612703317192958,
+      "not_attributed_with_tv": 2.3320162513409644,
+      "fifa_total_tv_only": 0.3283982331239377,
+      "p_tv_only": 0.618441802981842,
+      "change_vs_primary": 0.27251974825775793,
+      "model_error_slope_per_sd": -1.130478483993376,
+      "model_error_p": 0.10878505094380896
+    },
+    {
+      "scenario": "audience_x3",
+      "label": "Three times the Club World Cup audience (assumed)",
+      "world_cup_vs_club_world_cup": 5.1510522749151075,
+      "fifa_total_with_tv": 4.742118991636742,
+      "social_part": 5.212604790959296,
+      "tv_part": -0.470485799322554,
+      "p_tv": 0.4076915264378448,
+      "not_attributed_with_tv": 2.2816059537982127,
+      "fifa_total_tv_only": 0.09387215078083154,
+      "p_tv_only": 0.8657573167981675,
+      "change_vs_primary": 0.32293004580050955,
+      "model_error_slope_per_sd": -1.1144055207946648,
+      "model_error_p": 0.055178535527627484
+    },
+    {
+      "scenario": "blinkfire_per_match",
+      "label": "Scaled by Blinkfire impressions per match",
+      "world_cup_vs_club_world_cup": 18.357635661141607,
+      "fifa_total_with_tv": 4.7209280283966235,
+      "social_part": 5.1902983815151815,
+      "tv_part": -0.4693703531185578,
+      "p_tv": 0.27347006671082685,
+      "not_attributed_with_tv": 2.3027969170383313,
+      "fifa_total_tv_only": -0.04486082187933894,
+      "p_tv_only": 0.9178014583927119,
+      "change_vs_primary": 0.30173908256039095,
+      "model_error_slope_per_sd": -1.0521420951079332,
+      "model_error_p": 0.03171765197865836
+    },
+    {
+      "scenario": "blinkfire_linked",
+      "label": "Proportional to weekly Blinkfire FIFA impressions",
+      "world_cup_vs_club_world_cup": 18.961192346179395,
+      "fifa_total_with_tv": 4.714759802041453,
+      "social_part": 5.162694900975418,
+      "tv_part": -0.4479350989339651,
+      "p_tv": 0.30787472172706665,
+      "not_attributed_with_tv": 2.308965143393502,
+      "fifa_total_tv_only": -0.01576659871450168,
+      "p_tv_only": 0.9714099229709318,
+      "change_vs_primary": 0.29557085620522017,
+      "model_error_slope_per_sd": -1.031185586424879,
+      "model_error_p": 0.04321669349753635
+    }
+  ],
+  "summary": {
+    "max_change_vs_primary_index_points": 0.32293004580050955,
+    "fifa_total_with_tv_range": [
+      4.6917086940939905,
+      4.742118991636742
+    ],
+    "tv_part_range": [
+      -0.470485799322554,
+      -0.3728214461563194
+    ],
+    "tv_p_range": [
+      0.27347006671082685,
+      0.612703317192958
+    ],
+    "within_primary_band": true
+  },
+  "assumptions": [
+    "Media value is used only as a weekly relative intensity (adstock / its mean over the observed weeks); no monetary amount is used or reported.",
+    "Media value is set to zero before May 2025: certain before the deal, assumed for October 2024 - April 2025 (no rows in the export).",
+    "The World Cup value per match by stage is calibrated on the 2025 Club World Cup; the tournament scale is a scenario.",
+    "Simulated weeks follow the match calendar, which is also when social media exposure peaks, so the two series overlap by construction."
+  ]
+}

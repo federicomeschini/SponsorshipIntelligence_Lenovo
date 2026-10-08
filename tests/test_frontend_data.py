@@ -74,3 +74,13 @@ def test_method_pages_show_the_current_brand_index_and_design_choice():
     assert [s["admitted"] for s in m["brandIndex"]["screen"]].count(True) == len(bi["validity_screen"]["admitted"])
     selected = [d for d in m["designs"] if d["selected"]]
     assert len(selected) == 1 and selected[0]["oosRmspe"] == min(d["oosRmspe"] for d in m["designs"])
+
+
+def test_television_page_shows_the_current_tv_check():
+    # FE-019 / ADR-0046: the "why no television" page reads tv_exposure_check_v1, relative units only.
+    tv = _eroi()["method"]["tv"]
+    m = _manifest(E / "tv_exposure_check_v1/tv_exposure_check_manifest.json")
+    assert m["monetary_totals_used"] is False
+    assert np.allclose(tv["range"], m["summary"]["fifa_total_with_tv_range"], atol=0.01)
+    assert np.isclose(tv["maxChange"], m["summary"]["max_change_vs_primary_index_points"], atol=0.01)
+    assert len(tv["scenarios"]) == len(m["scenarios"])

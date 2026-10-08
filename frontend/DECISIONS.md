@@ -258,3 +258,16 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Context:** The owner asked to drop the masthead status label. The data date already tells readers how current the figures are, and the green dot read as a "live" light.
 - **Decision:** The masthead information group shows only "Data through <date>". The `.bar-status` styles are removed.
 - **Consequences:** Presentation only.
+
+## FE-019 — "Why is there no television exposure?" page (ADR-0046)
+
+- **Context:** The owner asked for a short in-depth explanation, inside the Method section's FIFA exposure topic, of why television exposure is not used and why that is acceptable.
+- **Decision:**
+  - **Entry point:** the FIFA exposure Method page ends with an "In depth" callout linking to `#/method/television`. That is a sub-topic page: its breadcrumb runs through FIFA exposure, it has no index card, and "Back" returns to FIFA exposure.
+  - **The page shows:**
+    - television data coverage, its overlap with social media, the FIFA-specific effect with television, and the largest change;
+    - a chart of observed and simulated television against social media;
+    - Test 1 (observed window) and Test 2 (World Cup simulation under four audience scenarios);
+    - a four-point conclusion.
+  - **Data:** everything comes from `tv_exposure_check_v1` through `method.tv` in the builder, in relative units only (P1). A test checks it against the manifest.
+- **Consequences:** The dashboard explains the television omission in results-first terms. The full method, calibration and limits are in notebook 10, §5.9.

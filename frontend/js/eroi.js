@@ -853,6 +853,8 @@
     { id: "exposure", step: "01", name: "FIFA exposure", q: "How is FIFA exposure measured?",
       d: "Blinkfire impressions on FIFA social media, accumulated week by week with carryover.",
       key: () => F.big(K.eventImpressions) + " impressions", view: "exposure", render: topicExposure },
+    { id: "television", step: "01", parent: "exposure", hidden: true, name: "Television exposure", q: "Why is there no television exposure?",
+      d: "", key: () => "", view: "exposure", render: topicTelevision },
     { id: "brand-index", step: "01", name: "Brand Index", q: "How is the Lenovo brand measured?",
       d: "A dynamic factor model of Lenovo's share of attention against rivals, anchored to the GWI survey.",
       key: () => "100 → " + X.brandIndex.postMean.toFixed(1), view: "exposure", render: topicBrandIndex },
@@ -878,6 +880,7 @@
       d: "Every source, and which figures are observed, constructed, estimated or assumed.",
       key: () => "7 sources", view: null, render: topicSources },
   ];
+  const VISIBLE = TOPICS.filter((t) => !t.hidden);
   const GROUPS = [
     { step: "01", label: "Step 01 · Exposure", title: "From exposure to a FIFA-specific effect" },
     { step: "02", label: "Step 02 · Evaluation", title: "From the share price to a brand value" },
@@ -903,7 +906,7 @@
       const sec = el("section", "topic-group reveal");
       sec.append(el("div", "topic-group-k", g.label), el("h3", "topic-group-t", g.title));
       const cards = el("div", "topic-cards");
-      TOPICS.filter((t) => t.step === g.step).forEach((t) => {
+      VISIBLE.filter((t) => t.step === g.step).forEach((t) => {
         const a = el("a", "topic-card");
         a.href = "#/method/" + t.id;
         a.innerHTML = `<div class="topic-card-n">${t.name}</div><div class="topic-card-q">${t.q}</div>
@@ -932,7 +935,9 @@
   function methodTopic(root, t) {
     const crumbs = el("nav", "crumbs reveal");
     crumbs.setAttribute("aria-label", "Breadcrumb");
-    crumbs.innerHTML = `<a href="#/method">Method &amp; evidence</a><span>/</span>${t.step ? `<span>Step ${t.step}</span><span>/</span>` : ""}<b>${t.name}</b>`;
+    const parent = t.parent && TOPICS.find((x) => x.id === t.parent);
+    crumbs.innerHTML = `<a href="#/method">Method &amp; evidence</a><span>/</span>${t.step ? `<span>Step ${t.step}</span><span>/</span>` : ""}`
+      + (parent ? `<a href="#/method/${parent.id}">${parent.name}</a><span>/</span>` : "") + `<b>${t.name}</b>`;
     root.append(crumbs);
     t.render(root);
 
@@ -944,11 +949,15 @@
       see.append(b);
       root.append(see);
     }
-    const i = TOPICS.indexOf(t), prev = TOPICS[i - 1], next = TOPICS[i + 1];
     const p = el("div", "pager reveal");
     const mk = (cls, k, tt, href) => { const a = el("a", cls, `<div class="k">${k}</div><div class="t">${tt}</div>`); a.href = href; p.append(a); };
-    mk("prev", prev ? "← Previous topic" : "← Back", prev ? prev.name : "Method & evidence", prev ? "#/method/" + prev.id : "#/method");
-    if (next) mk("next", "Next topic →", next.name, "#/method/" + next.id);
+    if (parent) {
+      mk("prev", "← Back", parent.name, "#/method/" + parent.id);
+    } else {
+      const i = VISIBLE.indexOf(t), prev = VISIBLE[i - 1], next = VISIBLE[i + 1];
+      mk("prev", prev ? "← Previous topic" : "← Back", prev ? prev.name : "Method & evidence", prev ? "#/method/" + prev.id : "#/method");
+      if (next) mk("next", "Next topic →", next.name, "#/method/" + next.id);
+    }
     root.append(p);
   }
 
@@ -984,6 +993,77 @@
       yTitle: "Accumulated impressions (millions)", tip: (v) => v.toFixed(0) + "M", milestones: marksFor(SP.weeks, KEY_MARKS) });
     note(p3, "Exposure builds through the Club World Cup in 2025 and peaks with the 2026 World Cup.");
     src(p3, "Source: Blinkfire Analytics · Elaboration: OpenEconomics");
+
+    const call = el("a", "topic-callout reveal");
+    call.href = "#/method/television";
+    call.innerHTML = `<div><div class="topic-callout-k">In depth</div><div class="topic-callout-t">Why is there no television exposure?</div>
+      <p>Exposure is measured on social media. We tested adding television, observed and simulated through the World Cup: it has no effect of its own on the result.</p></div>
+      <span class="bar-btn">Read →</span>`;
+    root.append(call);
+  }
+
+  function topicTelevision(root) {
+    const TV = MT.tv, S = TV.series;
+    head(root, { kicker: "Method · Step 01 · FIFA exposure", title: "Why is there no television exposure?",
+      lead: "The exposure measure counts FIFA social media impressions. No television measure covers the whole partnership, so television is not part of the primary estimate. We tested adding it: television shows no effect of its own, because it rises and falls in the same weeks as social media." });
+    kpiRow(root, [
+      { v: `${F.month(TV.coverage[0])} – ${F.month(TV.coverage[1])}`, k: "Television data available", n: "Not the announcement months, not the 2026 World Cup" },
+      { v: TV.corrWeekly.toFixed(2), k: "Television vs social media", n: "Week-by-week correlation: both peak in match weeks" },
+      { v: `${TV.tvPartRange[1].toFixed(2)} to ${TV.tvPartRange[0].toFixed(2)}`, k: "Television's own contribution", n: `Brand Index points, World Cup simulated; not significant in any scenario (p ${TV.tvPRange[0].toFixed(2)}–${TV.tvPRange[1].toFixed(2)})` },
+      { v: F.pts(TV.primary), k: "FIFA-specific effect", n: `Unchanged within its 95% band (${F.pts(TV.band[0])} to ${F.pts(TV.band[1])})` },
+    ]);
+
+    const g = pairGrid(root);
+    const p1 = panel(col(g, 7), { label: "The data", title: "Television exposure, observed and simulated",
+      sub: "Weekly exposure in relative units (2025 Club World Cup total = 1). Television: observed to March 2026, then simulated from the World Cup match calendar." });
+    const cv = chartIn(p1, 300);
+    make(cv, {
+      type: "bar",
+      data: { labels: S.weeks, datasets: [
+        { type: "bar", label: "Television, observed", data: S.observed, backgroundColor: T.brandDeep, borderWidth: 0, barPercentage: 1, categoryPercentage: 0.9, order: 3 },
+        { type: "line", label: "Television, simulated (high)", data: S.simHigh, borderColor: T.brand, borderDash: [5, 4], borderWidth: 2, pointRadius: 0, tension: 0.25, spanGaps: false, order: 1 },
+        { type: "line", label: "Television, simulated (low)", data: S.simLow, borderColor: T.brandLight, borderDash: [2, 3], borderWidth: 2, pointRadius: 0, tension: 0.25, spanGaps: false, order: 1 },
+        { type: "line", label: "Social media (Blinkfire)", data: S.social, borderColor: T.limeInk, borderWidth: 1.8, pointRadius: 0, tension: 0.25, order: 2 },
+      ] },
+      options: {
+        maintainAspectRatio: false, interaction: { mode: "index", intersect: false },
+        scales: { x: { grid: { display: false }, ticks: weekTicks(S.weeks) },
+                  y: { grid: { color: T.grid }, border: { display: false }, title: { display: true, text: "Weekly exposure (Club World Cup = 1)", color: T.muted, font: { family: T.mono, size: 10 } } } },
+        plugins: { milestones: { items: marksFor(S.weeks, ["fcwc_opening_2025", "wc_opening_2026"]) },
+                   tooltip: { callbacks: { title: (i) => F.month(S.weeks[i[0].dataIndex]), label: (c) => c.raw == null ? null : `${c.dataset.label}  ${c.raw.toFixed(2)}` } } },
+      },
+    });
+    legend(p1, [{ color: T.brandDeep, label: "Television, observed", square: true }, { color: T.brand, label: "Television, simulated (high)", dash: true },
+                { color: T.brandLight, label: "Television, simulated (low)", dash: true }, { color: T.limeInk, label: "Social media (Blinkfire)" }]);
+    note(p1, "Television and social media rise and fall in the same tournament weeks. The television series is an estimate of on-screen brand exposure across broadcast and digital media; only its weekly pattern is used.");
+    src(p1, "Sources: client media-value export, Blinkfire Analytics, FIFA match calendars · Elaboration: OpenEconomics");
+
+    const right = col(g, 5);
+    const p2 = panel(right, { label: "Test 1", title: "With the television data we have", sub: `Weeks to ${F.month(TV.observed.to)}, Brand Index points.` });
+    table(p2, [{ t: "Exposure measure" }, { t: "FIFA-specific effect", num: true }], [
+      ["Social media only", F.pts(TV.observed.socialOnly)],
+      ["Social media + television", `${F.pts(TV.observed.withTv)}`],
+      ["of which television", F.pts(TV.observed.tvPart)],
+    ], { primary: 0 });
+    note(p2, `Television takes over part of what social media already explains, and the total falls by ${(TV.observed.socialOnly - TV.observed.withTv).toFixed(1)} points: it adds no explanatory power of its own.`);
+    const p3 = panel(right, { label: "Test 2", title: "Simulating television through the World Cup",
+      sub: `Value per match by stage from the ${TV.calibrationMatches}-match Club World Cup (knockout ${TV.perMatch.knockout.toFixed(1)}×, semi-final and final ${TV.perMatch.late.toFixed(1)}× a group match), applied to the ${TV.worldCupMatches} World Cup matches.` });
+    const sgn = (v) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2);
+    table(p3, [{ t: "World Cup audience scenario" }, { t: "Size", num: true }, { t: "Social", num: true }, { t: "TV", num: true }],
+      TV.scenarios.map((x) => [x.label, x.scale.toFixed(1) + "×", sgn(x.socialPart), sgn(x.tvPart)]));
+    note(p3, `Full sample to July 2026, Brand Index points. Television's part is slightly negative and not significant in every scenario: it adds nothing. Because the two series move together, social media's part shifts when television is added; the total (${F.pts(TV.range[0])} to ${F.pts(TV.range[1])}) stays inside the band of the ${F.pts(TV.primary)} estimate.`);
+
+    const p4 = panel(col(pairGrid(root), 12), { label: "Conclusion", title: "Why social media exposure is enough" });
+    const ul = el("ul", "caveats");
+    [
+      "<b>Same timing.</b> Television and social media peak in the same match weeks. The FIFA-specific effect is read from the timing of exposure, which social media already captures.",
+      "<b>Television adds nothing of its own.</b> On the observed weeks it takes over part of social media's share and the total falls; with the World Cup simulated, its contribution is slightly negative and not significant under every audience size. There is no effect being left out.",
+      `<b>Small shifts are noise.</b> Two series that peak together split the same effect differently when both are included. The total moves by at most ${TV.maxChange.toFixed(1)} points, well inside the estimate's 95% band, and not because of television.`,
+      "<b>Simulated data stay out of the headline.</b> Television data cover 11 months and miss the World Cup, which would have to be simulated. Including it would add assumptions to the primary estimate without adding information.",
+      "<b>Already in the ceiling.</b> The whole gap to the no-sponsorship twin does not use exposure data, so any television effect is already part of it.",
+      "<b>Next data.</b> When television data for the World Cup weeks become available, the check is re-run on observed figures.",
+    ].forEach((x) => ul.append(el("li", null, x)));
+    p4.append(ul);
   }
 
   function topicBrandIndex(root) {

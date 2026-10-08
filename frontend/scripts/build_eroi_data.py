@@ -357,6 +357,39 @@ def build_method() -> dict:
         "designFolds": int(sel["folds"].iloc[0]),
         "specRange": [r(v, 2) for v in head["specification_curve_summary"]["lift_range_index_points"]],
         "adstock": delta,
+        "tv": build_tv(),
+    }
+
+
+def build_tv() -> dict:
+    """Television check (ADR-0046): relative intensities and FIFA-specific results only, no money (P1)."""
+    tv = j(E / "tv_exposure_check_v1/tv_exposure_check_manifest.json")
+    w = pd.read_parquet(E / "tv_exposure_check_v1/tv_exposure_weekly_relative.parquet")
+    w["week"] = pd.to_datetime(w["week"])
+    w = w[w["week"] >= pd.Timestamp(tv["tv_coverage"]["from"])]
+    obs = w["tv_source"].eq("observed")
+    ow = tv["observed_window"]
+    return {
+        "coverage": [tv["tv_coverage"]["from"], tv["tv_coverage"]["to"]],
+        "corrWeekly": r(tv["overlap"]["corr_tv_vs_social_weekly"], 2),
+        "primary": r(tv["primary_fifa_specific_index_points"], 3),
+        "band": [r(v, 2) for v in tv["primary_band_95_index_points"]],
+        "observed": {"to": ow["to"], "socialOnly": r(ow["social_only"]["fifa_total"], 2),
+                     "withTv": r(ow["social_and_tv"]["fifa_total"], 2), "socialPart": r(ow["social_and_tv"]["social_part"], 2),
+                     "tvPart": r(ow["social_and_tv"]["tv_part"], 2), "pTv": r(ow["social_and_tv"]["p_tv"], 3)},
+        "perMatch": {k: r(v, 2) for k, v in tv["calibration"]["value_per_match_relative_to_group"].items()},
+        "calibrationMatches": tv["calibration"]["matches"], "worldCupMatches": tv["world_cup_matches"],
+        "scenarios": [{"label": x["label"], "scale": r(x["world_cup_vs_club_world_cup"], 1), "fifaTotal": r(x["fifa_total_with_tv"], 2),
+                       "socialPart": r(x["social_part"], 2), "tvPart": r(x["tv_part"], 2), "pTv": r(x["p_tv"], 2)} for x in tv["scenarios"]],
+        "maxChange": r(tv["summary"]["max_change_vs_primary_index_points"], 2),
+        "range": [r(v, 2) for v in tv["summary"]["fifa_total_with_tv_range"]],
+        "tvPartRange": [r(v, 2) for v in tv["summary"]["tv_part_range"]],
+        "tvPRange": [r(v, 2) for v in tv["summary"]["tv_p_range"]],
+        "withinBand": tv["summary"]["within_primary_band"],
+        "series": {"weeks": iso(w["week"]), "social": series(w["social_impressions_relative"], 4),
+                   "observed": [r(v, 4) if o else None for v, o in zip(w["same_per_match"], obs)],
+                   "simLow": [None if o else r(v, 4) for v, o in zip(w["same_per_match"], obs)],
+                   "simHigh": [None if o else r(v, 4) for v, o in zip(w["blinkfire_per_match"], obs)]},
     }
 
 

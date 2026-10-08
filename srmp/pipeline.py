@@ -41,6 +41,7 @@ DERIVED: list[tuple[str, ...]] = [
     ("srmp.experiments.sponsorship_total_effect_v1", "--config",
      "config/experiments/sponsorship_total_effect_share_of_search_v1.yaml"),
     ("srmp.experiments.sponsorship_exposure_timing_v1",),       # FIFA vs other sponsorships (ADR-0042)
+    ("srmp.experiments.tv_exposure_check_v1",),                 # television check of the FIFA-specific effect (ADR-0046)
     ("srmp.experiments.sponsorship_monetization_v1",),          # adstocked exposure; gate reads the headline
     ("srmp.experiments.sponsorship_counterfactual_v1",),         # original 2024 design; reads the adstock
     ("srmp.experiments.cobrand_placebo_v1",),

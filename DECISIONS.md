@@ -462,3 +462,25 @@ Append-only ADR log for choices not fixed by `ARCHITECTURE.md`.
   - **Reporting.** Stakeholders see one brand value (US$7.3B) and one FIFA-added value (US$318M), each with its range.
   - **What it depends on.** The value now depends on the FY25/26 accounts and market rates. It must be refreshed when new annual results are filed.
   - **The weakest input** remains the brand contribution factor, which the market data alone do not identify. A behavioural role-of-brand estimate from a survey would replace it.
+
+## ADR-0046 - Television check of the FIFA-specific effect
+
+- **Context:** The FIFA exposure measure (Blinkfire) counts social media impressions only. The only broadcast-inclusive measure, the client's media-value export, covers May 2025 to March 2026; it misses the announcement months and the 2026 World Cup. The owner asked whether leaving television out matters, and for the answer to be explained on the dashboard.
+- **Decision:** Add `tv_exposure_check_v1`, a sensitivity. It leaves the primary estimate unchanged. Media value enters only as a unitless relative intensity, as in ADR-0028: weekly adstock relative to its mean over the observed weeks, with zero before May 2025. No monetary amount is used or reported.
+  - **Observed window:** the ADR-0043 regression is re-run on weeks to March 2026, with media value as a second FIFA exposure channel, in place of social media, and not at all.
+  - **Forward simulation:**
+    - *Calibration:* a value per match by stage, fitted on the 2025 Club World Cup (63 matches, official schedule; weekly fit correlation 1.00). Knockout matches are worth 1.74× a group match, semi-finals and finals 2.54×.
+    - *World Cup 2026:* the value per match is applied to the official 104-match calendar.
+    - *Tournament scale, four scenarios:* the same value per match; three times the audience (assumed); scaled by Blinkfire impressions per match (10.7×); proportional to weekly Blinkfire FIFA impressions.
+    - The regression is then re-run on the full production sample.
+  - **Contract:** the media-value contract test allows this module and asserts that its manifest uses no monetary totals. ARCHITECTURE W-08 and guardrail 1 are amended to match.
+- **Result:**
+  - **Overlap.** On the 49 weeks both series cover, television and social media correlate at 0.61 week by week. Television correlates with the gap at 0.21, social media at 0.52.
+  - **Observed window (to March 2026).** Social media alone attributes 4.96 points to FIFA. With television added, 4.23 points: 3.09 from social media and 1.14 from television (p = 0.09).
+  - **Full sample with simulated World Cup television.** The FIFA-specific effect is 4.69–4.74 points under every scenario, against the primary 4.42 (95% band 1.70–7.14). The television term is −0.37 to −0.47, not significant (p 0.27–0.61). Television alone explains −0.05 to 0.33 points.
+  - **Production model held fixed.** Its weekly error does not rise with television exposure (slope about −1.1 points per s.d.).
+- **Consequences:**
+  - **Primary estimate.** It stays social-media based. Leaving television out does not bias it: television and social media peak in the same match weeks, and adding television moves the estimate by at most 0.3 points, within its band.
+  - **Ceiling.** The whole gap, the attribution ceiling, does not use exposure data, so it already contains any television effect.
+  - **Dashboard.** The Method page for FIFA exposure links to an explanation of this check.
+  - **Open item.** The World Cup weeks are simulated, and the simulated series overlaps social media by construction. The World Cup media-value rows (June–July 2026) would settle it and should be requested from the client or Blinkfire.

@@ -28,6 +28,8 @@ def test_media_value_is_relative_intensity_only_and_never_monetary_value():
         root / "config/experiments/sponsorship_counterfactual_v1.yaml",
         root / "srmp/experiments/world_cup_impact_v1_estimator.py",
         root / "config/experiments/world_cup_impact_v1.yaml",
+        root / "srmp/experiments/tv_exposure_check_v1.py",  # television check, ADR-0046
+        root / "config/experiments/tv_exposure_check_v1.yaml",
         root / "config/base.yaml",  # declares the ban itself
         # P1 comparison line ("industry-claimed value"), never a breakeven input.
         root / "srmp/experiments/valuation_routes_v1.py",
@@ -48,3 +50,5 @@ def test_media_value_is_relative_intensity_only_and_never_monetary_value():
     ).read_text(encoding="utf-8"))
     assert sensitivity["monetary_totals_used"] is False
     assert sensitivity["role"] == "sensitivity_only_relative_exposure_intensity"
+    tv = json.loads((root / "data/curated/experimental/tv_exposure_check_v1/tv_exposure_check_manifest.json").read_text(encoding="utf-8"))
+    assert tv["monetary_totals_used"] is False and tv["role"] == "sensitivity_only_relative_exposure_intensity"
