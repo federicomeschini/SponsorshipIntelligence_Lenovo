@@ -326,3 +326,13 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **Ceiling:** the whole gap is shown in the same unit as the primary estimate, % of brand share (+7.3%, the attribution ceiling over the same weeks), instead of Brand Index points.
   - **Value:** "Break-even programme cost" becomes "Incremental brand value due to FIFA".
 - **Consequences:** Labels and unit only; the figures are unchanged.
+
+## FE-026 — Exposure: the twin chart becomes the gap and its FIFA part
+
+- **Context:** The owner found the two Exposure line charts too similar (raw searches against rivals; Brand Index against its twin). The owner wanted the result to lead and asked to keep the first chart as it is.
+- **Decision:**
+  - **Second chart:** it now plots only the weekly gap to the no-sponsorship twin, as % of the twin (brand share), with the part explained by accumulated FIFA exposure shaded in purple inside it. The FIFA part is the primary coefficient × weekly log adstock ÷ its sample standard deviation, so its post-period mean is the FIFA-specific effect.
+  - **Title:** it states the finding, "Lenovo runs +7.3% above its no-sponsorship twin; +4.5% comes from FIFA exposure".
+  - **Two-line view:** Lenovo against its twin stays on the Method › No-sponsorship twin page, linked from the note.
+  - **Builder:** it adds `core.gapPct`, `core.fifaPct` and `core.fifaPointsPostMean`.
+- **Consequences:** The first chart says that every brand rose and Lenovo rose more; the second says how much more and how much of it is FIFA. The weekly FIFA part steps up at the deal and then saturates, which is the log-adstock specification, so peaks above it (spring 2026, the World Cup) stay unattributed.

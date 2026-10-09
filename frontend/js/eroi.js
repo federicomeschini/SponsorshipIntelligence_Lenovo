@@ -467,27 +467,26 @@
     /* --- synthetic control ------------------------------------------------- */
     const g3 = grid(root);
     const pD = panel(col(g3, 7), {
-      label: "From relative attention to a measurable increment",
-      title: "The Brand Index against its no-sponsorship twin",
-      sub: "Brand Index: Lenovo's weekly share of attention against rival brands, informed by the GWI and Nielsen surveys (100 = pre-announcement average). The twin is a weighted mix of rival brands that reproduces Lenovo before the deal; the shaded distance afterwards is the gap.",
+      label: "The result over time",
+      title: `Lenovo runs ${F.pctv(FS.attribution_band_upper_uplift_pct)} above its no-sponsorship twin; ${F.pctv(FS.primary_uplift_pct)} comes from FIFA exposure`,
+      sub: "Weekly gap between Lenovo's Brand Index (its share of attention against rival brands, with the GWI and Nielsen surveys) and a twin built from rival brands that reproduces Lenovo before the deal, as % of the twin. Purple: the part explained by accumulated FIFA exposure.",
     });
     const cvD = chartIn(pD, 330);
     lineChart(cvD, {
       weeks: X.core.weeks,
       series: [
-        { label: "Without the sponsorship", data: X.core.synthetic, color: T.counterfactual, width: 2, dash: [6, 4], order: 2 },
-        { label: "Lenovo — actual", data: X.core.actual, color: T.brand, width: 2.6, fill: "-1", fillColor: T.gap, order: 1 },
+        { label: "Explained by FIFA exposure", data: X.core.fifaPct, color: T.brand, width: 1.6, fill: "origin", fillColor: "rgba(89,2,238,.45)", order: 1 },
+        { label: "Gap to the twin", data: X.core.gapPct, color: T.limeInk, width: 1.6, fill: "origin", fillColor: T.gap, order: 2 },
       ],
       milestones: marksFor(X.core.weeks, [...KEY_MARKS, "wc_final_2026"]),
-      yTitle: "Brand Index · 100 = pre-announcement",
-      tip: (v) => (v == null ? "—" : v.toFixed(1)),
+      yTitle: "% above the twin (brand share)",
+      tip: (v) => (v == null ? "—" : (v >= 0 ? "+" : "") + v.toFixed(1) + "%"),
     });
     legend(pD, [
-      { color: T.brand, label: "Lenovo — actual Brand Index" },
-      { color: T.counterfactual, label: "Estimated without the sponsorship", dash: true },
-      { color: T.lime, label: "Gap", square: true },
+      { color: T.lime, label: "Gap to the no-sponsorship twin", square: true },
+      { color: T.brand, label: "Part explained by FIFA exposure", square: true },
     ]);
-    note(pD, `Before the announcement the two lines track each other within <b>${D.preRmspe.toFixed(1)} points</b> (root-mean-square). The design (${D.method.replace(/_/g, " ")}, ${D.donors.length} rivals) was chosen on how well it predicted Lenovo before the deal, never on the result.`);
+    note(pD, `Before the announcement the gap stays close to zero (within <b>${D.preRmspe.toFixed(1)} points</b>, root-mean-square): the twin reproduces Lenovo. Since then Lenovo has averaged <b>${F.pctv(FS.attribution_band_upper_uplift_pct)}</b> above it, and accumulated FIFA exposure explains <b>${F.pctv(FS.primary_uplift_pct)}</b>. <a href="#/method/twin">Lenovo and its twin as two lines</a>.`);
     src(pD, "Sources: Google Trends · GWI Core · Nielsen · Elaboration: OpenEconomics");
 
     const pE = panel(col(g3, 5), { cls: "panel--dark", label: "Total gap · the ceiling" });
