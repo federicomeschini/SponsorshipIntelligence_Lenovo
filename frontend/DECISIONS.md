@@ -308,3 +308,21 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - FIFA-added value US$333M;
   - exposure through 28 September 2026.
 - **Consequences:** Data only.
+
+## FE-024 — Summary outside the process arrows; "FIFA Monetization"
+
+- **Context:** The owner asked that the Summary not be shaped as an arrow, so that the chain visibly starts at step 01, and that step 03 be called "FIFA Monetization".
+- **Decision:**
+  - **Summary tab:** a plain tab with a gap after it. It is never shaded as a completed step.
+  - **Arrow chain:** it starts at "01 Exposure", with a flat left edge.
+  - **Step 03:** "FIFA Monetization" in the masthead, page kicker, pager, Method groups and flow.
+- **Consequences:** Presentation only.
+
+## FE-025 — Summary side figures relabelled
+
+- **Context:** The owner asked for three changes to the Summary side figures.
+- **Decision:**
+  - **Exposure:** "FIFA exposure delivered" becomes "FIFA social exposure delivered".
+  - **Ceiling:** the whole gap is shown in the same unit as the primary estimate, % of brand share (+7.3%, the attribution ceiling over the same weeks), instead of Brand Index points.
+  - **Value:** "Break-even programme cost" becomes "Incremental brand value due to FIFA".
+- **Consequences:** Labels and unit only; the figures are unchanged.

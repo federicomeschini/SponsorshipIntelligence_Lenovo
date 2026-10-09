@@ -1,7 +1,7 @@
 /* ==========================================================================
    EROI — Event Return on Investment · Lenovo × FIFA case (FE-009)
    A Summary landing view plus three sequential chapters (Exposure ->
-   Evaluation -> Monetization) and a Method page, navigated through a
+   Evaluation -> FIFA Monetization) and a Method page, navigated through a
    horizontal process-arrow bar. Every figure comes from window.EROI, which
    frontend/scripts/build_eroi_data.py builds from the production pipeline;
    the page formats and draws, it does not estimate. The only arithmetic here
@@ -590,7 +590,7 @@
     flow(root, [
       { k: "Brand contribution factor", v: F.pct(FAC.share, 1), d: "Brand share of the Lenovo-specific share-price drivers" },
       { k: "Economic profit, discounted", v: F.usd(D.epPv), d: `${D.baseYear} base, WACC ${F.pct(W.wacc, 1)}, growth fading to ${F.pct(D.growthTerminal, 0)}`, cls: "flow-cell--mid" },
-      { k: "Output → Monetization", v: F.usd(D.brandValue) + " brand value", d: `Factor × discounted economic profit · ${F.usd(D.valuePerPoint)} per Brand Index point`, cls: "flow-cell--out" },
+      { k: "Output → FIFA Monetization", v: F.usd(D.brandValue) + " brand value", d: `Factor × discounted economic profit · ${F.usd(D.valuePerPoint)} per Brand Index point`, cls: "flow-cell--out" },
     ]);
 
     kpiRow(root, [
@@ -724,7 +724,7 @@
     const value = s.value;
 
     head(root, {
-      kicker: "Step 03 · Monetization",
+      kicker: "Step 03 · FIFA Monetization",
       title: "What did FIFA add to the brand, and does it cover the cost?",
       lead: "The FIFA-specific uplift in brand share is applied to the brand value from step 02, giving the brand value FIFA added. It is a capitalised value; the same figure is also shown as a yearly flow of branded earnings. Enter the programme cost to read the return on it.",
     });
@@ -884,7 +884,7 @@
   const GROUPS = [
     { step: "01", label: "Step 01 · Exposure", title: "From exposure to a FIFA-specific effect" },
     { step: "02", label: "Step 02 · Evaluation", title: "From the share price to a brand value" },
-    { step: "03", label: "Step 03 · Monetization", title: "From brand share to money" },
+    { step: "03", label: "Step 03 · FIFA Monetization", title: "From brand share to money" },
     { step: "", label: "Foundations", title: "The data behind the study" }
   ];
 
@@ -899,7 +899,7 @@
     flow(root, [
       { k: "Step 01 · Exposure", v: F.pts(FS.primary_index_points) + " FIFA-specific", d: `Brand Index (share of attention against rivals, with the GWI and Nielsen surveys) against a synthetic no-sponsorship Lenovo from ${X.design.donors.length} rival brands; the part of the gap explained by FIFA exposure isolated.` },
       { k: "Step 02 · Evaluation", v: F.usd(B.brandValue) + " brand value", cls: "flow-cell--mid", d: `ISO 10668 income split: the brand contribution factor (${F.pct(FAC.share, 1)}, from the share price) × Lenovo's discounted economic profit (${F.usd(D.epPv)}).` },
-      { k: "Step 03 · Monetization", v: F.usd(M.scenarios.base.value) + " added by FIFA", cls: "flow-cell--out", d: "FIFA-specific uplift × brand value, with the 95% band and the whole-gap ceiling as scenarios." },
+      { k: "Step 03 · FIFA Monetization", v: F.usd(M.scenarios.base.value) + " added by FIFA", cls: "flow-cell--out", d: "FIFA-specific uplift × brand value, with the 95% band and the whole-gap ceiling as scenarios." },
     ], { tall: true });
 
     GROUPS.forEach((g) => {
@@ -1320,7 +1320,7 @@
       "FIFA's share of the brand value is the percentage uplift in brand share times the brand value. With ε = 1, a 1% higher brand share means a 1% higher brand value.",
       [["ε", "elasticity of brand value to brand share, 1"], ["Effect<sub>FIFA</sub> ÷ BI<sup>N</sup>", `FIFA-specific uplift, ${F.pctv(S3.base.upliftPct, 2)}`], ["BV", `brand value, ${F.usd(B.brandValue)}`]]);
     formula(p1, `Return = ΔBV<sub>FIFA</sub> ÷ programme cost`,
-      "The multiple on the programme cost (rights fee plus activation), entered on the Monetization page.", []);
+      "The multiple on the programme cost (rights fee plus activation), entered on the FIFA Monetization page.", []);
     const p2 = panel(col(g, 5), { label: "Scenarios", title: "Three readings of the uplift" });
     table(p2, [{ t: "Case" }, { t: "Uplift", num: true }, { t: "FIFA-added value", num: true }],
       ["conservative", "base", "ambitious"].map((k) => [`<b>${LAB[k]}</b>`, F.pctv(S3[k].upliftPct, 2), F.usd(S3[k].value)]), { primary: 1 });
@@ -1378,10 +1378,10 @@
     hero.append(v);
     const st = el("div", "summary-stats");
     [
-      ["FIFA exposure delivered", F.big(K.eventImpressions) + " impr."],
-      ["Whole gap vs rivals (ceiling)", F.pts(X.total.lift)],
+      ["FIFA social exposure delivered", F.big(K.eventImpressions) + " impr."],
+      ["Whole gap vs rivals (ceiling)", F.pctv(FS.attribution_band_upper_uplift_pct)],
       ["Lenovo brand value", F.usd(B.brandValue)],
-      ["Break-even programme cost", F.usd(base.value)],
+      ["Incremental brand value due to FIFA", F.usd(base.value)],
     ].forEach(([k, val]) => {
       const r = el("div", "stat");
       r.append(el("div", "stat-label", k), el("div", "stat-value", val));
@@ -1448,7 +1448,7 @@
     summary: { n: "", label: "Summary", render: viewSummary },
     exposure: { n: "01", label: "Exposure", render: viewExposure },
     evaluation: { n: "02", label: "Evaluation", render: viewEvaluation },
-    monetization: { n: "03", label: "Monetization", render: viewMonetization },
+    monetization: { n: "03", label: "FIFA Monetization", render: viewMonetization },
     method: { n: "", label: "Method & evidence", render: viewMethod },
   };
   const ORDER = ["summary", "exposure", "evaluation", "monetization"];
@@ -1473,7 +1473,7 @@
     { id: "evaluation", n: "02", name: "Evaluation", q: "What is the Lenovo brand worth: its share of what Lenovo earns above its cost of capital?",
       chev: "Income split of economic profit", metric: () => F.usd(B.brandValue) + " brand value", out: () => F.usd(B.brandValue),
       spark: () => ({ data: V.actualPath, color: T.brandDeep, fill: "rgba(68,0,179,.12)" }) },
-    { id: "monetization", n: "03", name: "Monetization", q: "What did FIFA add to that brand value, and what programme cost would it cover?",
+    { id: "monetization", n: "03", name: "FIFA Monetization", q: "What did FIFA add to that brand value, and what programme cost would it cover?",
       chev: "FIFA uplift × brand value", metric: () => F.usd(M.scenarios.base.value) + " added by FIFA", out: () => F.usd(M.scenarios.base.value),
       spark: () => ({ data: M.quarterlyGap.map((q) => q.gap), color: T.limeInk, fill: "rgba(103,195,0,.18)" }) },
   ];
@@ -1487,7 +1487,7 @@
     const nav = document.getElementById("process");
     [{ id: "summary", n: "", name: "Summary", metric: () => F.pctv(FS.primary_uplift_pct) + " brand share from FIFA", sub: "The answer and the chain behind it" },
      ...STEPS.map((s) => ({ id: s.id, n: s.n, name: s.name, metric: s.metric, sub: s.chev }))].forEach((c) => {
-      const b = el("button", "chev");
+      const b = el("button", c.id === "summary" ? "chev chev--summary" : "chev");
       b.type = "button"; b.dataset.step = c.id;
       const top = el("div", "chev-top");
       if (c.n) top.append(el("span", "chev-n", c.n));
@@ -1512,7 +1512,7 @@
     document.querySelectorAll(".chev").forEach((b) => {
       const i = ORDER.indexOf(b.dataset.step);
       b.classList.toggle("is-active", b.dataset.step === view);
-      b.classList.toggle("is-done", pos > -1 && i > -1 && i < pos);
+      b.classList.toggle("is-done", pos > -1 && i > 0 && i < pos);   // the summary is not a step in the chain
     });
     document.getElementById("method-link").classList.toggle("is-active", view === "method");
     const topic = view === "method" && TOPICS.find((x) => x.id === sub);

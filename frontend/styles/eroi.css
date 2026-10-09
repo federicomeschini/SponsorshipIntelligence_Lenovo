@@ -611,3 +611,12 @@ html, body { overflow-x: hidden; }
 .topic-callout p { margin: 4px 0 0; font-size: 13.5px; color: var(--g700); max-width: 80ch; }
 .topic-callout-k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--bl700); }
 .topic-callout-t { margin-top: 3px; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+
+/* Summary sits apart from the process chain; the arrows start at step 01 (FE-024). */
+.chev.chev--summary {
+  clip-path: none; margin-left: 0; margin-right: 12px; padding-left: 20px; padding-right: 20px; flex: 0 1 250px;
+}
+.chev--summary + .chev {
+  margin-left: 0; padding-left: 20px;
+  clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% 50%, calc(100% - var(--notch)) 100%, 0 100%);
+}
