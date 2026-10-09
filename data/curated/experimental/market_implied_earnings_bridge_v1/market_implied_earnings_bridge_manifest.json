@@ -1,7 +1,7 @@
 {
   "experiment_id": "market_implied_earnings_bridge_v1",
   "status": "operational_positive_planning_calibration",
-  "generated_at_utc": "2026-10-08T08:35:46.694964+00:00",
+  "generated_at_utc": "2026-10-09T08:06:19.942402+00:00",
   "accepted_for_planning": true,
   "accepted_for_total_sponsorship_valuation": false,
   "superseded_for_total_return_by": "sponsorship_total_return_v3",
@@ -39,7 +39,7 @@
   "inputs": {
     "stock_response_manifest": {
       "path": "data/curated/experimental/stock_brand_response_v2/stock_response_manifest.json",
-      "sha256": "75098739bed7f9769f02a42991146fe7c49aeff156e30637e0672a8ff9301460"
+      "sha256": "6f51ab7caa726945091226b0fc68bbd81b955d3a6785bb543549a245b8a8709b"
     },
     "quarterly_financials": {
       "path": "data/reference/lenovo_quarterly_financials.csv",
@@ -55,7 +55,7 @@
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "94f661563a81f9d87b7bd72e3ef3a1c33ea8da9724783042c7f5d2ee39e4a442"
+      "sha256": "13e6967bd16df7f8667761623b7c2332fd81fe22b7581557da0a0200061ae780"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",

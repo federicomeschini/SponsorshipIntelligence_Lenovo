@@ -100,7 +100,9 @@ def build_exposure(events: list[dict]) -> dict:
     tax = pd.read_csv(ROOT / "data/reference/property_taxonomy.csv")
     fifa_ids = tax.loc[tax["property_group"].eq("fifa"), "property_id"].tolist()
     names = dict(zip(tax["property_id"], tax["property_name"]))
-    fifa = expo[expo["property_id"].isin(fifa_ids)]
+    # Sponsorship exposure counts from the deal (ADR-0048): earlier FIFA content is not shown.
+    treatment = pd.Timestamp(j(E / "sponsorship_exposure_timing_v1/exposure_timing_manifest.json")["treatment_start"])
+    fifa = expo[expo["property_id"].isin(fifa_ids) & (expo["week"] >= treatment - pd.Timedelta(days=treatment.weekday()))]
     fifa_weekly = fifa.groupby("week")[["impressions", "views"]].sum()
     by_property = (fifa.groupby("property_id")["impressions"].sum().sort_values(ascending=False))
     timing = pd.read_parquet(E / "sponsorship_exposure_timing_v1/exposure_timing_weekly.parquet")

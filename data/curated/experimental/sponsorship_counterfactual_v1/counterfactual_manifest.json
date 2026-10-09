@@ -1,7 +1,7 @@
 {
   "experiment_id": "sponsorship_counterfactual_v1",
   "status": "candidate_not_distinguishable",
-  "generated_at_utc": "2026-10-08T08:34:58.168624+00:00",
+  "generated_at_utc": "2026-10-09T08:10:14.977104+00:00",
   "canonical_contracts_replaced": [],
   "treatment": {
     "event_id": "fifa_partner_announcement_2024",
@@ -19,7 +19,7 @@
     },
     "adstock_exposure": {
       "path": "data/curated/experimental/sponsorship_monetization_v1/exposure_adstock_weekly.parquet",
-      "sha256": "c192f49e093776334ec53e9d030cae1dc09a873757c07c3a704adafa13fa7028"
+      "sha256": "a45efc3e866bf0f21a22b6e4f707dea5df4866d856342f7f915ce2ee58001388"
     },
     "property_taxonomy": {
       "path": "data/reference/property_taxonomy.csv",
@@ -96,8 +96,8 @@
     "timing_coherence_support": "not_supported"
   },
   "candidate_attribution": {
-    "exposure_weighted_delta_index": 0.7707148828420021,
-    "event_week_excluded_exposure_weighted_delta_index": 0.7664270630260933,
+    "exposure_weighted_delta_index": 0.9625827125439255,
+    "event_week_excluded_exposure_weighted_delta_index": 0.9613944435041344,
     "all_post_mean_delta_index": 0.8512061616457972,
     "post_counterfactual_mean_index": 90.09236540698166,
     "policy": "candidate only; explicit methodological acceptance required before valuation"
@@ -115,14 +115,14 @@
     "window_end": "2026-03-30",
     "window_weeks": 49,
     "media_intensity_weighted_gap_index_points": 0.8634212048641646,
-    "blinkfire_weighted_gap_same_window_index_points": 0.9377681911107071,
+    "blinkfire_weighted_gap_same_window_index_points": 0.9377678106128166,
     "unweighted_mean_gap_same_window_index_points": 0.8055648936453305,
     "timing_coherence_support": "directionally_supported",
     "monetary_totals_used": false
   },
   "sensitivity_range": {
-    "exposure_weighted_min": 0.6786995673555303,
-    "exposure_weighted_max": 1.43390042633719
+    "exposure_weighted_min": 0.8569473365567953,
+    "exposure_weighted_max": 1.7127670483310662
   },
   "known_limitations": [
     "Donor outcomes come from common-anchor Google Trends panels and are standardized using pre-treatment data for SCM fitting.",
@@ -130,7 +130,7 @@
     "Product and campaign controls are event-week indicators, not media-spend or launch-intensity measures.",
     "Synthetic control isolates Lenovo-specific excess salience under donor assumptions; it does not prove sponsorship is the only cause.",
     "Blinkfire exposure omits broadcast, so the primary exposure-weighting covers digital/social/owned exposure only; a media-value intensity sensitivity (ADR-0028) adds broadcast-inclusive weighting for 2025-05 to 2026-04.",
-    "Blinkfire coverage starts 2024-09-30, leaving only three observed weeks before the first full post-treatment week.",
+    "Blinkfire coverage starts 2024-01-01 (ADR-0048); 2022-2023 non-FIFA exposure is not observed.",
     "The FIFA versus non-FIFA exposure regression is a timing diagnostic, not a causal estimator, because Lenovo chooses activation timing.",
     "Negative treatment-contamination searches are evidence-bounded and must be refreshed when FIFA announces new partners or brands launch World Cup campaigns."
   ]

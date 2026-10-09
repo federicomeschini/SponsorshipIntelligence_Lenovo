@@ -90,7 +90,7 @@ def ingest_blinkfire(source_path: str, output_dir: str, manifest_path: str,
                      supplements: list[str] | None = None) -> None:
     """Normalize the wide daily exports; views remain views, never engagements.
 
-    ``supplements`` are later exports in the same layout, applied in order.
+    ``supplements`` are further exports in the same layout (earlier or later periods), applied in order.
     Each is reconciled to its own TOTAL row; on overlapping dates the later
     export replaces the earlier one, because Blinkfire restates recent days.
     """
@@ -147,8 +147,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", default="data/raw/blinkfire/lenovo_sponsorship_exposure_daily_export.csv")
     parser.add_argument("--supplement", action="append",
-                        default=["data/raw/blinkfire/impressions_views_by_wc.xlsx"],
-                        help="later export in the same layout; repeat in chronological order")
+                        default=["data/raw/blinkfire/impressions_views_by_2024.xlsx",     # Jan-Sep 2024, before the deal
+                                 "data/raw/blinkfire/impressions_views_by_wc.xlsx",       # Jun-Jul 2026, World Cup
+                                 "data/raw/blinkfire/impressions_views_by_wc_sept.xlsx"], # Jul-Sep 2026, after the final
+                        help="further export in the same layout (earlier or later); repeat in order")
     parser.add_argument("--output-dir", default="data/staged/blinkfire")
     parser.add_argument("--manifest", default="data/staged/blinkfire/pull_manifest.json")
     parser.add_argument("--taxonomy", default="data/reference/property_taxonomy.csv")

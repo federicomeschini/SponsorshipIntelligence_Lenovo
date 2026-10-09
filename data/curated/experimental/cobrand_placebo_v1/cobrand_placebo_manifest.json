@@ -1,7 +1,7 @@
 {
   "experiment_id": "cobrand_placebo_v1",
   "status": "cobrand_association_placebo_test_ADR_0035",
-  "generated_at_utc": "2026-10-08T08:35:00.681659+00:00",
+  "generated_at_utc": "2026-10-09T08:05:41.315721+00:00",
   "tests": [
     {
       "construct": "fifa",

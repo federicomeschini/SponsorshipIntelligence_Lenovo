@@ -1,7 +1,7 @@
 {
   "experiment_id": "brand_value_dcf_v2",
   "status": "iso10668_income_approach_brand_earnings_split_ADR_0045",
-  "generated_at_utc": "2026-10-08T08:36:18.945921+00:00",
+  "generated_at_utc": "2026-10-09T08:06:46.671628+00:00",
   "standard": "ISO 10668 income approach, brand earnings split on economic profit",
   "valuation_date": "2026-03-31",
   "base_year": {
@@ -103,17 +103,17 @@
     "brand_value_usd_m": 7339.037380414236,
     "terminal_share_of_value": 0.7222344199175874,
     "fifa_added_brand_value_usd_m": {
-      "primary": 317.75432924912957,
-      "statistical_band_95_low": 122.27729695041862,
-      "statistical_band_95_high": 513.2313615478406,
-      "attribution_band_upper": 505.4375854515508
+      "primary": 332.82448862976815,
+      "statistical_band_95_low": 146.6487975693757,
+      "statistical_band_95_high": 519.0001796901606,
+      "attribution_band_upper": 538.3304783259649
     },
     "value_per_brand_index_point_usd_m": 71.96340346161635,
     "fifa_specific_uplift_pct": {
-      "primary": 4.329645875590221,
-      "statistical_band_95_low": 1.6661217352120496,
-      "statistical_band_95_high": 6.993170015968393,
-      "attribution_band_upper": 6.886973853007169
+      "primary": 4.5349883285508295,
+      "statistical_band_95_low": 1.9982020797542037,
+      "statistical_band_95_high": 7.071774577347456,
+      "attribution_band_upper": 7.335164687437252
     },
     "elasticity_to_brand_share": 1.0
   },
@@ -122,10 +122,10 @@
       "role_of_brand": 0.23742326714108267,
       "brand_value_usd_m": 7339.037380414236,
       "fifa_added_brand_value_usd_m": {
-        "primary": 317.75432924912957,
-        "statistical_band_95_low": 122.27729695041862,
-        "statistical_band_95_high": 513.2313615478406,
-        "attribution_band_upper": 505.4375854515508
+        "primary": 332.82448862976815,
+        "statistical_band_95_low": 146.6487975693757,
+        "statistical_band_95_high": 519.0001796901606,
+        "attribution_band_upper": 538.3304783259649
       },
       "value_per_brand_index_point_usd_m": 71.96340346161635
     },
@@ -133,10 +133,10 @@
       "role_of_brand": -0.09890141725482902,
       "brand_value_usd_m": -3057.16119127374,
       "fifa_added_brand_value_usd_m": {
-        "primary": -132.36425342812836,
-        "statistical_band_95_low": -50.936027088279396,
-        "statistical_band_95_high": -213.7924797679773,
-        "attribution_band_upper": -210.54589188730498
+        "primary": -138.6419032092496,
+        "statistical_band_95_low": -61.08825850547026,
+        "statistical_band_95_high": -216.19554791302897,
+        "attribution_band_upper": -224.24780814034736
       },
       "value_per_brand_index_point_usd_m": -29.977190856385878
     },
@@ -144,10 +144,10 @@
       "role_of_brand": 0.6853604101010107,
       "brand_value_usd_m": 21185.310645221925,
       "fifa_added_brand_value_usd_m": {
-        "primary": 917.2489285818272,
-        "statistical_band_95_low": 352.97306533223457,
-        "statistical_band_95_high": 1481.5247918314199,
-        "attribution_band_upper": 1459.0268048147784
+        "primary": 960.7513651280507,
+        "statistical_band_95_low": 423.3253179152132,
+        "statistical_band_95_high": 1498.1774123408884,
+        "attribution_band_upper": 1553.9774253722035
       },
       "value_per_brand_index_point_usd_m": 207.73392727095367
     }
@@ -228,7 +228,7 @@
     },
     "dominance_manifest": {
       "path": "data/curated/experimental/brand_value_dominance_v1/brand_value_dominance_manifest.json",
-      "sha256": "0f128e7f5f48f6bc529088d5007b47cf36856acabb52bf3b5ec8e4e7eebc1884"
+      "sha256": "db99cc60fb0bcc9a6e2aed667c0928321a22d06002aef5489623936cb3c8a846"
     }
   }
 }

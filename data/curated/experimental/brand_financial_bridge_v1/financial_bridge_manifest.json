@@ -1,7 +1,7 @@
 {
   "experiment_id": "brand_financial_bridge_v1",
   "status": "exploratory_no_approved_monetization_coefficient",
-  "generated_at_utc": "2026-10-08T08:35:44.207835+00:00",
+  "generated_at_utc": "2026-10-09T08:06:18.106003+00:00",
   "canonical_contracts_replaced": [],
   "accepted_for_valuation": false,
   "primary_profit_mapping": {
@@ -124,13 +124,13 @@
       },
       {
         "case": "world_cup_incremental_tournament_interim",
-        "delta_brand_index": 0.5800243201738167,
+        "delta_brand_index": 3.5992022088165285,
         "role": "interim_incremental_tournament_lift",
-        "delta_adjusted_net_margin_pp_central": 0.005265673310459058,
-        "quarterly_adjusted_profit_usd_m_central": 1.4187303600369838,
-        "quarterly_adjusted_profit_usd_m_lower_95": -17.23752688709278,
-        "quarterly_adjusted_profit_usd_m_upper_95": 20.074987607166747,
-        "annualized_run_rate_usd_m_central": 5.674921440147935,
+        "delta_adjusted_net_margin_pp_central": 0.032674876467647156,
+        "quarterly_adjusted_profit_usd_m_central": 8.803591966678173,
+        "quarterly_adjusted_profit_usd_m_lower_95": -106.9633508263354,
+        "quarterly_adjusted_profit_usd_m_upper_95": 124.57053475969174,
+        "annualized_run_rate_usd_m_central": 35.21436786671269,
         "accepted_for_valuation": false
       }
     ]
@@ -287,7 +287,7 @@
     },
     "world_cup_estimate_manifest": {
       "path": "data/curated/experimental/world_cup_impact_v1/estimate_manifest.json",
-      "sha256": "94f661563a81f9d87b7bd72e3ef3a1c33ea8da9724783042c7f5d2ee39e4a442"
+      "sha256": "13e6967bd16df7f8667761623b7c2332fd81fe22b7581557da0a0200061ae780"
     },
     "total_effect_weekly": {
       "path": "data/curated/experimental/sponsorship_total_effect_v1/total_effect_weekly.parquet",

@@ -1,7 +1,7 @@
 {
   "experiment_id": "world_cup_impact_v1",
   "status": "waiting_for_world_cup_data",
-  "generated_at_utc": "2026-10-08T08:35:03.356268+00:00",
+  "generated_at_utc": "2026-10-09T08:05:43.310242+00:00",
   "role": "primary sponsorship impact evaluation; earlier announcement/FCWC SCM remains interim",
   "canonical_contracts_replaced": [],
   "config": {
@@ -72,10 +72,10 @@
       "source": "world_cup_exposure",
       "status": "available_coverage_incomplete",
       "path": "data\\staged\\blinkfire\\blinkfire_exposure_weekly.parquet",
-      "sha256": "0b57226cf8d851fc2261f697b9783e35e804b6280d16dd4c71d7e584971f16e0",
+      "sha256": "39d310a2e6db32ec5c4f0a6b29b5b62b7c131a2b6b3dba61068000be21e368c8",
       "required_for_estimation": true,
       "note": "updated Blinkfire property-week exposure through the persistence window",
-      "rows": 1235,
+      "rows": 1872,
       "columns": [
         "property_id",
         "week",
@@ -85,7 +85,7 @@
         "days_observed",
         "measurement_scope"
       ],
-      "coverage_end": "2026-07-20",
+      "coverage_end": "2026-09-28",
       "required_coverage_through": "2026-10-18"
     },
     {

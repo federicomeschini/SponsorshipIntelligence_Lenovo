@@ -1,13 +1,13 @@
 {
   "experiment_id": "sponsorship_monetization_v1",
   "status": "attribution_bridge_built_valuation_blocked",
-  "generated_at_utc": "2026-10-08T08:34:32.107030+00:00",
+  "generated_at_utc": "2026-10-09T08:05:15.210214+00:00",
   "canonical_contracts_replaced": [],
   "purpose": "Connect property exposure and observational funnel lift to an allocation scenario, then conditionally apply royalty relief.",
   "inputs": {
     "exposure": {
       "path": "data/staged/blinkfire/blinkfire_exposure_weekly.parquet",
-      "sha256": "0b57226cf8d851fc2261f697b9783e35e804b6280d16dd4c71d7e584971f16e0"
+      "sha256": "39d310a2e6db32ec5c4f0a6b29b5b62b7c131a2b6b3dba61068000be21e368c8"
     },
     "survey_lift": {
       "path": "data/staged/survey/sponsorship_funnel_lift.parquet",
@@ -19,7 +19,7 @@
     }
   },
   "outputs": {
-    "exposure_adstock_weekly_rows": 1235,
+    "exposure_adstock_weekly_rows": 1872,
     "funnel_lift_exposure_panel_rows": 7,
     "model_eligible_panel_rows": 5,
     "property_allocation_rows": 3,

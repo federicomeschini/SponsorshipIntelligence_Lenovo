@@ -67,7 +67,7 @@ def test_blinkfire_is_downstream_treatment_and_control_not_a_donor():
         (EXPERIMENT / "exposure_control_regression.json").read_text(encoding="utf-8")
     )
     assert regression["status"] == "descriptive_association_not_causal"
-    assert regression["observations"] == 95
+    assert regression["observations"] == len(pd.date_range(regression["sample_start"], regression["sample_end"], freq="W-MON"))
     assert set(regression["coefficients"]) == {
         "intercept", "fifa_log_adstock_z", "nonfifa_log_adstock_z", "linear_time_z",
         "product_campaign_control", "promotion_calendar_control", "mixed_event_control",

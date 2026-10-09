@@ -153,14 +153,19 @@ def build(config_path: str = "config/experiments/sponsorship_exposure_timing_v1.
     trends = pd.read_parquet(inputs["trends"])
     trends["week"] = pd.to_datetime(trends["week"]) + pd.Timedelta(days=1)   # W-SUN -> W-MON
 
-    # FIFA: observed, zero before coverage (no FIFA deal before October 2024).
-    fifa = wide[[c for c in wide if c in fifa_ids]].sum(axis=1).reindex(weeks).fillna(0.0)
+    # FIFA: sponsorship exposure starts at the deal (ADR-0048). FIFA content before it (two days in 2024 with
+    # Lenovo visible, before Lenovo was a partner) is not sponsorship exposure and is set to zero.
+    fifa_all = wide[[c for c in wide if c in fifa_ids]].sum(axis=1).reindex(weeks).fillna(0.0)
+    treatment_start = pd.Timestamp(config["treatment_start"])
+    treatment_week = treatment_start - pd.Timedelta(days=treatment_start.weekday())
+    fifa = fifa_all.where(weeks >= treatment_week, 0.0)
+    prefifa_excluded = float(fifa_all[weeks < treatment_week].sum())
     combined, baseline, scale_rows = {}, {}, []
     for prop, meta in config["pre_existing"].items():
         scales = _cobrand_scales(trends, meta["cobrand_query"], spec)
         combined[prop], baseline[prop] = backcast_property(
             wide[prop], weeks, scales, pd.Timestamp(meta["active_from"]), spec)
-        post = (weeks >= wide.index.min()) & (weeks <= coverage_end)
+        post = gap["period"].eq("post").to_numpy() & (weeks <= coverage_end)
         scale_rows.append({
             "property_id": prop, "active_from": str(meta["active_from"]), "upgraded_from": str(meta.get("upgraded_from")),
             **{f"scale_{y}": scales.get(y) for y in spec["pre_fifa_years"]},
@@ -172,6 +177,27 @@ def build(config_path: str = "config/experiments/sponsorship_exposure_timing_v1.
         if prop in wide:
             combined[prop] = wide[prop].reindex(weeks).fillna(0.0)
             baseline[prop] = pd.Series(0.0, index=weeks)
+    # ADR-0048: how well did the earlier back-cast (post-deal profile, co-brand scaling) predict the
+    # pre-deal months that are now observed? Re-run it as if coverage started in October 2024.
+    validation_rows = []
+    check = config.get("backcast_validation")
+    if check:
+        old_spec = {**spec, **{k: check[k] for k in ("profile_window", "cobrand_reference_window")}}
+        lo, hi = (pd.Timestamp(v) for v in check["check_window"])
+        in_check = (weeks >= lo) & (weeks <= hi)
+        for prop, meta in config["pre_existing"].items():
+            truncated = wide[prop][wide.index >= pd.Timestamp(check["observed_from"])]
+            predicted, _ = backcast_property(truncated, weeks, _cobrand_scales(trends, meta["cobrand_query"], old_spec),
+                                             pd.Timestamp(meta["active_from"]), old_spec)
+            observed_w = wide[prop].reindex(weeks).fillna(0.0)
+            validation_rows.append({
+                "property_id": prop, "weeks": int(in_check.sum()),
+                "observed_impressions_m": float(observed_w[in_check].sum() / 1e6),
+                "earlier_backcast_impressions_m": float(predicted[in_check].sum() / 1e6),
+                "earlier_backcast_over_observed": float(predicted[in_check].sum() / observed_w[in_check].sum()),
+                "weekly_correlation": float(np.corrcoef(predicted[in_check], observed_w[in_check])[0, 1]),
+            })
+    validation = pd.DataFrame(validation_rows)
     scale_table = pd.DataFrame(scale_rows)
     scale_table["observed_over_baseline"] = scale_table["observed_post_impressions_m"] / scale_table["baseline_post_impressions_m"]
 
@@ -203,6 +229,8 @@ def build(config_path: str = "config/experiments/sponsorship_exposure_timing_v1.
     _write(coefficients, target, "exposure_timing_coefficients")
     _write(weekly.reset_index(names="week"), target, "exposure_timing_weekly")
     _write(scale_table, target, "nonfifa_backcast_scales")
+    if not validation.empty:
+        _write(validation, target, "backcast_validation_2024")
 
     def coef(test: str, specification: str, term: str) -> dict[str, float]:
         row = coefficients[(coefficients["test"] == test) & (coefficients["specification"] == specification)
@@ -265,6 +293,9 @@ def build(config_path: str = "config/experiments/sponsorship_exposure_timing_v1.
         "samples": {"pre_weeks": len(pre), "post_weeks_with_exposure": len(post), "exposure_coverage_end": str(coverage_end.date()),
                     "backcast_weeks": int((sample["nonfifa_source"] == "backcast").sum())},
         "nonfifa_backcast": scale_table.to_dict("records"),
+        "exposure_coverage": [str(wide.index.min().date()), str(coverage_end.date())],
+        "treatment_start": str(treatment_start.date()), "fifa_impressions_before_treatment_excluded": prefifa_excluded,
+        "backcast_validation_2024": validation.to_dict("records"),
         "post_collinearity": {
             "fifa_log_adstock_vs_time": float(np.corrcoef(post["fifa_log_adstock"], post_time)[0, 1]),
             "nonfifa_incremental_vs_time": float(np.corrcoef(post["nonfifa_incremental_log_adstock"], post_time)[0, 1]),
@@ -272,7 +303,7 @@ def build(config_path: str = "config/experiments/sponsorship_exposure_timing_v1.
         "summary": summary,
         "fifa_specific_effect": fifa_specific,
         "assumptions": [
-            "Back-cast exposure repeats each property's first observed Blinkfire year week by week, scaled by its co-brand search level per year; it is constructed, not observed.",
+            "Motorsport exposure is observed from January 2024; 2022-2023 is back-cast from the observed 2024 week profile, scaled by each year's co-brand search level relative to 2024 (ADR-0048); it is constructed, not observed.",
             "Co-brand search after June 2025 is not used for scaling because low-volume Lenovo queries step up in 2025Q3 (Google data change, ADR-0039).",
             "Exposure is digital and social only (Blinkfire); broadcast is not measured.",
             "Weeks after the last Blinkfire week are excluded, not treated as zero.",

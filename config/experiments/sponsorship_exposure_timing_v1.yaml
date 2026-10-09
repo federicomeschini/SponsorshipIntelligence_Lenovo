@@ -14,6 +14,7 @@ inputs:
   product_campaign_events: data/reference/lenovo_product_campaign_events.csv
 
 treatment_property_group: fifa
+treatment_start: 2024-10-15     # ADR-0048: FIFA exposure counts from the deal; earlier FIFA content is not sponsorship exposure
 adstock_delta: 0.80              # same fixed scenario as sponsorship_monetization_v1
 
 # Non-FIFA sponsorships already running before the sample start (2022-01-03): back-cast
@@ -42,9 +43,19 @@ new_or_unknown:
   ny_yankees: "activation date not found; negligible exposure"
 
 backcast:
-  profile_window: [2024-09-30, 2025-09-28]        # first full observed year: one value per ISO week
-  cobrand_reference_window: [2024-09-30, 2025-06-29]  # co-brand level of the profile year, before the 2025Q3 Google change
+  # ADR-0048: Blinkfire now starts in January 2024, so 2024 is observed. The profile is calendar 2024
+  # (before the F1 Global Partner upgrade and before the Club World Cup); only 2022-2023 are back-cast.
+  profile_window: [2024-01-01, 2024-12-29]        # one value per ISO week
+  cobrand_reference_window: [2024-01-01, 2024-12-29]  # co-brand level of the profile year
   pre_fifa_years: [2022, 2023, 2024]              # baseline intensity = mean of these years' scale factors
+
+# The earlier back-cast (ADR-0042: post-deal profile year), re-run as if coverage started in October 2024
+# and compared with the January-September 2024 weeks that are now observed.
+backcast_validation:
+  observed_from: 2024-10-01
+  profile_window: [2024-09-30, 2025-09-28]
+  cobrand_reference_window: [2024-09-30, 2025-06-29]
+  check_window: [2024-01-01, 2024-09-29]
 
 # ADR-0043 (owner decision): the FIFA-specific effect is the primary sponsorship estimate.
 # It is the part of the post-announcement gap explained by accumulated FIFA exposure,

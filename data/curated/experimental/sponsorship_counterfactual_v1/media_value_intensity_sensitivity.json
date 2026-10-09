@@ -11,7 +11,7 @@
   "window_weeks": 49,
   "weeks_with_media_value": 29,
   "media_intensity_weighted_gap_index_points": 0.8634212048641646,
-  "blinkfire_weighted_gap_same_window_index_points": 0.9377681911107071,
+  "blinkfire_weighted_gap_same_window_index_points": 0.9377678106128166,
   "unweighted_mean_gap_same_window_index_points": 0.8055648936453305,
   "weekly_correlation_with_blinkfire_fifa_impressions": {
     "pearson": 0.6095802344625443,
@@ -23,35 +23,35 @@
     "sample_end": "2026-03-30",
     "observations": 49,
     "hac_lags": 4,
-    "r_squared": 0.18917098192763304,
+    "r_squared": 0.18913153275102657,
     "coefficients": {
       "intercept": {
-        "estimate_index_points": 0.8341820194639827,
-        "hac_se": 0.12191943642815785
+        "estimate_index_points": 0.8341825969349421,
+        "hac_se": 0.12192882869458455
       },
       "nonfifa_log_adstock_z": {
-        "estimate_index_points": 0.18671474874003516,
-        "hac_se": 0.13426386904897833
+        "estimate_index_points": 0.18663548917128167,
+        "hac_se": 0.13428542395203658
       },
       "linear_time_z": {
-        "estimate_index_points": 0.22378176883621848,
-        "hac_se": 0.14985147606974028
+        "estimate_index_points": 0.2238420683902511,
+        "hac_se": 0.14990226083414868
       },
       "product_campaign_control": {
-        "estimate_index_points": 0.646239430323849,
-        "hac_se": 0.20270813520941774
+        "estimate_index_points": 0.646374293484565,
+        "hac_se": 0.20270119876796483
       },
       "promotion_calendar_control": {
-        "estimate_index_points": 0.05323359574240823,
-        "hac_se": 0.18298293375364305
+        "estimate_index_points": 0.053216158621609694,
+        "hac_se": 0.18297772573204105
       },
       "mixed_event_control": {
-        "estimate_index_points": -0.7002963043116548,
-        "hac_se": 0.46757354170194926
+        "estimate_index_points": -0.7003620913508698,
+        "hac_se": 0.46757004961846205
       },
       "media_intensity_log_adstock_z": {
-        "estimate_index_points": 0.01815809944150885,
-        "hac_se": 0.10400843168407417
+        "estimate_index_points": 0.018231970431707795,
+        "hac_se": 0.10401333187569482
       }
     },
     "regressor_definition": {

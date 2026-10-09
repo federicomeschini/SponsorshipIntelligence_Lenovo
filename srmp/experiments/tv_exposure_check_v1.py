@@ -91,7 +91,6 @@ def build(config_path: str = "config/experiments/tv_exposure_check_v1.yaml") -> 
 
     observed, daily = _media_weekly(inputs["media_values"], config["measure"])
     first, last = observed.index.min(), observed.index.max()
-    observed_rel = observed / observed.mean()                                   # unitless from here on
 
     # Blinkfire FIFA impressions by week (social media), for correlations and the scale link.
     taxonomy = pd.read_csv(inputs["property_taxonomy"])
@@ -100,15 +99,22 @@ def build(config_path: str = "config/experiments/tv_exposure_check_v1.yaml") -> 
     bf["week"] = pd.to_datetime(bf["week"])
     social = bf[bf["property_id"].isin(fifa_ids)].groupby("week")["impressions"].sum()
 
+    # Weeks without media value since the deal (October 2024 - April 2025) are filled from social media at
+    # the television-to-social ratio observed over every week with media value (ADR-0048), not set to zero.
+    tv_per_social_all = float(observed.sum() / social.reindex(observed.index).fillna(0.0).sum())
+    fill_from = pd.Timestamp(config["backward_fill"]["from"])
+    backward_grid = pd.date_range(fill_from, first - pd.Timedelta(weeks=1), freq="W-MON")
+    backward = social.reindex(backward_grid).fillna(0.0) * tv_per_social_all
+
     def tv_log(series_rel: pd.Series, index: pd.DatetimeIndex) -> pd.Series:
-        """log(1 + adstock / mean adstock over the observed media-value weeks): unitless, zero before May 2025."""
+        """log(1 + adstock / mean adstock over the observed media-value weeks): unitless, zero before the deal."""
         values = series_rel.reindex(index).fillna(0.0)
         adstock = pd.Series(geometric_adstock(values.to_numpy(float), delta), index=index)
         return np.log1p(adstock / adstock.loc[first:last].mean())
 
     # 1. Observed window -----------------------------------------------------------------
     window = weekly[weekly.index <= last].copy()
-    window["tv_log_adstock"] = tv_log(observed_rel, window.index)
+    window["tv_log_adstock"] = tv_log(pd.concat([backward, observed]).sort_index() / observed.mean(), window.index)
     cover = window.loc[first:last]
     overlap = {
         "weeks": int(len(cover)), "weeks_with_tv_value": int((observed > 0).sum()),
@@ -167,7 +173,7 @@ def build(config_path: str = "config/experiments/tv_exposure_check_v1.yaml") -> 
     def scenario_series(spec: dict[str, Any]) -> pd.Series:
         if spec["scale"] == "blinkfire_weekly":
             weeks = wc.index.union([final_week + pd.Timedelta(weeks=1)])
-            s = social.reindex(weeks).fillna(0.0) * tv_per_social
+            s = social.reindex(weeks).fillna(0.0) * tv_per_social_all / cwc_total
         else:
             scale = scale_bf if spec["scale"] == "blinkfire_per_match" else float(spec["scale"])
             s = (wc[STAGES].to_numpy(float) @ np.array([per_match[x] for x in STAGES])) * scale
@@ -190,7 +196,7 @@ def build(config_path: str = "config/experiments/tv_exposure_check_v1.yaml") -> 
     scenario_rows, weekly_rows = [], {}
     for spec in config["scenarios"]:
         forward = scenario_series(spec)
-        full = pd.concat([observed_cwc_units, forward]).sort_index()
+        full = pd.concat([backward / cwc_total, observed_cwc_units, forward]).sort_index()
         weekly_rows[spec["id"]] = full
         sample = production.copy()
         sample["tv_log_adstock"] = tv_log(full, sample.index)
@@ -229,6 +235,10 @@ def build(config_path: str = "config/experiments/tv_exposure_check_v1.yaml") -> 
         "calibration": calibration,
         "world_cup_matches": int(wc.to_numpy().sum()),
         "social_impressions_per_match": social_per_match, "blinkfire_scale": scale_bf,
+        "backward_fill": {"from": str(backward_grid.min().date()), "to": str(backward_grid.max().date()), "weeks": len(backward_grid),
+                          "method": "weekly Blinkfire FIFA impressions x television-to-social ratio over every week with media value",
+                          "share_of_club_world_cup": float(backward.sum() / cwc_total)},
+        "forward_to": str(forward_grid.max().date()),
         "scenarios": scenarios.to_dict("records"),
         "summary": {
             "max_change_vs_primary_index_points": float(scenarios["change_vs_primary"].abs().max()),
@@ -239,7 +249,7 @@ def build(config_path: str = "config/experiments/tv_exposure_check_v1.yaml") -> 
         },
         "assumptions": [
             "Media value is used only as a weekly relative intensity (adstock / its mean over the observed weeks); no monetary amount is used or reported.",
-            "Media value is set to zero before May 2025: certain before the deal, assumed for October 2024 - April 2025 (no rows in the export).",
+            "Media value is zero before the deal; October 2024 - April 2025 (no rows in the export) is filled from Blinkfire FIFA impressions at the television-to-social ratio of the observed weeks (ADR-0048).",
             "The World Cup value per match by stage is calibrated on the 2025 Club World Cup; the tournament scale is a scenario.",
             "Simulated weeks follow the match calendar, which is also when social media exposure peaks, so the two series overlap by construction.",
         ],

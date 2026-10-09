@@ -1,165 +1,197 @@
 {
   "experiment_id": "sponsorship_exposure_timing_v1",
   "status": "fifa_specific_effect_primary_ADR_0043",
-  "generated_at_utc": "2026-10-08T08:34:26.602205+00:00",
+  "generated_at_utc": "2026-10-09T08:04:50.116386+00:00",
   "headline_lift_index_points": 7.480614485015264,
   "samples": {
     "pre_weeks": 146,
-    "post_weeks_with_exposure": 92,
-    "exposure_coverage_end": "2026-07-20",
-    "backcast_weeks": 143
+    "post_weeks_with_exposure": 100,
+    "exposure_coverage_end": "2026-09-28",
+    "backcast_weeks": 104
   },
   "nonfifa_backcast": [
     {
       "property_id": "ducati",
       "active_from": "2018-01-01",
       "upgraded_from": "None",
-      "scale_2022": 0.4276920421557839,
-      "scale_2023": 0.534734276669399,
-      "scale_2024": 0.8075181041853982,
-      "pre_fifa_mean_scale": 0.5899814743368603,
-      "observed_post_impressions_m": 460.136492,
-      "baseline_post_impressions_m": 231.7381713752462,
-      "observed_over_baseline": 1.9855878264220688
+      "scale_2022": 0.5239955357524281,
+      "scale_2023": 0.6551404893488958,
+      "scale_2024": 0.9893471000760131,
+      "pre_fifa_mean_scale": 0.7228277083924457,
+      "observed_post_impressions_m": 498.905735,
+      "baseline_post_impressions_m": 295.7630926359727,
+      "observed_over_baseline": 1.6868424337652455
     },
     {
       "property_id": "motogp",
       "active_from": "2019-05-30",
       "upgraded_from": "None",
-      "scale_2022": 0.8125062046618793,
-      "scale_2023": 0.8730164853927213,
-      "scale_2024": 1.0192252577847358,
-      "pre_fifa_mean_scale": 0.9015826492797787,
-      "observed_post_impressions_m": 7779.577485,
-      "baseline_post_impressions_m": 7026.695849683422,
-      "observed_over_baseline": 1.1071458977907087
+      "scale_2022": 0.7971802096308367,
+      "scale_2023": 0.8565491079863973,
+      "scale_2024": 1.0,
+      "pre_fifa_mean_scale": 0.8845764392057447,
+      "observed_post_impressions_m": 8245.049001,
+      "baseline_post_impressions_m": 3344.398949762881,
+      "observed_over_baseline": 2.4653305795304643
     },
     {
       "property_id": "f1",
       "active_from": "2022-03-10",
       "upgraded_from": "2025-01-01",
-      "scale_2022": 0.9031764517368794,
-      "scale_2023": 0.9470991576962001,
-      "scale_2024": 0.8864711044858345,
-      "pre_fifa_mean_scale": 0.9122489046396379,
-      "observed_post_impressions_m": 4699.705372,
-      "baseline_post_impressions_m": 3335.429543225279,
-      "observed_over_baseline": 1.4090255276252965
+      "scale_2022": 1.0161225348771694,
+      "scale_2023": 1.0655379633155668,
+      "scale_2024": 0.9973281124117791,
+      "pre_fifa_mean_scale": 1.0263295368681717,
+      "observed_post_impressions_m": 4930.971781,
+      "baseline_post_impressions_m": 3261.6422408825542,
+      "observed_over_baseline": 1.511806451116401
+    }
+  ],
+  "exposure_coverage": [
+    "2024-01-01",
+    "2026-09-28"
+  ],
+  "treatment_start": "2024-10-15",
+  "fifa_impressions_before_treatment_excluded": 2550129.0,
+  "backcast_validation_2024": [
+    {
+      "property_id": "ducati",
+      "weeks": 39,
+      "observed_impressions_m": 155.448137,
+      "earlier_backcast_impressions_m": 123.29968899745614,
+      "earlier_backcast_over_observed": 0.7931885925236669,
+      "weekly_correlation": -0.18766523656187173
+    },
+    {
+      "property_id": "motogp",
+      "weeks": 39,
+      "observed_impressions_m": 1425.840716,
+      "earlier_backcast_impressions_m": 4007.360675908191,
+      "earlier_backcast_over_observed": 2.8105247878951656,
+      "weekly_correlation": 0.1619216551988806
+    },
+    {
+      "property_id": "f1",
+      "weeks": 39,
+      "observed_impressions_m": 981.752746,
+      "earlier_backcast_impressions_m": 1219.3330862603605,
+      "earlier_backcast_over_observed": 1.2419961046488994,
+      "weekly_correlation": 0.35202563595379566
     }
   ],
   "post_collinearity": {
-    "fifa_log_adstock_vs_time": 0.7789566653961559,
-    "nonfifa_incremental_vs_time": 0.5333377715075689
+    "fifa_log_adstock_vs_time": 0.8203788791046314,
+    "nonfifa_incremental_vs_time": 0.49688917308338393
   },
   "summary": {
     "pre_period_nonfifa:levels_without_trend": {
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.6441036716382239,
-        "hac_se": 0.2565065177881401,
-        "p": 0.0120368684561551
+        "points_per_sd": 0.8700892541578203,
+        "hac_se": 0.2294831639589288,
+        "p": 0.00014973006313164265
       }
     },
     "pre_period_nonfifa:levels_with_trend": {
       "nonfifa_log_adstock": {
-        "points_per_sd": -0.011823744119075913,
-        "hac_se": 0.3034810513372813,
-        "p": 0.9689219583089449
+        "points_per_sd": 0.2536050830045179,
+        "hac_se": 0.25760618743031166,
+        "p": 0.3248853913058486
       }
     },
     "pre_period_nonfifa:first_differences": {
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.04258950710987474,
-        "hac_se": 0.08667487377099016,
-        "p": 0.6231641716838395
+        "points_per_sd": 0.09337939309727425,
+        "hac_se": 0.0758345794986359,
+        "p": 0.2181896046672659
       }
     },
     "post_period_incremental:levels_without_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": 3.0987637510735824,
-        "hac_se": 0.712136917291908,
-        "p": 1.3529599787043274e-05
+        "points_per_sd": 3.206015572248673,
+        "hac_se": 0.6389630527292375,
+        "p": 5.234033470158373e-07
       },
       "nonfifa_incremental_log_adstock": {
-        "points_per_sd": 0.3897645714823128,
-        "hac_se": 1.009737432274717,
-        "p": 0.699492324791007
+        "points_per_sd": 0.4299684678798647,
+        "hac_se": 0.8514715633227539,
+        "p": 0.6135791872890217
       }
     },
     "post_period_incremental:levels_with_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": -1.2670348439541912,
-        "hac_se": 1.6780380442341136,
-        "p": 0.4502074622844491
+        "points_per_sd": -0.14078607888962255,
+        "hac_se": 1.8225478815525813,
+        "p": 0.9384271737676764
       },
       "nonfifa_incremental_log_adstock": {
-        "points_per_sd": -2.041407825076182,
-        "hac_se": 0.7300482001650526,
-        "p": 0.005169708091225294
+        "points_per_sd": -0.4917777181318665,
+        "hac_se": 0.71627380948496,
+        "p": 0.4923488028658586
       }
     },
     "post_period_incremental:first_differences": {
       "fifa_log_adstock": {
-        "points_per_sd": -0.013336033600685207,
-        "hac_se": 0.22690621929747326,
-        "p": 0.95313265307873
+        "points_per_sd": 0.026805106682840637,
+        "hac_se": 0.20339432751447592,
+        "p": 0.8951512976229377
       },
       "nonfifa_incremental_log_adstock": {
-        "points_per_sd": -0.35020362734523286,
-        "hac_se": 0.2684917882514909,
-        "p": 0.19211889082291578
+        "points_per_sd": -0.06724721381515991,
+        "hac_se": 0.19344300519652974,
+        "p": 0.7281156583343558
       }
     },
     "full_sample:levels_without_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": 4.75418803541761,
-        "hac_se": 0.6197410735854951,
-        "p": 1.7032964206556287e-14
+        "points_per_sd": 4.68324094649502,
+        "hac_se": 0.5835637681850918,
+        "p": 1.0132531096692498e-15
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.6954094099047772,
-        "hac_se": 0.26452516897824496,
-        "p": 0.00856623148749071
+        "points_per_sd": 0.9611644821388334,
+        "hac_se": 0.30812923884409815,
+        "p": 0.0018124744397382832
       }
     },
     "full_sample:levels_with_trend": {
       "fifa_log_adstock": {
-        "points_per_sd": 2.1974759630411427,
-        "hac_se": 0.6897192108240338,
-        "p": 0.0014423250811117748
+        "points_per_sd": 2.3257160629129046,
+        "hac_se": 0.6637557895627123,
+        "p": 0.00045854379448723355
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": 0.058792256288447975,
-        "hac_se": 0.34612618391818023,
-        "p": 0.865121914580458
+        "points_per_sd": 0.2288637899158044,
+        "hac_se": 0.3784832769634378,
+        "p": 0.5453872111976942
       }
     },
     "full_sample:first_differences": {
       "fifa_log_adstock": {
-        "points_per_sd": 0.12392183524296357,
-        "hac_se": 0.0962709719652124,
-        "p": 0.19801792687396558
+        "points_per_sd": 0.12699835405076798,
+        "hac_se": 0.09537024945986138,
+        "p": 0.18298018584407083
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": -0.07252294025110752,
-        "hac_se": 0.10721040241544659,
-        "p": 0.4987522368616575
+        "points_per_sd": -0.05720671640271531,
+        "hac_se": 0.10612820689662372,
+        "p": 0.5898633650634757
       }
     },
     "full_sample:levels_with_trend_and_post_step": {
       "fifa_log_adstock": {
-        "points_per_sd": 6.286948817521115,
-        "hac_se": 1.928720065167203,
-        "p": 0.0011155049926910628
+        "points_per_sd": 6.3629702890642985,
+        "hac_se": 1.7466468319729664,
+        "p": 0.0002695172883065827
       },
       "nonfifa_log_adstock": {
-        "points_per_sd": -0.09695590192477248,
-        "hac_se": 0.32424272534257587,
-        "p": 0.7649228036914245
+        "points_per_sd": 0.12665966856081023,
+        "hac_se": 0.34961479444149873,
+        "p": 0.7171401930450041
       },
       "post_step": {
-        "points_per_sd": -8.701368780608203,
-        "hac_se": 3.5935133382321554,
-        "p": 0.015460433026062493
+        "points_per_sd": -8.331000129314795,
+        "hac_se": 3.1996755334906184,
+        "p": 0.00922230266538212
       }
     }
   },
@@ -168,37 +200,37 @@
     "primary_specification": "full_sample:levels_with_trend",
     "period": [
       "2024-10-21",
-      "2026-07-20"
+      "2026-09-14"
     ],
-    "weeks": 92,
-    "primary_index_points": 4.417059381118002,
-    "primary_uplift_pct": 4.329645875590221,
+    "weeks": 100,
+    "primary_index_points": 4.624913117224774,
+    "primary_uplift_pct": 4.5349883285508295,
     "statistical_band_95_index_points": [
-      1.6997599462103246,
-      7.13435881602568
+      2.037824651353446,
+      7.212001583096102
     ],
     "statistical_band_95_uplift_pct": [
-      1.6661217352120496,
-      6.993170015968393
+      1.9982020797542037,
+      7.071774577347456
     ],
-    "attribution_band_upper_index_points": 7.026018602686023,
-    "attribution_band_upper_uplift_pct": 6.886973853007169,
+    "attribution_band_upper_index_points": 7.480614485015265,
+    "attribution_band_upper_uplift_pct": 7.335164687437252,
     "attribution_band_upper_definition": "whole gap over the same weeks: the unexplained residual also credited to FIFA",
-    "counterfactual_index_level": 102.01895277441979,
+    "counterfactual_index_level": 101.98291113800242,
     "decomposition_index_points": {
-      "fifa": 4.417059381118002,
-      "other_sponsorships": 0.018811075500637958,
-      "events": -0.1905369510901717,
-      "residual": 2.780685097157555,
-      "total_gap": 7.026018602686023
+      "fifa": 4.624913117224774,
+      "other_sponsorships": 0.19495312879372315,
+      "events": -0.16862680592217977,
+      "residual": 2.829375044918948,
+      "total_gap": 7.480614485015265
     },
     "specification_range_fifa_index_points": [
-      -7.689888964204365,
-      18.807019622041896
+      -0.8230628735054334,
+      18.742992277432222
     ]
   },
   "assumptions": [
-    "Back-cast exposure repeats each property's first observed Blinkfire year week by week, scaled by its co-brand search level per year; it is constructed, not observed.",
+    "Motorsport exposure is observed from January 2024; 2022-2023 is back-cast from the observed 2024 week profile, scaled by each year's co-brand search level relative to 2024 (ADR-0048); it is constructed, not observed.",
     "Co-brand search after June 2025 is not used for scaling because low-volume Lenovo queries step up in 2025Q3 (Google data change, ADR-0039).",
     "Exposure is digital and social only (Blinkfire); broadcast is not measured.",
     "Weeks after the last Blinkfire week are excluded, not treated as zero."

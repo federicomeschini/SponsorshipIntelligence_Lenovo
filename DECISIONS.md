@@ -516,3 +516,58 @@ Append-only ADR log for choices not fixed by `ARCHITECTURE.md`.
 
   - **Unchanged:** the selected design (synthetic difference-in-differences, 13 rivals).
 - **Consequences:** The Brand Index is described as built on Google share of search with the GWI and Nielsen surveys. Notebook 05 (§5.5b) documents the Nielsen waves, their weak agreement and the question change. Further Nielsen waves (post-World Cup) enter automatically when staged.
+
+## ADR-0048 - Blinkfire coverage extended to January 2024 - September 2026
+
+- **Context:** The client supplied two more Blinkfire exports in the existing layout, each reconciling to its own TOTAL row:
+  - **January–September 2024**, before the deal: MotoGP 1.43bn, F1 0.98bn and Ducati 0.16bn impressions. It also shows two days with Lenovo visible in FIFA World Cup content, 27 March and 6 September 2024, about 1.3m impressions each.
+  - **21 July–30 September 2026**, after the World Cup: 571m FIFA World Cup and 105m Women's World Cup impressions.
+
+  Before these exports, motorsport exposure before October 2024 was back-cast. The FIFA-specific regression stopped at 20 July 2026. The television simulation assumed zero for October 2024 to April 2025.
+- **Decision:**
+  - **Ingest.** The Blinkfire ingest reads the four exports in order.
+  - **FIFA treatment start.** FIFA exposure counts from the deal (`treatment_start: 2024-10-15`); earlier FIFA content is not sponsorship exposure.
+  - **Back-cast.**
+    - *Basis:* motorsport is observed from January 2024. The back-cast for 2022–2023 uses the observed calendar-2024 profile, before the F1 upgrade and the Club World Cup, scaled by co-brand search relative to 2024.
+    - *Validation:* the earlier back-cast is re-run as if coverage started in October 2024 and compared with the observed 2024 months (`backcast_validation_2024`).
+  - **Television check.**
+    - *Calibration:* the Blinkfire link uses the television-to-social ratio over every week with media value, not only the Club World Cup weeks.
+    - *Gap:* October 2024 to April 2025 is filled from Blinkfire at that ratio.
+    - *Horizon:* the forward simulation runs to the end of exposure coverage.
+  - **Dashboard:** exposure charts start at the deal.
+- **Result:**
+  - **Earlier back-cast was poor.** For January–September 2024 it overstated MotoGP 2.8 times (4,007m against 1,426m observed), F1 by 1.24 and Ducati by 0.79, with weekly correlations of −0.19 to 0.35.
+  - **Isolating each change** (primary specification; FIFA-specific effect in points):
+
+    | Variant | Post weeks | FIFA-specific | Coefficient per s.d. (p) | 95% band |
+    |---|---|---|---|---|
+    | As before | 92 | 4.42 | 2.20 (0.001) | 1.70 to 7.13 |
+    | + observed 2024 motorsport | 92 | 4.32 | 2.15 (0.001) | 1.81 to 6.82 |
+    | + back-cast from the 2024 profile | 92 | 4.40 | 2.19 (0.001) | 1.85 to 6.95 |
+    | + the two pre-deal FIFA days | 92 | −1.44 | −0.70 (0.53) | −5.90 to 3.01 |
+    | Coverage to September only | 100 | 4.63 | 2.33 (0.001) | 1.87 to 7.38 |
+    | **All new data, FIFA from the deal (adopted)** | 100 | **4.62** | 2.33 (<0.001) | 2.04 to 7.21 |
+
+  - **Why the two pre-deal days matter.** On a log scale, carried over by the adstock, two days of 1.3m impressions create many pre-announcement weeks of apparent FIFA exposure with no gap, and that cancels the timing relation.
+  - **Before and after:**
+
+    | Result | Before | Now |
+    |---|---|---|
+    | Post-announcement weeks with exposure | 92 | 100 |
+    | FIFA-specific effect (points) | 4.42 | 4.62 |
+    | FIFA-specific uplift | 4.33% | 4.54% |
+    | 95% band (points) | 1.70 to 7.13 | 2.04 to 7.21 |
+    | Ceiling, whole gap over the same weeks (points) | 7.03 | 7.48 |
+    | Motorsport before the deal, per s.d. (p) | −0.01 (0.97) | 0.25 (0.32) |
+    | Television check, largest change (points) | 0.32 | 0.12 |
+    | Television's own part (points) | −0.37 to −0.47 | −0.19 to −0.28 |
+    | FIFA-added brand value (US$M) | 317.8 | 332.8 |
+    | FIFA-added, 95% band (US$M) | 122 to 513 | 147 to 519 |
+    | FIFA-added, ceiling (US$M) | 505 | 538 |
+
+  - **Unchanged:** the brand value (US$7,339M) and the World Cup close-up status (interim, 5 of 8 gates open).
+- **Consequences:**
+  - **Headline figures.** The primary FIFA-specific effect becomes 4.62 points (+4.5% brand share) and the FIFA-added value US$333M. The dashboard follows automatically.
+  - **Remaining back-cast.** Only 2022–2023 motorsport exposure is constructed.
+  - **Measure sensitivity.** The log-adstock exposure measure is sensitive to tiny exposure in otherwise empty weeks; the treatment-start rule is part of the specification and must be kept.
+  - **Tests.** The tests that pinned row counts of the earlier exports now check the new coverage.

@@ -42,18 +42,18 @@ def test_complete_available_blinkfire_export_is_reconciled_and_normalized():
     table = pq.read_table(staged / "blinkfire_exposure_daily.parquet")
     assert manifest["status"] == "complete_client_scope"
     assert manifest["total_row_validation"] == "passed"
-    # Base export through 2026-06-11 plus the World Cup export through 2026-07-20,
-    # overlapping on 2026-06-11 where the later export wins.
-    assert manifest["dated_rows"] == 619 + 40 - 1
-    assert [len(item["overlapping_dates_replaced"]) for item in manifest["exports"]] == [0, 1]
+    # Base export (Oct 2024 - 11 Jun 2026), the pre-deal export (Jan - Sep 2024), the World Cup export
+    # (11 Jun - 20 Jul 2026, replacing 11 Jun) and the post-tournament export (21 Jul - 30 Sep 2026).
+    assert manifest["dated_rows"] == 619 + 274 + 40 - 1 + 72
+    assert [len(item["overlapping_dates_replaced"]) for item in manifest["exports"]] == [0, 0, 1, 0]
     assert all(item["total_row_validation"] == "passed" for item in manifest["exports"])
-    assert manifest["date_max"] == "2026-07-20"
+    assert (manifest["date_min"], manifest["date_max"]) == ("2024-01-01", "2026-09-30")
     assert manifest["properties"] == 13
-    assert table.num_rows == 658 * 13
+    assert table.num_rows == manifest["dated_rows"] * 13
     assert table.column_names == ["date", "property_id", "source_label", "impressions", "views"]
     weekly = pq.read_table(staged / "blinkfire_exposure_weekly.parquet")
     weekly_manifest = json.loads((staged / "weekly_manifest.json").read_text(encoding="utf-8"))
-    assert weekly.num_rows == weekly_manifest["row_count"] == 1235
+    assert weekly.num_rows == weekly_manifest["row_count"] == 13 * len({row.as_py() for row in weekly.column("week")})
     assert weekly_manifest["contract_status"] == "not_C_EXPOSURE_until_adstock_is_added"
 
 

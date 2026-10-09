@@ -14,6 +14,17 @@
       "overlapping_dates_replaced": []
     },
     {
+      "path": "data\\raw\\blinkfire\\impressions_views_by_2024.xlsx",
+      "sha256": "47b9df34f544d2409807d7aa8393700ba4ce82ef770651108392b3a7b780473c",
+      "raw_rows": 275,
+      "dated_rows": 274,
+      "properties": 13,
+      "date_min": "2024-01-01",
+      "date_max": "2024-09-30",
+      "total_row_validation": "passed",
+      "overlapping_dates_replaced": []
+    },
+    {
       "path": "data\\raw\\blinkfire\\impressions_views_by_wc.xlsx",
       "sha256": "4fa993469db14fcea5044bef7965e3ded52b553b13ce8128535d1bc59539eeb9",
       "raw_rows": 41,
@@ -29,16 +40,27 @@
           "impressions_after": 49645720
         }
       ]
+    },
+    {
+      "path": "data\\raw\\blinkfire\\impressions_views_by_wc_sept.xlsx",
+      "sha256": "27754b0b5dae15f68be25daca87204725c0fffe4f46792afd437e9538a3758ad",
+      "raw_rows": 73,
+      "dated_rows": 72,
+      "properties": 13,
+      "date_min": "2026-07-21",
+      "date_max": "2026-09-30",
+      "total_row_validation": "passed",
+      "overlapping_dates_replaced": []
     }
   ],
   "merge_rule": "later export replaces earlier export on overlapping dates",
-  "generated_at_utc": "2026-10-05T08:57:29.582353+00:00",
+  "generated_at_utc": "2026-10-09T08:00:55.744837+00:00",
   "status": "complete_client_scope",
-  "raw_rows": 661,
-  "dated_rows": 658,
-  "normalized_rows": 8554,
-  "date_min": "2024-10-01",
-  "date_max": "2026-07-20",
+  "raw_rows": 1009,
+  "dated_rows": 1004,
+  "normalized_rows": 13052,
+  "date_min": "2024-01-01",
+  "date_max": "2026-09-30",
   "properties": 13,
   "total_row_excluded": true,
   "total_row_validation": "passed",

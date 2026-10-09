@@ -298,3 +298,13 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
 - **Context:** The product name came from the owner's design reference. It misdescribes the dashboard: the dashboard covers a multi-year partnership rather than one event, it computes ROI only from a user-entered cost, and "EROI" usually means energy return on investment. The owner asked to remove it for now.
 - **Decision:** The masthead shows the OpenEconomics logo and the case label ("FIFA × Lenovo") only. The page and tab titles drop "EROI", and the builder no longer writes `meta.product`. File names (`eroi.js`, `eroi.css`, `eroi-data.js`) are internal and unchanged.
 - **Consequences:** No product name is shown until one is chosen.
+
+## FE-023 — Exposure from the deal; figures follow ADR-0048
+
+- **Context:** The Blinkfire data now start in January 2024 (ADR-0048).
+- **Decision:** The builder shows FIFA exposure from the deal week (the exposure-timing `treatment_start`), so the 2024 pre-deal FIFA content does not appear in the exposure charts or totals. Every other figure follows the rebuilt pipeline, with no text changes:
+  - FIFA-specific effect 4.62 points (+4.5%);
+  - ceiling 7.48 points;
+  - FIFA-added value US$333M;
+  - exposure through 28 September 2026.
+- **Consequences:** Data only.

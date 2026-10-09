@@ -641,7 +641,7 @@ def build_counterfactual(
             "Product and campaign controls are event-week indicators, not media-spend or launch-intensity measures.",
             "Synthetic control isolates Lenovo-specific excess salience under donor assumptions; it does not prove sponsorship is the only cause.",
             "Blinkfire exposure omits broadcast, so the primary exposure-weighting covers digital/social/owned exposure only; a media-value intensity sensitivity (ADR-0028) adds broadcast-inclusive weighting for 2025-05 to 2026-04.",
-            "Blinkfire coverage starts 2024-09-30, leaving only three observed weeks before the first full post-treatment week.",
+            "Blinkfire coverage starts 2024-01-01 (ADR-0048); 2022-2023 non-FIFA exposure is not observed.",
             "The FIFA versus non-FIFA exposure regression is a timing diagnostic, not a causal estimator, because Lenovo chooses activation timing.",
             "Negative treatment-contamination searches are evidence-bounded and must be refreshed when FIFA announces new partners or brands launch World Cup campaigns.",
         ],

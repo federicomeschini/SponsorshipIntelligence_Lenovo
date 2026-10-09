@@ -40,12 +40,16 @@ stage_map:
   Final: late
 match_timezone: America/New_York
 
-# Forward scenarios for April - July 2026 (no FIFA tournament before 11 June 2026).
+# Forward scenarios from April 2026 to the end of exposure coverage (no FIFA tournament before 11 June 2026).
 scenarios:
   - {id: same_per_match, label: "Same value per match as the Club World Cup", scale: 1.0}
   - {id: audience_x3, label: "Three times the Club World Cup audience (assumed)", scale: 3.0}
   - {id: blinkfire_per_match, label: "Scaled by Blinkfire impressions per match", scale: blinkfire_per_match}
-  - {id: blinkfire_linked, label: "Proportional to weekly Blinkfire FIFA impressions", scale: blinkfire_weekly}
+  - {id: blinkfire_linked, label: "Proportional to weekly Blinkfire FIFA impressions", scale: blinkfire_weekly}   # ratio over every week with media value (ADR-0048)
+
+# Weeks since the deal without media value (Oct 2024 - Apr 2025): filled from Blinkfire, not zero (ADR-0048).
+backward_fill:
+  from: 2024-10-14
 
 outputs:
   directory: data/curated/experimental/tv_exposure_check_v1
