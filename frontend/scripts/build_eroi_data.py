@@ -113,17 +113,9 @@ def build_exposure(events: list[dict]) -> dict:
     dec = pd.read_parquet(E / "sponsorship_exposure_timing_v1/fifa_specific_decomposition.parquet")
     scales = pd.read_parquet(E / "sponsorship_exposure_timing_v1/nonfifa_backcast_scales.parquet")
 
-    # Weekly gap and the part explained by FIFA exposure, both in % of the twin (brand share) (FE-026).
-    # FIFA part_t = b_F x log adstock_t / sd over the estimation sample: its post-period mean is the
-    # FIFA-specific effect (ADR-0043 decomposition).
-    coef = pd.read_parquet(E / "sponsorship_exposure_timing_v1/exposure_timing_coefficients.parquet")
-    p_test, p_spec = fs["primary_specification"].split(":")
-    b_fifa = float(coef[(coef["test"] == p_test) & (coef["specification"] == p_spec)
-                        & (coef["term"] == "fifa_log_adstock")]["estimate"].iloc[0])
-    fifa_points = (b_fifa * timing.set_index("week")["fifa_log_adstock"] / timing["fifa_log_adstock"].std(ddof=0))
+    # Weekly gap as % of the twin (brand share) (FE-026).
     core = weekly.set_index("week")
     gap_pct = 100 * core["index_gap"] / core["synthetic_index"]
-    fifa_pct = (100 * fifa_points.reindex(core.index) / core["synthetic_index"]).where(core["period"].eq("post"))
 
     # Cross-checks and World Cup.
     share = j(E / "sponsorship_total_effect_share_of_search_v1/estimate_manifest.json")
@@ -146,8 +138,7 @@ def build_exposure(events: list[dict]) -> dict:
     return {
         "core": {"weeks": iso(weekly["week"]), "annIdx": ann_idx, "actual": series(weekly["actual_index"]),
                  "synthetic": series(weekly["synthetic_index"]), "gap": series(weekly["index_gap"]),
-                 "gapPct": series(gap_pct, 2), "fifaPct": series(fifa_pct, 2),
-                 "fifaPointsPostMean": r(fifa_points.reindex(core.index)[core["period"].eq("post")].mean(), 3)},
+                 "gapPct": series(gap_pct, 2)},
         "brandIndex": {"weeks": iso(bi["week"]), "level": series(bi["index_level"]), "se": series(bi["index_se"]),
                        "productDemand": series(bi["product_search_demand"], 1),
                        "surveyFit": {k: r(v["correlation"], 2) for k, v in bi_man["survey_fit"].items()},

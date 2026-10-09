@@ -466,16 +466,19 @@
 
     /* --- synthetic control ------------------------------------------------- */
     const g3 = grid(root);
+    const gapAvg = FS.attribution_band_upper_uplift_pct, fifaAvg = FS.primary_uplift_pct;
+    const afterDeal = (v) => X.core.weeks.map((_, i) => (i >= X.core.annIdx ? v : null));
     const pD = panel(col(g3, 7), {
       label: "The result over time",
-      title: `Lenovo runs ${F.pctv(FS.attribution_band_upper_uplift_pct)} above its no-sponsorship twin; ${F.pctv(FS.primary_uplift_pct)} comes from FIFA exposure`,
-      sub: "Weekly gap between Lenovo's Brand Index (its share of attention against rival brands, with the GWI and Nielsen surveys) and a twin built from rival brands that reproduces Lenovo before the deal, as % of the twin. Purple: the part explained by accumulated FIFA exposure.",
+      title: `Since the deal, Lenovo has averaged ${F.pctv(gapAvg)} above its no-sponsorship twin`,
+      sub: "How far Lenovo's brand share of attention sits above a twin built from 13 rival brands, week by week. Before the deal the two match; after it, Lenovo pulls ahead.",
     });
     const cvD = chartIn(pD, 330);
     lineChart(cvD, {
       weeks: X.core.weeks,
       series: [
-        { label: "Explained by FIFA exposure", data: X.core.fifaPct, color: T.brand, width: 1.6, fill: "origin", fillColor: "rgba(89,2,238,.45)", order: 1 },
+        { label: "Average since the deal", data: afterDeal(gapAvg), color: T.limeInk, width: 2, dash: [6, 4], tension: 0, order: 1 },
+        { label: "Explained by FIFA exposure", data: afterDeal(fifaAvg), color: T.brand, width: 2.4, dash: [6, 4], tension: 0, order: 0 },
         { label: "Gap to the twin", data: X.core.gapPct, color: T.limeInk, width: 1.6, fill: "origin", fillColor: T.gap, order: 2 },
       ],
       milestones: marksFor(X.core.weeks, [...KEY_MARKS, "wc_final_2026"]),
@@ -483,10 +486,11 @@
       tip: (v) => (v == null ? "—" : (v >= 0 ? "+" : "") + v.toFixed(1) + "%"),
     });
     legend(pD, [
-      { color: T.lime, label: "Gap to the no-sponsorship twin", square: true },
-      { color: T.brand, label: "Part explained by FIFA exposure", square: true },
+      { color: T.lime, label: "Weekly gap to the twin", square: true },
+      { color: T.limeInk, label: `Average since the deal: ${F.pctv(gapAvg)}`, dash: true },
+      { color: T.brand, label: `Explained by FIFA exposure: ${F.pctv(fifaAvg)}`, dash: true },
     ]);
-    note(pD, `Before the announcement the gap stays close to zero (within <b>${D.preRmspe.toFixed(1)} points</b>, root-mean-square): the twin reproduces Lenovo. Since then Lenovo has averaged <b>${F.pctv(FS.attribution_band_upper_uplift_pct)}</b> above it, and accumulated FIFA exposure explains <b>${F.pctv(FS.primary_uplift_pct)}</b>. <a href="#/method/twin">Lenovo and its twin as two lines</a>.`);
+    note(pD, `Of the ${F.pctv(gapAvg)}, <b>${F.pctv(fifaAvg)}</b> is explained by FIFA exposure: the FIFA-specific effect. Before the deal the twin tracks Lenovo within ${D.preRmspe.toFixed(1)} points. <a href="#/method/twin">See Lenovo and its twin as two lines</a>.`);
     src(pD, "Sources: Google Trends · GWI Core · Nielsen · Elaboration: OpenEconomics");
 
     const pE = panel(col(g3, 5), { cls: "panel--dark", label: "Total gap · the ceiling" });

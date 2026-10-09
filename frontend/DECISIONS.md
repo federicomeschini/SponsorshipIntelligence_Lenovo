@@ -336,3 +336,13 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **Two-line view:** Lenovo against its twin stays on the Method › No-sponsorship twin page, linked from the note.
   - **Builder:** it adds `core.gapPct`, `core.fifaPct` and `core.fifaPointsPostMean`.
 - **Consequences:** The first chart says that every brand rose and Lenovo rose more; the second says how much more and how much of it is FIFA. The weekly FIFA part steps up at the deal and then saturates, which is the log-adstock specification, so peaks above it (spring 2026, the World Cup) stay unattributed.
+
+## FE-027 — Gap chart: two levels instead of a shaded FIFA path
+
+- **Context:** The owner found the purple FIFA area (FE-026) unattractive and the chart's title and explanation unclear.
+- **Decision:**
+  - **Chart:** the weekly gap stays as the green area. The FIFA part becomes two dashed levels from the deal onward: the average gap since the deal (+7.3%) and the part explained by FIFA exposure (+4.5%, the FIFA-specific effect). The weekly FIFA path, which saturates under log-adstock, is no longer drawn.
+  - **Title:** "Since the deal, Lenovo has averaged +7.3% above its no-sponsorship twin".
+  - **Subtitle and note:** one plain sentence each.
+  - **Builder:** it drops `fifaPct`.
+- **Consequences:** Presentation only.
