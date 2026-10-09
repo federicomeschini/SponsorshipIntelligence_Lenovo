@@ -421,9 +421,9 @@
     /* --- brand vs rivals --------------------------------------------------- */
     const g1 = grid(root);
     const pA = panel(col(g1, 12), {
-      label: "The comparable test",
-      title: `Lenovo, and ${K.peerCount} rival brands the FIFA deal never touched`,
-      sub: "Worldwide weekly search interest, each series re-based to 100 on its own average before the announcement (4-week averages). The whole market rose; what matters is how much further Lenovo went.",
+      label: "The market context",
+      title: "Search interest rose for every PC brand; Lenovo's rose more than the typical rival",
+      sub: `Worldwide weekly Google searches for Lenovo and ${K.peerCount} rival PC brands that have no FIFA deal, each set to 100 on its own average before the announcement (4-week averages).`,
     });
     const cvA = chartIn(pA, 380);
     lineChart(cvA, {
@@ -467,30 +467,27 @@
     /* --- synthetic control ------------------------------------------------- */
     const g3 = grid(root);
     const gapAvg = FS.attribution_band_upper_uplift_pct, fifaAvg = FS.primary_uplift_pct;
-    const afterDeal = (v) => X.core.weeks.map((_, i) => (i >= X.core.annIdx ? v : null));
+    const blocks = X.core.gapBlocks, preBlocks = blocks.filter((b) => !b.post);
+    const preAvg = preBlocks.reduce((s, b) => s + b.gap * b.weeks, 0) / preBlocks.reduce((s, b) => s + b.weeks, 0);
     const pD = panel(col(g3, 7), {
       label: "The result over time",
-      title: `Since the deal, Lenovo has averaged ${F.pctv(gapAvg)} above its no-sponsorship twin`,
-      sub: "How far Lenovo's brand share of attention sits above a twin built from 13 rival brands, week by week. Before the deal the two match; after it, Lenovo pulls ahead.",
+      title: `Lenovo tracked its no-sponsorship twin before the deal; since then it has run ${F.pctv(gapAvg)} above it`,
+      sub: `Average gap between Lenovo's brand share of attention and a twin built from ${D.donors.length} rival brands, in 13-week periods before and after the announcement.`,
     });
-    const cvD = chartIn(pD, 330);
-    lineChart(cvD, {
-      weeks: X.core.weeks,
-      series: [
-        { label: "Average since the deal", data: afterDeal(gapAvg), color: T.limeInk, width: 2, dash: [6, 4], tension: 0, order: 1 },
-        { label: "Explained by FIFA exposure", data: afterDeal(fifaAvg), color: T.brand, width: 2.4, dash: [6, 4], tension: 0, order: 0 },
-        { label: "Gap to the twin", data: X.core.gapPct, color: T.limeInk, width: 1.6, fill: "origin", fillColor: T.gap, order: 2 },
-      ],
-      milestones: marksFor(X.core.weeks, [...KEY_MARKS, "wc_final_2026"]),
+    const cvD = chartIn(pD, 320);
+    barsV(cvD, {
+      labels: blocks.map((b) => F.month(b.start)),
+      values: blocks.map((b) => b.gap),
+      colors: blocks.map((b) => (b.post ? T.limeInk : T.peer)),
+      yFmt: (v) => (v > 0 ? "+" : "") + v + "%",
       yTitle: "% above the twin (brand share)",
-      tip: (v) => (v == null ? "—" : (v >= 0 ? "+" : "") + v.toFixed(1) + "%"),
+      tipTitle: (i) => `${F.day(blocks[i].start)} – ${F.day(blocks[i].end)} (${blocks[i].weeks} weeks)`,
     });
     legend(pD, [
-      { color: T.lime, label: "Weekly gap to the twin", square: true },
-      { color: T.limeInk, label: `Average since the deal: ${F.pctv(gapAvg)}`, dash: true },
-      { color: T.brand, label: `Explained by FIFA exposure: ${F.pctv(fifaAvg)}`, dash: true },
+      { color: T.peer, label: `Before the deal: ${F.pctv(preAvg)} on average`, square: true },
+      { color: T.limeInk, label: `Since the deal: ${F.pctv(gapAvg)} on average`, square: true },
     ]);
-    note(pD, `Of the ${F.pctv(gapAvg)}, <b>${F.pctv(fifaAvg)}</b> is explained by FIFA exposure: the FIFA-specific effect. Before the deal the twin tracks Lenovo within ${D.preRmspe.toFixed(1)} points. <a href="#/method/twin">See Lenovo and its twin as two lines</a>.`);
+    note(pD, `Of the ${F.pctv(gapAvg)}, <b>${F.pctv(fifaAvg)}</b> is explained by FIFA exposure (the split is shown below). <a href="#/method/twin">See Lenovo and its twin week by week</a>.`);
     src(pD, "Sources: Google Trends · GWI Core · Nielsen · Elaboration: OpenEconomics");
 
     const pE = panel(col(g3, 5), { cls: "panel--dark", label: "Total gap · the ceiling" });

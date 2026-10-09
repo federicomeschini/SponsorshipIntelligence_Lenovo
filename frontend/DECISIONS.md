@@ -346,3 +346,18 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
   - **Subtitle and note:** one plain sentence each.
   - **Builder:** it drops `fifaPct`.
 - **Consequences:** Presentation only.
+
+## FE-028 — Result chart as 13-week bars; clearer market-context title
+
+- **Context:** The owner found the dashed FIFA level (FE-027) still poor and the first chart's title ("rival brands the FIFA deal never touched") unclear.
+- **Decision:**
+  - **Result chart:**
+    - *Form:* bars of the average gap to the no-sponsorship twin in 13-week periods counted from the announcement. Before the deal the bars are grey, after it green. A leading partial period is dropped; the latest period may be partial and the tooltip gives its weeks.
+    - *Content:* no FIFA overlay. The quarterly FIFA part exceeds the gap in the first three post-deal periods, because log-adstock jumps with the first exposure, so the split stays in the "What explains the gap" chart below.
+    - *Title:* "Lenovo tracked its no-sponsorship twin before the deal; since then it has run +7.3% above it".
+    - *Legend:* the averages before (−2.0%) and since (+7.3%) the deal.
+  - **First chart:** the chart is unchanged.
+    - *Label:* "The market context".
+    - *Title:* "Search interest rose for every PC brand; Lenovo's rose more than the typical rival".
+    - *Subtitle:* it says the 11 rivals are PC brands with no FIFA deal.
+- **Consequences:** The two Exposure charts differ in form (lines, then bars) and in message (the market rose; Lenovo pulled ahead of its twin).

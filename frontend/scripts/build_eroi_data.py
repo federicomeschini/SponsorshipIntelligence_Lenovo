@@ -116,6 +116,16 @@ def build_exposure(events: list[dict]) -> dict:
     # Weekly gap as % of the twin (brand share) (FE-026).
     core = weekly.set_index("week")
     gap_pct = 100 * core["index_gap"] / core["synthetic_index"]
+    # 13-week blocks counted back and forward from the first post-announcement week (FE-028);
+    # a leading partial block before the deal is dropped, the latest block may be partial.
+    post_start = core.index[core["period"].eq("post")].min()
+    offset = ((core.index - post_start).days // 7) // 13
+    gap_blocks = []
+    for k, rows in gap_pct.groupby(offset):
+        if k < 0 and len(rows) < 13:
+            continue
+        gap_blocks.append({"start": str(rows.index.min().date()), "end": str(rows.index.max().date()), "weeks": int(len(rows)),
+                           "post": bool(k >= 0), "gap": r(rows.mean(), 2)})
 
     # Cross-checks and World Cup.
     share = j(E / "sponsorship_total_effect_share_of_search_v1/estimate_manifest.json")
@@ -138,7 +148,7 @@ def build_exposure(events: list[dict]) -> dict:
     return {
         "core": {"weeks": iso(weekly["week"]), "annIdx": ann_idx, "actual": series(weekly["actual_index"]),
                  "synthetic": series(weekly["synthetic_index"]), "gap": series(weekly["index_gap"]),
-                 "gapPct": series(gap_pct, 2)},
+                 "gapPct": series(gap_pct, 2), "gapBlocks": gap_blocks},
         "brandIndex": {"weeks": iso(bi["week"]), "level": series(bi["index_level"]), "se": series(bi["index_se"]),
                        "productDemand": series(bi["product_search_demand"], 1),
                        "surveyFit": {k: r(v["correlation"], 2) for k, v in bi_man["survey_fit"].items()},
