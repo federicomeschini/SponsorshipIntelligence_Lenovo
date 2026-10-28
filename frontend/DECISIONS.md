@@ -361,3 +361,13 @@ repo-root `DECISIONS.md`; this file covers only `frontend/`.
     - *Title:* "Search interest rose for every PC brand; Lenovo's rose more than the typical rival".
     - *Subtitle:* it says the 11 rivals are PC brands with no FIFA deal.
 - **Consequences:** The two Exposure charts differ in form (lines, then bars) and in message (the market rose; Lenovo pulled ahead of its twin).
+
+## FE-029 — Sponsorship effects shown in % only; former search-salience check removed
+
+- **Context:** The owner found that the same result appeared as "+4.54%" in some places and "4.6 points" in others, and asked that effects always be stated in %. The owner also found the robustness row "former search-salience index" confusing, since that analysis has been discarded.
+- **Decision:**
+  - **Unit:** every sponsorship effect is shown in % of the no-sponsorship twin, which is the unit of the headline. Index points are converted with the twin level (points ÷ twin × 100), so the figures match the uplift (+4.53% for 4.62 points). This covers the summary, exposure, the close-up, monetization, method pages and the television page.
+  - **Robustness:** the former search-salience row is removed from the dashboard and the data builder. Two rows remain: the headline design and Google share of search alone, both in % above the twin.
+  - **Regression coefficients:** the per-standard-deviation coefficients on the method pages are also in % of the twin.
+  - **Unchanged:** the Brand Index and search-volume drifts, which are already % of their own pre-announcement level, and the Brand Index definition.
+- **Consequences:** The dashboard states one unit for the sponsorship effect. The notebooks keep index points and document the conversion. ADR-0048 and the earlier FE entries that cite points remain as the record of what was shown at the time.

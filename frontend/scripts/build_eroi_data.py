@@ -188,10 +188,12 @@ def build_exposure(events: list[dict]) -> dict:
                   "counterfactual": r(te["synthetic_post_mean_index"], 2), "from": te["first_post_week"], "to": te["last_week"],
                   "weeks": te["post_weeks"]},
         "crossChecks": [
-            {"label": "Brand Index (headline design)", "lift": r(te["lift_index_points"], 2), "p": r(head["primary"]["p_value"], 3), "unit": "Brand Index points"},
-            {"label": "Google share of search only", "lift": r(share["total_effect"]["lift_index_points"], 2), "p": r(share["primary"]["p_value"], 3), "unit": "% of pre-announcement share",
+            # FE-029: % of the no-sponsorship twin (Google share of search is already a % of its pre-announcement share).
+            {"label": "Brand Index (headline design)", "lift": r(te["lift_index_points"], 2),
+             "pct": r(100 * te["lift_index_points"] / fs["counterfactual_index_level"], 2), "p": r(head["primary"]["p_value"], 3)},
+            {"label": "Google share of search only", "lift": r(share["total_effect"]["lift_index_points"], 2),
+             "pct": r(share["total_effect"]["lift_index_points"], 2), "p": r(share["primary"]["p_value"], 3),
              "exSurgeP": r(share_ex["p_value"].iloc[0], 3)},
-            {"label": "Former search-salience index", "lift": r(salience["total_effect"]["lift_index_points"], 2), "p": r(salience["primary"]["p_value"], 3), "unit": "old 100/15 points"},
         ],
         "worldCup": {"beforeTournament": window(pd.Timestamp(te["first_post_week"]), wc_start - pd.Timedelta(days=1)),
                      "tournament": window(wc_start, wc_end), "afterFinal": window(wc_end + pd.Timedelta(days=1), pd.Timestamp(te["last_week"])),
